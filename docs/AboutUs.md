@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Darren Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darhh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/darhh)]
+[[portfolio](team/darhh.md)]
 
-* Role: Project Advisor
+* Role: Caretaker
+* Responsibilities: Keep Isaac in check. 
 
 ### Jane Doe
 
