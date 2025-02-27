@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/darhh)]
 [[portfolio](team/darhh.md)]
 
-* Role: Caretaker
-* Responsibilities: Keep Isaac in check. 
+* Role: Integration, Documentation 
+* Responsibilities: In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole. Responsible for the quality of various project documents.
 
 ### Jane Doe
 
