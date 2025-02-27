@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/noahang.png" width="200px">
 
 [[github](http://github.com/noahang)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/noahAng.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality
