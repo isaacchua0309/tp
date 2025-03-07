@@ -53,4 +53,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Deliverables and Deadlines
-* 
+
+### Isaac Chua
+
+<img src="images/isaacchua0309.jpeg" width="200px">
+
+[[github](http://github.com/isaacchua0309)]
+[[portfolio](team/isaacchua0309.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+
