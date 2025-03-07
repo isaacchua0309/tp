@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Integration, Documentation 
 * Responsibilities: In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole. Responsible for the quality of various project documents.
 
-### Jane Doe
+### Goh Lucas
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gohlucas.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/gohlucas)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Scheduling and Tracking, Documentation
+* Responsibilities: In charge of defining, assigning, and tracking project tasks. Responsible for the quality of various project documents.
 
 ### Johnny Doe
 
@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Noah Ang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/noahang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/noahang)]
+[[portfolio](team/noahAng.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality
 
 ### James Doe
 
