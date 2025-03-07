@@ -33,4 +33,4 @@ Given below are my contributions to the project.
     * Set up and integrated testing frameworks to ensure code quality
 
 * **Project management**:
-    * Managed project tasks on GitHub issue tracker 
+    * Managed project tasks on GitHub issue tracker
