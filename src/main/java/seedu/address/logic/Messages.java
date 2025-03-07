@@ -19,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_HELLO = "Hello from AB3!";
+    public static final String MESSAGE_HELLO_WITH_NAME = "Hello, %1$s! Welcome to AB3!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

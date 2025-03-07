@@ -1,4 +1,8 @@
-We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
+<!-- Note: This file will be updated with the correct photo path once isaacchua0309.png is added -->
+
+# Address Book
+
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
@@ -58,10 +62,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/isaacchua0309.jpeg" width="200px">
 
-[[github](http://github.com/isaacchua0309)]
+[[github](https://github.com/isaacchua0309)]
 [[portfolio](team/isaacchua0309.md)]
 
-* Role: Developer
-* Responsibilities: Testing
+* Role: Team Lead
+* Responsibilities: UI
 
 
