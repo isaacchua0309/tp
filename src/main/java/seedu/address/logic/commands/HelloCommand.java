@@ -14,4 +14,4 @@ public class HelloCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         return new CommandResult(MESSAGE_SUCCESS);
     }
-} 
+}
