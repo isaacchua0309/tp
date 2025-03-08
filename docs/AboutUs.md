@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/gohlucas.png" width="200px">
 
 [[github](http://github.com/gohlucas)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gohLucas.md)]
 
 * Role: Scheduling and Tracking, Documentation
 * Responsibilities: In charge of defining, assigning, and tracking project tasks. Responsible for the quality of various project documents.
@@ -37,9 +37,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Somneel
 
-<img src="images/somneelsaha.png" width="200px">
+<img src="images/somneelsaha.jpg" width="200px">
 
-[[github](http://github.com/somneel)]
+[[github](http://github.com/SomneelSaha2004)]
 [[portfolio](team/somneel.md)]
 
 * Role: Developer
