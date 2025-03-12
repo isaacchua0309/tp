@@ -1,13 +1,9 @@
----
-layout: page
-title: About Us
----
-
 We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
+
 
 ### Darren Teo
 
@@ -16,7 +12,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/darhh)]
 [[portfolio](team/darhh.md)]
 
-* Role: Integration, Documentation 
+* Role: Integration, Documentation
 * Responsibilities: In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole. Responsible for the quality of various project documents.
 
 ### Goh Lucas
@@ -24,19 +20,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/gohlucas.png" width="200px">
 
 [[github](http://github.com/gohlucas)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gohLucas.md)]
 
 * Role: Scheduling and Tracking, Documentation
 * Responsibilities: In charge of defining, assigning, and tracking project tasks. Responsible for the quality of various project documents.
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
 
 ### Noah Ang
 
@@ -48,12 +35,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code Quality
 
-### James Doe
+### Somneel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/somneelsaha.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/SomneelSaha2004)]
+[[portfolio](team/somneel.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines
+
+### Isaac Chua
+
+<img src="images/isaacchua0309.jpeg" width="200px">
+
+[[github](http://github.com/isaacchua0309)]
+[[portfolio](team/isaacchua0309.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+
