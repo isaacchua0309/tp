@@ -277,40 +277,40 @@ so as to reduce the hassle when organizing sports meetups.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                                                                     | So that I can…​                                                               |
-|----------|---------------------------------------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *`  | new user                                    | see usage instructions                                                           | refer to instructions when I forget how to use the App                        |
-| `* * *`  | user                                        | add a new person                                                                 | so that I can store their information                                         |
-| `* * *`  | user                                        | delete a person                                                                  | remove entries that I no longer need                                          |
-| `* * *`  | user                                        | find a person by name                                                            | locate details of persons without having to go through the entire list        |
-| `* * *`  | sporty person                               | set my friend's preferred sport in their contact                                 | know who to arrange games with when I want to play a certain sport            |
-| `* * *`  | sporty person                               | be able to save a friend's contact number                                        | contact them to meet up for games in future                                   |
-| `* * *`  | user looking to pick up a new sport         | find friends who play that sport                                                 | invite them to play or teach me the sport                                     |
-| `* *`    | sporty person                               | be able to find sports facilities near me                                        | play sports there                                                             |
-| `* *`    | user                                        | hide private contact details                                                     | minimize chance of someone else seeing them by accident                       |
-| `* *`    | student                                     | receive suggested sports venues based on my group's location                     | arrange a meetup location which is fair and convenient                        |
-| `* *`    | user who prefers structured planning        | be able to book facilities directly through the app                              | reduce the hassle of navigating multiple booking applications                 |
-| `* *`    | busy professional                           | quickly check for the nearest sports facility before heading down                | save time                                                                     |
-| `* *`    | user who dislikes long commutes             | be able to set a maximum travel distance                                         | receive suggestions from the application which fall within my preferred range |
-| `* *`    | user                                        | be able to edit an existing contact                                              | update their contact details                                                  |
-| `* *`    | working professional                        | save my favourite sports venues                                                  | quickly suggest them for meetups                                              |
-| `* *`    | thrifty user                                | be able to filter results only to show free to use facilities                    | enjoy sports without paying for private courts                                |
-| `* *`    | tennis player                               | be reminded to bring my racket                                                   | save the trouble of having to borrow a racket at the last minute              |
-| `* *`    | sporty person                               | set my friend's prefrred play locations                                          | know where to meet them for games                                             |
-| `* *`    | working adult                               | tag contacts with custom labels                                                  | categorize them by friends/work                                               |
-| `* *`    | sports coach                                | track where my students live                                                     | organize training sessions at convenient locations                            |
-| `* *`    | user with many persons in the address book  | sort persons by name                                                             | locate a person easily                                                        |
-| `* *`    | network enthusiast                          | see where my contacts live                                                       | meet up with them more easily                                                 |
-| `* *`    | impromptu person                            | see where my friends live                                                        | see which friends are in the area when I am out and suddenly want to catch up |
-| `* *`    | caring friend                               | see what sports my friends play                                                  | arrange a session when I have something to talk about/check on them           |
-| `*`      | sports team captain from NUS                | find friends from the same sport in different schools                            | arrange friendly tournaments                                                  |
-| `*`      | team captain                                | be able to add my contacts to a list of players who attended a practice session  | keep track of attendance easily                                               |
-| `*`      | sports enthusiast                           | add my friends to my sports address book                                         | quickly check who plays the sport I want to participate in                    |
-| `*`      | casual futsal player                        | invite my friends and have the application suggest a location                    | save the effort of checking different venues manually                         |
-| `*`      | newcomer to the city                        | find people nearby who play my favourite sport                                   | join their games                                                              |
-| `*`      | competitive athlete                         | see a leaderboard of who has played the most games                               | gain motivation and stay active                                               |
-| `*`      | social athlete                              | be reminded who plays with me the most                                           | find out who is most likely to be available if I contact them for a game      |
-| `*`      | competitive user                            | track my game participation and win/loss record                                  | measure my progress over time                                                 |
+| Priority | As a …​                                     | I want to …​                                                                                            | So that I can…​                                                               |
+|----------|---------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | new user                                    | see usage instructions                                                                                  | refer to instructions when I forget how to use the App                        |
+| `* * *`  | user                                        | add a new person                                                                                        | so that I can store their information                                         |
+| `* * *`  | user                                        | delete a person                                                                                         | remove entries that I no longer need                                          |
+| `* * *`  | user                                        | find a person by name                                                                                   | locate details of persons without having to go through the entire list        |
+| `* * *`  | sporty person                               | add a person's preferred sport                                                                          | know who to arrange games with when I want to play a certain sport            |
+| `* * *`  | sporty person                               | add a friend's contact number                                                                           | contact them to meet up for games in future                                   |
+| `* * *`  | user looking to pick up a new sport         | find friends by sport played                                                                            | invite them to play or teach me the sport                                     |
+| `* * *`  | network enthusiast                          | see where my contacts live                                                                              | meet up with them more easily                                                 |
+| `* * *`  | impromptu person                            | see where my friends live                                                                               | see which friends are in the area when I am out and suddenly want to catch up |
+| `* * *`  | caring friend                               | see what sports my friends play                                                                         | arrange a session when I have something to talk about/check on them           |
+| `* *`    | sporty person                               | find sports facilities near me                                                                          | play sports there                                                             |
+| `* *`    | user                                        | hide private contact details                                                                            | protect the contact details of persons in my address book                     |
+| `* *`    | student                                     | receive suggested sports venues based on my group's location                                            | arrange a meetup location which is fair and convenient                        |
+| `* *`    | user who prefers structured planning        | book facilities directly through the app                                                                | reduce the hassle of navigating multiple booking applications                 |
+| `* *`    | busy professional                           | quickly check for the nearest sports facility before heading down                                       | save time                                                                     |
+| `* *`    | user who dislikes long commutes             | set a maximum travel distance to be used to filter out addresses that are too far away from my location | receive suggestions from the application which fall within my preferred range |
+| `* *`    | user                                        | be able to edit an existing contact                                                                     | update their contact details                                                  |
+| `* *`    | working professional                        | add my favourite sports venues                                                                          | quickly suggest them for meetups                                              |
+| `* *`    | thrifty user                                | be able to filter results only to show free to use facilities                                           | enjoy sports without paying for private courts                                |
+| `* *`    | tennis player                               | be reminded to bring my racket                                                                          | save the trouble of having to borrow a racket at the last minute              |
+| `* *`    | sporty person                               | set my friend's preferred play locations                                                                | know where to meet them for games                                             |
+| `* *`    | working adult                               | tag contacts with custom labels                                                                         | categorize them by friends/work                                               |
+| `* *`    | sports coach                                | track where my students live                                                                            | organize training sessions at convenient locations                            |
+| `* *`    | user with many persons in the address book  | sort persons by name                                                                                    | locate a person easily                                                        |
+| `*`      | sports team captain from NUS                | find friends from the same sport in different schools                                                   | arrange friendly tournaments                                                  |
+| `*`      | team captain                                | be able to add my contacts to a list of players who attended a practice session                         | keep track of attendance easily                                               |
+| `*`      | sports enthusiast                           | add my friends to my sports address book                                                                | quickly check who plays the sport I want to participate in                    |
+| `*`      | casual futsal player                        | invite my friends and have the application suggest a location                                           | save the effort of checking different venues manually                         |
+| `*`      | newcomer to the city                        | find people nearby who play my favourite sport                                                          | join their games                                                              |
+| `*`      | competitive athlete                         | see a leaderboard of who has played the most games                                                      | gain motivation and stay active                                               |
+| `*`      | social athlete                              | be reminded who plays with me the most                                                                  | find out who is most likely to be available if I contact them for a game      |
+| `*`      | competitive user                            | track my game participation and win/loss record                                                         | measure my progress over time                                                 |
 
 
 
@@ -360,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The person is not in the list.
 
     * 3a1. AddressBook shows an error message.
 
@@ -400,10 +400,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User searches for a person
-2.  AddressBook shows a list of matching result(s)
-3.  User clicks on contact
+2.  AddressBook shows matching result(s)
+3.  User requests to view contact details
 4.  AddressBook shows contact details
-5.  User clicks on field to update details
+5.  User selects field to update details
 6.  AddressBook reflects updated contact details
 
     Use case ends.
