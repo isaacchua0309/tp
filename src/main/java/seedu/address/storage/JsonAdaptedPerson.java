@@ -19,7 +19,7 @@ import seedu.address.model.person.Sport;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * JSON-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
 
@@ -72,7 +72,7 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this JSON-friendly adapted person object into the model's {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
