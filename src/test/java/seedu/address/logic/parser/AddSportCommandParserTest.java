@@ -3,13 +3,13 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddSportCommand;
 import seedu.address.model.person.Sport;
-import seedu.address.logic.parser.ParserUtil;
 
 public class AddSportCommandParserTest {
     private static final String VALID_SPORT = "soccer";
@@ -20,8 +20,8 @@ public class AddSportCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         // Valid sport
-        AddSportCommand expectedCommand = 
-            new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), new Sport(VALID_SPORT));
+        AddSportCommand expectedCommand =
+                new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), new Sport(VALID_SPORT));
         assertParseSuccess(parser, "1 s/soccer", expectedCommand);
 
         // With whitespace
@@ -45,15 +45,15 @@ public class AddSportCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // Invalid index
-        assertParseFailure(parser, "0 s/soccer", 
-            ParserUtil.MESSAGE_INVALID_INDEX);
-        
+        assertParseFailure(parser, "0 s/soccer",
+                MESSAGE_INVALID_INDEX);
+
         // Empty sport
-        assertParseFailure(parser, "1 s/", 
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSportCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1 s/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSportCommand.MESSAGE_USAGE));
 
         // Invalid format
-        assertParseFailure(parser, "1s/soccer", 
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSportCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1s/soccer",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSportCommand.MESSAGE_USAGE));
     }
-} 
+}

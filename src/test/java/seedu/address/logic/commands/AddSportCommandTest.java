@@ -38,7 +38,7 @@ public class AddSportCommandTest {
         Sport sportToAdd = new Sport("soccer");
         AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), sportToAdd);
 
-        String expectedMessage = String.format(AddSportCommand.MESSAGE_SUCCESS, 
+        String expectedMessage = String.format(AddSportCommand.MESSAGE_SUCCESS,
                 sportToAdd.toString(), personToModify.getName().fullName);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -53,14 +53,14 @@ public class AddSportCommandTest {
     public void execute_duplicateSport_throwsCommandException() {
         Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Sport sportToAdd = new Sport("soccer");
-        
+
         // First add a sport
         Person modifiedPerson = createPersonWithAdditionalSport(personToModify, sportToAdd);
         model.setPerson(personToModify, modifiedPerson);
-        
+
         // Try to add the same sport again
         AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), sportToAdd);
-        assertThrows(CommandException.class, 
+        assertThrows(CommandException.class,
                 AddSportCommand.MESSAGE_DUPLICATE_SPORT, () -> addSportCommand.execute(model));
     }
 
@@ -69,7 +69,7 @@ public class AddSportCommandTest {
         int outOfBoundIndex = model.getFilteredPersonList().size();
         AddSportCommand addSportCommand = new AddSportCommand(outOfBoundIndex, new Sport("soccer"));
 
-        assertThrows(CommandException.class, 
+        assertThrows(CommandException.class,
                 "Invalid person index", () -> addSportCommand.execute(model));
     }
 
@@ -107,7 +107,7 @@ public class AddSportCommandTest {
     private Person createPersonWithAdditionalSport(Person person, Sport sport) {
         List<Sport> updatedSports = new ArrayList<>(person.getSports());
         updatedSports.add(sport);
-        
+
         return new Person(
                 person.getName(),
                 person.getPhone(),
@@ -116,4 +116,4 @@ public class AddSportCommandTest {
                 person.getTags(),
                 updatedSports);
     }
-} 
+}

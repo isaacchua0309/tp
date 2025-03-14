@@ -12,14 +12,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class PersonTest {
 
@@ -127,7 +125,7 @@ public class PersonTest {
         Person originalPerson = new PersonBuilder().build();
         List<Sport> updatedSports = new ArrayList<>(originalPerson.getSports());
         updatedSports.add(new Sport("tennis"));
-        
+
         Person updatedPerson = new Person(
                 originalPerson.getName(),
                 originalPerson.getPhone(),
@@ -135,7 +133,7 @@ public class PersonTest {
                 originalPerson.getAddress(),
                 originalPerson.getTags(),
                 updatedSports);
-        
+
         assertTrue(updatedPerson.getSports().contains(new Sport("tennis")));
         assertEquals(originalPerson.getSports().size() + 1, updatedPerson.getSports().size());
     }

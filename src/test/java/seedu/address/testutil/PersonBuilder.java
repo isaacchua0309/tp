@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -115,5 +114,4 @@ public class PersonBuilder {
     public Person build() {
         return new Person(name, phone, email, address, tags, sports);
     }
-
 }

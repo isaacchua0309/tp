@@ -64,4 +64,4 @@ public class SportTest {
         Sport secondSport = new Sport("Rugby");
         assertFalse(firstSport.equals(secondSport));
     }
-} 
+}
