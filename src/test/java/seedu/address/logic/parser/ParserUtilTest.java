@@ -6,9 +6,11 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sport;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -35,6 +38,11 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
+
+    // Tests for sport parsing
+    private static final String INVALID_SPORT = "cricket123";
+    private static final String VALID_SPORT_1 = "soccer";
+    private static final String VALID_SPORT_2 = "basketball";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -192,5 +200,51 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseSport_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSports((String) null));
+    }
+
+    @Test
+    public void parseSport_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSports(INVALID_SPORT));
+    }
+
+    @Test
+    public void parseSport_validValueWithoutWhitespace_returnsSport() throws Exception {
+        Sport expectedSport = new Sport(VALID_SPORT_1);
+        assertEquals(expectedSport, ParserUtil.parseSports(VALID_SPORT_1));
+    }
+
+    @Test
+    public void parseSport_validValueWithWhitespace_returnsTrimmedSport() throws Exception {
+        String sportWithWhitespace = WHITESPACE + VALID_SPORT_1 + WHITESPACE;
+        Sport expectedSport = new Sport(VALID_SPORT_1);
+        assertEquals(expectedSport, ParserUtil.parseSports(sportWithWhitespace));
+    }
+
+    @Test
+    public void parseSports_collectionWithValidSports_returnsSportList() throws Exception {
+        List<String> sportStrings = Arrays.asList(VALID_SPORT_1, VALID_SPORT_2);
+        List<Sport> expectedSportList = new ArrayList<>();
+        expectedSportList.add(new Sport(VALID_SPORT_1));
+        expectedSportList.add(new Sport(VALID_SPORT_2));
+
+        List<Sport> actualSportList = ParserUtil.parseSports(sportStrings);
+        assertEquals(expectedSportList.size(), actualSportList.size());
+        assertTrue(actualSportList.containsAll(expectedSportList));
+    }
+
+    @Test
+    public void parseSports_emptyCollection_returnsEmptyList() throws Exception {
+        assertTrue(ParserUtil.parseSports(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseSports_collectionWithInvalidSports_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseSports(Arrays.asList(VALID_SPORT_1, INVALID_SPORT)));
     }
 }
