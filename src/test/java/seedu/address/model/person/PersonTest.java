@@ -12,6 +12,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
@@ -96,5 +99,42 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags();
         expected = expected + ", sports=[]}";
         assertEquals(expected, ALICE.toString());
+    }
+
+    @Test
+    public void getSports_modifyList_throwsUnsupportedOperationException() {
+        Person person = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> person.getSports().remove(0));
+    }
+
+    @Test
+    public void hasSport_personWithNoSports_returnsFalse() {
+        Person person = new PersonBuilder().build();
+        Sport sport = new Sport("basketball");
+        assertFalse(person.getSports().contains(sport));
+    }
+
+    @Test
+    public void hasSport_personWithSport_returnsTrue() {
+        Person person = new PersonBuilder().withSport("soccer").build();
+        assertTrue(person.getSports().contains(new Sport("soccer")));
+    }
+
+    @Test
+    public void addSport_success() {
+        Person originalPerson = new PersonBuilder().build();
+        List<Sport> updatedSports = new ArrayList<>(originalPerson.getSports());
+        updatedSports.add(new Sport("tennis"));
+
+        Person updatedPerson = new Person(
+                originalPerson.getName(),
+                originalPerson.getPhone(),
+                originalPerson.getEmail(),
+                originalPerson.getAddress(),
+                originalPerson.getTags(),
+                updatedSports);
+
+        assertTrue(updatedPerson.getSports().contains(new Sport("tennis")));
+        assertEquals(originalPerson.getSports().size() + 1, updatedPerson.getSports().size());
     }
 }
