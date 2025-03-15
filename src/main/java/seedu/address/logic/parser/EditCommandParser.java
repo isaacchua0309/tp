@@ -64,7 +64,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        parseSportsForEdit(argMultimap.getAllValues(PREFIX_SPORT)).ifPresent(editPersonDescriptor::setSports);
+        editPersonDescriptor.setSports(parseSportsForEdit(argMultimap.getAllValues(PREFIX_SPORT)));
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -90,14 +90,13 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses {@code Collection<String> sports} into a {@code List<Sport>} if {@code sports} is non-empty.
      */
-    private Optional<List<Sport>> parseSportsForEdit(Collection<String> sports) throws ParseException {
+    private List<Sport> parseSportsForEdit(Collection<String> sports) throws ParseException {
         assert sports != null;
-
         if (sports.isEmpty()) {
-            return Optional.empty();
+            return null;
         }
-        Collection<String> sportList = sports.size() == 1 && sports.contains("") ? Collections.emptySet() : sports;
-        return Optional.of(ParserUtil.parseSports(sportList));
+        return ParserUtil.parseSports(sports);
+
     }
 
 }

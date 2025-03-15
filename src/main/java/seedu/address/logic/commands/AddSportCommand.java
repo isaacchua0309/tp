@@ -66,7 +66,6 @@ public class AddSportCommand extends Command {
         if (personToEdit.getSports().contains(sport)) {
             throw new CommandException(MESSAGE_DUPLICATE_SPORT);
         }
-
         // Check if the sport is valid
         // Define a set of allowed sports (all in lowercase)
         String trimmedSport = sport.toString().toLowerCase();
