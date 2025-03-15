@@ -83,16 +83,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code List<Sport>} of the {@code Person} that we are building.
      */
-    public PersonBuilder withSports(List<Sport> sports) {
+    public PersonBuilder withSportsTest(List<Sport> sports) {
         this.sports = new ArrayList<>(sports);
-        return this;
-    }
-
-    /**
-     * Parses the {@code sports} into a {@code List<Sport>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withSports(String ... sports) {
-        this.sports = SampleDataUtil.getSportList(sports);
         return this;
     }
 
