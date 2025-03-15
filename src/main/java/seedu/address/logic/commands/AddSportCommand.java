@@ -3,7 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -16,6 +20,11 @@ import seedu.address.model.person.Sport;
  */
 public class AddSportCommand extends Command {
 
+    public static final Set<String> VALID_SPORTS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+            "soccer", "basketball", "tennis", "badminton", "cricket",
+            "baseball", "volleyball", "hockey", "rugby", "golf"
+    )));
+
     public static final String COMMAND_WORD = "addsport";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a sport to the contact identified "
             + "by the index number used in the displayed person list. "
@@ -23,6 +32,8 @@ public class AddSportCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 s/Badminton";
     public static final String MESSAGE_SUCCESS = "Added sport: %1$s to contact: %2$s";
     public static final String MESSAGE_DUPLICATE_SPORT = "This sport already exists for the contact";
+
+    public static final String MESSAGE_INVALID_SPORT = "Invalid sport. Allowed sports: " + VALID_SPORTS;
 
     private final int index;
     private final Sport sport;
@@ -54,6 +65,14 @@ public class AddSportCommand extends Command {
         // Check if the sport is already present
         if (personToEdit.getSports().contains(sport)) {
             throw new CommandException(MESSAGE_DUPLICATE_SPORT);
+        }
+
+        // Check if the sport is valid
+        // Define a set of allowed sports (all in lowercase)
+        String trimmedSport = sport.toString().toLowerCase();
+
+        if (!VALID_SPORTS.contains(trimmedSport)) {
+            throw new CommandException(MESSAGE_INVALID_SPORT);
         }
 
         // Create a new list of sports including the new sport.
