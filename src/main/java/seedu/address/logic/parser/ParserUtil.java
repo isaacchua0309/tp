@@ -132,7 +132,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code sport} is invalid.
      */
-    public static Sport parseSports(String sport) throws ParseException {
+    public static Sport parseSport(String sport) throws ParseException {
         requireNonNull(sport);
         String trimmedSport = sport.trim();
 
@@ -156,7 +156,7 @@ public class ParserUtil {
         List<Sport> sportList = new ArrayList<>();
         for (String sportStr : sports) {
             // This call will validate each sport string individually.
-            sportList.add(parseSports(sportStr));
+            sportList.add(parseSport(sportStr));
         }
         return sportList;
     }

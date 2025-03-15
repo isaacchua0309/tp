@@ -24,6 +24,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    public static final List<Sport> DEFAULT_SPORTS = List.of(new Sport("badminton"));
+
     private Name name;
     private Phone phone;
     private Email email;
@@ -40,7 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        sports = new ArrayList<>();
+        sports = new ArrayList<>(DEFAULT_SPORTS);
     }
 
     /**
@@ -72,9 +74,16 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code sports} into a {@code List<Sport>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withSports(String ... sports) {
+        this.sports = SampleDataUtil.getSportList(sports);
+        return this;
+    }
+    /**
      * Sets the {@code List<Sport>} of the {@code Person} that we are building.
      */
-    public PersonBuilder withSports(List<Sport> sports) {
+    public PersonBuilder withSportsTest(List<Sport> sports) {
         this.sports = new ArrayList<>(sports);
         return this;
     }
