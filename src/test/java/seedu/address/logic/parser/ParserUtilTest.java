@@ -204,25 +204,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseSport_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseSports((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSport((String) null));
     }
 
     @Test
     public void parseSport_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSports(INVALID_SPORT));
+        assertThrows(ParseException.class, () -> ParserUtil.parseSport(INVALID_SPORT));
     }
 
     @Test
     public void parseSport_validValueWithoutWhitespace_returnsSport() throws Exception {
         Sport expectedSport = new Sport(VALID_SPORT_1);
-        assertEquals(expectedSport, ParserUtil.parseSports(VALID_SPORT_1));
+        assertEquals(expectedSport, ParserUtil.parseSport(VALID_SPORT_1));
     }
 
     @Test
     public void parseSport_validValueWithWhitespace_returnsTrimmedSport() throws Exception {
         String sportWithWhitespace = WHITESPACE + VALID_SPORT_1 + WHITESPACE;
         Sport expectedSport = new Sport(VALID_SPORT_1);
-        assertEquals(expectedSport, ParserUtil.parseSports(sportWithWhitespace));
+        assertEquals(expectedSport, ParserUtil.parseSport(sportWithWhitespace));
     }
 
     @Test

@@ -48,7 +48,8 @@ public class AddSportCommandParser implements Parser<AddSportCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSportCommand.MESSAGE_USAGE));
         }
 
-        Sport sport = new Sport(sportName);
+        // ensure all sports are in lower case and prevent cases of "Badminton" and "badminton" to exist together
+        Sport sport = new Sport(sportName.toLowerCase());
         return new AddSportCommand(index.getZeroBased(), sport);
     }
 }
