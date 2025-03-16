@@ -17,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddSportCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteSportCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -96,6 +97,14 @@ public class AddressBookParserTest {
         AddSportCommand command = (AddSportCommand) parser.parseCommand(
                 AddSportCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " s/soccer");
         assertEquals(new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), sport), command);
+    }
+
+    @Test
+    public void parseCommand_deleteSport() throws Exception {
+        final Sport deleteSport = new Sport("rugby");
+        DeleteSportCommand command = (DeleteSportCommand) parser.parseCommand(
+                DeleteSportCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " s/rugby");
+        assertEquals(new DeleteSportCommand(INDEX_FIRST_PERSON, deleteSport), command);
     }
 
     @Test
