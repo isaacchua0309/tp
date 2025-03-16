@@ -49,6 +49,9 @@ public class DeleteSportCommandParserTest {
         assertParseFailure(parser, "0 s/soccer",
                 MESSAGE_INVALID_INDEX);
 
+        assertParseFailure(parser, "-1 s/soccer",
+                MESSAGE_INVALID_INDEX);
+
         // Empty sport
         assertParseFailure(parser, "1 s/",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE));
