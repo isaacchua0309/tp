@@ -137,4 +137,22 @@ public class PersonTest {
         assertTrue(updatedPerson.getSports().contains(new Sport("tennis")));
         assertEquals(originalPerson.getSports().size() + 1, updatedPerson.getSports().size());
     }
+
+    @Test
+    public void deleteSport_success() {
+        Person originalPerson = new PersonBuilder().withSports("volleyball", "cricket").build();
+        List<Sport> updatedSports = new ArrayList<>(originalPerson.getSports());
+        updatedSports.remove(new Sport("cricket"));
+
+        Person updatedPerson = new Person(
+                originalPerson.getName(),
+                originalPerson.getPhone(),
+                originalPerson.getEmail(),
+                originalPerson.getAddress(),
+                originalPerson.getTags(),
+                updatedSports);
+
+        assertFalse(updatedPerson.getSports().contains(new Sport("cricket")));
+        assertEquals(originalPerson.getSports().size() - 1, updatedPerson.getSports().size());
+    }
 }
