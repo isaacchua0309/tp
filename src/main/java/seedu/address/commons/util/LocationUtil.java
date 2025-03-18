@@ -26,7 +26,7 @@ public class LocationUtil {
 
     // Path to the JSON file. Adjust the file path as necessary.
     private static final Path LOCATION_DATA_FILE =
-            Paths.get("data", "postal_code_data.json");
+            Paths.get( "data", "postal_code_data.json");
 
     static {
         try {
