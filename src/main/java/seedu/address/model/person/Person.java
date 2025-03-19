@@ -11,7 +11,6 @@ import java.util.Set;
 
 import seedu.address.commons.util.LocationUtil;
 import seedu.address.commons.util.ToStringBuilder;
-
 import seedu.address.model.tag.Tag;
 
 /**
