@@ -4,24 +4,28 @@
 
 ![Ui](docs/images/Ui.png)
 
-## Setting up in Intellij
+## Prerequisites
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+1. **JDK 17** installed
+2. **IntelliJ IDEA** (updated to the latest version)
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-2. Open the project into Intellij as follows:
-  * Click `Open`.
-  * Select the project directory, and click `OK`.
-  * If there are any further prompts, accept the defaults.
-3. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-4. After that, locate the `PLACEHOLDER_FILE_FOR_NOW` file, right-click it, and choose `Run FitFriends.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
+## Setup Instructions
+1. Open Intellij IDEA
+  * If you're currently inside another project, close it by selecting `File` > `Close Project`
+2. Configure IntelliJ to use JDK 17:
+  * Follow [this guide](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) to select JDK 17
+  * Set **Project language level** to `SDK default` in the same dialog.
+3. Run the Placeholder file:
+  * Locate the file named `PLACEHOLDER_FILE_FOR_NOW` 
+  * right-click it, and select `Run FitFriends.main()` 
 
-      ```
-      Hello from
-      FITFRIENDS!!!!!!!!!!!!!!!!!!!!!
-      ```
+If the setup is successful, you'll see
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+```
+Hello from
+FITFRIENDS!!!!!!!!!!!!!!!!!!!!!
+```
 
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+**Important:**
+Do not rename or move Java files out of the default location (src/main/java). Tools like Gradle rely on this structure.
+

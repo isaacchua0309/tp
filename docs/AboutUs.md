@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Somneel
 
-<img src="images/somneelsaha.png" width="200px">
+<img src="images/somneelsaha2004.png" width="200px">
 
 [[github](http://github.com/SomneelSaha2004)]
 [[portfolio](team/somneel.md)]
