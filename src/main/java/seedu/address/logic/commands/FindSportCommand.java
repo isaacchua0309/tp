@@ -29,7 +29,8 @@ public class FindSportCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " badminton volleyball cricket";
-    public static final String MESSAGE_INVALID_SPORT = "Invalid sport found. Allowed sports: " + VALID_SPORTS;
+    public static final String MESSAGE_INVALID_SPORT = "Invalid sport found. Allowed sports: " + VALID_SPORTS
+            + "\nExample: " + COMMAND_WORD + " badminton volleyball cricket";;
 
 
     private final SportContainsKeywordsPredicate predicate;

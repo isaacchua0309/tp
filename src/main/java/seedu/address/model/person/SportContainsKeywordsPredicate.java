@@ -31,7 +31,7 @@ public class SportContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof SportContainsKeywordsPredicate)) {
             return false;
         }
 
