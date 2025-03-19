@@ -55,7 +55,7 @@ public class SportContainsKeywordsPredicateTest {
         // Only one keyword matches
         predicate = new SportContainsKeywordsPredicate(Arrays.asList("soccer", "rugby"));
         assertTrue(predicate.test(new PersonBuilder().withSports("soccer", "tennis").build()));
-        
+
         // Mixed case keywords
         predicate = new SportContainsKeywordsPredicate(Arrays.asList("SoCcEr", "BaSkEtBaLl"));
         assertTrue(predicate.test(new PersonBuilder().withSports("soccer", "basketball").build()));
@@ -74,23 +74,23 @@ public class SportContainsKeywordsPredicateTest {
         // Keywords match name, but not sports
         predicate = new SportContainsKeywordsPredicate(Arrays.asList("Alice"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withSports("soccer").build()));
-        
+
         // Partial match of sport name
         predicate = new SportContainsKeywordsPredicate(Arrays.asList("socc"));
         assertFalse(predicate.test(new PersonBuilder().withSports("soccer").build()));
-        
+
         // Person with no sports
         predicate = new SportContainsKeywordsPredicate(Arrays.asList("soccer"));
         assertFalse(predicate.test(new PersonBuilder().build()));
     }
-    
+
     @Test
     public void toStringMethod() {
         List<String> keywords = Arrays.asList("soccer", "basketball");
         SportContainsKeywordsPredicate predicate = new SportContainsKeywordsPredicate(keywords);
-        
+
         String expected = new ToStringBuilder(predicate).add("keywords", keywords).toString();
-        
+
         assertTrue(predicate.toString().equals(expected));
     }
 }
