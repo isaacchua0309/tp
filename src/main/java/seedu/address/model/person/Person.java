@@ -9,8 +9,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.commons.util.LocationUtil;
+import seedu.address.commons.util.ToStringBuilder;
+
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +34,8 @@ public class Person {
     /**
      * Constructor for Person class returns an immutable Person object.
      */
-    public Person(Name name, Phone phone, Email email, Address address, String postalCode, Set<Tag> tags, List<Sport> sports) {
+    public Person(Name name, Phone phone, Email email, Address address, String postalCode, Set<Tag> tags,
+                  List<Sport> sports) {
         requireAllNonNull(name, phone, email, address, tags, sports);
         this.name = name;
         this.phone = phone;
