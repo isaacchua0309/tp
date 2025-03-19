@@ -11,8 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.POSTAL_CODE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SPORTS_DESC_BADMINTON;
 import static seedu.address.logic.commands.CommandTestUtil.SPORTS_DESC_CRICKET;
 import static seedu.address.logic.commands.CommandTestUtil.SPORTS_DESC_VOLLEYBALL;
-import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
