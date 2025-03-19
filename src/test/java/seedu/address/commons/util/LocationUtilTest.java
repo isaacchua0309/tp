@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -51,5 +52,11 @@ public class LocationUtilTest {
 
         // Optionally, assert that the average creation time is below a desired threshold.
         assertTrue(avgCreationTime < 100_000, "Average creation time is too high: " + avgCreationTime + " ns.");
+    }
+
+    @Test
+    public void testisValidPostalCodeValid() {
+        assertTrue(LocationUtil.isValidPostalCode("018906"));
+        assertFalse(LocationUtil.isValidPostalCode("01890"));
     }
 }
