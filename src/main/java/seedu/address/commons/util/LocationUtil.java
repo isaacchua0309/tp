@@ -97,4 +97,8 @@ public class LocationUtil {
 
         return new Location(postalCode, address, rawData.getLatitude(), rawData.getLongitude());
     }
+
+    public static boolean isValidPostalCode(String postalCode) {
+        return locationData.containsKey(postalCode);
+    }
 }
