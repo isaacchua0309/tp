@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,10 +27,17 @@ public class LocationUtil {
     private static final Map<String, RawLocationData> locationData = new HashMap<>();
 
     // Path to the JSON file. Adjust the file path as necessary.
-    private static final Path LOCATION_DATA_FILE =
-            Paths.get( "data", "postal_code_data.json");
+    private static final Path LOCATION_DATA_FILE;
 
     static {
+        try {
+            URL resource = LocationUtil.class.getClassLoader().getResource("locationdata/postal_code_data.json");
+            requireNonNull(resource, "Resource not found");
+            LOCATION_DATA_FILE = Paths.get(resource.toURI());
+
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
         try {
             loadLocationData();
         } catch (DataLoadingException e) {
