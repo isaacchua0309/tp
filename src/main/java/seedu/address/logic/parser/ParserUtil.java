@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.LocationUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -82,6 +83,21 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String postalCode} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code postalCode} is invalid.
+     */
+    public static String parsePostalCode(String postalCode) throws ParseException {
+        requireNonNull(postalCode);
+        String trimmedPostalCode = postalCode.trim();
+        if (trimmedPostalCode.isEmpty() || !LocationUtil.isValidPostalCode(trimmedPostalCode)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedPostalCode;
     }
 
     /**

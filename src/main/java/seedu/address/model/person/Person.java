@@ -87,6 +87,10 @@ public class Person {
         return address;
     }
 
+    public String getPostalCode() {
+        return location.getPostalCode();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
