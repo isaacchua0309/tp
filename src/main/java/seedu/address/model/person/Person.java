@@ -26,7 +26,6 @@ public class Person {
 
     // Data fields
     private final Address address;
-
     private final Location location;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Sport> sports = new ArrayList<>();
@@ -42,7 +41,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.sports.addAll(sports);
-        this.location = LocationUtil.createLocation(address.toString(), postalCode);
+        this.location = LocationUtil.createLocation(address, postalCode);
     }
 
     /**
@@ -56,7 +55,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.sports.addAll(sports);
-        this.location = null;
+        this.location = LocationUtil.createLocation(address, "018935"); //default location
     }
     /**
      * Constructor for Person class returns an immutable Person object. Left here for compatibility.
@@ -69,7 +68,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.sports.addAll(Collections.emptyList());
-        this.location = null;
+        this.location = LocationUtil.createLocation(address, "018935"); //default location
     }
 
     public Name getName() {
