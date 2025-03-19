@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.commons.util.LocationUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,11 +26,27 @@ public class Person {
 
     // Data fields
     private final Address address;
+
+    private final Location location;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Sport> sports = new ArrayList<>();
 
     /**
      * Constructor for Person class returns an immutable Person object.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, String postalCode, Set<Tag> tags, List<Sport> sports) {
+        requireAllNonNull(name, phone, email, address, tags, sports);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.sports.addAll(sports);
+        this.location = LocationUtil.createLocation(address.toString(), postalCode);
+    }
+
+    /**
+     * Constructor for Person class returns an immutable Person object. Left here for compatibility.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Sport> sports) {
         requireAllNonNull(name, phone, email, address, tags, sports);
@@ -39,9 +56,10 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.sports.addAll(sports);
+        this.location = null;
     }
     /**
-     * Constructor for Person class returns an immutable Person object.
+     * Constructor for Person class returns an immutable Person object. Left here for compatibility.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -51,6 +69,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.sports.addAll(Collections.emptyList());
+        this.location = null;
     }
 
     public Name getName() {
