@@ -27,12 +27,17 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
+
+    private static final String INVALID_POSTAL_CODE = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
+
+    private static final String VALID_POSTAL_CODE = "018906";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -131,6 +136,29 @@ public class ParserUtilTest {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    }
+
+    @Test
+    public void parsePostalCode_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePostalCode((String) null));
+    }
+
+    @Test
+    public void parsePostalCode_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(INVALID_POSTAL_CODE));
+    }
+
+    @Test
+    public void parsePostalCode_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        String expectedPostalCode = VALID_POSTAL_CODE;
+        assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(VALID_POSTAL_CODE));
+    }
+
+    @Test
+    public void parsePostalCode_validValueWithWhitespace_returnsTrimmedPostalCode() throws Exception {
+        String postalCodeWithWhitespace = WHITESPACE + VALID_POSTAL_CODE + WHITESPACE;
+        String expectedPostalCode = VALID_POSTAL_CODE;
+        assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(postalCodeWithWhitespace));
     }
 
     @Test
