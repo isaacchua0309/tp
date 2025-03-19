@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Somneel
 
-<img src="images/somneelsaha.jpg" width="200px">
+<img src="images/somneelsaha.png" width="200px">
 
 [[github](http://github.com/SomneelSaha2004)]
 [[portfolio](team/somneel.md)]
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Isaac Chua
 
-<img src="images/isaacchua0309.jpeg" width="200px">
+<img src="images/isaacchua0309.png" width="200px">
 
 [[github](http://github.com/isaacchua0309)]
 [[portfolio](team/isaacchua0309.md)]
