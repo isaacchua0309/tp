@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Location {
 
     private final String postalCode;
-    private final String address;
+    private final Address address;
     private final double latitude;
     private final double longitude;
 
@@ -25,7 +25,7 @@ public class Location {
      * @param latitude the latitude coordinate.
      * @param longitude the longitude coordinate.
      */
-    public Location(String postalCode, String address, double latitude, double longitude) {
+    public Location(String postalCode, Address address, double latitude, double longitude) {
         requireAllNonNull(postalCode, address);
         this.postalCode = postalCode;
         this.address = address;
@@ -37,7 +37,7 @@ public class Location {
         return postalCode;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 

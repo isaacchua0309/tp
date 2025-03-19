@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Location;
 
 public class LocationUtilTest {
@@ -29,7 +30,7 @@ public class LocationUtilTest {
     @Test
     public void testLocationCreationPerformance() {
         // Example user input.
-        String userAddress = "5 STRAITS VIEW THE HEART SINGAPORE 018935";
+        Address userAddress = new Address("5 STRAITS VIEW THE HEART SINGAPORE 018935");
         String postalCode = "018935";
 
         // Warm-up: Create one Location to ensure any caching or static initialization is complete.
