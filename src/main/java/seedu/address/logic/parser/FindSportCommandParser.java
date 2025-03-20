@@ -12,7 +12,7 @@ import seedu.address.model.person.SportContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindSportCommand object.
  */
-public class FindSportCommandParser {
+public class FindSportCommandParser implements Parser<FindSportCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
