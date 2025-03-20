@@ -7,12 +7,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_CODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -88,6 +90,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different postal code -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPostalCode(VALID_POSTAL_CODE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -96,7 +102,9 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags()
+                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
+                + ", postalCode=" + ALICE.getPostalCode()
+                + ", tags=" + ALICE.getTags()
                 + ", sports=" + ALICE.getSports() + "}";
         assertEquals(expected, ALICE.toString());
     }
@@ -154,5 +162,63 @@ public class PersonTest {
 
         assertFalse(updatedPerson.getSports().contains(new Sport("cricket")));
         assertEquals(originalPerson.getSports().size() - 1, updatedPerson.getSports().size());
+    }
+
+    @Test
+    public void constructor_nullPostalCode_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Person(
+                new Name("Valid Name"),
+                new Phone("12345678"),
+                new Email("test@example.com"),
+                new Address("Valid Address"),
+                null, // null postal code
+                new HashSet<>(),
+                new ArrayList<>()));
+    }
+
+    @Test
+    public void getPostalCode_returnsCorrectPostalCode() {
+        String expectedPostalCode = "018906";
+        Person person = new PersonBuilder().withPostalCode(expectedPostalCode).build();
+        assertEquals(expectedPostalCode, person.getPostalCode());
+    }
+
+    @Test
+    public void withDifferentPostalCode_createsNewPersonWithDifferentPostalCode() {
+        String originalPostalCode = "018906";
+        String newPostalCode = "018935";
+
+        Person originalPerson = new PersonBuilder().withPostalCode(originalPostalCode).build();
+        Person newPerson = new PersonBuilder(originalPerson).withPostalCode(newPostalCode).build();
+
+        assertEquals(originalPostalCode, originalPerson.getPostalCode());
+        assertEquals(newPostalCode, newPerson.getPostalCode());
+        assertFalse(originalPerson.equals(newPerson));
+    }
+
+    @Test
+    public void equals_samePostalCodeDifferentAddresses_returnsFalse() {
+        String samePostalCode = "018906";
+
+        Person person1 = new PersonBuilder()
+                .withPostalCode(samePostalCode)
+                .withAddress("1 Test Street")
+                .build();
+
+        Person person2 = new PersonBuilder()
+                .withPostalCode(samePostalCode)
+                .withAddress("2 Different Street")
+                .build();
+
+        assertFalse(person1.equals(person2));
+    }
+
+    @Test
+    public void toString_includesPostalCode() {
+        String postalCode = "018906";
+        Person person = new PersonBuilder().withPostalCode(postalCode).build();
+
+        // Test that toString contains the postal code information
+        assertTrue(person.toString().contains(postalCode));
     }
 }

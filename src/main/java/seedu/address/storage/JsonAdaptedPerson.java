@@ -29,6 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String postalCode;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     // Sports are now stored as a list of strings in the JSON.
     private final List<String> sports = new ArrayList<>();
@@ -41,12 +42,14 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
+                             @JsonProperty("postalCode") String postalCode,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("sports") List<String> sports) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.postalCode = postalCode;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -63,6 +66,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        postalCode = source.getPostalCode();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -124,7 +128,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (postalCode == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, "Postal Code"));
+        }
+        // Add postal code validation if needed
+        final String modelPostalCode = postalCode;
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, personSports);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPostalCode, modelTags, personSports);
     }
 }

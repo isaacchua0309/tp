@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class Person {
     public Person(Name name, Phone phone, Email email, Address address, String postalCode, Set<Tag> tags,
                   List<Sport> sports) {
         requireAllNonNull(name, phone, email, address, tags, sports);
+        requireNonNull(postalCode, "Postal code cannot be null");
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -145,13 +147,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && getPostalCode().equals(otherPerson.getPostalCode())
                 && tags.equals(otherPerson.tags)
                 && sports.equals(otherPerson.sports);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, address, tags, sports);
+        return Objects.hash(name, phone, email, address, getPostalCode(), tags, sports);
     }
 
     @Override
@@ -161,6 +164,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("postalCode", getPostalCode())
                 .add("tags", tags)
                 .add("sports", sports)
                 .toString();

@@ -57,7 +57,7 @@ public class DeleteSportCommandTest {
         Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Sport sportToDelete = personToModify.getSports().get(0);
 
-        // First delete existing sport
+        // First delete existing spor
         Person modifiedPerson = createPersonWithLessSport(personToModify, sportToDelete);
         model.setPerson(personToModify, modifiedPerson);
 

@@ -92,7 +92,7 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command and confirms that
+     * Executes the command and confirms tha
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
@@ -132,7 +132,7 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command and confirms that
+     * Executes the command and confirms tha
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
@@ -147,8 +147,8 @@ public class LogicManagerTest {
     /**
      * Tests the Logic component's handling of an {@code IOException} thrown by the Storage component.
      *
-     * @param e the exception to be thrown by the Storage component
-     * @param expectedMessage the message expected inside exception thrown by the Logic component
+     * @param e the exception to be thrown by the Storage componen
+     * @param expectedMessage the message expected inside exception thrown by the Logic componen
      */
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");

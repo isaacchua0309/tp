@@ -36,7 +36,7 @@ public class DeleteSportCommandParserTest {
         // Missing index
         assertParseFailure(parser, "s/soccer", expectedMessage);
 
-        // Missing sport
+        // Missing spor
         assertParseFailure(parser, "1", expectedMessage);
 
         // Missing sport prefix
@@ -52,11 +52,11 @@ public class DeleteSportCommandParserTest {
         assertParseFailure(parser, "-1 s/soccer",
                 MESSAGE_INVALID_INDEX);
 
-        // Empty sport
+        // Empty spor
         assertParseFailure(parser, "1 s/",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE));
 
-        // Invalid format
+        // Invalid forma
         assertParseFailure(parser, "1s/soccer",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE));
     }

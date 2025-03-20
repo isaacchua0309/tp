@@ -23,11 +23,13 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_POSTAL_CODE = "99999"; // Invalid postal code
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_POSTAL_CODE = BENSON.getPostalCode();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -47,6 +49,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
+                VALID_POSTAL_CODE,
                 VALID_TAGS,
                 VALID_SPORTS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
@@ -60,6 +63,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
+                VALID_POSTAL_CODE,
                 VALID_TAGS,
                 VALID_SPORTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -74,6 +78,7 @@ public class JsonAdaptedPersonTest {
                 INVALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
+                VALID_POSTAL_CODE,
                 VALID_TAGS,
                 VALID_SPORTS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
@@ -87,6 +92,7 @@ public class JsonAdaptedPersonTest {
                 null,
                 VALID_EMAIL,
                 VALID_ADDRESS,
+                VALID_POSTAL_CODE,
                 VALID_TAGS,
                 VALID_SPORTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -101,6 +107,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 INVALID_EMAIL,
                 VALID_ADDRESS,
+                VALID_POSTAL_CODE,
                 VALID_TAGS,
                 VALID_SPORTS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
@@ -114,6 +121,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 null,
                 VALID_ADDRESS,
+                VALID_POSTAL_CODE,
                 VALID_TAGS,
                 VALID_SPORTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -128,6 +136,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 INVALID_ADDRESS,
+                VALID_POSTAL_CODE,
                 VALID_TAGS,
                 VALID_SPORTS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
@@ -141,10 +150,25 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 null,
+                VALID_POSTAL_CODE,
                 VALID_TAGS,
                 VALID_SPORTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Address.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullPostalCode_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(
+                VALID_NAME,
+                VALID_PHONE,
+                VALID_EMAIL,
+                VALID_ADDRESS,
+                null,
+                VALID_TAGS,
+                VALID_SPORTS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Postal Code");
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -157,6 +181,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
+                VALID_POSTAL_CODE,
                 invalidTags,
                 VALID_SPORTS);
         assertThrows(IllegalValueException.class, person::toModelType);
