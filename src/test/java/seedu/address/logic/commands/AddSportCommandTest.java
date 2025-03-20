@@ -54,7 +54,7 @@ public class AddSportCommandTest {
         Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Sport sportToAdd = new Sport("soccer");
 
-        // First add a sport
+        // First add a spor
         Person modifiedPerson = createPersonWithAdditionalSport(personToModify, sportToAdd);
         model.setPerson(personToModify, modifiedPerson);
 

@@ -126,7 +126,7 @@ public class StringUtilTest {
     //---------------- Tests for getDetails --------------------------------------
 
     /*
-     * Equivalence Partitions: null, valid throwable object
+     * Equivalence Partitions: null, valid throwable objec
      */
 
     @Test

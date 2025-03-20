@@ -18,7 +18,7 @@ public class CollectionUtilTest {
         // no arguments
         assertNullPointerExceptionNotThrown();
 
-        // any non-empty argument list
+        // any non-empty argument lis
         assertNullPointerExceptionNotThrown(new Object(), new Object());
         assertNullPointerExceptionNotThrown("test");
         assertNullPointerExceptionNotThrown("");
@@ -32,7 +32,7 @@ public class CollectionUtilTest {
         assertNullPointerExceptionThrown(new Object(), null, null, "test");
         assertNullPointerExceptionThrown("", null, new Object());
 
-        // argument lists with one null as the last argument
+        // argument lists with one null as the last argumen
         assertNullPointerExceptionThrown("", new Object(), null);
         assertNullPointerExceptionThrown(new Object(), new Object(), null);
 
@@ -46,7 +46,7 @@ public class CollectionUtilTest {
 
     @Test
     public void requireAllNonNullCollection() {
-        // lists containing nulls in the front
+        // lists containing nulls in the fron
         assertNullPointerExceptionThrown(Arrays.asList((Object) null));
         assertNullPointerExceptionThrown(Arrays.asList(null, new Object(), ""));
 
@@ -61,7 +61,7 @@ public class CollectionUtilTest {
         // null reference
         assertNullPointerExceptionThrown((Collection<Object>) null);
 
-        // empty list
+        // empty lis
         assertNullPointerExceptionNotThrown(Collections.emptyList());
 
         // list with all non-null elements

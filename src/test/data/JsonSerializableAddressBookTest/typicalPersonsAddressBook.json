@@ -5,6 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "postalCode" : "018906",
     "tags" : [ "friends" ],
     "sports": [ "volleyball" ]
   }, {
@@ -12,6 +13,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "postalCode" : "120311",
     "tags" : [ "owesMoney", "friends" ],
     "sports": [ "cricket" ]
   }, {
@@ -19,6 +21,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "postalCode" : "018907",
     "tags" : [ ],
     "sports": [ "basketball" ]
   }, {
@@ -26,6 +29,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "postalCode" : "018910",
     "tags" : [ "friends" ],
     "sports": [ "tennis" ]
   }, {
@@ -33,6 +37,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "postalCode" : "018916",
     "tags" : [ ],
     "sports": [ "rugby" ]
   }, {
@@ -40,6 +45,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "postalCode" : "018925",
     "tags" : [ ],
     "sports": [ "soccer" ]
   }, {
@@ -47,6 +53,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "postalCode" : "018926",
     "tags" : [ ],
     "sports": [ "baseball" ]
   } ]

@@ -8,6 +8,9 @@ import java.util.Objects;
  * Represents a geographical location in Singapore.
  * It encapsulates postal code, address, latitude, and longitude information.
  * <p>
+ * This class serves as the primary authority for postal code information in the application.
+ * All postal code access should be done through Location objects rather than directly.
+ * <p>
  * This class also provides functionality to calculate the distance between two locations.
  */
 public class Location {
@@ -33,6 +36,12 @@ public class Location {
         this.longitude = longitude;
     }
 
+    /**
+     * Returns the postal code of this location.
+     * This is the authoritative source of postal code information in the application.
+     *
+     * @return the postal code as a String
+     */
     public String getPostalCode() {
         return postalCode;
     }

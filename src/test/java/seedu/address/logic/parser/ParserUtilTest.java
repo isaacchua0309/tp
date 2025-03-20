@@ -28,7 +28,10 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
 
-    private static final String INVALID_POSTAL_CODE = " ";
+    private static final String INVALID_POSTAL_CODE = "999999"; // Non-existent postal code
+    private static final String INVALID_POSTAL_CODE_FORMAT = "12AB34"; // Invalid format
+    private static final String INVALID_POSTAL_CODE_TOO_SHORT = "12345"; // Too short
+    private static final String INVALID_POSTAL_CODE_TOO_LONG = "1234567"; // Too long
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
@@ -38,6 +41,7 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
 
     private static final String VALID_POSTAL_CODE = "018906";
+    private static final String VALID_POSTAL_CODE_2 = "018935";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -149,7 +153,27 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePostalCode_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parsePostalCode_invalidFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(INVALID_POSTAL_CODE_FORMAT));
+    }
+
+    @Test
+    public void parsePostalCode_tooShort_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(INVALID_POSTAL_CODE_TOO_SHORT));
+    }
+
+    @Test
+    public void parsePostalCode_tooLong_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(INVALID_POSTAL_CODE_TOO_LONG));
+    }
+
+    @Test
+    public void parsePostalCode_emptyString_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(""));
+    }
+
+    @Test
+    public void parsePostalCode_validValueWithoutWhitespace_returnsPostalCode() throws Exception {
         String expectedPostalCode = VALID_POSTAL_CODE;
         assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(VALID_POSTAL_CODE));
     }
@@ -159,6 +183,18 @@ public class ParserUtilTest {
         String postalCodeWithWhitespace = WHITESPACE + VALID_POSTAL_CODE + WHITESPACE;
         String expectedPostalCode = VALID_POSTAL_CODE;
         assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(postalCodeWithWhitespace));
+    }
+
+    @Test
+    public void parsePostalCode_anotherValidValue_returnsPostalCode() throws Exception {
+        String expectedPostalCode = VALID_POSTAL_CODE_2;
+        assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(VALID_POSTAL_CODE_2));
+    }
+
+    @Test
+    public void parsePostalCode_multipleWhitespacesBetween_throwsParseException() {
+        String postalCodeWithInternalSpaces = "018 906";
+        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(postalCodeWithInternalSpaces));
     }
 
     @Test

@@ -94,8 +94,11 @@ public class ParserUtil {
     public static String parsePostalCode(String postalCode) throws ParseException {
         requireNonNull(postalCode);
         String trimmedPostalCode = postalCode.trim();
-        if (trimmedPostalCode.isEmpty() || !LocationUtil.isValidPostalCode(trimmedPostalCode)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (trimmedPostalCode.isEmpty()) {
+            throw new ParseException("Postal code cannot be empty.");
+        }
+        if (!LocationUtil.isValidPostalCode(trimmedPostalCode)) {
+            throw new ParseException("Invalid postal code. Please enter a valid Singapore postal code.");
         }
         return trimmedPostalCode;
     }

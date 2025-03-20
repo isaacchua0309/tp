@@ -103,9 +103,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        String updatedPostalCode = editPersonDescriptor.getPostalCode().orElse(personToEdit.getPostalCode());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Sport> updatedSports = editPersonDescriptor.getSports().orElse(personToEdit.getSports());
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSports);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedPostalCode, updatedTags, updatedSports);
     }
 
     @Override
@@ -140,6 +142,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private String postalCode;
         private List<Sport> sports;
         private Set<Tag> tags;
 
@@ -154,6 +157,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setPostalCode(toCopy.postalCode);
             setTags(toCopy.tags);
             setSports(toCopy.sports);
         }
@@ -162,7 +166,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, sports);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, postalCode, tags, sports);
         }
 
         public void setName(Name name) {
@@ -195,6 +199,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setPostalCode(String postalCode) {
+            this.postalCode = postalCode;
+        }
+
+        public Optional<String> getPostalCode() {
+            return Optional.ofNullable(postalCode);
         }
 
         /**
@@ -246,6 +258,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(postalCode, otherEditPersonDescriptor.postalCode)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(sports, otherEditPersonDescriptor.sports);
         }
@@ -257,6 +270,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("postalCode", postalCode)
                     .add("tags", tags)
                     .add("sports", sports)
                     .toString();
