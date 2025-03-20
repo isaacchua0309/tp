@@ -15,7 +15,9 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Location;
+
 
 /**
  * A factory class to create {@code Location} objects using user input and a JSON file
@@ -76,13 +78,13 @@ public class LocationUtil {
     /**
      * Creates a {@code Location} object using the provided user address and postal code.
      *
-     * @param userInputAddress the address entered by the user.
+     * @param address the address entered by the user.
      * @param postalCode the postal code entered by the user.
      * @return a new {@code Location} object with corresponding latitude and longitude.
      * @throws IllegalArgumentException if the postal code is not found.
      */
-    public static Location createLocation(String userInputAddress, String postalCode) {
-        requireAllNonNull(userInputAddress, postalCode);
+    public static Location createLocation(Address address, String postalCode) {
+        requireAllNonNull(address, postalCode);
         requireNonNull(locationData, "Location data has not been loaded");
 
         RawLocationData rawData = locationData.get(postalCode);
@@ -93,6 +95,10 @@ public class LocationUtil {
         // Optional: Validate if the user-input address matches rawData.getAddress() if necessary.
         // For now, we use the user input for the address.
 
-        return new Location(postalCode, userInputAddress, rawData.getLatitude(), rawData.getLongitude());
+        return new Location(postalCode, address, rawData.getLatitude(), rawData.getLongitude());
+    }
+
+    public static boolean isValidPostalCode(String postalCode) {
+        return locationData.containsKey(postalCode);
     }
 }

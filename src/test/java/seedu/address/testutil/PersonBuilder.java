@@ -22,7 +22,9 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ADDRESS = "1 STRAITS BOULEVARD SINGAPORE CHINESE CULTURAL CENTRE SINGAPORE";
+
+    public static final String DEFAULT_POSTAL_CODE = "018906";
 
     public static final List<Sport> DEFAULT_SPORTS = List.of(new Sport("badminton"));
 
@@ -30,6 +32,8 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+
+    private String postalCode;
     private Set<Tag> tags;
     private List<Sport> sports;
 
@@ -41,6 +45,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        postalCode = DEFAULT_POSTAL_CODE;
         tags = new HashSet<>();
         sports = new ArrayList<>(DEFAULT_SPORTS);
     }
@@ -53,6 +58,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        postalCode = personToCopy.getPostalCode();
         tags = new HashSet<>(personToCopy.getTags());
         sports = new ArrayList<>(personToCopy.getSports());
     }
@@ -105,6 +111,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code PostalCode} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -121,6 +135,6 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, sports);
+        return new Person(name, phone, email, address, postalCode, tags, sports);
     }
 }

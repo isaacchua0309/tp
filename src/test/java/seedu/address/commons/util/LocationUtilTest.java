@@ -1,9 +1,11 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Location;
 
 public class LocationUtilTest {
@@ -29,7 +31,7 @@ public class LocationUtilTest {
     @Test
     public void testLocationCreationPerformance() {
         // Example user input.
-        String userAddress = "5 STRAITS VIEW THE HEART SINGAPORE 018935";
+        Address userAddress = new Address("5 STRAITS VIEW THE HEART SINGAPORE 018935");
         String postalCode = "018935";
 
         // Warm-up: Create one Location to ensure any caching or static initialization is complete.
@@ -50,5 +52,11 @@ public class LocationUtilTest {
 
         // Optionally, assert that the average creation time is below a desired threshold.
         assertTrue(avgCreationTime < 100_000, "Average creation time is too high: " + avgCreationTime + " ns.");
+    }
+
+    @Test
+    public void testisValidPostalCodeValid() {
+        assertTrue(LocationUtil.isValidPostalCode("018906"));
+        assertFalse(LocationUtil.isValidPostalCode("01890"));
     }
 }
