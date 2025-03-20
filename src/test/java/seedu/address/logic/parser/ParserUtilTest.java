@@ -29,8 +29,8 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
 
     private static final String INVALID_POSTAL_CODE = "999999"; // Non-existent postal code
-    private static final String INVALID_POSTAL_CODE_FORMAT = "12AB34"; // Invalid forma
-    private static final String INVALID_POSTAL_CODE_TOO_SHORT = "12345"; // Too shor
+    private static final String INVALID_POSTAL_CODE_FORMAT = "12AB34"; // Invalid format
+    private static final String INVALID_POSTAL_CODE_TOO_SHORT = "12345"; // Too short
     private static final String INVALID_POSTAL_CODE_TOO_LONG = "1234567"; // Too long
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";

@@ -90,6 +90,12 @@ public class Person {
         return address;
     }
 
+    /**
+     * Returns the postal code from the person's location.
+     * This method retrieves the postal code from the Location object rather than storing it separately
+     * since Location encapsulates both the address and postal code information.
+     * Always use this method to access the postal code instead of direct field access.
+     */
     public String getPostalCode() {
         return location.getPostalCode();
     }
@@ -164,7 +170,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("postalCode", getPostalCode())
+                .add("postalCode", getPostalCode()) // Use getPostalCode() to retrieve from Location object
                 .add("tags", tags)
                 .add("sports", sports)
                 .toString();

@@ -67,32 +67,32 @@ public class LocationUtilTest {
     }
 
     @Test
-    public void testisValidPostalCode_validPostalCode_returnsTrue() {
+    public void testIsValidPostalCode_validPostalCode_returnsTrue() {
         assertTrue(LocationUtil.isValidPostalCode(VALID_POSTAL_CODE));
     }
 
     @Test
-    public void testisValidPostalCode_invalidPostalCode_returnsFalse() {
+    public void testIsValidPostalCode_invalidPostalCode_returnsFalse() {
         assertFalse(LocationUtil.isValidPostalCode(INVALID_POSTAL_CODE));
     }
 
     @Test
-    public void testisValidPostalCode_emptyPostalCode_returnsFalse() {
+    public void testIsValidPostalCode_emptyPostalCode_returnsFalse() {
         assertFalse(LocationUtil.isValidPostalCode(EMPTY_POSTAL_CODE));
     }
 
     @Test
-    public void testisValidPostalCode_malformedPostalCode_returnsFalse() {
+    public void testIsValidPostalCode_malformedPostalCode_returnsFalse() {
         assertFalse(LocationUtil.isValidPostalCode(MALFORMED_POSTAL_CODE));
     }
 
     @Test
-    public void testisValidPostalCode_postalCodeTooShort_returnsFalse() {
+    public void testIsValidPostalCode_postalCodeTooShort_returnsFalse() {
         assertFalse(LocationUtil.isValidPostalCode(POSTAL_CODE_TOO_SHORT));
     }
 
     @Test
-    public void testisValidPostalCode_postalCodeTooLong_returnsFalse() {
+    public void testIsValidPostalCode_postalCodeTooLong_returnsFalse() {
         assertFalse(LocationUtil.isValidPostalCode(POSTAL_CODE_TOO_LONG));
     }
 
