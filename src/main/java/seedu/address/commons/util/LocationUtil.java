@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,9 +42,14 @@ public class LocationUtil {
         try {
             URL resource = LocationUtil.class.getClassLoader().getResource("locationdata/postal_code_data.json");
             requireNonNull(resource, "Resource not found");
-            LOCATION_DATA_FILE = Paths.get(resource.toURI());
-
-        } catch (URISyntaxException e) {
+            //code provided by GitHub copilot
+            try (InputStream inputStream = LocationUtil.class.getClassLoader()
+                                 .getResourceAsStream("locationdata/postal_code_data.json")) {
+                requireNonNull(inputStream, "Resource not found");
+                LOCATION_DATA_FILE = Files.createTempFile("postal_code_data", ".json");
+                Files.copy(inputStream, LOCATION_DATA_FILE, StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         try {
