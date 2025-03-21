@@ -28,7 +28,7 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="person-name" />
       </HBox>
-      
+
       <!-- Tags and sports section -->
       <HBox spacing="10" styleClass="tags-container">
         <VBox spacing="4">
@@ -37,7 +37,7 @@
           <FlowPane fx:id="sports" styleClass="sports-flowpane" />
         </VBox>
       </HBox>
-      
+
       <!-- Contact information section -->
       <VBox spacing="6" styleClass="contact-info">
         <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">

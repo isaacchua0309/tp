@@ -35,7 +35,7 @@
               <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
             </Menu>
           </MenuBar>
-          <Button fx:id="themeToggleButton" mnemonicParsing="false" onAction="#handleToggleTheme" 
+          <Button fx:id="themeToggleButton" mnemonicParsing="false" onAction="#handleToggleTheme"
                   text="☀ Light Mode" styleClass="theme-toggle-button">
             <HBox.margin>
               <Insets right="8" />
