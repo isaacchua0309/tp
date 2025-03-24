@@ -1,201 +1,214 @@
+# FitFriends User Guide
+
+FitFriends is a **desktop app for sporty young adults** to manage their contacts. It is optimized for use via a **Command Line Interface (CLI)** while still providing the benefits of a Graphical User Interface (GUI). If you can type fast, FitFriends lets you complete contact management tasks faster than traditional GUI apps. It also helps users arrange sport meet-ups and training sessions by keeping track of the sports played by each friend, and by storing addresses (including postal codes) so you can choose the optimal sports facility for a meet-up.
+
 ---
-layout: page
-title: User Guide
+
+## Table of Contents
+
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+    1. [Viewing help](#viewing-help)
+    2. [Adding a person](#adding-a-person)
+    3. [Listing all persons](#listing-all-persons)
+    4. [Editing a person](#editing-a-person)
+    5. [Locating persons by name](#locating-persons-by-name)
+    6. [Deleting a person](#deleting-a-person)
+    7. [Clearing all entries](#clearing-all-entries)
+    8. [Adding a sport](#adding-a-sport)
+    9. [Deleting a sport](#deleting-a-sport)
+    10. [Finding a sport](#finding-a-sport)
+    11. [Sorting by location and sport](#sorting-by-location-and-sport)
+    12. [Creating groups](#creating-groups)
+3. [Command Summary](#command-summary)
+
 ---
 
-FitFriends is a **desktop app for sporty young adults to manage, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FitFriends can get your contact management tasks done faster than traditional GUI apps.
-It also helps users arrange sport meet-ups and training sessions by keeping track of the sports played by each friend and their address so that users can choose the optimal sports facility for a sports meet-up.
+## Quick Start
 
-* Table of Contents
-{:toc}
+1. **Ensure you have Java 17 or above** installed on your computer.
+    - *Mac users:* Ensure you have the precise JDK version prescribed [here](https://www.oracle.com/java/technologies/downloads/).
 
---------------------------------------------------------------------------------------------------------------------
+2. **Download** the latest `.jar` file from the releases page (for example, from your project repository).
 
-## Quick start
+3. **Copy** the `.jar` file to the folder you want to use as the *home folder* for FitFriends.
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+4. **Open a command terminal**, `cd` into the folder you put the jar file in, and use:  
+   java -jar FitFriends.jar
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-1/tp/releases).
+5. **Type commands** into the command box and press <kbd>Enter</kbd> to execute them.
+- Typing `help` and pressing <kbd>Enter</kbd> will show you instructions for using the app.
 
-1. Copy the file to the folder you want to use as the _home folder_ for FitFriends.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FitFriends.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+### Viewing help
+Shows a message explaining how to access the help page.
 
-**:information_source: Notes about the command format:**<br>
+- **Format**: 
+help
+-
+---
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+### Adding a person
+Adds a new person to the address book.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+- **Format**:
+  add n/{NAME} p/{NUMBER} e/{EMAIL} a/{ADDRESS} t/{TAG} s/{SPORT} pc/{POSTALCODE}
+- **Notes**:
+- Only **valid postal codes** are allowed.
+- Only **valid sports** are allowed.
+- A person can have any number of tags (including 0).
+- **Example**:
+  add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/friend s/basketball pc/123456
 
 
-### Adding a person: `add`
+---
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
+### Listing all persons
 Shows a list of all persons in the address book.
 
-Format: `list`
+- **Format**: 
+list
 
-### Editing a person : `edit`
 
+---
+
+### Editing a person
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+- **Format**:
+  edit {INDEX} [n/{NAME}] [p/{NUMBER}] [e/{EMAIL}] [a/{ADDRESS}] [t/{TAG}] [pc/{POSTALCODE}]
+- **Notes**:
+- You **cannot edit a sport** directly with this command. To edit sports, first remove them using `deletesport`, then add new ones using `addsport`.
+- The index refers to the position shown in the current list (e.g., `edit 2` edits the 2nd person in the displayed list).
+- **Example**:
+  edit 2 n/James Lee p/98765432 a/45 Sunset Blvd pc/654321
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+---
 
-### Locating persons by name: `find`
+### Locating persons by name
+Finds persons whose names contain any of the specified keywords.
 
-Finds persons whose names contain any of the given keywords.
+- **Format**:
+  find {KEYWORD}
+  You can provide multiple keywords (space-separated) to perform an OR search.
+- **Notes**:
+- The search is **case-insensitive**.  
+  e.g. `hans` will match `Hans`.
+- The order of the keywords does not matter.  
+  e.g. `Hans Bo` will match `Bo Hans`.
+- Only the **name** is searched.
+- Only **full words** will be matched.  
+  e.g. `Han` will not match `Hans`.
+- Persons matching **at least one** keyword will be returned (OR search).  
+  e.g. `Hans Bo` will return `Hans Gruber` and `Bo Yang`.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+- **Example**:
+  find james jake
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+---
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
+### Deleting a person
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+- **Format**:
+    delete {INDEX}
+- **Example**:
+    delete 3
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+---
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
+### Clearing all entries
 Clears all entries from the address book.
 
-Format: `clear`
+- **Format**:
+    clear
 
-### Exiting the program : `exit`
+---
 
-Exits the program.
+### Adding a sport
+Adds a sport to an existing person in the address book.
 
-Format: `exit`
+- **Format**: 
+    addsport {INDEX} s/{SPORT}
+- **Notes**:
+- Only **one sport can be added** per command.
+- Only **valid sports** are allowed.
+- **Example**:
+    addsport 2 s/basketball
 
-### Saving the data
+---
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+### Deleting a sport
+Deletes a sport from the specified person in the address book.
 
-### Editing the data file
+- **Format**:
+    deletesport {INDEX} s/{SPORT}
+- **Example**:
+    deletesport 2 s/basketball
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+---
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
+### Finding a sport
+Filters (or searches) persons by the sports they have.
 
-### Archiving data files `[coming in v2.0]`
+- **Format**:
+  findsport s/{SPORT} [SPORT] [SPORT]
+- **Notes**:
+- You may include **multiple sports** (separated by spaces).
+- Contacts who play **any** of the sports listed will be shown (OR search).
+- **Example**:
+  findsport s/basketball tennis(Shows all contacts who play either basketball **or** tennis.)
 
-_Details coming soon ..._
+---
 
---------------------------------------------------------------------------------------------------------------------
+### Sorting by location and sport
+An extension of the `findsport` feature that allows you to filter by one or more sports **and** provide a reference postal code to sort results by distance.
 
-## FAQ
+- **Format**:
+  findsport pc/{POSTALCODE} s/{SPORT} [SPORT] [SPORT]
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+- **Notes**:
+- If a postal code is provided, the matching contacts will be sorted by their distance from that postal code.
+- Contacts who play **any** of the listed sports will appear.
+- **Example**:
+  findsport pc/123456 s/tennis hockey
+  (Shows all who play tennis or hockey, **sorted** by distance from postal code `123456`.)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## Known issues
+### Creating groups
+Creates a group that you can add contacts into (group management commands forthcoming).
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+- **Format**:
+  creategroup g/{GROUP NAME}
+- **Example**:
+    creategroup g/tennisbuddies
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## Command summary
+## Command Summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| **Action**                  | **Format**                                                             | **Example**                                                                                   |
+|-----------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **Viewing help**            | `help`                                                                 | `help`                                                                                       |
+| **Adding a person**         | `add n/{NAME} p/{NUMBER} e/{EMAIL} a/{ADDRESS} t/{TAG} s/{SPORT} pc/{POSTALCODE}` | `add n/John Doe p/98765432 e/johnd@example.com a/John St t/friend s/tennis pc/123456`         |
+| **Listing all persons**     | `list`                                                                 | `list`                                                                                       |
+| **Editing a person**        | `edit {INDEX} [n/{NAME}] [p/{NUMBER}] [e/{EMAIL}] [a/{ADDRESS}] [t/{TAG}] [pc/{POSTALCODE}]` | `edit 2 n/James Lee p/98765432 a/Block 123 pc/654321`                                        |
+| **Locating persons by name**| `find {KEYWORD} [MORE_KEYWORDS]`                                       | `find James Jake`                                                                            |
+| **Deleting a person**       | `delete {INDEX}`                                                       | `delete 3`                                                                                   |
+| **Clearing all entries**    | `clear`                                                                | `clear`                                                                                      |
+| **Adding a sport**          | `addsport {INDEX} s/{SPORT}`                                           | `addsport 1 s/tennis`                                                                        |
+| **Deleting a sport**        | `deletesport {INDEX} s/{SPORT}`                                        | `deletesport 2 s/basketball`                                                                 |
+| **Finding a sport**         | `findsport s/{SPORT} [SPORT] [SPORT]`                                  | `findsport s/basketball tennis`                                                              |
+| **Sorting by location**     | `findsport pc/{POSTALCODE} s/{SPORT} [SPORT] [SPORT]`                  | `findsport pc/123456 s/tennis hockey`                                                        |
+| **Creating groups**         | `creategroup g/{GROUP NAME}`                                           | `creategroup g/MarathonBuddies`                                                              |
+
+---
+
+*End of User Guide.*
+
+
