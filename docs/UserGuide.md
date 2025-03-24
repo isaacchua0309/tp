@@ -46,17 +46,17 @@ FitFriends is a **desktop app for sporty young adults** to manage their contacts
 ### Viewing help
 Shows a message explaining how to access the help page.
 
-- **Format**: 
+**Format**: 
 help
--
+
 ---
 
 ### Adding a person
 Adds a new person to the address book.
 
-- **Format**:
+**Format**:
   add n/{NAME} p/{NUMBER} e/{EMAIL} a/{ADDRESS} t/{TAG} s/{SPORT} pc/{POSTALCODE}
-- **Notes**:
+**Notes**:
 - Only **valid postal codes** are allowed.
 - Only **valid sports** are allowed.
 - A person can have any number of tags (including 0).
@@ -69,7 +69,7 @@ Adds a new person to the address book.
 ### Listing all persons
 Shows a list of all persons in the address book.
 
-- **Format**: 
+**Format**: 
 list
 
 
@@ -78,9 +78,9 @@ list
 ### Editing a person
 Edits an existing person in the address book.
 
-- **Format**:
+**Format**:
   edit {INDEX} [n/{NAME}] [p/{NUMBER}] [e/{EMAIL}] [a/{ADDRESS}] [t/{TAG}] [pc/{POSTALCODE}]
-- **Notes**:
+**Notes**:
 - You **cannot edit a sport** directly with this command. To edit sports, first remove them using `deletesport`, then add new ones using `addsport`.
 - The index refers to the position shown in the current list (e.g., `edit 2` edits the 2nd person in the displayed list).
 - **Example**:
@@ -92,7 +92,7 @@ Edits an existing person in the address book.
 ### Locating persons by name
 Finds persons whose names contain any of the specified keywords.
 
-- **Format**:
+**Format**:
   find {KEYWORD}
   You can provide multiple keywords (space-separated) to perform an OR search.
 - **Notes**:
@@ -114,9 +114,9 @@ Finds persons whose names contain any of the specified keywords.
 ### Deleting a person
 Deletes the specified person from the address book.
 
-- **Format**:
+**Format**:
     delete {INDEX}
-- **Example**:
+**Example**:
     delete 3
 
 ---
@@ -124,7 +124,7 @@ Deletes the specified person from the address book.
 ### Clearing all entries
 Clears all entries from the address book.
 
-- **Format**:
+**Format**:
     clear
 
 ---
@@ -132,9 +132,9 @@ Clears all entries from the address book.
 ### Adding a sport
 Adds a sport to an existing person in the address book.
 
-- **Format**: 
+**Format**: 
     addsport {INDEX} s/{SPORT}
-- **Notes**:
+**Notes**:
 - Only **one sport can be added** per command.
 - Only **valid sports** are allowed.
 - **Example**:
@@ -145,9 +145,9 @@ Adds a sport to an existing person in the address book.
 ### Deleting a sport
 Deletes a sport from the specified person in the address book.
 
-- **Format**:
+**Format**:
     deletesport {INDEX} s/{SPORT}
-- **Example**:
+**Example**:
     deletesport 2 s/basketball
 
 ---
@@ -155,9 +155,9 @@ Deletes a sport from the specified person in the address book.
 ### Finding a sport
 Filters (or searches) persons by the sports they have.
 
-- **Format**:
+**Format**:
   findsport s/{SPORT} [SPORT] [SPORT]
-- **Notes**:
+**Notes**:
 - You may include **multiple sports** (separated by spaces).
 - Contacts who play **any** of the sports listed will be shown (OR search).
 - **Example**:
@@ -168,10 +168,10 @@ Filters (or searches) persons by the sports they have.
 ### Sorting by location and sport
 An extension of the `findsport` feature that allows you to filter by one or more sports **and** provide a reference postal code to sort results by distance.
 
-- **Format**:
+**Format**:
   findsport pc/{POSTALCODE} s/{SPORT} [SPORT] [SPORT]
 
-- **Notes**:
+**Notes**:
 - If a postal code is provided, the matching contacts will be sorted by their distance from that postal code.
 - Contacts who play **any** of the listed sports will appear.
 - **Example**:
@@ -183,9 +183,9 @@ An extension of the `findsport` feature that allows you to filter by one or more
 ### Creating groups
 Creates a group that you can add contacts into (group management commands forthcoming).
 
-- **Format**:
+**Format**:
   creategroup g/{GROUP NAME}
-- **Example**:
+**Example**:
     creategroup g/tennisbuddies
 
 ---
@@ -209,6 +209,5 @@ Creates a group that you can add contacts into (group management commands forthc
 
 ---
 
-*End of User Guide.*
 
 
