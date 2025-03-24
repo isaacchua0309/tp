@@ -166,16 +166,18 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Switched to light theme");
         }
 
-        helpWindow.show();
-        // Apply the current theme to the help window
-        helpWindow.applyTheme(isDarkTheme);
+        // Only show and update the help window if it's already open
+        if (helpWindow.isShowing()) {
+            // Apply the current theme to the help window
+            helpWindow.applyTheme(isDarkTheme);
 
-        // Ensure the window has the focus and is brought to the front
-        Platform.runLater(() -> {
-            helpWindow.getRoot().toFront();
-            helpWindow.getRoot().requestFocus();
-            logger.info("Help window displayed and focused");
-        });
+            // Ensure the window has the focus and is brought to the front
+            Platform.runLater(() -> {
+                helpWindow.getRoot().toFront();
+                helpWindow.getRoot().requestFocus();
+                logger.info("Help window theme updated and focused");
+            });
+        }
     }
 
     /**

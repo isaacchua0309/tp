@@ -29,7 +29,7 @@ public class Person {
     private final Address address;
     private final Location location;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<Sport> sports = new ArrayList<>();
+    private final SportList sports = new SportList();
 
     /**
      * Constructor for Person class returns an immutable Person object.
@@ -43,7 +43,9 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.sports.addAll(sports);
+        for (Sport sport : sports) {
+            this.sports.add(sport);
+        }
         this.location = LocationUtil.createLocation(address, postalCode);
     }
 
@@ -57,7 +59,9 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.sports.addAll(sports);
+        for (Sport sport : sports) {
+            this.sports.add(sport);
+        }
         this.location = LocationUtil.createLocation(address, "018935"); //default location
     }
     /**
@@ -70,8 +74,27 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.sports.addAll(Collections.emptyList());
+        // Empty sports list
         this.location = LocationUtil.createLocation(address, "018935"); //default location
+    }
+
+    /**
+     * Constructor for Person class with SportList parameter.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, String postalCode, Set<Tag> tags,
+                 SportList sports) {
+        requireAllNonNull(name, phone, email, address, tags, sports);
+        requireNonNull(postalCode, "Postal code cannot be null");
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        // Add all sports from the provided SportList
+        for (Sport sport : sports) {
+            this.sports.add(sport);
+        }
+        this.location = LocationUtil.createLocation(address, postalCode);
     }
 
     public Name getName() {
@@ -112,7 +135,19 @@ public class Person {
      * Returns an immutable list of sports.
      */
     public List<Sport> getSports() {
-        return Collections.unmodifiableList(sports);
+        return sports.asUnmodifiableList();
+    }
+
+    /**
+     * Returns a completely independent copy of the SportList object.
+     */
+    public SportList getSportList() {
+        // Create a brand new SportList with a copy of the elements to ensure full isolation
+        List<Sport> sportsCopy = new ArrayList<>();
+        for (Sport sport : sports.asUnmodifiableList()) {
+            sportsCopy.add(new Sport(sport.sportName));
+        }
+        return new SportList(sportsCopy);
     }
 
     /**
@@ -170,9 +205,9 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("postalCode", getPostalCode()) // Use getPostalCode() to retrieve from Location object
+                .add("postalCode", getPostalCode())
                 .add("tags", tags)
-                .add("sports", sports)
+                .add("sports", "[" + sports.toString() + "]")
                 .toString();
     }
 }

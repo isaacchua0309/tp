@@ -13,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 import seedu.address.model.tag.Tag;
 
 
@@ -24,22 +25,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"), "398362",
-                    getTagSet("friends"), getSportList("badminton")),
+                    getTagSet("friends"), getSportListObject("badminton")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), "018906",
-                    getTagSet("colleagues", "friends"), getSportList("volleyball")),
+                    getTagSet("colleagues", "friends"), getSportListObject("volleyball")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), "018907",
-                    getTagSet("neighbours"), getSportList("cricket")),
+                    getTagSet("neighbours"), getSportListObject("cricket")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), "560436",
-                getTagSet("family"), getSportList("rugby")),
+                getTagSet("family"), getSportListObject("rugby")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), "018910",
-                    getTagSet("classmates"), getSportList("hockey")),
+                    getTagSet("classmates"), getSportListObject("hockey")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), "018916",
-                    getTagSet("colleagues"), getSportList("soccer"))
+                    getTagSet("colleagues"), getSportListObject("soccer"))
         };
     }
 
@@ -67,5 +68,12 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Sport::new)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns a SportList object containing the list of strings given.
+     */
+    public static SportList getSportListObject(String... strings) {
+        return new SportList(getSportList(strings));
     }
 }
