@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,28 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a group with the given {@code groupName} exists in the address book.
+     *
+     * @param groupName The name of the group to check.
+     * @return true if the group exists, false otherwise.
+     */
+    boolean hasGroup(String groupName);
+
+    /**
+     * Adds a new group to the address book.
+     * The group name must be unique and not already exist.
+     *
+     * @param group The group to add.
+     */
+    void addGroup(Group group);
+
+    /**
+     * Returns the list of all groups in the address book.
+     * The returned list is unmodifiable.
+     *
+     * @return The list of groups.
+     */
+    ObservableList<Group> getGroupList();
 }
