@@ -90,4 +90,17 @@ public class UniqueGroupList implements Iterable<Group> {
     public Iterator<Group> iterator() {
         return internalList.iterator();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof UniqueGroupList)) {
+            return false;
+        }
+        UniqueGroupList otherList = (UniqueGroupList) other;
+        return internalList.equals(otherList.internalList);
+    }
+
 }
