@@ -27,7 +27,7 @@ public class SportContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        SportContainsKeywordsPredicate firstPredicateCopy = 
+        SportContainsKeywordsPredicate firstPredicateCopy =
                 new SportContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -44,7 +44,7 @@ public class SportContainsKeywordsPredicateTest {
     @Test
     public void test_sportContainsKeywords_returnsTrue() {
         // One keyword
-        SportContainsKeywordsPredicate predicate = 
+        SportContainsKeywordsPredicate predicate =
                 new SportContainsKeywordsPredicate(Collections.singletonList("soccer"));
         assertTrue(predicate.test(new PersonBuilder().withSports("soccer").build()));
 
@@ -94,4 +94,4 @@ public class SportContainsKeywordsPredicateTest {
         String expected = new ToStringBuilder(predicate).add("keywords", keywords).toString();
         assertEquals(expected, predicate.toString());
     }
-} 
+}

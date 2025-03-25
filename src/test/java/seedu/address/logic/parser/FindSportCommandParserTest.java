@@ -35,7 +35,7 @@ public class FindSportCommandParserTest {
         List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
-        
+
         FindSportCommand expectedCommand = new FindSportCommand(
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
@@ -45,7 +45,7 @@ public class FindSportCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n soccer \n \t cricket  \t", expectedCommand);
     }
-    
+
     /**
      * Tests parsing of mixed-case arguments, expecting lowercase conversion.
      */
@@ -55,7 +55,7 @@ public class FindSportCommandParserTest {
         List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
-        
+
         FindSportCommand expectedCommand = new FindSportCommand(
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
