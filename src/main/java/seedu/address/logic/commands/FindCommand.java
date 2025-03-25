@@ -22,6 +22,10 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindCommand to find persons whose names match the specified keywords
+     * @param predicate the predicate used to test Person objects
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
