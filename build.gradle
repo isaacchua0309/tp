@@ -24,6 +24,13 @@ test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
+task generateDiagrams(type: JavaExec) {
+    group = 'documentation'
+    description = 'Generates PlantUML diagrams'
+    main = 'net.sourceforge.plantuml.Run'
+    classpath = configurations.runtimeClasspath
+    args = ['-tpng', 'docs/diagrams/*.puml']
+}
 
 task coverage(type: JacocoReport) {
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
@@ -59,6 +66,8 @@ dependencies {
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
+
+    implementation 'net.sourceforge.plantuml:plantuml:1.2023.7'
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
