@@ -86,13 +86,22 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /** Returns an unmodifiable view of the filtered group list */
+    ObservableList<Group> getFilteredGroupList();
+
+    /**
+     * Updates the filter of the filtered group list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredGroupList(Predicate<Group> predicate);
+
     /**
      * Returns true if a group with the given {@code groupName} exists in the address book.
      *
-     * @param groupName The name of the group to check.
+     * @param groupName The identity of the group to check.
      * @return true if the group exists, false otherwise.
      */
-    boolean hasGroup(String groupName);
+    boolean hasGroup(Group groupName);
 
     /**
      * Adds a new group to the address book.
@@ -102,6 +111,11 @@ public interface Model {
      */
     void addGroup(Group group);
 
+    /**
+     * Deletes the given group.
+     * The group must exist in the address book.
+     */
+    void deleteGroup(Group target);
     /**
      * Returns the list of all groups in the address book.
      * The returned list is unmodifiable.
