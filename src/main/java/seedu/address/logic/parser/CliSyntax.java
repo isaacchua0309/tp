@@ -13,4 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_POSTAL_CODE = new Prefix("pc/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_SPORT = new Prefix("s/");
+    public static final Prefix PREFIX_GROUP_NAME = new Prefix("g/");
 }
