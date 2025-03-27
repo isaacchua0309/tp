@@ -41,10 +41,12 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
 
-        assertParseSuccess(parser, " s/soccer s/cricket", expectedCommand);
+        assertParseSuccess(parser, " " + PREFIX_SPORT + "soccer "
+                + PREFIX_SPORT + "cricket", expectedCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n s/soccer \n \t s/cricket  \t", expectedCommand);
+        assertParseSuccess(parser, " \n " + PREFIX_SPORT + "soccer \n \t "
+                + PREFIX_SPORT + "cricket  \t", expectedCommand);
     }
 
 
@@ -62,6 +64,7 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
 
-        assertParseSuccess(parser, " s/SoCCer s/CRicKET", expectedCommand);
+        assertParseSuccess(parser, " " + PREFIX_SPORT + "SoCCer "
+                + PREFIX_SPORT + "CRicKET", expectedCommand);
     }
 }
