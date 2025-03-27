@@ -15,6 +15,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -60,7 +61,8 @@ public class PersonUtil {
         descriptor.getPostalCode().ifPresent(
                 postalCode -> sb.append(PREFIX_POSTAL_CODE).append(postalCode).append(" "));
         if (descriptor.getSports().isPresent()) {
-            List<Sport> sports = descriptor.getSports().get();
+            SportList sportList = descriptor.getSports().get();
+            List<Sport> sports = sportList.asUnmodifiableList();
             if (sports.isEmpty()) {
                 sb.append(PREFIX_SPORT);
             } else {

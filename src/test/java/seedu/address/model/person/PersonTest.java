@@ -101,12 +101,13 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
-                + ", postalCode=" + ALICE.getPostalCode()
-                + ", tags=" + ALICE.getTags()
-                + ", sports=" + ALICE.getSports() + "}";
-        assertEquals(expected, ALICE.toString());
+        Person alice = new PersonBuilder(ALICE).build();
+        String expected = Person.class.getCanonicalName() + "{name=" + alice.getName() + ", phone=" + alice.getPhone()
+                + ", email=" + alice.getEmail() + ", address=" + alice.getAddress()
+                + ", postalCode=" + alice.getPostalCode()
+                + ", tags=" + alice.getTags()
+                + ", sports=" + alice.getSports().toString() + "}";
+        assertEquals(expected, alice.toString());
     }
 
     @Test
@@ -220,5 +221,69 @@ public class PersonTest {
 
         // Test that toString contains the postal code information
         assertTrue(person.toString().contains(postalCode));
+    }
+
+    @Test
+    public void getSportList_modifyReturnedList_throwsUnsupportedOperationException() {
+        Person person = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> person.getSportList().asUnmodifiableList().add(
+            new Sport("tennis")));
+    }
+
+    @Test
+    public void getSportList_modifyOriginalSportList_doesNotAffectPerson() {
+        // Create a person with only soccer (explicitly clearing any default sports)
+        Person originalPerson = new PersonBuilder().withSports("soccer").build();
+
+        SportList sportList = originalPerson.getSportList();
+
+        // Adding to the returned SportList
+        sportList.add(new Sport("tennis"));
+
+        // Check the actual content of the lists
+        System.out.println("Original person's sports: " + originalPerson.getSports());
+        System.out.println("Modified SportList: " + sportList);
+
+        // Original person's list should remain unchanged
+        assertFalse(originalPerson.getSports().contains(new Sport("tennis")));
+        assertEquals(1, originalPerson.getSports().size());
+    }
+
+    @Test
+    public void addSport_withSportList_success() {
+        Person originalPerson = new PersonBuilder().build();
+        SportList updatedSports = originalPerson.getSportList();
+        updatedSports.add(new Sport("tennis"));
+
+        Person updatedPerson = new Person(
+                originalPerson.getName(),
+                originalPerson.getPhone(),
+                originalPerson.getEmail(),
+                originalPerson.getAddress(),
+                originalPerson.getPostalCode(),
+                originalPerson.getTags(),
+                updatedSports);
+
+        assertTrue(updatedPerson.getSports().contains(new Sport("tennis")));
+        assertEquals(originalPerson.getSports().size() + 1, updatedPerson.getSports().size());
+    }
+
+    @Test
+    public void deleteSport_withSportList_success() {
+        Person originalPerson = new PersonBuilder().withSports("volleyball", "cricket").build();
+        SportList updatedSports = originalPerson.getSportList();
+        updatedSports.remove(new Sport("cricket"));
+
+        Person updatedPerson = new Person(
+                originalPerson.getName(),
+                originalPerson.getPhone(),
+                originalPerson.getEmail(),
+                originalPerson.getAddress(),
+                originalPerson.getPostalCode(),
+                originalPerson.getTags(),
+                updatedSports);
+
+        assertFalse(updatedPerson.getSports().contains(new Sport("cricket")));
+        assertEquals(originalPerson.getSports().size() - 1, updatedPerson.getSports().size());
     }
 }

@@ -2,14 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.Sport;
 import seedu.address.model.person.SportContainsKeywordsPredicate;
 
 /**
@@ -18,19 +16,14 @@ import seedu.address.model.person.SportContainsKeywordsPredicate;
  */
 public class FindSportCommand extends Command {
 
-    public static final List<String> VALID_SPORTS = new ArrayList<>(Arrays.asList(
-            "soccer", "basketball", "tennis", "badminton", "cricket",
-            "baseball", "volleyball", "hockey", "rugby", "golf"
-    ));
-
     public static final String COMMAND_WORD = "findsport";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who play a sport contained in "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " badminton volleyball cricket";
-    public static final String MESSAGE_INVALID_SPORT = "Invalid sport found. Allowed sports: " + VALID_SPORTS
-            + "\nExample: " + COMMAND_WORD + " badminton volleyball cricket";;
+    public static final String MESSAGE_INVALID_SPORT = "Invalid sport found. Allowed sports: " + Sport.VALID_SPORTS
+            + "\nExample: " + COMMAND_WORD + " badminton volleyball cricket";
 
 
     private final SportContainsKeywordsPredicate predicate;
@@ -49,9 +42,9 @@ public class FindSportCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // checks if any sports listed by user is not in list of valid sports
-        boolean hasInvalidSport = sportList.stream().anyMatch(sport -> VALID_SPORTS.stream()
-                .noneMatch(validSport -> StringUtil.containsWordIgnoreCase(validSport, sport)));
+        // Use Sport.isValidSport to validate each sport
+        boolean hasInvalidSport = sportList.stream()
+                .anyMatch(sport -> !Sport.isValidSport(sport));
 
         if (hasInvalidSport) {
             return new CommandResult(MESSAGE_INVALID_SPORT);

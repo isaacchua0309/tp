@@ -13,9 +13,9 @@ public class SportTest {
     @Test
     public void constructor_validSport_success() {
         // Valid sport names
-        Sport sport = new Sport("Basketball");
+        Sport sport = new Sport("basketball");
         assertNotNull(sport);
-        assertEquals("Basketball", sport.sportName);
+        assertEquals("basketball", sport.sportName);
 
         sport = new Sport("Tennis");
         assertNotNull(sport);
@@ -25,6 +25,52 @@ public class SportTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Sport(null));
+    }
+
+    @Test
+    public void isValidSport_validSports_returnsTrue() {
+        // Valid sports from the VALID_SPORTS set
+        assertTrue(Sport.isValidSport("soccer"));
+        assertTrue(Sport.isValidSport("basketball"));
+        assertTrue(Sport.isValidSport("tennis"));
+        assertTrue(Sport.isValidSport("badminton"));
+        assertTrue(Sport.isValidSport("cricket"));
+    }
+
+    @Test
+    public void isValidSport_validSportsWithDifferentCase_returnsTrue() {
+        // Valid sports with different letter cases
+        assertTrue(Sport.isValidSport("SOCCER"));
+        assertTrue(Sport.isValidSport("Basketball"));
+        assertTrue(Sport.isValidSport("Tennis"));
+    }
+
+    @Test
+    public void isValidSport_validSportsWithWhitespace_returnsTrue() {
+        // Valid sports with leading/trailing spaces
+        assertTrue(Sport.isValidSport(" soccer "));
+        assertTrue(Sport.isValidSport("basketball "));
+        assertTrue(Sport.isValidSport(" tennis"));
+    }
+
+    @Test
+    public void isValidSport_invalidSports_returnsFalse() {
+        // Invalid sports not in the VALID_SPORTS set
+        assertFalse(Sport.isValidSport("swimming"));
+        assertFalse(Sport.isValidSport("cycling"));
+        assertFalse(Sport.isValidSport("martial arts"));
+    }
+
+    @Test
+    public void isValidSport_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> Sport.isValidSport(null));
+    }
+
+    @Test
+    public void getNormalizedName_returnsLowercase() {
+        assertEquals("soccer", new Sport("Soccer").getNormalizedName());
+        assertEquals("basketball", new Sport("BASKETBALL").getNormalizedName());
+        assertEquals("tennis", new Sport("Tennis").getNormalizedName());
     }
 
     @Test
@@ -47,6 +93,13 @@ public class SportTest {
     }
 
     @Test
+    public void equals_sameSportDifferentCase_returnsTrue() {
+        Sport firstSport = new Sport("tennis");
+        Sport secondSport = new Sport("Tennis");
+        assertTrue(firstSport.equals(secondSport));
+    }
+
+    @Test
     public void equals_nullObject_returnsFalse() {
         Sport sport = new Sport("Hockey");
         assertFalse(sport.equals(null));
@@ -63,5 +116,19 @@ public class SportTest {
         Sport firstSport = new Sport("Golf");
         Sport secondSport = new Sport("Rugby");
         assertFalse(firstSport.equals(secondSport));
+    }
+
+    @Test
+    public void hashCode_sameValueDifferentCase_sameHashCode() {
+        Sport firstSport = new Sport("tennis");
+        Sport secondSport = new Sport("Tennis");
+        assertEquals(firstSport.hashCode(), secondSport.hashCode());
+    }
+
+    @Test
+    public void hashCode_differentValues_differentHashCodes() {
+        Sport firstSport = new Sport("tennis");
+        Sport secondSport = new Sport("soccer");
+        assertFalse(firstSport.hashCode() == secondSport.hashCode());
     }
 }

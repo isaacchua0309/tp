@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SPORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +28,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         String updatedPostalCode = editPersonDescriptor.getPostalCode().orElse(personToEdit.getPostalCode());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        List<Sport> updatedSports = editPersonDescriptor.getSports().orElse(personToEdit.getSports());
+        SportList updatedSports = editPersonDescriptor.getSports().orElse(personToEdit.getSportList());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedPostalCode, updatedTags, updatedSports);
     }
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private String postalCode;
-        private List<Sport> sports;
+        private SportList sports;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -158,8 +158,8 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setPostalCode(toCopy.postalCode);
-            setTags(toCopy.tags);
             setSports(toCopy.sports);
+            setTags(toCopy.tags);
         }
 
         /**
@@ -230,17 +230,24 @@ public class EditCommand extends Command {
          * Sets {@code sports} to this object's {@code sports}.
          * A defensive copy of {@code sports} is used internally.
          */
-        public void setSports(List<Sport> sports) {
-            this.sports = (sports != null) ? new ArrayList<>(sports) : null;
+        public void setSports(SportList sports) {
+            this.sports = (sports != null) ? new SportList(sports.asUnmodifiableList()) : null;
         }
 
         /**
-         * Returns an unmodifiable sport set, which throws {@code UnsupportedOperationException}
+         * For backward compatibility with code that passes List&lt;Sport&gt;
+         */
+        public void setSports(List<Sport> sports) {
+            this.sports = (sports != null) ? new SportList(sports) : null;
+        }
+
+        /**
+         * Returns an unmodifiable SportList, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code sports} is null.
          */
-        public Optional<List<Sport>> getSports() {
-            return (sports != null) ? Optional.of(Collections.unmodifiableList(sports)) : Optional.empty();
+        public Optional<SportList> getSports() {
+            return (sports != null) ? Optional.of(sports) : Optional.empty();
         }
 
         @Override

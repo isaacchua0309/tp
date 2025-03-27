@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -11,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 
 /**
  * Deletes a sport from an existing contact in the address book.
@@ -57,11 +57,11 @@ public class DeleteSportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NO_SPORT_FOUND, sport, personToEdit.getName().fullName));
         }
 
-        // Create a new list of sports excluding the sport to be deleted.
-        List<Sport> updatedSports = new ArrayList<>(personToEdit.getSports());
+        // Get the SportList and remove the sport to be deleted
+        SportList updatedSports = personToEdit.getSportList();
         updatedSports.remove(sport);
 
-        // Create a new Person with the updated sports list.
+        // Create a new Person with the updated sports list
         Person editedPerson = createEditedPerson(personToEdit, updatedSports);
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_DELETE_SPORT_SUCCESS,
@@ -69,18 +69,19 @@ public class DeleteSportCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with an updated list of sports.
+     * Creates and returns a {@code Person} with an updated SportList.
      *
      * @param personToEdit The person to be updated.
-     * @param updatedSports The new list of sports.
+     * @param updatedSports The new SportList.
      * @return A new Person object with the updated sports.
      */
-    private static Person createEditedPerson(Person personToEdit, List<Sport> updatedSports) {
+    private static Person createEditedPerson(Person personToEdit, SportList updatedSports) {
         return new Person(
                 personToEdit.getName(),
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),
                 personToEdit.getAddress(),
+                personToEdit.getPostalCode(),
                 personToEdit.getTags(),
                 updatedSports);
     }

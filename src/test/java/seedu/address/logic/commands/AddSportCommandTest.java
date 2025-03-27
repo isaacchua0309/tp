@@ -8,9 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,6 +16,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddSportCommand}.
@@ -54,7 +52,7 @@ public class AddSportCommandTest {
         Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Sport sportToAdd = new Sport("soccer");
 
-        // First add a spor
+        // First add a sport
         Person modifiedPerson = createPersonWithAdditionalSport(personToModify, sportToAdd);
         model.setPerson(personToModify, modifiedPerson);
 
@@ -62,6 +60,16 @@ public class AddSportCommandTest {
         AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), sportToAdd);
         assertThrows(CommandException.class,
                 AddSportCommand.MESSAGE_DUPLICATE_SPORT, () -> addSportCommand.execute(model));
+    }
+
+    @Test
+    public void execute_invalidSport_throwsCommandException() {
+        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Sport invalidSport = new Sport("swimming"); // Not in the valid sports list
+        AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), invalidSport);
+
+        assertThrows(CommandException.class,
+                Sport.MESSAGE_CONSTRAINTS, () -> addSportCommand.execute(model));
     }
 
     @Test
@@ -105,7 +113,7 @@ public class AddSportCommandTest {
      * Creates a new person with all the same fields as the original, plus an additional sport.
      */
     private Person createPersonWithAdditionalSport(Person person, Sport sport) {
-        List<Sport> updatedSports = new ArrayList<>(person.getSports());
+        SportList updatedSports = person.getSportList();
         updatedSports.add(sport);
 
         return new Person(
@@ -113,6 +121,7 @@ public class AddSportCommandTest {
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
+                person.getPostalCode(),
                 person.getTags(),
                 updatedSports);
     }

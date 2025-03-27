@@ -8,10 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 
 public class DeleteSportCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -57,7 +54,7 @@ public class DeleteSportCommandTest {
         Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Sport sportToDelete = personToModify.getSports().get(0);
 
-        // First delete existing spor
+        // First delete existing sport
         Person modifiedPerson = createPersonWithLessSport(personToModify, sportToDelete);
         model.setPerson(personToModify, modifiedPerson);
 
@@ -117,14 +114,16 @@ public class DeleteSportCommandTest {
      * Creates a new person with all the same fields as the original, except for sports field which is pre-defined.
      */
     private Person createPersonWithTwoSports(Person person) {
-        List<Sport> updatedSports = new ArrayList<>(Arrays.asList(new Sport("soccer"),
-                new Sport("badminton")));
+        SportList updatedSports = new SportList();
+        updatedSports.add(new Sport("soccer"));
+        updatedSports.add(new Sport("badminton"));
 
         return new Person(
                 person.getName(),
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
+                person.getPostalCode(),
                 person.getTags(),
                 updatedSports);
     }
@@ -133,7 +132,7 @@ public class DeleteSportCommandTest {
      * Creates a new person with all the same fields as the original, less one sport.
      */
     private Person createPersonWithLessSport(Person person, Sport sport) {
-        List<Sport> updatedSports = new ArrayList<>(person.getSports());
+        SportList updatedSports = person.getSportList();
         updatedSports.remove(sport);
 
         return new Person(
@@ -141,6 +140,7 @@ public class DeleteSportCommandTest {
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
+                person.getPostalCode(),
                 person.getTags(),
                 updatedSports);
     }

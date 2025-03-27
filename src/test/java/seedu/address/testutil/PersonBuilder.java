@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -35,7 +35,7 @@ public class PersonBuilder {
 
     private String postalCode;
     private Set<Tag> tags;
-    private List<Sport> sports;
+    private SportList sports;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -47,7 +47,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         postalCode = DEFAULT_POSTAL_CODE;
         tags = new HashSet<>();
-        sports = new ArrayList<>(DEFAULT_SPORTS);
+        sports = new SportList(DEFAULT_SPORTS);
     }
 
     /**
@@ -60,7 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         postalCode = personToCopy.getPostalCode();
         tags = new HashSet<>(personToCopy.getTags());
-        sports = new ArrayList<>(personToCopy.getSports());
+        sports = personToCopy.getSportList();
     }
 
     /**
@@ -80,17 +80,29 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code sports} into a {@code List<Sport>} and set it to the {@code Person} that we are building.
+     * Parses the {@code sports} into a {@code SportList} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withSports(String ... sports) {
-        this.sports = SampleDataUtil.getSportList(sports);
+    public PersonBuilder withSports(String ... sportNames) {
+        List<Sport> sportList = SampleDataUtil.getSportList(sportNames);
+        this.sports = new SportList(sportList);
         return this;
     }
+
+    /**
+     * Sets the {@code SportList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSportList(SportList sports) {
+        this.sports = sports;
+        return this;
+    }
+
     /**
      * Sets the {@code List<Sport>} of the {@code Person} that we are building.
+     * @deprecated Use {@link #withSportList(SportList)} instead.
      */
+    @Deprecated
     public PersonBuilder withSportsTest(List<Sport> sports) {
-        this.sports = new ArrayList<>(sports);
+        this.sports = new SportList(sports);
         return this;
     }
 

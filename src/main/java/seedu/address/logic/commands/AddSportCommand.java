@@ -2,28 +2,19 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 
 /**
  * Adds a sport to an existing contact in the address book.
  */
 public class AddSportCommand extends Command {
-
-    public static final Set<String> VALID_SPORTS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-            "soccer", "basketball", "tennis", "badminton", "cricket",
-            "baseball", "volleyball", "hockey", "rugby", "golf"
-    )));
 
     public static final String COMMAND_WORD = "addsport";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a sport to the contact identified "
@@ -32,8 +23,6 @@ public class AddSportCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 s/Badminton";
     public static final String MESSAGE_SUCCESS = "Added sport: %1$s to contact: %2$s";
     public static final String MESSAGE_DUPLICATE_SPORT = "This sport already exists for the contact";
-
-    public static final String MESSAGE_INVALID_SPORT = "Invalid sport. Allowed sports: " + VALID_SPORTS;
 
     private final int index;
     private final Sport sport;
@@ -66,19 +55,18 @@ public class AddSportCommand extends Command {
         if (personToEdit.getSports().contains(sport)) {
             throw new CommandException(MESSAGE_DUPLICATE_SPORT);
         }
-        // Check if the sport is valid
-        // Define a set of allowed sports (all in lowercase)
-        String trimmedSport = sport.toString().toLowerCase();
 
-        if (!VALID_SPORTS.contains(trimmedSport)) {
-            throw new CommandException(MESSAGE_INVALID_SPORT);
+        // Check if the sport is valid
+        String trimmedSport = sport.toString().toLowerCase();
+        if (!Sport.isValidSport(trimmedSport)) {
+            throw new CommandException(Sport.MESSAGE_CONSTRAINTS);
         }
 
-        // Create a new list of sports including the new sport.
-        List<Sport> updatedSports = new ArrayList<>(personToEdit.getSports());
+        // Create a new SportList including the new sport
+        SportList updatedSports = personToEdit.getSportList();
         updatedSports.add(sport);
 
-        // Create a new Person with the updated sports list.
+        // Create a new Person with the updated sports list
         Person editedPerson = createEditedPerson(personToEdit, updatedSports);
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sport.toString(), personToEdit.getName().fullName));
@@ -88,16 +76,16 @@ public class AddSportCommand extends Command {
      * Creates and returns a {@code Person} with an updated list of sports.
      *
      * @param personToEdit The person to be updated.
-     * @param updatedSports The new list of sports.
+     * @param updatedSports The new SportList.
      * @return A new Person object with the updated sports.
      */
-    private static Person createEditedPerson(Person personToEdit, List<Sport> updatedSports) {
-        // Assuming that the Person constructor has been updated to include a List<Sport> sports parameter.
+    private static Person createEditedPerson(Person personToEdit, SportList updatedSports) {
         return new Person(
                 personToEdit.getName(),
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),
                 personToEdit.getAddress(),
+                personToEdit.getPostalCode(),
                 personToEdit.getTags(),
                 updatedSports);
     }

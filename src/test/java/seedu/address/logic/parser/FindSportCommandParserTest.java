@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,9 +32,13 @@ public class FindSportCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindSportCommand() {
         // no leading and trailing whitespaces
+        List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+
         FindSportCommand expectedCommand = new FindSportCommand(
-                new SportContainsKeywordsPredicate(Arrays.asList("soccer", "cricket")),
-                Arrays.asList("soccer", "cricket"));
+                new SportContainsKeywordsPredicate(normalizedKeywords),
+                normalizedKeywords);
 
         assertParseSuccess(parser, "soccer cricket", expectedCommand);
 
@@ -40,4 +46,20 @@ public class FindSportCommandParserTest {
         assertParseSuccess(parser, " \n soccer \n \t cricket  \t", expectedCommand);
     }
 
+    /**
+     * Tests parsing of mixed-case arguments, expecting lowercase conversion.
+     */
+    @Test
+    public void parse_mixedCaseArgs_returnsFindSportCommand() {
+        // Mixed case keywords (upper and lower case)
+        List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+
+        FindSportCommand expectedCommand = new FindSportCommand(
+                new SportContainsKeywordsPredicate(normalizedKeywords),
+                normalizedKeywords);
+
+        assertParseSuccess(parser, "SoCCer CRicKET", expectedCommand);
+    }
 }
