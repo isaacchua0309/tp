@@ -41,6 +41,7 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
 
+        //remember to always include " " before your arguments
         assertParseSuccess(parser, " " + PREFIX_SPORT + "soccer "
                 + PREFIX_SPORT + "cricket", expectedCommand);
 
@@ -64,7 +65,10 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
 
+        //remember to always include " " before your arguments
         assertParseSuccess(parser, " " + PREFIX_SPORT + "SoCCer "
                 + PREFIX_SPORT + "CRicKET", expectedCommand);
     }
+
+    //testing for postal code field will be introduced later
 }
