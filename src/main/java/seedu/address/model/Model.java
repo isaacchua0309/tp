@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.group.Group;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
 
 /**
@@ -85,6 +86,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Sorts the filtered person list by distance from the given location.
+     *
+     * @param locationToBeCompared The location to compare the distance to.
+     */
+    void sortFilteredPersonListByDistance(Location locationToBeCompared);
 
     /** Returns an unmodifiable view of the filtered group list */
     ObservableList<Group> getFilteredGroupList();

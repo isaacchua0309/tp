@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPORT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -40,11 +41,15 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
 
-        assertParseSuccess(parser, "soccer cricket", expectedCommand);
+        //remember to always include " " before your arguments
+        assertParseSuccess(parser, " " + PREFIX_SPORT + "soccer "
+                + PREFIX_SPORT + "cricket", expectedCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n soccer \n \t cricket  \t", expectedCommand);
+        assertParseSuccess(parser, " \n " + PREFIX_SPORT + "soccer \n \t "
+                + PREFIX_SPORT + "cricket  \t", expectedCommand);
     }
+
 
     /**
      * Tests parsing of mixed-case arguments, expecting lowercase conversion.
@@ -60,6 +65,10 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
 
-        assertParseSuccess(parser, "SoCCer CRicKET", expectedCommand);
+        //remember to always include " " before your arguments
+        assertParseSuccess(parser, " " + PREFIX_SPORT + "SoCCer "
+                + PREFIX_SPORT + "CRicKET", expectedCommand);
     }
+
+    //testing for postal code field will be introduced later
 }

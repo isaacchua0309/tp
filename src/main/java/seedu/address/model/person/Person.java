@@ -150,6 +150,10 @@ public class Person {
         return new SportList(sportsCopy);
     }
 
+    public Location getLocation() {
+        return this.location;
+    }
+
     /**
      * Delete a sport from the person's list of sports.
      */
