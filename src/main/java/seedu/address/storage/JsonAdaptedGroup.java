@@ -19,7 +19,7 @@ public class JsonAdaptedGroup {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Group's %s field is missing!";
 
-    private final String name;
+    private final String groupName;
 
     private final List<JsonAdaptedPerson> members = new ArrayList<>();
 
@@ -27,9 +27,9 @@ public class JsonAdaptedGroup {
      * Constructs a {@code JsonAdaptedGroup} with the given group details.
      */
     @JsonCreator
-    public JsonAdaptedGroup(@JsonProperty("name") String name,
+    public JsonAdaptedGroup(@JsonProperty("groupName") String name,
                              @JsonProperty("members") List<JsonAdaptedPerson> members) {
-        this.name = name;
+        this.groupName = name;
         if (members != null) {
             this.members.addAll(members);
         }
@@ -39,8 +39,8 @@ public class JsonAdaptedGroup {
      * Converts a given {@code Group} into this class for Jackson use.
      */
     public JsonAdaptedGroup(Group source) {
-        name = source.getGroupName().fullName;
-        members.addAll(source.getMembers().asUnmodifiableObservableList().stream()
+        groupName = source.getGroupName().fullName;
+        members.addAll(source.getMembers().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
     }
@@ -57,14 +57,14 @@ public class JsonAdaptedGroup {
             persons.add(person.toModelType());
         }
 
-        if (name == null) {
+        if (groupName == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+        if (!Name.isValidName(groupName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Name modelName = new Name(groupName);
 
         return new Group(modelName, persons);
     }

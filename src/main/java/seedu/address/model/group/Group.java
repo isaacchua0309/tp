@@ -41,8 +41,8 @@ public class Group {
         return groupName;
     }
 
-    public UniquePersonList getMembers() {
-        return members;
+    public List<Person> getMembers() {
+        return members.asUnmodifiableObservableList();
     }
 
     public void addMember(Person person) {
