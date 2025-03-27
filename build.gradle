@@ -24,6 +24,10 @@ test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
+run {
+    enableAssertions = true
+}
+
 task generateDiagrams(type: JavaExec) {
     group = 'documentation'
     description = 'Generates PlantUML diagrams'
