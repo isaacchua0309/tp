@@ -33,7 +33,7 @@ FitFriends is a **desktop app for sporty young adults** to manage their contacts
 
 3. **Copy** the `.jar` file to the folder you want to use as the *home folder* for FitFriends.
 
-4. **Open a command terminal**, `cd` into the folder you put the jar file in, and use:  
+4. **Open a command terminal**, `cd` into the folder you put the jar file in, and use:
    java -jar FitFriends.jar
 
 5. **Type commands** into the command box and press <kbd>Enter</kbd> to execute them.
@@ -46,7 +46,7 @@ FitFriends is a **desktop app for sporty young adults** to manage their contacts
 ### Viewing help
 Shows a message explaining how to access the help page.
 
-**Format**: 
+**Format**:
 help
 
 ---
@@ -69,7 +69,7 @@ Adds a new person to the address book.
 ### Listing all persons
 Shows a list of all persons in the address book.
 
-**Format**: 
+**Format**:
 list
 
 
@@ -96,14 +96,14 @@ Finds persons whose names contain any of the specified keywords.
   find {KEYWORD}
   You can provide multiple keywords (space-separated) to perform an OR search.
 - **Notes**:
-- The search is **case-insensitive**.  
+- The search is **case-insensitive**.
   e.g. `hans` will match `Hans`.
-- The order of the keywords does not matter.  
+- The order of the keywords does not matter.
   e.g. `Hans Bo` will match `Bo Hans`.
 - Only the **name** is searched.
-- Only **full words** will be matched.  
+- Only **full words** will be matched.
   e.g. `Han` will not match `Hans`.
-- Persons matching **at least one** keyword will be returned (OR search).  
+- Persons matching **at least one** keyword will be returned (OR search).
   e.g. `Hans Bo` will return `Hans Gruber` and `Bo Yang`.
 
 - **Example**:
@@ -132,7 +132,7 @@ Clears all entries from the address book.
 ### Adding a sport
 Adds a sport to an existing person in the address book.
 
-**Format**: 
+**Format**:
     addsport {INDEX} s/{SPORT}
 **Notes**:
 - Only **one sport can be added** per command.
