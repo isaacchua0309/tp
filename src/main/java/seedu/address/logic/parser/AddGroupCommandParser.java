@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_NAME;
 
 import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 
 /**
  * Parses input arguments and creates a new AddGroupCommand object.
@@ -25,12 +26,8 @@ public class AddGroupCommandParser implements Parser<AddGroupCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
         }
 
-        String groupName = argMultimap.getValue(PREFIX_GROUP_NAME).get().trim();
+        Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP_NAME).get());
 
-        if (groupName.isEmpty()) {
-            throw new ParseException("Group name cannot be empty.");
-        }
-
-        return new AddGroupCommand(groupName);
+        return new AddGroupCommand(group);
     }
 }

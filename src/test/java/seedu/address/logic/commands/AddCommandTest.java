@@ -146,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteGroup(Group target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -161,6 +166,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Group> getFilteredGroupList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredGroupList(Predicate<Group> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Group> getGroupList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -171,7 +186,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasGroup(String groupName) {
+        public boolean hasGroup(Group groupName) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -9,7 +9,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateGroupException;
+import seedu.address.model.group.exceptions.DuplicateGroupException;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
 
 /**
  * A list of groups that enforces uniqueness between its elements and does not allow nulls.
@@ -30,20 +31,30 @@ public class UniqueGroupList implements Iterable<Group> {
      * @throws DuplicateGroupException if the group already exists.
      */
     public void add(Group group) {
-        if (contains(group.getGroupName())) {
+        requireNonNull(group);
+        if (contains(group)) {
             throw new DuplicateGroupException();
         }
         internalList.add(group);
     }
 
     /**
-     * Returns true if a group with the given name exists in the list.
-     *
-     * @param groupName The name of the group to check.
-     * @return true if the group exists, false otherwise.
+     * Removes the equivalent group from the list.
+     * The group must exist in the list.
      */
-    public boolean contains(String groupName) {
-        return internalList.stream().anyMatch(g -> g.getGroupName().equals(groupName));
+    public void remove(Group toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new GroupNotFoundException();
+        }
+    }
+
+    /**
+     * Returns true if a group with the given name exists in the list.
+     */
+    public boolean contains(Group groupToCheck) {
+        requireNonNull(groupToCheck);
+        return internalList.stream().anyMatch(groupToCheck::isSameGroup);
     }
 
     public Group get(String groupName) {
@@ -54,6 +65,25 @@ public class UniqueGroupList implements Iterable<Group> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Replaces the group {@code target} in the list with {@code editedGroup}.
+     * {@code target} must exist in the list.
+     * The group identity of {@code editedGroup} must not be the same as another existing group in the list.
+     */
+    public void setGroup(Group target, Group editedGroup) {
+        requireAllNonNull(target, editedGroup);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new GroupNotFoundException();
+        }
+
+        if (!target.isSameGroup(editedGroup) && contains(editedGroup)) {
+            throw new DuplicateGroupException();
+        }
+
+        internalList.set(index, editedGroup);
+    }
     public void setGroups(List<Group> groups) {
         requireAllNonNull(groups);
         if (!groupsAreUnique(groups)) {
@@ -78,7 +108,7 @@ public class UniqueGroupList implements Iterable<Group> {
     private boolean groupsAreUnique(List<Group> groups) {
         for (int i = 0; i < groups.size() - 1; i++) {
             for (int j = i + 1; j < groups.size(); j++) {
-                if (groups.get(i).getGroupName().equals(groups.get(j).getGroupName())) {
+                if (groups.get(i).isSameGroup(groups.get(j))) {
                     return false;
                 }
             }

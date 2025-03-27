@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.LocationUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -116,6 +117,22 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String groupName} into an {@code Group}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Name class will be used to validate the name of the group
+     * @throws ParseException if the name is not valid as defined in Name class
+     */
+    public static Group parseGroup(String groupName) throws ParseException {
+        requireNonNull(groupName);
+        String trimmedGroupName = groupName.trim();
+        if (!Name.isValidName(trimmedGroupName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        Name namedGroup = new Name(groupName);
+        return new Group(namedGroup);
     }
 
     /**

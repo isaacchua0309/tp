@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
@@ -16,26 +19,42 @@ public class AddGroupCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the address book";
 
-    private final String groupName;
+    private final Group group;
 
-    public AddGroupCommand(String groupName) {
-        this.groupName = groupName;
+    /**
+     * Creates an AddCommand to add the specified {@code Group}
+     */
+    public AddGroupCommand(Group group) {
+        requireNonNull(group);
+        this.group = group;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (model.hasGroup(groupName)) {
+        requireNonNull(model);
+
+        if (model.hasGroup(group)) {
             throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }
 
-        Group group = new Group(groupName);
         model.addGroup(group);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, groupName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, group));
     }
 
     @Override
     public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
         return other instanceof AddGroupCommand
-                && ((AddGroupCommand) other).groupName.equals(this.groupName);
+                && ((AddGroupCommand) other).group.equals(this.group);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("group", group)
+                .toString();
     }
 }

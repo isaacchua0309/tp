@@ -53,15 +53,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the group list with {@code groupList}.
-     * {@code groupList} must not contain duplicate group names.
-     */
-    public void setGroups(UniqueGroupList groupList) {
-        requireNonNull(groupList);
-        this.groups.setGroups(groupList);
-    }
-
-    /**
      * Replaces the contents of the group list with {@code groups}.
      * {@code groups} must not contain duplicate group names.
      */
@@ -141,11 +132,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param groupName The name of the group to check.
      * @return true if the group exists, false otherwise.
      */
-    public boolean hasGroup(String groupName) {
+    public boolean hasGroup(Group groupName) {
         requireNonNull(groupName);
         return groups.contains(groupName);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeGroup(Group key) {
+        groups.remove(key);
+    }
 
     //// util methods
 
