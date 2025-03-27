@@ -76,7 +76,7 @@ public class SportList implements Iterable<Sport> {
     }
 
     /**
-     * Adds all of the sports in the specified collection to this list.
+     * Adds all sports in the specified collection to this list.
      *
      * @param sports collection containing sports to be added to this list
      * @return true if this list changed as a result of the call
