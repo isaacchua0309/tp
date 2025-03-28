@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddSportCommandParser" as AddSportCommandParser LOGIC_COLOR
+participant "d:AddSportCommand" as AddSportCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addsport s/Badminton")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addsport s/Badminton")
+activate AddressBookParser
+
+create AddSportCommandParser
+AddressBookParser -> AddSportCommandParser
+activate AddSportCommandParser
+
+AddSportCommandParser --> AddressBookParser
+deactivate AddSportCommandParser
+
+AddressBookParser -> AddSportCommandParser : parse("s/Badminton")
+activate AddSportCommandParser
+
+create AddSportCommand
+AddSportCommandParser -> AddSportCommand
+activate AddSportCommand
+
+AddSportCommand --> AddSportCommandParser
+deactivate AddSportCommand
+
+AddSportCommandParser --> AddressBookParser : d
+deactivate AddSportCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddSportCommandParser -[hidden]-> AddressBookParser
+destroy AddSportCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> AddSportCommand : execute(m)
+activate AddSportCommand
+
+AddSportCommand -> Model : addSport("Badminton")
+activate Model
+
+Model --> AddSportCommand
+deactivate Model
+
+create CommandResult
+AddSportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddSportCommand
+deactivate CommandResult
+
+AddSportCommand --> LogicManager : r
+deactivate AddSportCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
