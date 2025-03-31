@@ -127,6 +127,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Person getPerson(String person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }

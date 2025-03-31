@@ -102,6 +102,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person getPerson(String person) {
+        requireNonNull(person);
+        return addressBook.getPerson(person);
+    }
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -117,6 +122,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setGroup(Group target, Group editedGroup) {
+        requireAllNonNull(target, editedGroup);
+
+        addressBook.setGroup(target, editedGroup);
     }
 
     @Override

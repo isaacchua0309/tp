@@ -60,6 +60,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns person if person with the same identity as {@code person} exists in the address book.
+     */
+    Person getPerson(String person);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -77,6 +82,13 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Replaces the given group {@code target} in the list with {@code editedGroup}.
+     * {@code target} must exist in the address book.
+     * The group identity of {@code editedGroup} must not be the same as another existing group in the address book.
+     */
+    public void setGroup(Group target, Group editedGroup);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

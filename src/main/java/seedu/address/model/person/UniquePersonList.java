@@ -49,6 +49,24 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Gets a person from the list.
+     * The person must already exist in the list.
+     */
+    public Person getPerson(String nameOfPersonToGet) {
+        requireNonNull(nameOfPersonToGet);
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of(nameOfPersonToGet));
+        ObservableList<Person> filteredList = internalList.filtered(predicate);
+        if (filteredList.size() == 0) {
+            throw new PersonNotFoundException();
+        }
+        if (filteredList.size() > 1) {
+            throw new DuplicatePersonException();
+        }
+        Person toReturn = filteredList.get(0);
+        return toReturn;
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
