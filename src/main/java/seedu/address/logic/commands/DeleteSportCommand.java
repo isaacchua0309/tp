@@ -25,6 +25,9 @@ public class DeleteSportCommand extends Command {
     public static final String MESSAGE_DELETE_SPORT_SUCCESS = "Deleted %1$s for %2$s";
     public static final String MESSAGE_NO_SPORT_FOUND = "The sport, %1$s, does not exist for %2$s";
 
+    public static final String MESSAGE_CANNOT_DELETE_SPORT = "The sport, %1$s, cannot be deleted as %2$s has to "
+            + "have at least 1 sport";
+
     private final Index targetIndex;
     private final Sport sport;
 
@@ -59,6 +62,10 @@ public class DeleteSportCommand extends Command {
 
         // Get the SportList and remove the sport to be deleted
         SportList updatedSports = personToEdit.getSportList();
+        if (updatedSports.size() == 1) {
+            throw new CommandException(String.format(
+                    MESSAGE_CANNOT_DELETE_SPORT, sport, personToEdit.getName().fullName));
+        }
         updatedSports.remove(sport);
 
         // Create a new Person with the updated sports list
