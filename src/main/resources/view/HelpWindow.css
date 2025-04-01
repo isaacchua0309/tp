@@ -27,6 +27,13 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
 }
 
+.help-intro-text {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #a9b1d6;
+    -fx-padding: 0 0 20 0;
+    -fx-text-alignment: center;
+}
+
 .help-section {
     -fx-padding: 0 0 20 0;
     -fx-background-color: #292e42;
@@ -117,6 +124,44 @@
 .help-command:hover {
     -fx-background-color: #2a2e3f;
     -fx-cursor: hand;
+}
+
+.help-button {
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: #7aa2f7;
+    -fx-border-width: 2;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-background-color: #24283b;
+    -fx-font-family: "Segoe UI", system-ui, sans-serif;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #c0caf5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 0, 1);
+    -fx-transition: -fx-background-color 0.15s ease-in-out, -fx-text-fill 0.15s ease-in-out;
+}
+
+.help-button:hover {
+    -fx-background-color: #7aa2f7;
+    -fx-text-fill: #1e2030;
+}
+
+.help-button:pressed {
+    -fx-background-color: #5e77c2;
+    -fx-text-fill: #1e2030;
+}
+
+.help-footer-text {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #a9b1d6;
+    -fx-padding: 15 0 10 0;
+    -fx-text-alignment: center;
+    -fx-font-style: italic;
+}
+
+.help-button-container {
+    -fx-padding: 10 0 15 0;
 }
 
 .help-close-button {

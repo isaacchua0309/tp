@@ -16,8 +16,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://github.com/AY2425S2-CS2103T-F12-1/tp/blob/master/docs/UserGuide.md";
+    public static final String HELP_MESSAGE = "Welcome to FitFriends! For detailed instructions, please refer to our user guide: " + USERGUIDE_URL;
     private static final String LIGHT_THEME_PATH = "/view/LightTheme.css";
     private static final String DARK_THEME_PATH = "/view/DarkTheme.css";
     private static final String HELP_WINDOW_LIGHT_THEME_PATH = "/view/HelpWindowLightTheme.css";

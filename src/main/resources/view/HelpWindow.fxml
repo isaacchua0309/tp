@@ -11,8 +11,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         minWidth="500" minHeight="500" maxWidth="800" maxHeight="800">
+<fx:root resizable="true" title="FitFriends Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+         minWidth="600" minHeight="600" maxWidth="800" maxHeight="800">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -43,7 +43,7 @@
           </padding>
         </HBox>
 
-        <!-- Our improved UI -->
+        <!-- Updated UI based on new User Guide -->
         <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="help-scroll-pane">
           <VBox spacing="15" styleClass="help-content-container">
             <padding>
@@ -51,192 +51,161 @@
             </padding>
 
             <HBox alignment="CENTER">
-              <Label text="Address Book Command Reference" styleClass="help-title" />
+              <Label text="FitFriends Command Reference" styleClass="help-title" />
             </HBox>
+            
+            <Label text="Welcome to FitFriends - your personal assistant for organizing sports activities with friends!" wrapText="true" styleClass="help-intro-text" />
 
-            <!-- General Commands -->
+            <!-- Basic Features -->
             <VBox styleClass="help-section">
-              <Label text="General Commands" styleClass="help-section-title" />
-
-              <VBox styleClass="help-command">
-                <Label text="hello" styleClass="help-command-name" />
-                <Label text="Shows a greeting message" styleClass="help-command-desc" />
-                <Label text="Example: hello" styleClass="help-command-example" />
-              </VBox>
+              <Label text="Basic Features" styleClass="help-section-title" />
 
               <VBox styleClass="help-command">
                 <Label text="help" styleClass="help-command-name" />
-                <Label text="Shows this help window with all available commands" styleClass="help-command-desc" />
-                <Label text="Example: help" styleClass="help-command-example" />
+                <Label text="Shows this help window with command instructions" styleClass="help-command-desc" />
+                <Label text="Format: help" styleClass="help-command-format" />
               </VBox>
 
               <VBox styleClass="help-command">
-                <Label text="exit" styleClass="help-command-name" />
-                <Label text="Exits the application" styleClass="help-command-desc" />
-                <Label text="Example: exit" styleClass="help-command-example" />
+                <Label text="list" styleClass="help-command-name" />
+                <Label text="Shows a list of all your sports buddies in one place" styleClass="help-command-desc" />
+                <Label text="Format: list" styleClass="help-command-format" />
               </VBox>
 
               <VBox styleClass="help-command">
                 <Label text="clear" styleClass="help-command-name" />
-                <Label text="Clears all entries from the address book" styleClass="help-command-desc" />
-                <Label text="Example: clear" styleClass="help-command-example" />
-                <Label text="Note: This command cannot be undone. Use with caution." styleClass="help-command-note" />
+                <Label text="Clears all entries from FitFriends" styleClass="help-command-desc" />
+                <Label text="Format: clear" styleClass="help-command-format" />
+                <Label text="Note: This action cannot be undone. All your contacts will be permanently removed." styleClass="help-command-note" />
               </VBox>
             </VBox>
 
-            <!-- Add Commands -->
+            <!-- Managing Contacts -->
             <VBox styleClass="help-section">
-              <Label text="Add Commands" styleClass="help-section-title" />
+              <Label text="Managing Contacts" styleClass="help-section-title" />
 
               <VBox styleClass="help-command">
                 <Label text="add" styleClass="help-command-name" />
-                <Label text="Adds a new person to the address book" styleClass="help-command-desc" />
-                <Label text="Format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..." wrapText="true" styleClass="help-command-format" />
+                <Label text="Add your sports buddies to FitFriends with details that matter for planning activities" styleClass="help-command-desc" />
+                <Label text="Format: add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG s/SPORT pc/POSTALCODE" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25" wrapText="true" styleClass="help-command-example" />
-                  <Label text="add n/Betsy Crowe p/92345678 e/betsyc@example.com a/Newgate Prison t/friend t/criminal" wrapText="true" styleClass="help-command-example" />
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/basketball pc/123456" wrapText="true" styleClass="help-command-example" />
                 </VBox>
+                <Label text="Note: The postal code lets FitFriends calculate proximity for meetups. Only valid postal codes and sports are accepted." styleClass="help-command-note" />
               </VBox>
 
               <VBox styleClass="help-command">
-                <Label text="addgroup" styleClass="help-command-name" />
-                <Label text="Adds a new group to the address book" styleClass="help-command-desc" />
-                <Label text="Format: addgroup n/GROUP_NAME" wrapText="true" styleClass="help-command-format" />
+                <Label text="edit" styleClass="help-command-name" />
+                <Label text="Update your friend's details as they change" styleClass="help-command-desc" />
+                <Label text="Format: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="addgroup n/Family" wrapText="true" styleClass="help-command-example" />
-                  <Label text="addgroup n/CS2103T Team" wrapText="true" styleClass="help-command-example" />
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="edit 2 n/James Lee p/87654321 a/45 Sunset Blvd pc/654321" wrapText="true" styleClass="help-command-example" />
                 </VBox>
-              </VBox>
-
-              <VBox styleClass="help-command">
-                <Label text="addmember" styleClass="help-command-name" />
-                <Label text="Adds a person to a group" styleClass="help-command-desc" />
-                <Label text="Format: addmember p/PERSON_INDEX g/GROUP_INDEX" wrapText="true" styleClass="help-command-format" />
-                <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="addmember p/1 g/2" wrapText="true" styleClass="help-command-example" />
-                  <Label text="addmember p/3 g/1" wrapText="true" styleClass="help-command-example" />
-                </VBox>
-                <Label text="Note: Indexes must be positive integers shown in the displayed person and group lists." styleClass="help-command-note" />
-              </VBox>
-
-              <VBox styleClass="help-command">
-                <Label text="addsport" styleClass="help-command-name" />
-                <Label text="Adds a new sport to the address book" styleClass="help-command-desc" />
-                <Label text="Format: addsport n/SPORT_NAME a/ADDRESS d/DISTANCE [c/CAPACITY] [o/OPENING_HOURS]" wrapText="true" styleClass="help-command-format" />
-                <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="addsport n/Basketball a/NUS MPSH d/2km c/10 o/9am-9pm" wrapText="true" styleClass="help-command-example" />
-                  <Label text="addsport n/Tennis a/Marina Bay Sands d/5km" wrapText="true" styleClass="help-command-example" />
-                </VBox>
-              </VBox>
-            </VBox>
-
-            <!-- List & Find Commands -->
-            <VBox styleClass="help-section">
-              <Label text="List &amp; Find Commands" styleClass="help-section-title" />
-
-              <VBox styleClass="help-command">
-                <Label text="list" styleClass="help-command-name" />
-                <Label text="Shows a list of all persons in the address book" styleClass="help-command-desc" />
-                <Label text="Example: list" styleClass="help-command-example" />
-                <Label text="Note: This command resets any filters applied by the find command." styleClass="help-command-note" />
+                <Label text="Note: You cannot edit sports with this command. Use deletesport and addsport instead." styleClass="help-command-note" />
               </VBox>
 
               <VBox styleClass="help-command">
                 <Label text="find" styleClass="help-command-name" />
-                <Label text="Finds all persons whose names contain any of the specified keywords" styleClass="help-command-desc" />
+                <Label text="Quickly find friends by searching for part of their name" styleClass="help-command-desc" />
                 <Label text="Format: find KEYWORD [MORE_KEYWORDS]" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="find alex" styleClass="help-command-example" />
-                  <Label text="find alice bob charlie" styleClass="help-command-example" />
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="find james jake" wrapText="true" styleClass="help-command-example" />
                 </VBox>
-                <Label text="Note: The search is case-insensitive and matches partial words." styleClass="help-command-note" />
-              </VBox>
-
-              <VBox styleClass="help-command">
-                <Label text="findsport" styleClass="help-command-name" />
-                <Label text="Finds all sports whose names contain any of the specified keywords" styleClass="help-command-desc" />
-                <Label text="Format: findsport KEYWORD [MORE_KEYWORDS]" wrapText="true" styleClass="help-command-format" />
-                <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="findsport basketball" styleClass="help-command-example" />
-                  <Label text="findsport swimming tennis badminton" styleClass="help-command-example" />
-                </VBox>
-                <Label text="Note: The search is case-insensitive and matches partial words." styleClass="help-command-note" />
-              </VBox>
-
-              <VBox styleClass="help-command">
-                <Label text="findsportbydistance" styleClass="help-command-name" />
-                <Label text="Finds all sports sorted by distance" styleClass="help-command-desc" />
-                <Label text="Format: findsportbydistance KEYWORD [MORE_KEYWORDS]" wrapText="true" styleClass="help-command-format" />
-                <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="findsportbydistance basketball" styleClass="help-command-example" />
-                  <Label text="findsportbydistance swimming tennis" styleClass="help-command-example" />
-                </VBox>
-                <Label text="Note: Sports will be listed in order of increasing distance." styleClass="help-command-note" />
-              </VBox>
-            </VBox>
-
-            <!-- Edit & Delete Commands -->
-            <VBox styleClass="help-section">
-              <Label text="Edit &amp; Delete Commands" styleClass="help-section-title" />
-
-              <VBox styleClass="help-command">
-                <Label text="edit" styleClass="help-command-name" />
-                <Label text="Edits the details of the person identified by the index number" styleClass="help-command-desc" />
-                <Label text="Format: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..." wrapText="true" styleClass="help-command-format" />
-                <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="edit 1 p/91234567 e/johndoe@example.com" wrapText="true" styleClass="help-command-example" />
-                  <Label text="edit 2 n/Betsy Crowe t/friend" wrapText="true" styleClass="help-command-example" />
-                </VBox>
-                <Label text="Note: To remove all tags, use edit INDEX t/" styleClass="help-command-note" />
+                <Label text="Note: Searches are case-insensitive. Only full words are matched." styleClass="help-command-note" />
               </VBox>
 
               <VBox styleClass="help-command">
                 <Label text="delete" styleClass="help-command-name" />
-                <Label text="Deletes the person identified by the index number" styleClass="help-command-desc" />
+                <Label text="Remove a contact from your FitFriends list" styleClass="help-command-desc" />
                 <Label text="Format: delete INDEX" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="delete 3" styleClass="help-command-example" />
-                  <Label text="delete 1" styleClass="help-command-example" />
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="delete 3" wrapText="true" styleClass="help-command-example" />
                 </VBox>
-                <Label text="Note: Index must be a positive integer shown in the displayed list." styleClass="help-command-note" />
               </VBox>
+            </VBox>
+
+            <!-- Sports Management -->
+            <VBox styleClass="help-section">
+              <Label text="Sports Management" styleClass="help-section-title" />
 
               <VBox styleClass="help-command">
-                <Label text="deletegroup" styleClass="help-command-name" />
-                <Label text="Deletes the group identified by the index number" styleClass="help-command-desc" />
-                <Label text="Format: deletegroup INDEX" styleClass="help-command-format" />
+                <Label text="addsport" styleClass="help-command-name" />
+                <Label text="Record which sports your friends play to make planning activities easier" styleClass="help-command-desc" />
+                <Label text="Format: addsport INDEX s/SPORT" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="deletegroup 2" styleClass="help-command-example" />
-                  <Label text="deletegroup 1" styleClass="help-command-example" />
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="addsport 2 s/basketball" wrapText="true" styleClass="help-command-example" />
                 </VBox>
-                <Label text="Note: Index must be a positive integer shown in the displayed group list." styleClass="help-command-note" />
+                <Label text="Note: Add one sport at a time. For multiple sports, use the command several times." styleClass="help-command-note" />
               </VBox>
 
               <VBox styleClass="help-command">
                 <Label text="deletesport" styleClass="help-command-name" />
-                <Label text="Deletes the sport identified by the index number" styleClass="help-command-desc" />
-                <Label text="Format: deletesport INDEX" styleClass="help-command-format" />
+                <Label text="Update your records if a friend no longer plays a particular sport" styleClass="help-command-desc" />
+                <Label text="Format: deletesport INDEX s/SPORT" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
-                  <Label text="Examples:" styleClass="examples-header" />
-                  <Label text="deletesport 2" styleClass="help-command-example" />
-                  <Label text="deletesport 1" styleClass="help-command-example" />
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="deletesport 2 s/basketball" wrapText="true" styleClass="help-command-example" />
                 </VBox>
-                <Label text="Note: Index must be a positive integer shown in the displayed sport list." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="findsport" styleClass="help-command-name" />
+                <Label text="Discover which friends play specific sports—perfect for organizing game days!" styleClass="help-command-desc" />
+                <Label text="Format: findsport s/SPORT [SPORT] [SPORT]" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="findsport s/basketball tennis" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: Contacts who play any of the listed sports will be shown." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="findsport with location" styleClass="help-command-name" />
+                <Label text="Find sports buddies near a specific location—ideal for planning convenient meetups!" styleClass="help-command-desc" />
+                <Label text="Format: findsport pc/POSTALCODE s/SPORT [SPORT] [SPORT]" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="findsport pc/123456 s/tennis hockey" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: Results are sorted by proximity to the provided postal code." styleClass="help-command-note" />
               </VBox>
             </VBox>
 
-            <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="help-footer">
-              <Button mnemonicParsing="false" onAction="#copyUrl" text="Close" styleClass="help-close-button" />
+            <!-- Group Management -->
+            <VBox styleClass="help-section">
+              <Label text="Group Management" styleClass="help-section-title" />
+
+              <VBox styleClass="help-command">
+                <Label text="creategroup" styleClass="help-command-name" />
+                <Label text="Organize your sports buddies into groups for different activities or events" styleClass="help-command-desc" />
+                <Label text="Format: creategroup g/GROUP_NAME" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="creategroup g/tennisbuddies" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="deletegroup" styleClass="help-command-name" />
+                <Label text="Remove groups you no longer need" styleClass="help-command-desc" />
+                <Label text="Format: deletegroup g/GROUP_NAME" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="deletegroup g/tennisbuddies" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+              </VBox>
+            </VBox>
+            
+            <Label text="For more detailed instructions, visit our complete User Guide online." wrapText="true" styleClass="help-footer-text" />
+
+            <HBox alignment="CENTER" spacing="10" styleClass="help-button-container">
+              <Button mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" styleClass="help-button" />
+              <Button mnemonicParsing="false" onAction="#copyUrl" text="Close" styleClass="help-button" />
             </HBox>
           </VBox>
         </ScrollPane>
