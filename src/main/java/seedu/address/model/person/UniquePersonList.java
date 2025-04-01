@@ -49,6 +49,53 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Gets a person from the list.
+     * The person must already exist in the list.
+     */
+    public Person getPerson(String nameOfPersonToGet) {
+        requireNonNull(nameOfPersonToGet);
+        List<Person> filteredList = internalList.stream().filter(
+                person -> {
+                    String fullName = person.getName().fullName.toLowerCase();
+                    String personToFind = nameOfPersonToGet.toLowerCase();
+
+                    if (nameOfPersonToGet.contains(" ")) {
+                        return fullName.equals(personToFind);
+                    }
+
+                    return fullName.contains(personToFind);
+                }).toList();
+        if (filteredList.size() == 0) {
+            throw new PersonNotFoundException();
+        }
+        if (filteredList.size() > 1) {
+            throw new DuplicatePersonException();
+        }
+        Person toReturn = filteredList.get(0);
+        return toReturn;
+    }
+
+    /**
+     * returns true if person from the list is unique.
+     * The person must already exist in the list.
+     */
+    public boolean isPersonUnique(String nameOfPersonToGet) {
+        requireNonNull(nameOfPersonToGet);
+        List<Person> filteredList = internalList.stream().filter(
+                person -> {
+                    String fullName = person.getName().fullName.toLowerCase();
+                    String personToFind = nameOfPersonToGet.toLowerCase();
+
+                    if (nameOfPersonToGet.contains(" ")) {
+                        return fullName.equals(personToFind);
+                    }
+
+                    return fullName.contains(personToFind);
+                }).toList();
+        return filteredList.size() == 1;
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.

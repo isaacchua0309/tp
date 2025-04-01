@@ -127,6 +127,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Person getPerson(String person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public boolean isPersonUnique(String nameOfPersonToGet) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -157,10 +167,18 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public void setGroup(Group target, Group editedGroup) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void sortFilteredGroupList() {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
