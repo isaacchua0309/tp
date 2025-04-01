@@ -13,9 +13,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.group.Group;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
-    private final FilteredList<Group> filteredGroups;
+    private final FilteredList<Game> filteredGames;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,7 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
-        filteredGroups = new FilteredList<>(this.addressBook.getGroupList());
+        filteredGames = new FilteredList<>(this.addressBook.getGameList());
     }
 
     public ModelManager() {
@@ -115,37 +116,38 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Game-level operations =======================================================================
+
     @Override
-    public boolean hasGroup(Group group) {
-        requireNonNull(group);
-        return addressBook.hasGroup(group);
+    public boolean hasGame(Game game) {
+        requireNonNull(game);
+        return addressBook.hasGame(game);
     }
 
     @Override
-    public void deleteGroup(Group target) {
-        addressBook.removeGroup(target);
+    public void deleteGame(Game target) {
+        addressBook.removeGame(target);
     }
 
     @Override
-    public void addGroup(Group group) {
-        requireNonNull(group);
-        addressBook.addGroup(group);
+    public void addGame(Game game) {
+        requireNonNull(game);
+        addressBook.addGame(game);
     }
 
     @Override
-    public ObservableList<Group> getGroupList() {
-        return addressBook.getGroupList();
+    public ObservableList<Game> getGameList() {
+        return addressBook.getGameList();
     }
 
-    //=========== Filtered Person and Group List Accessors =============================================================
+    //=========== Filtered Person and Game List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code addressBook}.
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -153,10 +155,9 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
      */
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -176,18 +177,18 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Game} backed by the internal list of
+     * {@code addressBook}.
      */
     @Override
-    public ObservableList<Group> getFilteredGroupList() {
-        return filteredGroups;
+    public ObservableList<Game> getFilteredGameList() {
+        return filteredGames;
     }
 
     @Override
-    public void updateFilteredGroupList(Predicate<Group> predicate) {
+    public void updateFilteredGameList(Predicate<Game> predicate) {
         requireNonNull(predicate);
-        filteredGroups.setPredicate(predicate);
+        filteredGames.setPredicate(predicate);
     }
 
     @Override
@@ -196,7 +197,6 @@ public class ModelManager implements Model {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof ModelManager)) {
             return false;
         }
@@ -206,5 +206,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

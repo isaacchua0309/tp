@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.LocationUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -29,8 +28,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -120,19 +120,38 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String groupName} into an {@code Group}.
+     * Parses a {@code String gameName} and {@code String dateTime} into a {@code Game}.
      * Leading and trailing whitespaces will be trimmed.
-     * Name class will be used to validate the name of the group
-     * @throws ParseException if the name is not valid as defined in Name class
+     * The {@code Name} class is used to validate the game name and the dateTime is parsed using ISO-8601 format.
+     *
+     * @throws ParseException if the game name or date/time is invalid.
      */
-    public static Group parseGroup(String groupName) throws ParseException {
-        requireNonNull(groupName);
-        String trimmedGroupName = groupName.trim();
-        if (!Name.isValidName(trimmedGroupName)) {
+    public static Game parseGame(String gameName, String dateTime, String location) throws ParseException {
+        requireNonNull(gameName);
+        requireNonNull(dateTime);
+        String trimmedGameName = gameName.trim();
+        if (!Sport.isValidSport(trimmedGameName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        Name namedGroup = new Name(groupName);
-        return new Group(namedGroup);
+        return new Game(new Sport(trimmedGameName), parseDateTime(dateTime), LocationUtil.createLocation(location));
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     * The dateTime is expected to be in ISO-8601 format (e.g. 2021-09-20T15:00:00).
+     *
+     * @throws ParseException if the dateTime string is invalid.
+     */
+    public static java.time.LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        try {
+            return java.time.LocalDateTime.parse(trimmedDateTime);
+        } catch (java.time.format.DateTimeParseException e) {
+            String msg = "Invalid date/time format. Expected ISO-8601 format (e.g. 2021-09-20T15:00:00).";
+            throw new ParseException(msg, e);
+        }
     }
 
     /**
@@ -171,19 +190,13 @@ public class ParserUtil {
     public static Sport parseSport(String sport) throws ParseException {
         requireNonNull(sport);
         String trimmedSport = sport.trim();
-
-        // Define a set of allowed sports (all in lowercase)
-        Set<String> validSports = new HashSet<>(Arrays.asList(
-                "soccer", "basketball", "tennis", "badminton", "cricket",
-                "baseball", "volleyball", "hockey", "rugby", "golf"
-        ));
-
-        if (!validSports.contains(trimmedSport.toLowerCase())) {
-            throw new ParseException("Invalid sport. Allowed sports: " + validSports);
+        if (!Sport.isValidSport(trimmedSport.toLowerCase())) {
+            throw new ParseException("Invalid sport. Allowed sports: " + Sport.VALID_SPORTS);
         }
 
         return new Sport(trimmedSport);
     }
+
     /**
      * Parses {@code Collection<String> sports} into a {@code List<Sport>}.
      */
@@ -196,5 +209,4 @@ public class ParserUtil {
         }
         return sportList;
     }
-
 }

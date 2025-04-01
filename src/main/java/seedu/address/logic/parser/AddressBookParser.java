@@ -9,12 +9,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddGroupCommand;
+import seedu.address.logic.commands.AddGameCommand;
 import seedu.address.logic.commands.AddSportCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteGroupCommand;
+import seedu.address.logic.commands.DeleteGameCommand;
 import seedu.address.logic.commands.DeleteSportCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -32,7 +32,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
@@ -40,7 +41,7 @@ public class AddressBookParser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -51,13 +52,9 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
-        // log messages such as the one below.
-        // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
-
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -91,16 +88,16 @@ public class AddressBookParser {
         case FindSportCommand.COMMAND_WORD:
             return new FindSportCommandParser().parse(arguments);
 
-        case AddGroupCommand.COMMAND_WORD:
-            return new AddGroupCommandParser().parse(arguments);
+        case AddGameCommand.COMMAND_WORD:
+            // Replace group-related commands with game-related commands
+            return new AddGameCommandParser().parse(arguments);
 
-        case DeleteGroupCommand.COMMAND_WORD:
-            return new DeleteGroupCommandParser().parse(arguments);
+        case DeleteGameCommand.COMMAND_WORD:
+            return new DeleteGameCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

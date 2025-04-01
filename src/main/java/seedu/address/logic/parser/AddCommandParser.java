@@ -52,6 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         String postalCode = ParserUtil.parsePostalCode(argMultimap.getValue(PREFIX_POSTAL_CODE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<Sport> sports = ParserUtil.parseSports(argMultimap.getAllValues(PREFIX_SPORT));
+        System.out.print(sports);
         Person person = new Person(name, phone, email, address, postalCode, tagList, sports);
 
         return new AddCommand(person);
