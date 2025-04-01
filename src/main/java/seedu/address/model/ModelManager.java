@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
     private final FilteredList<Group> filteredGroups;
+    private final SortedList<Group> sortedGroup;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,6 +43,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
         filteredGroups = new FilteredList<>(this.addressBook.getGroupList());
+        sortedGroup = new SortedList<>(filteredGroups);
     }
 
     public ModelManager() {
@@ -106,6 +108,13 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.getPerson(person);
     }
+
+    @Override
+    public boolean isPersonUnique(String nameOfPersonToGet) {
+        requireNonNull(nameOfPersonToGet);
+        return addressBook.isPersonUnique(nameOfPersonToGet);
+    }
+
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -188,12 +197,21 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Sorts the filtered group list alphabetically.
+     */
+    @Override
+    public void sortFilteredGroupList() {
+        Comparator<Group> comparator = Comparator.comparing(group -> group.getGroupName().fullName);
+        sortedGroup.setComparator(comparator);
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Group> getFilteredGroupList() {
-        return filteredGroups;
+        return sortedGroup;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class AddMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " g/1 n/John Doe";
     public static final String MESSAGE_SUCCESS = "Added member: %1$s to group: %2$s";
     public static final String MESSAGE_PERSON_EXIST = "Member: %1$s already in group: %2$s";
-    public static final String MESSAGE_DUPLICATE_PERSONS_FOUND = "More than 1 person with the name exists, please "
+    public static final String MESSAGE_DUPLICATE_PERSONS_FOUND = "More than 1 person with the name %1$s exists, please "
             + "specify details by providing full name of person";
 
     private final Index targetIndex;
@@ -51,17 +51,23 @@ public class AddMemberCommand extends Command {
         }
 
         Group groupToEdit = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!model.isPersonUnique(member)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSONS_FOUND, member));
+        }
         Person personToAdd = model.getPerson(member);
 
         // Check if the person is already present
         if (groupToEdit.getMembers().contains(personToAdd)) {
-            throw new CommandException(String.format(MESSAGE_PERSON_EXIST, member, groupToEdit.getGroupName().fullName));
+            throw new CommandException(String.format(
+                    MESSAGE_PERSON_EXIST, member, groupToEdit.getGroupName().fullName));
         }
 
 
         model.deleteGroup(groupToEdit);
         groupToEdit.addMember(personToAdd);
         model.addGroup(groupToEdit);
+        model.sortFilteredGroupList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, member, groupToEdit.getGroupName().fullName));
     }
 

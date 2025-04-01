@@ -54,8 +54,17 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public Person getPerson(String nameOfPersonToGet) {
         requireNonNull(nameOfPersonToGet);
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of(nameOfPersonToGet));
-        ObservableList<Person> filteredList = internalList.filtered(predicate);
+        List<Person> filteredList = internalList.stream().filter(
+                person -> {
+                    String fullName = person.getName().fullName.toLowerCase();
+                    String personToFind = nameOfPersonToGet.toLowerCase();
+
+                    if (nameOfPersonToGet.contains(" ")) {
+                        return fullName.equals(personToFind);
+                    }
+
+                    return fullName.contains(personToFind);
+                }).toList();
         if (filteredList.size() == 0) {
             throw new PersonNotFoundException();
         }
@@ -64,6 +73,26 @@ public class UniquePersonList implements Iterable<Person> {
         }
         Person toReturn = filteredList.get(0);
         return toReturn;
+    }
+
+    /**
+     * returns true if person from the list is unique.
+     * The person must already exist in the list.
+     */
+    public boolean isPersonUnique(String nameOfPersonToGet) {
+        requireNonNull(nameOfPersonToGet);
+        List<Person> filteredList = internalList.stream().filter(
+                person -> {
+                    String fullName = person.getName().fullName.toLowerCase();
+                    String personToFind = nameOfPersonToGet.toLowerCase();
+
+                    if (nameOfPersonToGet.contains(" ")) {
+                        return fullName.equals(personToFind);
+                    }
+
+                    return fullName.contains(personToFind);
+                }).toList();
+        return filteredList.size() == 1;
     }
 
     /**

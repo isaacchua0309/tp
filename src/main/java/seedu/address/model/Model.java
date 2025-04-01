@@ -106,6 +106,11 @@ public interface Model {
      */
     void sortFilteredPersonListByDistance(Location locationToBeCompared);
 
+    /**
+     * Sorts the filtered group list alphabetically.
+     */
+    public void sortFilteredGroupList();
+
     /** Returns an unmodifiable view of the filtered group list */
     ObservableList<Group> getFilteredGroupList();
 
@@ -130,6 +135,12 @@ public interface Model {
      * @param group The group to add.
      */
     void addGroup(Group group);
+
+    /**
+     * returns true if person from the list is unique.
+     * The person must already exist in the list.
+     */
+    public boolean isPersonUnique(String nameOfPersonToGet);
 
     /**
      * Deletes the given group.

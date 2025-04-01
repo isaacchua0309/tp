@@ -89,6 +89,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * returns true if person from the list is unique.
+     * The person must already exist in the list.
+     */
+    public boolean isPersonUnique(String nameOfPersonToGet) {
+        requireNonNull(nameOfPersonToGet);
+        return persons.isPersonUnique(nameOfPersonToGet);
+    }
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
