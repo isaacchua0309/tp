@@ -86,7 +86,7 @@
 }
 
 .examples-container {
-    -fx-padding: 10 0 5 0;
+    -fx-padding: 5 5 5 5;
     -fx-spacing: 5;
 }
 
@@ -94,7 +94,7 @@
     -fx-font-size: 12pt;
     -fx-font-weight: bold;
     -fx-text-fill: #c0caf5;
-    -fx-padding: 0 0 5 0;
+    -fx-padding: 5 5 5 5;
 }
 
 .help-command-example {
@@ -102,7 +102,7 @@
     -fx-font-size: 11pt;
     -fx-text-fill: #7aa2f7;
     -fx-font-style: italic;
-    -fx-padding: 5 0 5 15;
+    -fx-padding: 5 5 5 5;
     -fx-background-color: rgba(122, 162, 247, 0.1);
     -fx-background-radius: 4px;
 }
