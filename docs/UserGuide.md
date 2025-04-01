@@ -73,7 +73,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 
 ### Installation
 
-1. **Download** the latest `FitFriends.jar` file from our [releases page](https://github.com/yourusername/fitfriends/releases).
+1. **Download** the latest `FitFriends.jar` file from our [releases page](https://github.com/AY2425S2-CS2103T-F12-1/tp/releases).
 
 2. **Create a folder** where you want to store FitFriends data.
 
@@ -123,7 +123,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 - **Friend List**: Displays all your contacts with their information
 - **Person Card**: Shows detailed information for each contact
 
-![Interface Components](images/interface_components.png)
+![Interface Components]
 
 ### Command Format
 
