@@ -197,6 +197,17 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Sorts the filtered person list alphabetically.
+     */
+    @Override
+    public void sortFilteredPersonListAlphabetically() {
+        Comparator<Person> comparator = Comparator.comparing(person -> person.getName().fullName);
+        sortedPersons.setComparator(comparator);
+    }
+
+
+
+    /**
      * Sorts the filtered group list alphabetically.
      */
     @Override

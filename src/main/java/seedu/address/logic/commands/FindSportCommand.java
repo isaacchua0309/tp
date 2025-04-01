@@ -62,6 +62,7 @@ public class FindSportCommand extends Command {
             return new CommandResult(MESSAGE_INVALID_SPORT);
         }
         model.updateFilteredPersonList(predicate);
+        model.sortFilteredPersonListAlphabetically();
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }

@@ -107,6 +107,11 @@ public interface Model {
     void sortFilteredPersonListByDistance(Location locationToBeCompared);
 
     /**
+     * Sorts the filtered person list by distance from the given location.
+     */
+    void sortFilteredPersonListAlphabetically();
+
+    /**
      * Sorts the filtered group list alphabetically.
      */
     public void sortFilteredGroupList();
