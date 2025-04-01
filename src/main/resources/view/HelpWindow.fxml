@@ -53,7 +53,7 @@
             <HBox alignment="CENTER">
               <Label text="FitFriends Command Reference" styleClass="help-title" />
             </HBox>
-            
+
             <Label text="Welcome to FitFriends - your personal assistant for organizing sports activities with friends!" wrapText="true" styleClass="help-intro-text" />
 
             <!-- Basic Features -->
@@ -200,7 +200,7 @@
                 </VBox>
               </VBox>
             </VBox>
-            
+
             <Label text="For more detailed instructions, visit our complete User Guide online." wrapText="true" styleClass="help-footer-text" />
 
             <HBox alignment="CENTER" spacing="10" styleClass="help-button-container">
