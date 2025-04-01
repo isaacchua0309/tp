@@ -142,7 +142,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 
 Need assistance? The help command gives you quick access to instructions.
 
-**Format**: 
+**Format**:
 ```
 help
 ```
@@ -159,7 +159,7 @@ When you type `help` and press <kbd>Enter</kbd>, you'll see a message with a lin
 
 Add your sports buddies to FitFriends with details that matter for planning activities.
 
-**Format**: 
+**Format**:
 ```
 add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG s/SPORT pc/POSTALCODE
 ```
@@ -183,7 +183,7 @@ This adds John Doe to your contacts with his details and shows he plays basketba
 
 View all your sports buddies in one place.
 
-**Format**: 
+**Format**:
 ```
 list
 ```
@@ -196,7 +196,7 @@ This displays all your contacts in the left panel.
 
 Update your friend's details as they change.
 
-**Format**: 
+**Format**:
 ```
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]
 ```
@@ -216,7 +216,7 @@ This updates the 2nd person in your current list with a new name, phone number, 
 
 Quickly find friends by searching for part of their name.
 
-**Format**: 
+**Format**:
 ```
 find KEYWORD [MORE_KEYWORDS]
 ```
@@ -240,7 +240,7 @@ This will show all contacts whose names contain "James" or "Jake".
 
 Remove a contact from your FitFriends list.
 
-**Format**: 
+**Format**:
 ```
 delete INDEX
 ```
@@ -258,7 +258,7 @@ This removes the 3rd person in your current list.
 
 Start fresh by removing all contacts.
 
-**Format**: 
+**Format**:
 ```
 clear
 ```
@@ -275,7 +275,7 @@ clear
 
 Record which sports your friends play to make planning activities easier.
 
-**Format**: 
+**Format**:
 ```
 addsport INDEX s/SPORT
 ```
@@ -295,7 +295,7 @@ This adds basketball to the list of sports played by the 2nd person in your curr
 
 Update your records if a friend no longer plays a particular sport.
 
-**Format**: 
+**Format**:
 ```
 deletesport INDEX s/SPORT
 ```
@@ -331,7 +331,7 @@ This shows all contacts who play either basketball or tennis (or both).
 
 Find sports buddies near a specific location—ideal for planning convenient meetups!
 
-**Format**: 
+**Format**:
 ```
 findsport pc/POSTALCODE s/SPORT [SPORT] [SPORT]
 ```
@@ -355,7 +355,7 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 
 Organize your sports buddies into groups for different activities or events.
 
-**Format**: 
+**Format**:
 ```
 creategroup g/GROUP_NAME
 ```
@@ -373,7 +373,7 @@ This creates a new group called "tennisbuddies".
 
 Remove groups you no longer need.
 
-**Format**: 
+**Format**:
 ```
 deletegroup g/GROUP_NAME
 ```
