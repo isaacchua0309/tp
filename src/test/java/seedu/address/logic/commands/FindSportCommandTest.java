@@ -7,11 +7,11 @@ import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -76,12 +76,13 @@ public class FindSportCommandTest {
      */
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        SportContainsKeywordsPredicate predicate = preparePredicate("soccer cricket tennis");
-        FindSportCommand command = new FindSportCommand(predicate, Arrays.asList("soccer", "cricket", "tennis"));
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        SportContainsKeywordsPredicate predicate = preparePredicate("cricket tennis");
+        FindSportCommand command = new FindSportCommand(predicate, Arrays.asList("cricket", "tennis"));
         expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.sortFilteredPersonListAlphabetically();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, DANIEL, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredPersonList());
     }
 
     /**
@@ -110,5 +111,15 @@ public class FindSportCommandTest {
      */
     private SportContainsKeywordsPredicate preparePredicate(String userInput) {
         return new SportContainsKeywordsPredicate(Arrays.asList(userInput.trim().split("\\s+")));
+    }
+
+    @Test void execute_isInCorrectOrder_afterFindSportSort() {
+        List<String> sportKeywordList = Arrays.asList("soccer", "volleyball", "tennis", "cricket", "basketball");
+        SportContainsKeywordsPredicate predicate =
+                new SportContainsKeywordsPredicate(sportKeywordList);
+        new FindSportSortByDistanceCommand(predicate, sportKeywordList, "018906").execute(model);
+        FindSportCommand findCommand = new FindSportCommand(predicate, Arrays.asList("soccer"));
+        String expected = FindSportCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        assertEquals(expected, findCommand.toString());
     }
 }

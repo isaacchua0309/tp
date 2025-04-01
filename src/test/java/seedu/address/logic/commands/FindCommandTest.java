@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.SportContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -73,6 +75,21 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
+
+    @Test void execute_isInCorrectOrder_afterFindSportSort() {
+        List<String> sportKeywordList = Arrays.asList("soccer", "volleyball", "tennis", "cricket", "basketball");
+        SportContainsKeywordsPredicate sportPredicate =
+                new SportContainsKeywordsPredicate(sportKeywordList);
+        new FindSportSortByDistanceCommand(sportPredicate, sportKeywordList, "018906").execute(model);
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        NameContainsKeywordsPredicate namePredicate = preparePredicate("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(namePredicate);
+        expectedModel.updateFilteredPersonList(namePredicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
 
     @Test
     public void toStringMethod() {
