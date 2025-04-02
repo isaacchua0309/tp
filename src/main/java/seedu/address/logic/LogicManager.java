@@ -15,7 +15,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.group.Group;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -24,7 +24,6 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
-
     public static final String FILE_OPS_PERMISSION_ERROR_FORMAT =
             "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
 
@@ -67,16 +66,19 @@ public class LogicManager implements Logic {
         return model.getAddressBook();
     }
 
-
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 
+    /**
+     * Returns an unmodifiable view of the filtered list of games.
+     */
     @Override
-    public ObservableList<Group> getFilteredGroupList() {
-        return model.getFilteredGroupList();
+    public ObservableList<Game> getFilteredGameList() {
+        return model.getFilteredGameList();
     }
+
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();

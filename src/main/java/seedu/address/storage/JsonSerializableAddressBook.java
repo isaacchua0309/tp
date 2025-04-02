@@ -11,8 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.group.Group;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Person;
+
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -21,21 +22,19 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-
-    public static final String MESSAGE_DUPLICATE_GROUP = "Group list contains duplicate group(s).";
+    public static final String MESSAGE_DUPLICATE_GAME = "Game list contains duplicate game(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
-
-    private final List<JsonAdaptedGroup> groups = new ArrayList<>();
+    private final List<JsonAdaptedGame> games = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and games.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
+                                       @JsonProperty("games") List<JsonAdaptedGame> games) {
         this.persons.addAll(persons);
-        this.groups.addAll(groups);
+        this.games.addAll(games);
     }
 
     /**
@@ -44,8 +43,12 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        groups.addAll(source.getGroupList().stream().map(JsonAdaptedGroup::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream()
+                .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
+        games.addAll(source.getGameList().stream()
+                .map(JsonAdaptedGame::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -63,14 +66,13 @@ class JsonSerializableAddressBook {
             addressBook.addPerson(person);
         }
 
-        for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
-            Group group = jsonAdaptedGroup.toModelType();
-            if (addressBook.hasGroup(group)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_GROUP);
+        for (JsonAdaptedGame jsonAdaptedGame : games) {
+            Game game = jsonAdaptedGame.toModelType();
+            if (addressBook.hasGame(game)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_GAME);
             }
-            addressBook.addGroup(group);
+            addressBook.addGame(game);
         }
         return addressBook;
     }
-
 }
