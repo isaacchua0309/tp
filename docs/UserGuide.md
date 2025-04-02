@@ -161,7 +161,7 @@ Add your sports buddies to FitFriends with details that matter for planning acti
 
 **Format**:
 ```
-add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG s/SPORT pc/POSTALCODE
+add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] s/SPORT pc/POSTALCODE
 ```
 
 **Example**:
@@ -177,7 +177,7 @@ This adds John Doe to your contacts with his details and shows he plays basketba
 
 > 💡 **Sports Tip**: Only valid sports from our database are accepted. Popular sports like basketball, tennis, soccer, etc. are supported.
 
-> 💡 **Tags Tip**: You can add multiple tags to a friend (e.g., `t/bestfriend t/colleague`). Tags help you categorize your contacts.
+> 💡 **Tags Tip**: Tags are optional. You can add as many tags as you want to a contact (e.g., `t/bestfriend t/colleague`). Tags help you categorize your contacts.
 
 #### Listing All Friends
 
@@ -289,7 +289,7 @@ This adds basketball to the list of sports played by the 2nd person in your curr
 
 ![Adding a Sport](images/addsport_command.png)
 
-> 💡 **Tip**: Add one sport at a time. For multiple sports, use the command several times.
+> 💡 **Tip**: You can only add one sport at a time. For multiple sports, use the command several times.
 
 #### Deleting a Sport
 
@@ -344,6 +344,10 @@ findsport pc/123456 s/tennis hockey
 This shows all contacts who play tennis or hockey, sorted by their proximity to postal code 123456.
 
 ![Finding by Sport and Location](images/findsport_location_command.png)
+
+> 💡 **Search Tips**:
+> - Searches are case-insensitive
+> - Proximity is calculated by contact's postal code
 
 > 💡 **Pro Tip**: Use this feature to find the optimal meeting spot for your sports group!
 
