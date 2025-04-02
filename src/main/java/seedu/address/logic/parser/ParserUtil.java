@@ -131,7 +131,7 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedGameName = gameName.trim();
         if (!Sport.isValidSport(trimmedGameName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Sport.MESSAGE_CONSTRAINTS);
         }
         return new Game(new Sport(trimmedGameName), parseDateTime(dateTime), LocationUtil.createLocation(location));
     }
