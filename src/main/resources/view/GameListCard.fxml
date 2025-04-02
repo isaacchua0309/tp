@@ -17,45 +17,43 @@
     3) Date/Time and Location in "contact-like" rows
 -->
 
-<HBox fx:id="cardPane" id="cardPane" styleClass="person-card"
-      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" styleClass="person-card, game-card" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="12" right="15" bottom="12" left="15" />
+      </padding>
+      <!-- Header section with game name and ID -->
+      <HBox spacing="5" alignment="CENTER_LEFT" styleClass="card-header">
+        <Label fx:id="id" styleClass="person-id">
+          <minWidth>
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="gameName" styleClass="person-name" />
+      </HBox>
 
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
-        </columnConstraints>
+      <!-- Participants section -->
+      <VBox spacing="4">
+        <padding><Insets top="8" bottom="8" /></padding>
+        <Label text="Participants:" styleClass="section-header"/>
+        <FlowPane fx:id="participants" styleClass="sports-flowpane" id="sports" />
+      </VBox>
 
-        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
-            <!-- Card Padding -->
-            <padding>
-                <Insets top="12" right="15" bottom="12" left="15"/>
-            </padding>
-
-            <!-- Header: ID + Game Name -->
-            <HBox spacing="5" alignment="CENTER_LEFT" styleClass="card-header">
-                <Label fx:id="id" styleClass="person-id"/>
-                <Label fx:id="gameName" styleClass="person-name"/>
-            </HBox>
-
-            <!-- Participants flowpane, analogous to "tags" -->
-            <FlowPane fx:id="participants" styleClass="tags-flowpane" />
-
-            <!-- Additional info in "contact-like" rows: Date/Time, Location -->
-            <VBox spacing="6" styleClass="contact-info">
-                <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
-                    <Circle radius="3" styleClass="info-bullet"/>
-                    <Label fx:id="dateTime" styleClass="contact-label"/>
-                </HBox>
-                <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
-                    <Circle radius="3" styleClass="info-bullet"/>
-                    <!--
-                        IMPORTANT:
-                        Rename this label from "location" to avoid FXML injection conflict.
-                        For example, "locationLabel"
-                    -->
-                    <Label fx:id="locationLabel" styleClass="contact-label"/>
-                </HBox>
-            </VBox>
-        </VBox>
-    </GridPane>
+      <!-- Game info section -->
+      <VBox spacing="6" styleClass="contact-info">
+        <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
+          <Circle radius="3" styleClass="info-bullet" />
+          <Label fx:id="dateTime" styleClass="contact-label" />
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
+          <Circle radius="3" styleClass="info-bullet" />
+          <Label fx:id="locationLabel" styleClass="contact-label" />
+        </HBox>
+      </VBox>
+    </VBox>
+  </GridPane>
 </HBox>

@@ -54,7 +54,7 @@
               <Label text="FitFriends Command Reference" styleClass="help-title" />
             </HBox>
 
-            <Label text="Welcome to FitFriends - your personal assistant for organizing sports activities with friends!" wrapText="true" styleClass="help-intro-text" />
+            <Label text="Welcome to FitFriends - your personal assistant for organizing sports games and activities with friends!" wrapText="true" styleClass="help-intro-text" />
 
             <!-- Basic Features -->
             <VBox styleClass="help-section">
@@ -178,26 +178,50 @@
 
             <!-- Group Management -->
             <VBox styleClass="help-section">
-              <Label text="Group Management" styleClass="help-section-title" />
+              <Label text="Game Management" styleClass="help-section-title" />
 
               <VBox styleClass="help-command">
-                <Label text="creategroup" styleClass="help-command-name" />
-                <Label text="Organize your sports buddies into groups for different activities or events" styleClass="help-command-desc" />
-                <Label text="Format: creategroup g/GROUP_NAME" wrapText="true" styleClass="help-command-format" />
+                <Label text="addgame" styleClass="help-command-name" />
+                <Label text="Add new games and activities to plan with your sports buddies" styleClass="help-command-desc" />
+                <Label text="Format: addgame g/GAME_NAME dt/DATE_TIME pc/LOCATION" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
-                  <Label text="creategroup g/tennisbuddies" wrapText="true" styleClass="help-command-example" />
+                  <Label text="addgame g/Soccer dt/2023-09-20T15:00:00 pc/018906" wrapText="true" styleClass="help-command-example" />
                 </VBox>
+                <Label text="Note: The date and time should be in ISO-8601 format (YYYY-MM-DDThh:mm:ss)" styleClass="help-command-note" />
               </VBox>
 
               <VBox styleClass="help-command">
-                <Label text="deletegroup" styleClass="help-command-name" />
-                <Label text="Remove groups you no longer need" styleClass="help-command-desc" />
-                <Label text="Format: deletegroup g/GROUP_NAME" wrapText="true" styleClass="help-command-format" />
+                <Label text="deletegame" styleClass="help-command-name" />
+                <Label text="Remove games that have been cancelled or completed" styleClass="help-command-desc" />
+                <Label text="Format: deletegame INDEX" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
-                  <Label text="deletegroup g/tennisbuddies" wrapText="true" styleClass="help-command-example" />
+                  <Label text="deletegame 2" wrapText="true" styleClass="help-command-example" />
                 </VBox>
+                <Label text="Note: The index refers to the index number shown in the game list display." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="addmember" styleClass="help-command-name" />
+                <Label text="Add participants to your planned games and activities" styleClass="help-command-desc" />
+                <Label text="Format: addmember g/INDEX n/PERSON_NAME" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="addmember g/1 n/John Doe" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: The person must already exist in your contacts to be added to a game." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="deletemember" styleClass="help-command-name" />
+                <Label text="Remove participants from games if they can no longer attend" styleClass="help-command-desc" />
+                <Label text="Format: deletemember g/INDEX n/PERSON_NAME" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="deletemember g/1 n/John Doe" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: The person must be a current participant in the specified game." styleClass="help-command-note" />
               </VBox>
             </VBox>
 

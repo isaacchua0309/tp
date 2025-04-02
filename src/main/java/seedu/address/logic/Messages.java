@@ -13,11 +13,13 @@ import seedu.address.model.person.Person;
  */
 public class Messages {
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command. Type 'help' to see available commands.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_INVALID_GAME_DISPLAYED_INDEX = "The game index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided \n"
+            + "is invalid. Please check that the index exists in the current person list.";
+    public static final String MESSAGE_INVALID_GAME_DISPLAYED_INDEX = "The game index provided \n"
+            + "is invalid. Please check that the index exists in the current game list.";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "Found %1$d contact(s) matching your search criteria!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
 

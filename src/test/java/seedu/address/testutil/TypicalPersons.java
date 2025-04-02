@@ -30,35 +30,71 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withPostalCode("018906").withEmail("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111")
+            .withPostalCode("018906")
+            .withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").withSports("volleyball").build();
+            .withTags("friends")
+            .withSports("volleyball")
+            .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withPostalCode("120311")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withSports("cricket").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withPostalCode("018907").withSports("basketball")
+            .withAddress("311, Clementi Ave 2, #02-25")
+            .withPostalCode("120311")
+            .withEmail("johnd@example.com")
+            .withPhone("98765432")
+            .withTags("owesMoney", "friends")
+            .withSports("cricket")
             .build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withPostalCode("018910").withSports("tennis")
-            .withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withPostalCode("018916").withSports("rugby")
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
+            .withPhone("95352563")
+            .withEmail("heinz@example.com")
+            .withAddress("wall street")
+            .withPostalCode("018907")
+            .withSports("basketball")
             .build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").withPostalCode("018925").withSports("soccer")
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
+            .withPhone("87652533")
+            .withEmail("cornelia@example.com")
+            .withAddress("10th street")
+            .withPostalCode("018910")
+            .withSports("tennis")
+            .withTags("friends")
+            .build();
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
+            .withPhone("9482224")
+            .withEmail("werner@example.com")
+            .withAddress("michegan ave")
+            .withPostalCode("018916")
+            .withSports("rugby")
+            .build();
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
+            .withPhone("9482427")
+            .withEmail("lydia@example.com")
+            .withAddress("little tokyo")
+            .withPostalCode("018925")
+            .withSports("soccer")
             .build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withPostalCode("018926").withSports("baseball")
+            .withEmail("anna@example.com")
+            .withAddress("4th street")
+            .withPostalCode("018926")
+            .withSports("baseball")
             .build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").withPostalCode("018927")
-            .withSports("volleyball").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").withPostalCode("018928").withSports("basketball")
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
+            .withPhone("8482424")
+            .withEmail("stefan@example.com")
+            .withAddress("little india")
+            .withPostalCode("018927")
+            .withSports("volleyball")
+            .build();
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
+            .withPhone("8482131")
+            .withEmail("hans@example.com")
+            .withAddress("chicago ave")
+            .withPostalCode("018928")
+            .withSports("basketball")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

@@ -3,6 +3,13 @@
     background-color: #1e2030; /* Used in the default.html file */
 }
 
+/* Add styling for Scene root */
+.root {
+    -fx-background-color: #1e2030;
+    -fx-focus-color: #7aa2f7;
+    -fx-faint-focus-color: rgba(122, 162, 247, 0.2);
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI", system-ui, sans-serif;
@@ -83,14 +90,22 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: #1e2030;
+    -fx-background-color: transparent;
     -fx-border-color: transparent transparent transparent #3b4261;
+    -fx-padding: 0 2px 0 2px;
+}
+
+.split-pane:vertical .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-border-color: #3b4261 transparent transparent transparent;
+    -fx-padding: 2px 0 2px 0;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
     -fx-background-color: #1e2030;
+    -fx-border-color: #1e2030; /* Make sure the border matches the background */
 }
 
 .list-view {
@@ -254,49 +269,48 @@
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
 .button {
-    -fx-padding: 8 16 8 16;
-    -fx-border-color: #3b4261;
-    -fx-border-width: 1;
-    -fx-background-radius: 4px;
-    -fx-border-radius: 4px;
-    -fx-background-color: #24283b;
+    -fx-padding: 8px 16px;
     -fx-font-family: "Segoe UI", system-ui, sans-serif;
     -fx-font-size: 11pt;
-    -fx-text-fill: #c0caf5;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-background-color: #7aa2f7;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #1a1b26;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 6px;
     -fx-cursor: hand;
 }
 
 .button:hover {
-    -fx-background-color: #3b4261;
+    -fx-background-color: #89b4fa;
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: #7aa2f7;
-  -fx-text-fill: #1e2030;
+    -fx-background-color: #6291eb;
+    -fx-text-fill: #1a1b26;
 }
 
 .button:focused {
-    -fx-border-color: #7aa2f7, #7aa2f7;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 4px, 4px;
-    -fx-border-insets: 1 1 1 1, 0;
+    -fx-border-color: #bb9af7;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
 }
 
 .button:disabled, .button:default:disabled {
-    -fx-opacity: 0.5;
-    -fx-background-color: #24283b;
-    -fx-text-fill: #565f89;
+    -fx-opacity: 0.4;
+    -fx-background-color: #444b6a;
+    -fx-text-fill: #a9b1d6;
 }
 
 .button:default {
-    -fx-background-color: #7aa2f7;
-    -fx-text-fill: #1e2030;
+    -fx-background-color: #bb9af7;
+    -fx-text-fill: #1a1b26;
 }
 
 .button:default:hover {
-    -fx-background-color: #89b4fa;
+    -fx-background-color: #c4a6fa;
 }
 
 .dialog-pane {
@@ -361,13 +375,15 @@
 }
 
 #cardPane {
-    -fx-background-color: #292e42;
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-    -fx-padding: 0;
-    -fx-transition: background-color 0.2s;
+    -fx-background-color: #343a40;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-border-color: #495057;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 1);
+    -fx-transition: all 0.2s ease-in-out;
+    -fx-max-width: Infinity;
+    -fx-max-height: Infinity;
 }
 
 #commandTypeLabel {
@@ -422,19 +438,33 @@
 }
 
 #sports {
-    -fx-hgap: 8;
-    -fx-vgap: 4;
+    -fx-hgap: 6;
+    -fx-vgap: 6;
+    -fx-padding: 2 0 6 0;
 }
 
 #sports .label {
     -fx-text-fill: #1e2030;
     -fx-background-color: #9ece6a;
-    -fx-padding: 4 8;
-    -fx-border-radius: 12;
-    -fx-background-radius: 12;
-    -fx-font-size: 11;
+    -fx-padding: 4 10;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 1);
+    -fx-cursor: hand;
+}
+
+/* Increase the space between participants for better readability */
+.sports-flowpane {
+    -fx-hgap: 8;
+    -fx-vgap: 6;
+    -fx-padding: 4 0 8 0;
+}
+
+.sports-flowpane .label:hover {
+    -fx-background-color: #8bba5f;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 1);
 }
 
 #members {
@@ -468,25 +498,27 @@
 }
 
 /* Person Card Styles */
-.person-card {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 2);
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
+.person-card, .game-card {
+    -fx-background-color: #24283b;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #3b4261;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 4);
+    -fx-max-width: Infinity;
+    -fx-max-height: Infinity;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-background-color: #3b4261;
     -fx-border-color: #7aa2f7;
-    -fx-border-width: 1;
-    -fx-border-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(122, 162, 247, 0.3), 10, 0, 0, 2);
+    -fx-border-width: 2px;
+    -fx-background-color: #2a2f41;
 }
 
 .list-cell:filled:even #cardPane:hover,
 .list-cell:filled:odd #cardPane:hover {
-    -fx-background-color: #3b4261;
+    -fx-background-color: #2a2f41;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 4);
     -fx-cursor: hand;
 }
 
@@ -516,10 +548,21 @@
     -fx-padding: 4 0;
 }
 
-.tags-flowpane, .sports-flowpane, .members-flowpane {
-    -fx-hgap: 8;
-    -fx-vgap: 4;
-    -fx-padding: 2 0;
+.tags-flowpane, .members-flowpane {
+    -fx-hgap: 6;
+    -fx-vgap: 6;
+    -fx-padding: 5 0 8 0;
+}
+
+.tags-flowpane .label {
+    -fx-text-fill: #1e2030;
+    -fx-background-color: #0d6efd;
+    -fx-padding: 4 8;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
 }
 
 .contact-info {
@@ -569,26 +612,30 @@
 }
 
 .menu-container {
-    -fx-background-color: #16161e;
-    -fx-padding: 0;
+    -fx-background-color: #1a1b26;
+    -fx-padding: 4px 10px;
+    -fx-spacing: 10px;
 }
 
 /* Theme toggle button */
 .theme-toggle-button {
-    -fx-background-color: transparent;
-    -fx-padding: 4 8;
-    -fx-font-size: 12pt;
-    -fx-text-fill: #c0caf5;
-    -fx-border-color: transparent;
-}
-
-.theme-toggle-button:hover {
-    -fx-background-color: #3b4261;
+    -fx-background-color: #7aa2f7;
+    -fx-text-fill: #1a1b26;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-padding: 8px 16px;
     -fx-cursor: hand;
 }
 
+.theme-toggle-button:hover {
+    -fx-background-color: #89b4fa;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 0);
+}
+
 .theme-toggle-button:pressed {
-    -fx-background-color: #2a2e3f;
+    -fx-background-color: #6291eb;
+    -fx-effect: null;
 }
 
 /* Empty cell styling for dark mode */
@@ -606,6 +653,55 @@
 
 .list-cell:empty:odd {
     -fx-background-color: #1e2030;
+}
+
+.section-header {
+    -fx-font-family: "Segoe UI Semibold", system-ui, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #adb5bd;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 4 0;
+}
+
+.command-text-area {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI", system-ui, sans-serif;
+    -fx-background-color: #292e42;
+    -fx-text-fill: #c0caf5;
+    -fx-prompt-text-fill: #565f89;
+    -fx-border-color: #3b4261;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6px 8px;
+    -fx-highlight-fill: #7aa2f7;
+    -fx-highlight-text-fill: #1e2030;
+    -fx-cursor: text;
+    -fx-focus-color: #7aa2f7;
+    -fx-faint-focus-color: transparent;
+    -fx-text-box-border: transparent;
+    -fx-control-inner-background: #292e42;
+    /* Remove extra padding to make it similar in height to the previous TextField */
+    -fx-padding: 0;
+}
+
+.command-text-area .scroll-pane {
+    -fx-hbar-policy: as-needed;
+    -fx-vbar-policy: never;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.command-text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.command-text-area .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+.command-text-area:focused {
+    -fx-border-color: #7aa2f7;
+    -fx-border-width: 1px;
 }
 
 

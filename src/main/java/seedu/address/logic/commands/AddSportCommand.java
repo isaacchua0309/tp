@@ -21,8 +21,9 @@ public class AddSportCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Parameters: INDEX (must be a positive integer) s/SPORT_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 s/Badminton";
-    public static final String MESSAGE_SUCCESS = "Added sport: %1$s to contact: %2$s";
-    public static final String MESSAGE_DUPLICATE_SPORT = "This sport already exists for the contact";
+    public static final String MESSAGE_SUCCESS = "Successfully added %1$s to %2$s's sports list!";
+    public static final String MESSAGE_DUPLICATE_SPORT = "This sport is already \n"
+            + "in %s's sport list. Each sport can only be added once per contact.";
 
     private final int index;
     private final Sport sport;
