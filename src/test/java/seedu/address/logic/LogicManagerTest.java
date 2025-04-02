@@ -56,11 +56,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
-        try {
-            Sport.loadValidSports(Paths.get("data" , "globalSportList.json"));
-        } catch (IOException e) {
-            throw new AssertionError("This test should not fail.");
-        }
+        Sport.loadDefaultSports();
     }
 
     @Test

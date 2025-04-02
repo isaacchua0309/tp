@@ -59,6 +59,14 @@ public class Sport {
     }
 
     /**
+     * Loads the default sports.
+     */
+    public static void loadDefaultSports() {
+        validSports = new HashSet<>(Arrays.asList("soccer", "basketball", "tennis", "badminton",
+                "cricket", "baseball", "volleyball", "hockey", "rugby", "golf"));
+    }
+
+    /**
      * Saves the valid sports to a JSON file.
      */
     public static void saveValidSports(Path filePath) throws IOException {
