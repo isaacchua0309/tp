@@ -14,6 +14,6 @@ public class UniqueGameList implements Iterable<Game> {
     private boolean gamesAreUnique(List<Game> games) {
         // ... existing code ...
     }
-    
+
     // ... other methods ...
 }
