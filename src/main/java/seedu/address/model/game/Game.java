@@ -111,9 +111,9 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game: " + sport
-                + " at " + dateTime
-                + " in " + location
+        return sport
+                + " on " + dateTime
+                + " at " + location.getAddress()
                 + ", Participants: " + participants.asUnmodifiableObservableList().size();
     }
 }
