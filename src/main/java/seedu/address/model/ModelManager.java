@@ -205,17 +205,6 @@ public class ModelManager implements Model {
         sortedPersons.setComparator(comparator);
     }
 
-
-
-    /**
-     * Sorts the filtered group list alphabetically.
-     */
-    @Override
-    public void sortFilteredGroupList() {
-        Comparator<Group> comparator = Comparator.comparing(group -> group.getGroupName().fullName);
-        sortedGroup.setComparator(comparator);
-    }
-
     /**
      * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
      * {@code versionedAddressBook}

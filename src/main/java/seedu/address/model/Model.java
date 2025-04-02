@@ -111,10 +111,6 @@ public interface Model {
      */
     void sortFilteredPersonListAlphabetically();
 
-    /**
-     * Sorts the filtered group list alphabetically.
-     */
-    public void sortFilteredGroupList();
 
     /** Returns an unmodifiable view of the filtered group list */
     ObservableList<Group> getFilteredGroupList();
