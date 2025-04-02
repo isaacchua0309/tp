@@ -47,7 +47,6 @@ public class AddMemberCommand extends Command {
         this.targetIndex = targetIndex;
         this.memberName = memberName;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
