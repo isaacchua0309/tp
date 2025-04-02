@@ -109,6 +109,27 @@ public class LocationUtil {
 
         return new Location(postalCode, address, rawData.getLatitude(), rawData.getLongitude());
     }
+    /**
+     * Creates a {@code Location} object using the provided postal code.
+     *
+     * @param postalCode the postal code entered by the user.
+     * @return a new {@code Location} object with corresponding latitude and longitude.
+     * @throws IllegalArgumentException if the postal code is not found.
+     */
+    public static Location createLocation(String postalCode) {
+        requireAllNonNull(postalCode);
+        requireNonNull(locationData, "Location data has not been loaded");
+
+        RawLocationData rawData = locationData.get(postalCode);
+        if (rawData == null) {
+            throw new IllegalArgumentException("Postal code not found: " + postalCode);
+        }
+
+        // Optional: Validate if the user-input address matches rawData.getAddress() if necessary.
+        // For now, we use the user input for the address.
+        Address address = new Address(rawData.getAddress());
+        return new Location(postalCode, address, rawData.getLatitude(), rawData.getLongitude());
+    }
 
     /**
      * Checks if the given postal code exists in the location data.
