@@ -206,7 +206,6 @@ public class AddCommandTest {
         public void sortFilteredPersonListAlphabetically() {
             throw new AssertionError("This method should not be called.");
         }
-        
         public ObservableList<Game> getFilteredGameList() {
             return FXCollections.observableArrayList();
         }
