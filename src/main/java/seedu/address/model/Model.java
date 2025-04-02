@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.group.Group;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
 
@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluates to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -54,15 +54,12 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    // =============================== Person-level Operations =================================
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
-
-    /**
-     * Returns person if person with the same identity as {@code person} exists in the address book.
-     */
-    Person getPerson(String person);
 
     /**
      * Deletes the given person.
@@ -79,16 +76,10 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same
+     * as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
-
-    /**
-     * Replaces the given group {@code target} in the list with {@code editedGroup}.
-     * {@code target} must exist in the address book.
-     * The group identity of {@code editedGroup} must not be the same as another existing group in the address book.
-     */
-    public void setGroup(Group target, Group editedGroup);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -106,53 +97,64 @@ public interface Model {
      */
     void sortFilteredPersonListByDistance(Location locationToBeCompared);
 
+
     /**
      * Sorts the filtered person list by distance from the given location.
      */
     void sortFilteredPersonListAlphabetically();
 
 
-    /** Returns an unmodifiable view of the filtered group list */
-    ObservableList<Group> getFilteredGroupList();
+    // =============================== Game-level Operations =================================
+
+    /** Returns an unmodifiable view of the filtered game list. */
+    ObservableList<Game> getFilteredGameList();
 
     /**
-     * Updates the filter of the filtered group list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered game list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredGroupList(Predicate<Group> predicate);
+    void updateFilteredGameList(Predicate<Game> predicate);
 
     /**
-     * Returns true if a group with the given {@code groupName} exists in the address book.
+     * Returns true if a game with the same identity as {@code game} exists in the address book.
      *
-     * @param groupName The identity of the group to check.
-     * @return true if the group exists, false otherwise.
+     * @param game The game to check.
+     * @return true if the game exists, false otherwise.
      */
-    boolean hasGroup(Group groupName);
+    boolean hasGame(Game game);
 
     /**
-     * Adds a new group to the address book.
-     * The group name must be unique and not already exist.
+     * Adds a new game to the address book.
+     * The game must be unique and not already exist.
      *
-     * @param group The group to add.
+     * @param game The game to add.
      */
-    void addGroup(Group group);
+    void addGame(Game game);
 
     /**
-     * returns true if person from the list is unique.
-     * The person must already exist in the list.
+     * Deletes the given game.
+     * The game must exist in the address book.
      */
-    public boolean isPersonUnique(String nameOfPersonToGet);
+    void deleteGame(Game target);
 
     /**
-     * Deletes the given group.
-     * The group must exist in the address book.
-     */
-    void deleteGroup(Group target);
-    /**
-     * Returns the list of all groups in the address book.
+     * Returns the list of all games in the address book.
      * The returned list is unmodifiable.
      *
-     * @return The list of groups.
+     * @return The list of games.
      */
-    ObservableList<Group> getGroupList();
+    ObservableList<Game> getGameList();
+
+    /**
+     * Returns true if exactly one Person in the address book has the given name,
+     * false if zero or more than one match.
+     */
+    int isPersonUnique(String name);
+
+    /**
+     * Returns the single Person matching the given name (case-insensitive),
+     * or throws an exception if there are multiple or no matches.
+     */
+    Person getPerson(String name);
+
 }
