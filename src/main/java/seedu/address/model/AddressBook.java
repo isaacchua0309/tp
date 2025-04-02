@@ -6,27 +6,22 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.group.Group;
-import seedu.address.model.group.UniqueGroupList;
+import seedu.address.model.game.Game;
+import seedu.address.model.game.UniqueGameList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the address-book level.
+ * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueGroupList groups = new UniqueGroupList();
-
+    private final UniqueGameList games = new UniqueGameList();
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Non-static initialization block to avoid duplication between constructors.
      */
     {
         persons = new UniquePersonList();
@@ -35,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Persons and Games in {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -53,12 +48,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the group list with {@code groups}.
-     * {@code groups} must not contain duplicate group names.
+     * Replaces the contents of the game list with {@code games}.
+     * {@code games} must not contain duplicate games.
      */
-    public void setGroups(List<Group> groups) {
-        requireNonNull(groups);
-        this.groups.setGroups(groups);
+    public void setGames(List<Game> games) {
+        requireNonNull(games);
+        this.games.setGames(games);
     }
 
     /**
@@ -67,7 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
-        setGroups(newData.getGroupList());
+        setGames(newData.getGameList());
     }
 
     //// person-level operations
@@ -111,20 +106,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
-    /**
-     * Replaces the given group {@code target} in the list with {@code editedGroup}.
-     * {@code target} must exist in the address book.
-     * The group identity of {@code editedGroup} must not be the same as another existing group in the address book.
-     */
-    public void setGroup(Group target, Group editedGroup) {
-        requireNonNull(editedGroup);
-
-        groups.setGroup(target, editedGroup);
-    }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
@@ -134,42 +118,42 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// group-level operations
+    //// game-level operations
 
     /**
-     * Returns an unmodifiable view of the group list.
+     * Returns an unmodifiable view of the game list.
      */
     @Override
-    public ObservableList<Group> getGroupList() {
-        return groups.asUnmodifiableObservableList();
+    public ObservableList<Game> getGameList() {
+        return games.asUnmodifiableObservableList();
     }
 
     /**
-     * Adds a group to the address book.
-     * {@code group} must not already exist in the address book.
+     * Adds a game to the address book.
+     * The game must not already exist in the address book.
      */
-    public void addGroup(Group group) {
-        requireNonNull(group);
-        groups.add(group);
+    public void addGame(Game game) {
+        requireNonNull(game);
+        games.add(game);
     }
 
     /**
-     * Returns true if a group with the same name exists in the address book.
+     * Returns true if a game with the same identity exists in the address book.
      *
-     * @param groupName The name of the group to check.
-     * @return true if the group exists, false otherwise.
+     * @param game the game to check.
+     * @return true if the game exists.
      */
-    public boolean hasGroup(Group groupName) {
-        requireNonNull(groupName);
-        return groups.contains(groupName);
+    public boolean hasGame(Game game) {
+        requireNonNull(game);
+        return games.contains(game);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeGroup(Group key) {
-        groups.remove(key);
+    public void removeGame(Game key) {
+        games.remove(key);
     }
 
     //// util methods
@@ -178,7 +162,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
-                .add("groups", groups)
+                .add("games", games)
                 .toString();
     }
 
@@ -197,11 +181,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         AddressBook otherAddressBook = (AddressBook) other;
         return persons.equals(otherAddressBook.persons)
-                && groups.equals(otherAddressBook.groups);
+                && games.equals(otherAddressBook.games);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode() + groups.hashCode();
+        return persons.hashCode() + games.hashCode();
     }
 }

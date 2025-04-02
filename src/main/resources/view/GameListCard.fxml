@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<!--
+  A GameCard layout similar to PersonCard, adapted to show:
+    1) ID and Game name in the header
+    2) Participants in a FlowPane
+    3) Date/Time and Location in "contact-like" rows
+-->
+
+<HBox fx:id="cardPane" id="cardPane" styleClass="person-card"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
+        </columnConstraints>
+
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+            <!-- Card Padding -->
+            <padding>
+                <Insets top="12" right="15" bottom="12" left="15"/>
+            </padding>
+
+            <!-- Header: ID + Game Name -->
+            <HBox spacing="5" alignment="CENTER_LEFT" styleClass="card-header">
+                <Label fx:id="id" styleClass="person-id"/>
+                <Label fx:id="gameName" styleClass="person-name"/>
+            </HBox>
+
+            <!-- Participants flowpane, analogous to "tags" -->
+            <FlowPane fx:id="participants" styleClass="tags-flowpane" />
+
+            <!-- Additional info in "contact-like" rows: Date/Time, Location -->
+            <VBox spacing="6" styleClass="contact-info">
+                <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
+                    <Circle radius="3" styleClass="info-bullet"/>
+                    <Label fx:id="dateTime" styleClass="contact-label"/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
+                    <Circle radius="3" styleClass="info-bullet"/>
+                    <!--
+                        IMPORTANT:
+                        Rename this label from "location" to avoid FXML injection conflict.
+                        For example, "locationLabel"
+                    -->
+                    <Label fx:id="locationLabel" styleClass="contact-label"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </GridPane>
+</HBox>

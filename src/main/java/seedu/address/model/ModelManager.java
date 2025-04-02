@@ -5,15 +5,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.group.Group;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
 
@@ -25,10 +27,13 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+
+    // A filtered list of persons, which we further wrap in a SortedList
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
-    private final FilteredList<Group> filteredGroups;
-    private final SortedList<Group> sortedGroup;
+
+    // A filtered list of games; if you need sorting for games, wrap it similarly in a SortedList
+    private final FilteredList<Game> filteredGames;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,17 +45,20 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        // Persons
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
-        filteredGroups = new FilteredList<>(this.addressBook.getGroupList());
-        sortedGroup = new SortedList<>(filteredGroups);
+
+        // Games
+        filteredGames = new FilteredList<>(this.addressBook.getGameList());
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // ========== UserPrefs Methods ============================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -85,7 +93,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // ========== AddressBook Methods ==========================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -97,22 +105,12 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    // ========== Person-level Operations ======================================================
+
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public Person getPerson(String person) {
-        requireNonNull(person);
-        return addressBook.getPerson(person);
-    }
-
-    @Override
-    public boolean isPersonUnique(String nameOfPersonToGet) {
-        requireNonNull(nameOfPersonToGet);
-        return addressBook.isPersonUnique(nameOfPersonToGet);
     }
 
     @Override
@@ -123,60 +121,48 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        // Refresh the filtered list so the added person is visible
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
-    @Override
-    public void setGroup(Group target, Group editedGroup) {
-        requireAllNonNull(target, editedGroup);
+    // ========== Game-level Operations ========================================================
 
-        addressBook.setGroup(target, editedGroup);
+    @Override
+    public boolean hasGame(Game game) {
+        requireNonNull(game);
+        return addressBook.hasGame(game);
     }
 
     @Override
-    public boolean hasGroup(Group group) {
-        requireNonNull(group);
-        return addressBook.hasGroup(group);
+    public void deleteGame(Game target) {
+        addressBook.removeGame(target);
     }
 
     @Override
-    public void deleteGroup(Group target) {
-        addressBook.removeGroup(target);
+    public void addGame(Game game) {
+        requireNonNull(game);
+        addressBook.addGame(game);
     }
 
     @Override
-    public void addGroup(Group group) {
-        requireNonNull(group);
-        addressBook.addGroup(group);
+    public ObservableList<Game> getGameList() {
+        // Returns the internal list of all games
+        return addressBook.getGameList();
     }
 
-    @Override
-    public ObservableList<Group> getGroupList() {
-        return addressBook.getGroupList();
-    }
+    // ========== Filtered Person and Game List Accessors ======================================
 
-    //=========== Filtered Person and Group List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
+        // We return the sorted version so the UI or logic always sees the sorted list
         return sortedPersons;
     }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -184,17 +170,15 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    /**
-     * Sorts the filtered person list by distance from the given location.
-     *
-     * @param location The location to compare the distance to.
-     */
     @Override
     public void sortFilteredPersonListByDistance(Location location) {
         requireNonNull(location);
-        Comparator<Person> comparator = Comparator.comparingDouble(person -> person.getLocation().distanceTo(location));
+        // We define a custom comparator that sorts Person objects by distance
+        Comparator<Person> comparator =
+                Comparator.comparingDouble(person -> person.getLocation().distanceTo(location));
         sortedPersons.setComparator(comparator);
     }
+
 
     /**
      * Sorts the filtered person list alphabetically.
@@ -211,33 +195,23 @@ public class ModelManager implements Model {
      * Sorts the filtered group list alphabetically.
      */
     @Override
-    public void sortFilteredGroupList() {
-        Comparator<Group> comparator = Comparator.comparing(group -> group.getGroupName().fullName);
-        sortedGroup.setComparator(comparator);
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Group> getFilteredGroupList() {
-        return sortedGroup;
+    public ObservableList<Game> getFilteredGameList() {
+        return filteredGames;
     }
 
     @Override
-    public void updateFilteredGroupList(Predicate<Group> predicate) {
+    public void updateFilteredGameList(Predicate<Game> predicate) {
         requireNonNull(predicate);
-        filteredGroups.setPredicate(predicate);
+        filteredGames.setPredicate(predicate);
     }
+
+    // ========== Equality Check ===============================================================
 
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
-
-        // instanceof handles nulls
         if (!(other instanceof ModelManager)) {
             return false;
         }
@@ -246,6 +220,43 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    @Override
+    public int isPersonUnique(String name) {
+        requireNonNull(name);
+        long count = addressBook.getPersonList().stream()
+                .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
+                .count();
+        // "Unique" if there is exactly 1 match
+        if (count == 1) {
+            return 1;
+        } else if (count == 0) {
+            return 0;
+        } else {
+            return -1; // More than one match
+        }
+    }
+
+    @Override
+    public Person getPerson(String name) {
+        requireNonNull(name);
+        // Find all persons matching this name (case-insensitive).
+        List<Person> matchedPersons = addressBook.getPersonList().stream()
+                .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
+                .collect(Collectors.toList());
+
+        if (matchedPersons.size() > 1) {
+            // If multiple matches, you could return an arbitrary one or throw an exception.
+            // Usually you'd throw something like a CommandException, or a custom exception.
+            throw new IllegalArgumentException(
+                    "Multiple persons found with the name: " + name + ". Please be more specific.");
+        } else if (matchedPersons.isEmpty()) {
+            throw new IllegalArgumentException("No person found with the name: " + name);
+        }
+
+        // Exactly one match
+        return matchedPersons.get(0);
     }
 
 }
