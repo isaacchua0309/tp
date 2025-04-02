@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 /**
- * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
+ * Contains Command Line Interface (CLI) syntax definitions common to multiple commands.
  */
 public class CliSyntax {
 
@@ -13,5 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_POSTAL_CODE = new Prefix("pc/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_SPORT = new Prefix("s/");
-    public static final Prefix PREFIX_GROUP_NAME = new Prefix("g/");
+    public static final Prefix PREFIX_GAME_NAME = new Prefix("g/");
+    public static final Prefix PREFIX_DATETIME = new Prefix("dt/");
 }
