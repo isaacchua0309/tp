@@ -102,10 +102,10 @@ public class AddressBookParser {
 
         case HelloCommand.COMMAND_WORD:
             return new HelloCommand();
-            
+
         case DeleteMemberCommand.COMMAND_WORD:
             return new DeleteMemberCommandParser().parse(arguments);
-            
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
