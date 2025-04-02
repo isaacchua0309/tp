@@ -8,7 +8,7 @@ import seedu.address.model.Model;
  */
 public class HelloCommand extends Command {
     public static final String COMMAND_WORD = "hello";
-    public static final String MESSAGE_SUCCESS = "Hello from AB3!";
+    public static final String MESSAGE_SUCCESS = "Hello from FitFriends!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
