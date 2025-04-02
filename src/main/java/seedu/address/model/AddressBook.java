@@ -76,6 +76,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns person if person with the same identity as {@code person} exists in the address book.
+     */
+    public Person getPerson(String person) {
+        requireNonNull(person);
+        return persons.getPerson(person);
+    }
+
+    /**
+     * returns true if person from the list is unique.
+     * The person must already exist in the list.
+     */
+    public boolean isPersonUnique(String nameOfPersonToGet) {
+        requireNonNull(nameOfPersonToGet);
+        return persons.isPersonUnique(nameOfPersonToGet);
+    }
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -91,6 +107,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Replaces the given group {@code target} in the list with {@code editedGroup}.
+     * {@code target} must exist in the address book.
+     * The group identity of {@code editedGroup} must not be the same as another existing group in the address book.
+     */
+    public void setGroup(Group target, Group editedGroup) {
+        requireNonNull(editedGroup);
+
+        groups.setGroup(target, editedGroup);
     }
 
     /**
