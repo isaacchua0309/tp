@@ -33,7 +33,7 @@ public class AddSportCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
         Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Sport sportToAdd = new Sport("soccer");
+        Sport sportToAdd = new Sport("cricket");
         AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), sportToAdd);
 
         String expectedMessage = String.format(AddSportCommand.MESSAGE_SUCCESS,

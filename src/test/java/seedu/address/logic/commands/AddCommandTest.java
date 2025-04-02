@@ -203,6 +203,9 @@ public class AddCommandTest {
 
         // ===== Game methods (dummy implementations, not used in these tests) =====
         @Override
+        public void sortFilteredPersonListAlphabetically() {
+            throw new AssertionError("This method should not be called.");
+        }
         public ObservableList<Game> getFilteredGameList() {
             return FXCollections.observableArrayList();
         }

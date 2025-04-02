@@ -179,6 +179,20 @@ public class ModelManager implements Model {
         sortedPersons.setComparator(comparator);
     }
 
+
+    /**
+     * Sorts the filtered person list alphabetically.
+     */
+    @Override
+    public void sortFilteredPersonListAlphabetically() {
+        Comparator<Person> comparator = Comparator.comparing(person -> person.getName().fullName);
+        sortedPersons.setComparator(comparator);
+    }
+
+
+    /**
+     * Sorts the filtered group list alphabetically.
+     */
     @Override
     public ObservableList<Game> getFilteredGameList() {
         return filteredGames;

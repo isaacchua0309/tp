@@ -97,6 +97,13 @@ public interface Model {
      */
     void sortFilteredPersonListByDistance(Location locationToBeCompared);
 
+
+    /**
+     * Sorts the filtered person list by distance from the given location.
+     */
+    void sortFilteredPersonListAlphabetically();
+
+
     // =============================== Game-level Operations =================================
 
     /** Returns an unmodifiable view of the filtered game list. */

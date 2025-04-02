@@ -5,25 +5,28 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.util.LocationUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.SportContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindSportCommand}.
  */
-public class FindSportCommandTest {
+public class FindSportSortByDistanceCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -38,8 +41,10 @@ public class FindSportCommandTest {
         SportContainsKeywordsPredicate secondPredicate =
                 new SportContainsKeywordsPredicate(Collections.singletonList("rugby"));
 
-        FindSportCommand findFirstCommand = new FindSportCommand(firstPredicate, Arrays.asList("soccer"));
-        FindSportCommand findSecondCommand = new FindSportCommand(secondPredicate, Arrays.asList("rugby"));
+        FindSportSortByDistanceCommand findFirstCommand = new FindSportSortByDistanceCommand(firstPredicate,
+                Arrays.asList("soccer"), "018906");
+        FindSportSortByDistanceCommand findSecondCommand = new FindSportSortByDistanceCommand(secondPredicate,
+                Arrays.asList("rugby"), "018907");
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
@@ -59,30 +64,35 @@ public class FindSportCommandTest {
     }
 
     /**
-     * Executes FindSportCommand with zero keywords and expects no persons found.
+     * Executes FindSportSortByDistanceCommand with zero keywords and expects no persons found.
      */
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         SportContainsKeywordsPredicate predicate = new SportContainsKeywordsPredicate(Collections.emptyList());
-        FindSportCommand command = new FindSportCommand(predicate, Collections.emptyList());
+        FindSportSortByDistanceCommand command = new FindSportSortByDistanceCommand(predicate,
+                Collections.emptyList(), "018906");
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     /**
-     * Executes FindSportCommand with multiple valid keywords and expects multiple persons found.
+     * Executes FindSportSortByDistanceCommand with multiple valid keywords and expects multiple persons found.
+     * The expected model is updated with the filtered list of persons and sorted by distance.
      */
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        SportContainsKeywordsPredicate predicate = preparePredicate("cricket tennis");
-        FindSportCommand command = new FindSportCommand(predicate, Arrays.asList("cricket", "tennis"));
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        SportContainsKeywordsPredicate predicate = preparePredicate("volleyball cricket basketball rugby");
+        FindSportSortByDistanceCommand command = new FindSportSortByDistanceCommand(predicate,
+                Arrays.asList("volleyball", "cricket", "basketball", "rugby"), "018916");
         expectedModel.updateFilteredPersonList(predicate);
-        expectedModel.sortFilteredPersonListAlphabetically();
+        expectedModel.sortFilteredPersonListByDistance(LocationUtil
+                .createLocation(new Address("temp"), "018916"));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ELLE, ALICE, CARL, BENSON), model.getFilteredPersonList());
+        //sorted by distance upon checking using online postal code distance calculator
     }
 
     /**
@@ -92,18 +102,11 @@ public class FindSportCommandTest {
     public void execute_invalidSport_failure() {
         SportContainsKeywordsPredicate predicate =
                 new SportContainsKeywordsPredicate(Collections.singletonList("dodgeball"));
-        FindSportCommand command = new FindSportCommand(predicate, Collections.singletonList("dodgeball"));
+        FindSportCommand command = new FindSportSortByDistanceCommand(predicate, Collections.singletonList("dodgeball"),
+                "018906");
         String expectedMessage = FindSportCommand.MESSAGE_INVALID_SPORT;
 
         assertEquals(expectedMessage, command.execute(model).getFeedbackToUser());
-    }
-
-    @Test
-    public void toStringMethod() {
-        SportContainsKeywordsPredicate predicate = new SportContainsKeywordsPredicate(Arrays.asList("soccer"));
-        FindSportCommand findCommand = new FindSportCommand(predicate, Arrays.asList("soccer"));
-        String expected = FindSportCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertEquals(expected, findCommand.toString());
     }
 
     /**
@@ -111,15 +114,5 @@ public class FindSportCommandTest {
      */
     private SportContainsKeywordsPredicate preparePredicate(String userInput) {
         return new SportContainsKeywordsPredicate(Arrays.asList(userInput.trim().split("\\s+")));
-    }
-
-    @Test void execute_isInCorrectOrder_afterFindSportSort() {
-        List<String> sportKeywordList = Arrays.asList("soccer", "volleyball", "tennis", "cricket", "basketball");
-        SportContainsKeywordsPredicate predicate =
-                new SportContainsKeywordsPredicate(sportKeywordList);
-        new FindSportSortByDistanceCommand(predicate, sportKeywordList, "018906").execute(model);
-        FindSportCommand findCommand = new FindSportCommand(predicate, Arrays.asList("soccer"));
-        String expected = FindSportCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertEquals(expected, findCommand.toString());
     }
 }
