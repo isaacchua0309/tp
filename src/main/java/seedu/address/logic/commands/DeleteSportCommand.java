@@ -22,11 +22,12 @@ public class DeleteSportCommand extends Command {
             + ": Deletes a sport from the contact identified by the index number used in the displayed person list. "
             + "Parameters: INDEX (must be a positive integer) s/SPORT_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 s/Badminton";
-    public static final String MESSAGE_DELETE_SPORT_SUCCESS = "Deleted %1$s for %2$s";
-    public static final String MESSAGE_NO_SPORT_FOUND = "The sport, %1$s, does not exist for %2$s";
+    public static final String MESSAGE_DELETE_SPORT_SUCCESS = "Successfully removed %1$s from %2$s's sports list!";
+    public static final String MESSAGE_NO_SPORT_FOUND = "%1$s is not listed \n"
+            + "as a sport for %2$s. Please check the current sports list for this contact.";
 
-    public static final String MESSAGE_CANNOT_DELETE_SPORT = "The sport, %1$s, cannot be deleted as %2$s has to "
-            + "have at least 1 sport";
+    public static final String MESSAGE_CANNOT_DELETE_SPORT = "%1$s cannot be removed \n"
+            + "as %2$s must have at least one sport. Try adding a new sport before removing this one.";
 
     private final Index targetIndex;
     private final Sport sport;

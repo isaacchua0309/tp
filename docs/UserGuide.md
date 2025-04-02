@@ -103,7 +103,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 #### Using the Graphical Interface
 
 1. **Double-click** on the FitFriends.jar file.
-   
+
    > ⚠️ **If this doesn't work**: Your system might not have associated .jar files with Java. Use the CLI method above or right-click the file and select "Open with Java".
 
 2. **Enter commands** in the command box at the bottom of the window and press <kbd>Enter</kbd> to execute them.
@@ -313,7 +313,7 @@ This removes basketball from the 2nd person's sports list.
 
 Discover which friends play specific sports—perfect for organizing game days!
 
-**Format**: 
+**Format**:
 ```
 findsport s/SPORT [SPORT] [SPORT]
 ```

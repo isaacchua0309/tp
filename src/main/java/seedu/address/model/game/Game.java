@@ -78,17 +78,16 @@ public class Game {
     }
 
     /**
-     * Returns true if both games have the same sport, date/time, and location.
-     * Adjust if you only want to compare sport+dateTime (without location).
+     * Returns true if both games have the same date/time, regardless of sport or location.
+     * This prevents scheduling multiple games at the same time and ensures consistent
+     * indexing based on date/time in commands and UI.
      */
     public boolean isSameGame(Game otherGame) {
         if (otherGame == this) {
             return true;
         }
         return otherGame != null
-                && otherGame.getSport().equals(this.sport)
-                && otherGame.getDateTime().equals(this.dateTime)
-                && otherGame.getLocation().equals(this.location);
+                && otherGame.getDateTime().equals(this.dateTime);
     }
 
     @Override

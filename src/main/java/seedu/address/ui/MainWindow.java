@@ -13,6 +13,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -81,7 +82,27 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         setAccelerators();
 
+        // Apply dark theme styling to scene and root
+        applyDarkThemeStyling();
+
         helpWindow = new HelpWindow();
+    }
+
+    /**
+     * Applies dark theme styling to the scene and root node
+     */
+    private void applyDarkThemeStyling() {
+        Scene scene = primaryStage.getScene();
+        if (scene != null) {
+            // Set the scene background fill color
+            scene.setFill(javafx.scene.paint.Color.valueOf("#1e2030"));
+
+            // Apply background style to root container
+            VBox root = (VBox) scene.getRoot();
+            if (root != null) {
+                root.setStyle("-fx-background-color: #1e2030;");
+            }
+        }
     }
 
     public Stage getPrimaryStage() {
@@ -154,13 +175,29 @@ public class MainWindow extends UiPart<Stage> {
             // Switch to dark theme
             scene.getStylesheets().remove(MainWindow.class.getResource(LIGHT_THEME_PATH).toExternalForm());
             scene.getStylesheets().add(0, MainWindow.class.getResource(DARK_THEME_PATH).toExternalForm());
-            themeToggleButton.setText("☀ Light Mode");
+            scene.setFill(javafx.scene.paint.Color.valueOf("#1e2030")); // Set dark background
+
+            // Apply dark style to root container
+            VBox root = (VBox) scene.getRoot();
+            if (root != null) {
+                root.setStyle("-fx-background-color: #1e2030;");
+            }
+
+            themeToggleButton.setText("💡 Switch to Light");
             logger.info("Switched to dark theme");
         } else {
             // Switch to light theme
             scene.getStylesheets().remove(MainWindow.class.getResource(DARK_THEME_PATH).toExternalForm());
             scene.getStylesheets().add(0, MainWindow.class.getResource(LIGHT_THEME_PATH).toExternalForm());
-            themeToggleButton.setText("🌙 Dark Mode");
+            scene.setFill(javafx.scene.paint.Color.valueOf("#f5f5f7")); // Set light background
+
+            // Apply light style to root container
+            VBox root = (VBox) scene.getRoot();
+            if (root != null) {
+                root.setStyle("-fx-background-color: #f5f5f7;");
+            }
+
+            themeToggleButton.setText("🌙 Switch to Dark");
             logger.info("Switched to light theme");
         }
 

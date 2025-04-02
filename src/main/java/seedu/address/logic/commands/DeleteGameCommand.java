@@ -13,6 +13,7 @@ import seedu.address.model.game.Game;
 
 /**
  * Deletes a game identified using its displayed index from the address book.
+ * The game list is sorted by date/time, so the index corresponds to the game's position in this sorted list.
  */
 public class DeleteGameCommand extends Command {
     public static final String COMMAND_WORD = "deletegame";
@@ -22,7 +23,7 @@ public class DeleteGameCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_DELETE_GAME_SUCCESS = "Deleted Game: %1$s";
+    public static final String MESSAGE_DELETE_GAME_SUCCESS = "Game deleted successfully: %1$s";
 
     private final Index targetIndex;
 

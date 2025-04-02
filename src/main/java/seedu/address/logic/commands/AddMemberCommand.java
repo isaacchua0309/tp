@@ -22,14 +22,17 @@ public class AddMemberCommand extends Command {
             + "Parameters: g/INDEX (must be a positive integer) n/PERSON_NAME\n"
             + "Example: " + COMMAND_WORD + " g/1 n/John Doe\n";
 
-    public static final String MESSAGE_SUCCESS = "Added member: %1$s to game: %2$s";
+    public static final String MESSAGE_SUCCESS = "%1$s has been added to the game: %2$s";
     public static final String MESSAGE_PERSON_EXISTS =
-            "Member '%1$s' is already in game '%2$s'.";
+            "%1$s is already a participant in this game. Each person can only be added once to a game.";
     public static final String MESSAGE_DUPLICATE_PERSONS =
-            "More than one person named '%1$s' found. Please specify a unique name.";
+            "Multiple people named '%1$s' were found. Please use a more specific \n"
+            + "name or try using the 'list' command to see available contacts.";
     public static final String MESSAGE_PERSON_NOT_FOUND =
-            "No person named '%1$s' is in our current address book. We recommend adding them as a person!.";
-    public static final String MESSAGE_INVALID_GAME_INDEX = "The game index %1$d is invalid.";
+            "No person named '%1$s' was found in the address book. \n"
+            + "Please add this person first using the 'add' command.";
+    public static final String MESSAGE_INVALID_GAME_INDEX = "Game index %1$d is invalid. \n"
+            + "Please use the 'list' command to see available games and their indices.";
 
     private final Index targetIndex;
     private final String memberName;
@@ -49,15 +52,17 @@ public class AddMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // 1) Get the current filtered game list
+        // 1) Get the current filtered game list (sorted by date/time)
         List<Game> lastShownList = model.getFilteredGameList();
 
-        // 2) Validate the index
+        // 2) Validate the index - this index refers to the position in the date/time sorted list
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
                     String.format(MESSAGE_INVALID_GAME_INDEX, targetIndex.getOneBased()));
         }
 
+        // Game at this index is guaranteed to be the same in both UI and command context
+        // because the list is always sorted by date/time
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
 
         // 3) Check if multiple persons share the same name (adapt if your design differs)
@@ -76,7 +81,7 @@ public class AddMemberCommand extends Command {
                     MESSAGE_PERSON_EXISTS, memberName, gameToEdit.toString()));
         }
 
-        // 6) Remove and re-add the updated game, or use a “model.addParticipantToGame(...)” approach
+        // 6) Remove and re-add the updated game, or use a "model.addParticipantToGame(...)" approach
         model.deleteGame(gameToEdit); // remove old version
         gameToEdit.addParticipant(personToAdd); // mutate it
         model.addGame(gameToEdit); // add back the updated version

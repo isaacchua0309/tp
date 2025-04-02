@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -32,8 +33,9 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
 
-    // A filtered list of games; if you need sorting for games, wrap it similarly in a SortedList
+    // A filtered list of games, further wrapped in a SortedList for consistent date-based ordering
     private final FilteredList<Game> filteredGames;
+    private final SortedList<Game> sortedGames;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -50,8 +52,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
 
-        // Games
+        // Games - initialize with date/time sorting to ensure consistent indexing
         filteredGames = new FilteredList<>(this.addressBook.getGameList());
+        sortedGames = new SortedList<>(filteredGames, Comparator.comparing(Game::getDateTime));
     }
 
     public ModelManager() {
@@ -115,6 +118,31 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        requireNonNull(target);
+
+        // Get all games
+        List<Game> allGames = new ArrayList<>(addressBook.getGameList());
+
+        // Check each game if the person is a participant
+        for (Game game : allGames) {
+            if (game.getParticipants().contains(target)) {
+                // Remove the person from the game participants
+                Game updatedGame = new Game(
+                    game.getSport(),
+                    game.getDateTime(),
+                    game.getLocation(),
+                    game.getParticipants().stream()
+                        .filter(p -> !p.equals(target))
+                        .collect(Collectors.toList())
+                );
+
+                // Replace the old game with the updated one
+                addressBook.removeGame(game);
+                addressBook.addGame(updatedGame);
+            }
+        }
+
+        // Finally, remove the person from the address book
         addressBook.removePerson(target);
     }
 
@@ -195,7 +223,8 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Game> getFilteredGameList() {
-        return filteredGames;
+        // Return the sorted games list so UI and commands always see consistently ordered games
+        return sortedGames;
     }
 
     @Override
