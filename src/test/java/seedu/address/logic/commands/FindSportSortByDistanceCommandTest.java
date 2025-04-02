@@ -70,7 +70,7 @@ public class FindSportSortByDistanceCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         SportContainsKeywordsPredicate predicate = new SportContainsKeywordsPredicate(Collections.emptyList());
-        FindSportCommand command = new FindSportSortByDistanceCommand(predicate, Collections.emptyList(), "018906");
+        FindSportSortByDistanceCommand command = new FindSportSortByDistanceCommand(predicate, Collections.emptyList(), "018906");
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
