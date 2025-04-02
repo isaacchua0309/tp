@@ -42,7 +42,6 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    private static final String globalSportsListFilePath = "./data/globalSportsList.json";
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
