@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Contact deleted successfully: %1$s";
 
     private final Index targetIndex;
 
@@ -41,8 +41,23 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // Count games where the person is a participant
+        long gamesWithPerson = model.getGameList().stream()
+                .filter(game -> game.getParticipants().contains(personToDelete))
+                .count();
+
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+
+        // Different message based on whether the person was in any games
+        if (gamesWithPerson > 0) {
+            return new CommandResult(String.format(
+                MESSAGE_DELETE_PERSON_SUCCESS + " Also removed from %d game(s).",
+                Messages.format(personToDelete),
+                gamesWithPerson));
+        } else {
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        }
     }
 
     @Override

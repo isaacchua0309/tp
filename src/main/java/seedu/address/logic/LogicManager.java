@@ -73,6 +73,7 @@ public class LogicManager implements Logic {
 
     /**
      * Returns an unmodifiable view of the filtered list of games.
+     * The list is sorted by date/time to ensure consistent indexing between UI display and commands.
      */
     @Override
     public ObservableList<Game> getFilteredGameList() {

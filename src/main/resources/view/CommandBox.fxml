@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +9,8 @@
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <HBox alignment="CENTER_LEFT" spacing="5">
     <Label fx:id="commandPrefixLabel" text=">" styleClass="command-prefix-label"/>
-    <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Type command here..." HBox.hgrow="ALWAYS" styleClass="animated-focus-transition"/>
+    <TextArea fx:id="commandTextField" onKeyPressed="#handleKeyPress" prefRowCount="1" wrapText="false" maxHeight="35.0"
+              promptText="Type command here..." HBox.hgrow="ALWAYS" styleClass="animated-focus-transition, command-text-area"/>
   </HBox>
   <padding>
     <Insets top="5" right="5" bottom="5" left="5" />

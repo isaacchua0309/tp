@@ -17,8 +17,9 @@ public class AddGameCommand extends Command {
             + "Parameters: g/GAME_NAME dt/DATE_TIME pc/LOCATION\n"
             + "Example: " + COMMAND_WORD + " g/Soccer dt/2021-09-20T15:00:00 pc/018906";
 
-    public static final String MESSAGE_SUCCESS = "New game added: %1$s";
-    public static final String MESSAGE_DUPLICATE_GAME = "This game already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New game scheduled successfully: %1$s";
+    public static final String MESSAGE_DUPLICATE_GAME = "A game is already scheduled at this time. \n"
+            + "Please choose a different time for your game.";
 
     private final Game game;
 

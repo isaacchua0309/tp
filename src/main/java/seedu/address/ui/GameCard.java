@@ -6,12 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Region;
 import seedu.address.model.game.Game;
 /**
  * An UI component that displays information of a {@code Game}.
+ * The displayed index corresponds to the game's position in the date/time sorted list.
  */
-public class GameCard extends UiPart<VBox> {
+public class GameCard extends UiPart<Region> {
     private static final String FXML = "GameListCard.fxml";
 
     public final Game game;
@@ -37,6 +38,8 @@ public class GameCard extends UiPart<VBox> {
 
     /**
      * Creates a {@code GameCard} with the given {@code Game} and index to display.
+     * The displayedIndex corresponds to the game's position in the date/time sorted list,
+     * ensuring consistency between UI display and command references.
      */
     public GameCard(Game game, int displayedIndex) {
         super(FXML);
@@ -48,6 +51,10 @@ public class GameCard extends UiPart<VBox> {
         // Populate participants (if any)
         game.getParticipants().forEach(p -> {
             Label participantLabel = new Label(p.getName().fullName);
+            // Important: We need to use the same styling approach as PersonCard for sports
+            participantLabel.getStyleClass().add("label");
+            // Adding a space after the name for better visual appearance like in sports labels
+            participantLabel.setText(p.getName().fullName + " ");
             participants.getChildren().add(participantLabel);
         });
 

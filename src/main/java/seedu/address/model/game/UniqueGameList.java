@@ -14,9 +14,10 @@ import seedu.address.model.game.exceptions.GameNotFoundException;
 
 /**
  * A list of games that enforces uniqueness between its elements and does not allow nulls.
- * A game is considered unique based on its sport and scheduled date/time.
+ * A game is considered unique based on its scheduled date/time only.
  * <p>
  * Supports a minimal set of list operations, and automatically sorts the games by date/time.
+ * This ensures that game indices are consistent and predictable in commands and UI.
  */
 public class UniqueGameList implements Iterable<Game> {
     private final ObservableList<Game> internalList = FXCollections.observableArrayList();
@@ -26,6 +27,7 @@ public class UniqueGameList implements Iterable<Game> {
     /**
      * Adds a game to the list.
      * The game must not already exist in the list.
+     * After adding, the list is sorted by date/time to ensure consistent indexing.
      *
      * @param game The game to be added.
      * @throws DuplicateGameException if the game already exists.
@@ -36,7 +38,7 @@ public class UniqueGameList implements Iterable<Game> {
             throw new DuplicateGameException();
         }
         internalList.add(game);
-        sortByDate();
+        sortByDate(); // Ensure consistent indexing by date/time
     }
 
     /**
@@ -51,6 +53,7 @@ public class UniqueGameList implements Iterable<Game> {
         if (!internalList.remove(toRemove)) {
             throw new GameNotFoundException();
         }
+        // No need to sort after removal as ordering is maintained
     }
 
     /**
@@ -68,6 +71,7 @@ public class UniqueGameList implements Iterable<Game> {
      * Replaces the game {@code target} in the list with {@code editedGame}.
      * {@code target} must exist in the list.
      * The game identity of {@code editedGame} must not be the same as another existing game in the list.
+     * After replacement, the list is sorted to maintain consistent indexing.
      *
      * @param target     the game to be replaced.
      * @param editedGame the new game.
@@ -87,12 +91,13 @@ public class UniqueGameList implements Iterable<Game> {
         }
 
         internalList.set(index, editedGame);
-        sortByDate();
+        sortByDate(); // Resort to maintain indexing by date/time
     }
 
     /**
      * Replaces the contents of this list with {@code games}.
      * {@code games} must not contain duplicate games.
+     * After replacement, the list is sorted to maintain consistent indexing.
      *
      * @param games the list of games to set.
      * @throws DuplicateGameException if duplicates exist in {@code games}.
@@ -103,7 +108,7 @@ public class UniqueGameList implements Iterable<Game> {
             throw new DuplicateGameException();
         }
         internalList.setAll(games);
-        sortByDate();
+        sortByDate(); // Resort to maintain indexing by date/time
     }
 
     /**
@@ -119,6 +124,7 @@ public class UniqueGameList implements Iterable<Game> {
 
     /**
      * Returns an unmodifiable observable list of games.
+     * The games in this list are sorted by date/time in ascending order.
      *
      * @return the unmodifiable list.
      */
@@ -128,7 +134,7 @@ public class UniqueGameList implements Iterable<Game> {
 
     /**
      * Returns true if {@code games} contains only unique games
-     * (i.e., no two games have the same sport and scheduled date/time).
+     * (i.e., no two games have the same scheduled date/time).
      */
     private boolean gamesAreUnique(List<Game> games) {
         for (int i = 0; i < games.size() - 1; i++) {
@@ -143,6 +149,7 @@ public class UniqueGameList implements Iterable<Game> {
 
     /**
      * Sorts the internal list by game date/time in ascending order.
+     * This ensures consistent indexing across all commands and UI representations.
      */
     private void sortByDate() {
         internalList.sort(Comparator.comparing(Game::getDateTime));

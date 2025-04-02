@@ -7,13 +7,13 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.control.SplitPane?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Command Terminal" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
@@ -25,7 +25,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox spacing="2">
+      <VBox spacing="2" styleClass="background">
         <HBox alignment="CENTER_LEFT" styleClass="menu-container">
           <MenuBar fx:id="menuBar" HBox.hgrow="ALWAYS">
             <Menu mnemonicParsing="false" text="File">
@@ -35,47 +35,60 @@
               <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
             </Menu>
           </MenuBar>
-          <Button fx:id="themeToggleButton" mnemonicParsing="false" onAction="#handleToggleTheme" styleClass="theme-toggle-button" text="☀ Light Mode">
+          <Button fx:id="themeToggleButton" mnemonicParsing="false" onAction="#handleToggleTheme" styleClass="theme-toggle-button" text="💡 Switch to Light">
             <HBox.margin>
-              <Insets right="8" />
+              <Insets right="12" />
             </HBox.margin>
           </Button>
         </HBox>
 
+        <!-- Command input box -->
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="8" left="10" right="10" top="8" />
+            <Insets bottom="10" left="12" right="12" top="10" />
           </padding>
+          <VBox.margin>
+            <Insets top="2" bottom="2" left="2" right="2" />
+          </VBox.margin>
         </StackPane>
 
+        <!-- Command result display -->
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="120" minHeight="120" prefHeight="120" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="10" left="12" right="12" top="10" />
           </padding>
+          <VBox.margin>
+            <Insets top="0" bottom="6" left="2" right="2" />
+          </VBox.margin>
         </StackPane>
 
-        <SplitPane fx:id="centerSplitPane" orientation="HORIZONTAL" VBox.vgrow="ALWAYS">
+        <!-- Main content area with person and game lists -->
+        <SplitPane fx:id="centerSplitPane" dividerPositions="0.5" orientation="HORIZONTAL" VBox.vgrow="ALWAYS">
+          <!-- Person List Panel -->
           <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
+              <Insets bottom="14" left="14" right="14" top="14" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
 
+          <!-- Game List Panel -->
           <VBox fx:id="gameList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
+              <Insets bottom="14" left="14" right="14" top="14" />
             </padding>
-            <!-- Renamed fx:id here -->
             <StackPane fx:id="gameListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
         </SplitPane>
 
-
+        <!-- Status bar at the bottom -->
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="6" left="12" right="12" top="6" />
           </padding>
+          <VBox.margin>
+            <Insets top="2" />
+          </VBox.margin>
         </StackPane>
       </VBox>
     </Scene>
