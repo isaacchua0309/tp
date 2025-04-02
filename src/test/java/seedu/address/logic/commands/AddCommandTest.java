@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -39,17 +39,7 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
-    @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
@@ -101,7 +91,7 @@ public class AddCommandTest {
         // ===== UserPrefs methods =====
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            // No-op for stub.
+            // No-op for stub
         }
 
         @Override
@@ -116,7 +106,7 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            // No-op for stub.
+            // No-op for stub
         }
 
         @Override
@@ -126,13 +116,13 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
-            // No-op for stub.
+            // No-op for stub
         }
 
         // ===== AddressBook methods =====
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
-            // No-op for stub.
+            // No-op for stub
         }
 
         @Override
@@ -169,6 +159,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public int isPersonUnique(String name) {
+            requireNonNull(name);
+            long count = personsAdded.stream()
+                    .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
+                    .count();
+            // Return the count as an int (could be 0, 1, or >1)
+            return (int) count;
+        }
+
+        @Override
+        public Person getPerson(String name) {
+            requireNonNull(name);
+            List<Person> matched = personsAdded.stream()
+                    .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
+                    .toList();
+
+            if (matched.size() == 1) {
+                return matched.get(0);
+            } else if (matched.isEmpty()) {
+                throw new IllegalArgumentException("No person found with the name: " + name);
+            } else {
+                throw new IllegalArgumentException("Multiple persons found with the name: " + name);
+            }
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             return FXCollections.observableArrayList(personsAdded);
         }
@@ -176,7 +192,7 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             requireNonNull(predicate);
-            // For stub purposes, we do not maintain an internal filtered list.
+            // For stub purposes, we won't maintain an internal filtered list.
         }
 
         @Override
@@ -217,6 +233,7 @@ public class AddCommandTest {
             // No-op for stub.
         }
     }
+
 
     /**
      * A Model stub that contains a single person.

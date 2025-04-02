@@ -13,6 +13,10 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.testutil.TypicalPersons;
 
+/**
+ * Tests the JSON deserialization of AddressBook data, focusing on Person objects.
+ * If no games are present in the JSON, the parsed AddressBook will simply have an empty game list.
+ */
 public class JsonSerializableAddressBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
@@ -22,26 +26,34 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
-                JsonSerializableAddressBook.class).get();
+        // Parses a JSON file with typical persons (and no or empty "games" array)
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(
+                TYPICAL_PERSONS_FILE, JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
+
+        // Compare to in-memory typical address book
         AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        assertEquals(typicalPersonsAddressBook, addressBookFromFile);
+
+        // (Optional) Check that games list is as expected (likely empty in test JSON):
+        assertEquals(typicalPersonsAddressBook.getGameList(), addressBookFromFile.getGameList());
     }
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
+        // This file has a Person with invalid data (e.g., invalid phone format or name)
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(
+                INVALID_PERSON_FILE, JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+        // This file has two Person entries with duplicate identity fields
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(
+                DUPLICATE_PERSON_FILE, JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class,
+                JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
     }
-
 }

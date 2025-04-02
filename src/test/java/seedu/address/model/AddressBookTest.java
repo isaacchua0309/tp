@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.group.Group;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -88,7 +88,7 @@ public class AddressBookTest {
     public void toStringMethod() {
         String actual = addressBook.toString();
         assertTrue(actual.contains("persons="));
-        assertTrue(actual.contains("groups="));
+        assertTrue(actual.contains("games="));
     }
 
     /**
@@ -96,7 +96,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Group> groups = FXCollections.observableArrayList(); // Add this line
+        private final ObservableList<Game> groups = FXCollections.observableArrayList(); // Add this line
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -108,7 +108,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Group> getGroupList() {
+        public ObservableList<Game> getGameList() {
             return groups; // Return an empty list, sufficient for stub
         }
     }

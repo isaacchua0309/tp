@@ -5,8 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -17,7 +19,6 @@ import seedu.address.model.game.Game;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
 
-
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -26,8 +27,12 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+
+    // A filtered list of persons, which we further wrap in a SortedList
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
+
+    // A filtered list of games; if you need sorting for games, wrap it similarly in a SortedList
     private final FilteredList<Game> filteredGames;
 
     /**
@@ -40,8 +45,12 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        // Persons
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
+
+        // Games
         filteredGames = new FilteredList<>(this.addressBook.getGameList());
     }
 
@@ -49,7 +58,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // ========== UserPrefs Methods ============================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -84,7 +93,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // ========== AddressBook Methods ==========================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -95,6 +104,8 @@ public class ModelManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
+
+    // ========== Person-level Operations ======================================================
 
     @Override
     public boolean hasPerson(Person person) {
@@ -110,6 +121,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        // Refresh the filtered list so the added person is visible
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -119,7 +131,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Game-level operations =======================================================================
+    // ========== Game-level Operations ========================================================
 
     @Override
     public boolean hasGame(Game game) {
@@ -140,46 +152,33 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Game> getGameList() {
+        // Returns the internal list of all games
         return addressBook.getGameList();
     }
 
-    //=========== Filtered Person and Game List Accessors =============================================================
+    // ========== Filtered Person and Game List Accessors ======================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code addressBook}.
-     */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
+        // We return the sorted version so the UI or logic always sees the sorted list
         return sortedPersons;
     }
 
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
-    /**
-     * Sorts the filtered person list by distance from the given location.
-     *
-     * @param location The location to compare the distance to.
-     */
     @Override
     public void sortFilteredPersonListByDistance(Location location) {
         requireNonNull(location);
-        Comparator<Person> comparator = Comparator.comparingDouble(person -> person.getLocation().distanceTo(location));
+        // We define a custom comparator that sorts Person objects by distance
+        Comparator<Person> comparator =
+                Comparator.comparingDouble(person -> person.getLocation().distanceTo(location));
         sortedPersons.setComparator(comparator);
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Game} backed by the internal list of
-     * {@code addressBook}.
-     */
     @Override
     public ObservableList<Game> getFilteredGameList() {
         return filteredGames;
@@ -191,12 +190,13 @@ public class ModelManager implements Model {
         filteredGames.setPredicate(predicate);
     }
 
+    // ========== Equality Check ===============================================================
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
-
         if (!(other instanceof ModelManager)) {
             return false;
         }
@@ -206,4 +206,42 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
+    @Override
+    public int isPersonUnique(String name) {
+        requireNonNull(name);
+        long count = addressBook.getPersonList().stream()
+                .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
+                .count();
+        // "Unique" if there is exactly 1 match
+        if (count == 1) {
+            return 1;
+        } else if (count == 0) {
+            return 0;
+        } else {
+            return -1; // More than one match
+        }
+    }
+
+    @Override
+    public Person getPerson(String name) {
+        requireNonNull(name);
+        // Find all persons matching this name (case-insensitive).
+        List<Person> matchedPersons = addressBook.getPersonList().stream()
+                .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
+                .collect(Collectors.toList());
+
+        if (matchedPersons.size() > 1) {
+            // If multiple matches, you could return an arbitrary one or throw an exception.
+            // Usually you'd throw something like a CommandException, or a custom exception.
+            throw new IllegalArgumentException(
+                    "Multiple persons found with the name: " + name + ". Please be more specific.");
+        } else if (matchedPersons.isEmpty()) {
+            throw new IllegalArgumentException("No person found with the name: " + name);
+        }
+
+        // Exactly one match
+        return matchedPersons.get(0);
+    }
+
 }

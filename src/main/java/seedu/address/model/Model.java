@@ -9,7 +9,6 @@ import seedu.address.model.game.Game;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
 
-
 /**
  * The API of the Model component.
  */
@@ -55,6 +54,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    // =============================== Person-level Operations =================================
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -75,7 +76,8 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same
+     * as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -95,7 +97,9 @@ public interface Model {
      */
     void sortFilteredPersonListByDistance(Location locationToBeCompared);
 
-    /** Returns an unmodifiable view of the filtered game list */
+    // =============================== Game-level Operations =================================
+
+    /** Returns an unmodifiable view of the filtered game list. */
     ObservableList<Game> getFilteredGameList();
 
     /**
@@ -133,4 +137,17 @@ public interface Model {
      * @return The list of games.
      */
     ObservableList<Game> getGameList();
+
+    /**
+     * Returns true if exactly one Person in the address book has the given name,
+     * false if zero or more than one match.
+     */
+    int isPersonUnique(String name);
+
+    /**
+     * Returns the single Person matching the given name (case-insensitive),
+     * or throws an exception if there are multiple or no matches.
+     */
+    Person getPerson(String name);
+
 }
