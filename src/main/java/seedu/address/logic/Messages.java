@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.group.Group;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Person;
 
 /**
@@ -16,11 +16,10 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_INVALID_GROUP_DISPLAYED_INDEX = "The group index provided is invalid";
+    public static final String MESSAGE_INVALID_GAME_DISPLAYED_INDEX = "The game index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
-                "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_HELLO = "Hello from AB3!";
+            "Multiple values specified for the following single-valued field(s): ";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -52,14 +51,15 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code group} for display to the user.
+     * Formats the {@code game} for display to the user.
      */
-    public static String format(Group group) {
+    public static String format(Game game) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(group.getGroupName())
-                .append("; members: ");
-        group.getMembers().forEach(builder::append);
+        builder.append(game.getSport())
+                .append("; Date/Time: ")
+                .append(game.getDateTime())
+                .append("; Participants: ");
+        game.getParticipants().forEach(builder::append);
         return builder.toString();
     }
-
 }

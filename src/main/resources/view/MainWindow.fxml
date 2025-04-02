@@ -62,13 +62,15 @@
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
 
-          <VBox fx:id="groupList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <VBox fx:id="gameList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <StackPane fx:id="groupListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            <!-- Renamed fx:id here -->
+            <StackPane fx:id="gameListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
         </SplitPane>
+
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER">
           <padding>

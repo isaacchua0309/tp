@@ -15,6 +15,10 @@ repositories {
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
+application {
+    // This sets default JVM arguments for when you run your application via Gradle
+    applicationDefaultJvmArgs = ["-ea"]
+}
 
 checkstyle {
     toolVersion = '10.2'
