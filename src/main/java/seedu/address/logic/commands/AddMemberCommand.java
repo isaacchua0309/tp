@@ -47,7 +47,6 @@ public class AddMemberCommand extends Command {
         this.targetIndex = targetIndex;
         this.memberName = memberName;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -65,31 +64,28 @@ public class AddMemberCommand extends Command {
         // because the list is always sorted by date/time
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        // 3) Check if multiple persons share the same name (adapt if your design differs)
+        // Check if multiple persons share the same name
         if (model.isPersonUnique(memberName) == -1) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSONS, memberName));
         } else if (model.isPersonUnique(memberName) == 0) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, memberName));
         }
 
-        // 4) Retrieve the Person to add by name
+        // Retrieve the Person to add by name
         Person personToAdd = model.getPerson(memberName);
 
-        // 5) Check if this person is already in the participants list
+        // Check if this person is already in the participants list
         if (gameToEdit.getParticipants().contains(personToAdd)) {
             throw new CommandException(String.format(
-                    MESSAGE_PERSON_EXISTS, memberName, gameToEdit.toString()));
+                    MESSAGE_PERSON_EXISTS, memberName, gameToEdit));
         }
 
-        // 6) Remove and re-add the updated game, or use a "model.addParticipantToGame(...)" approach
-        model.deleteGame(gameToEdit); // remove old version
-        gameToEdit.addParticipant(personToAdd); // mutate it
-        model.addGame(gameToEdit); // add back the updated version
+        // Remove and re-add the updated game
+        model.deleteGame(gameToEdit);
+        gameToEdit.addParticipant(personToAdd);
+        model.addGame(gameToEdit);
 
-        // 7) (Optional) Re-sort or update filters if you want:
-        // model.sortFilteredGameList();
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, memberName, gameToEdit.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToAdd.getName().fullName, gameToEdit));
     }
 
     @Override

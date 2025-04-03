@@ -15,6 +15,9 @@ import java.util.Objects;
  */
 public class Location {
 
+    public static final String MESSAGE_CONSTRAINTS = "Postal code not found: %1$s, "
+            + "please key in a valid Singapore postal code";
+
     private final String postalCode;
     private final Address address;
     private final double latitude;
