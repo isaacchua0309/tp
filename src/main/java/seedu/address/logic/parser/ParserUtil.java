@@ -191,7 +191,7 @@ public class ParserUtil {
         requireNonNull(sport);
         String trimmedSport = sport.trim();
         if (!Sport.isValidSport(trimmedSport.toLowerCase())) {
-            throw new ParseException("Invalid sport. Allowed sports: " + Sport.VALID_SPORTS);
+            throw new ParseException("Invalid sport. Allowed sports: " + Sport.getValidSports());
         }
 
         return new Sport(trimmedSport);

@@ -14,6 +14,7 @@ import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.AddSportCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateSportCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteGameCommand;
 import seedu.address.logic.commands.DeleteMemberCommand;
@@ -97,6 +98,7 @@ public class AddressBookParser {
 
         case DeleteGameCommand.COMMAND_WORD:
             return new DeleteGameCommandParser().parse(arguments);
+
         case AddMemberCommand.COMMAND_WORD:
             return new AddMemberCommandParser().parse(arguments);
 
@@ -105,6 +107,9 @@ public class AddressBookParser {
 
         case DeleteMemberCommand.COMMAND_WORD:
             return new DeleteMemberCommandParser().parse(arguments);
+
+        case CreateSportCommand.COMMAND_WORD:
+            return new CreateSportCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

@@ -32,7 +32,7 @@ public class FindSportCommand extends Command {
             + PREFIX_SPORT + "badminton "
             + PREFIX_SPORT + "volleyball "
             + PREFIX_SPORT + "cricket";
-    public static final String MESSAGE_INVALID_SPORT = "Invalid sport found. Allowed sports: " + Sport.VALID_SPORTS
+    public static final String MESSAGE_INVALID_SPORT = "Invalid sport found. Allowed sports: " + Sport.getValidSports()
             + "\nExample: " + COMMAND_WORD
             + PREFIX_SPORT + "badminton "
             + PREFIX_SPORT + "volleyball "
