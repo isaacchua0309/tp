@@ -25,7 +25,7 @@ public class DeleteSportCommandParserTest {
 
     @Test
     public void parse_missingIndex_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE_GLOBAL);
 
         // Empty inpu
         assertParseFailure(parser, "", expectedMessage);
@@ -36,7 +36,7 @@ public class DeleteSportCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE_GLOBAL);
 
         // Invalid index - zero
         assertParseFailure(parser, "0", expectedMessage);

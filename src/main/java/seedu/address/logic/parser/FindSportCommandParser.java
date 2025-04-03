@@ -31,8 +31,8 @@ public class FindSportCommandParser implements Parser<FindSportCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_SPORT) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindSportCommand.MESSAGE_USAGE));
         }
-
-        List<Sport> sports = ParserUtil.parseSports(argMultimap.getAllValues(PREFIX_SPORT));
+        List<Sport> sports;
+        sports = ParserUtil.parseSports(argMultimap.getAllValues(PREFIX_SPORT));
         if (sports.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindSportCommand.MESSAGE_USAGE));

@@ -70,7 +70,7 @@ public class DeleteSportCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS, sportToDelete),
+        assertEquals(String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL, sportToDelete),
                 result.getFeedbackToUser());
 
         // Verify the sport was deleted
@@ -88,7 +88,7 @@ public class DeleteSportCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS, sportToDelete),
+        assertEquals(String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL, sportToDelete),
                 result.getFeedbackToUser());
 
         // Verify the sport was deleted

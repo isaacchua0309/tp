@@ -148,7 +148,7 @@ public class GlobalSportsIntegrationTest {
         CommandResult result = command.execute(model);
 
         // Verify the result message
-        assertEquals(String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS, sportToDelete),
+        assertEquals(String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL, sportToDelete),
                 result.getFeedbackToUser());
 
         // Verify the sport was deleted from the valid sports
