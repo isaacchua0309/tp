@@ -34,6 +34,7 @@ public class TypicalGames {
         for (Game game : getTypicalGames()) {
             ab.addGame(game);
         }
+        ab.setPersons(LIST_OF_TYPICAL_PERSONS);
         return ab;
     }
 

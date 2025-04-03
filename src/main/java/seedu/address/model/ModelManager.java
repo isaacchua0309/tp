@@ -179,6 +179,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setGame(Game target, Game editedGame) {
+        requireAllNonNull(target, editedGame);
+        addressBook.setGame(target, editedGame);
+    }
+
+    @Override
     public ObservableList<Game> getGameList() {
 
         return addressBook.getGameList();

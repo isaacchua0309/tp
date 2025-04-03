@@ -216,6 +216,12 @@ public class AddCommandTest {
 
         }
 
+        public void setGame(Game target, Game editedGame) {
+            requireNonNull(target);
+            requireNonNull(editedGame);
+        }
+
+
         @Override
         public ObservableList<Game> getGameList() {
             return FXCollections.observableArrayList();
