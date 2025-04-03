@@ -45,7 +45,7 @@ public class GameListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                // The index + 1 matches the 1-based index used in commands
+
                 setGraphic(new GameCard(game, getIndex() + 1).getRoot());
             }
         }

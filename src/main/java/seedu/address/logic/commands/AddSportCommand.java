@@ -43,7 +43,7 @@ public class AddSportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // Retrieve the filtered person list
+        // Retrieve the filtered person lis
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index < 0 || index >= lastShownList.size()) {
@@ -52,7 +52,7 @@ public class AddSportCommand extends Command {
 
         Person personToEdit = lastShownList.get(index);
 
-        // Check if the sport is already present
+        // Check if the sport is already presen
         if (personToEdit.getSports().contains(sport)) {
             throw new CommandException(MESSAGE_DUPLICATE_SPORT);
         }
@@ -60,14 +60,14 @@ public class AddSportCommand extends Command {
         // Check if the sport is valid
         String trimmedSport = sport.toString().toLowerCase();
         if (!Sport.isValidSport(trimmedSport)) {
-            throw new CommandException(Sport.MESSAGE_CONSTRAINTS);
+            throw new CommandException(Sport.getMessageConstraints());
         }
 
-        // Create a new SportList including the new sport
+        // Create a new SportList including the new spor
         SportList updatedSports = personToEdit.getSportList();
         updatedSports.add(sport);
 
-        // Create a new Person with the updated sports list
+        // Create a new Person with the updated sports lis
         Person editedPerson = createEditedPerson(personToEdit, updatedSports);
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sport.toString(), personToEdit.getName().fullName));
@@ -93,7 +93,7 @@ public class AddSportCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
+        // short circuit if same objec
         if (other == this) {
             return true;
         }

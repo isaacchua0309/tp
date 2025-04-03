@@ -31,26 +31,26 @@ public class PersonTest {
 
     @Test
     public void isSamePerson() {
-        // same object -> returns true
+
         assertTrue(ALICE.isSamePerson(ALICE));
 
-        // null -> returns false
+
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
+
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
-        // different name, all other attributes same -> returns false
+
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+
         Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
@@ -58,43 +58,43 @@ public class PersonTest {
 
     @Test
     public void equals() {
-        // same values -> returns true
+
         Person aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
-        // same object -> returns true
+
         assertTrue(ALICE.equals(ALICE));
 
-        // null -> returns false
+
         assertFalse(ALICE.equals(null));
 
-        // different type -> returns false
+
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+
         assertFalse(ALICE.equals(BOB));
 
-        // different name -> returns false
+
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
+
         editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
+
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different postal code -> returns false
+
         editedAlice = new PersonBuilder(ALICE).withPostalCode(VALID_POSTAL_CODE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
+
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
@@ -172,7 +172,7 @@ public class PersonTest {
                 new Phone("12345678"),
                 new Email("test@example.com"),
                 new Address("Valid Address"),
-                null, // null postal code
+                null,
                 new HashSet<>(),
                 new ArrayList<>()));
     }
@@ -219,7 +219,7 @@ public class PersonTest {
         String postalCode = "018906";
         Person person = new PersonBuilder().withPostalCode(postalCode).build();
 
-        // Test that toString contains the postal code information
+
         assertTrue(person.toString().contains(postalCode));
     }
 
@@ -232,19 +232,19 @@ public class PersonTest {
 
     @Test
     public void getSportList_modifyOriginalSportList_doesNotAffectPerson() {
-        // Create a person with only soccer (explicitly clearing any default sports)
+
         Person originalPerson = new PersonBuilder().withSports("soccer").build();
 
         SportList sportList = originalPerson.getSportList();
 
-        // Adding to the returned SportList
+
         sportList.add(new Sport("tennis"));
 
-        // Check the actual content of the lists
+
         System.out.println("Original person's sports: " + originalPerson.getSports());
         System.out.println("Modified SportList: " + sportList);
 
-        // Original person's list should remain unchanged
+
         assertFalse(originalPerson.getSports().contains(new Sport("tennis")));
         assertEquals(1, originalPerson.getSports().size());
     }

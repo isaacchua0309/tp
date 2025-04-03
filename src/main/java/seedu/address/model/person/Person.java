@@ -20,12 +20,12 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
-    // Identity fields
+
     private final Name name;
     private final Phone phone;
     private final Email email;
 
-    // Data fields
+
     private final Address address;
     private final Location location;
     private final Set<Tag> tags = new HashSet<>();
@@ -62,7 +62,7 @@ public class Person {
         for (Sport sport : sports) {
             this.sports.add(sport);
         }
-        this.location = LocationUtil.createLocation(address, "018935"); //default location
+        this.location = LocationUtil.createLocation(address, "018935");
     }
     /**
      * Constructor for Person class returns an immutable Person object. Left here for compatibility.
@@ -74,8 +74,8 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        // Empty sports list
-        this.location = LocationUtil.createLocation(address, "018935"); //default location
+
+        this.location = LocationUtil.createLocation(address, "018935");
     }
 
     /**
@@ -90,7 +90,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        // Add all sports from the provided SportList
+
         for (Sport sport : sports) {
             this.sports.add(sport);
         }
@@ -142,7 +142,7 @@ public class Person {
      * Returns a completely independent copy of the SportList object.
      */
     public SportList getSportList() {
-        // Create a brand new SportList with a copy of the elements to ensure full isolation
+
         List<Sport> sportsCopy = new ArrayList<>();
         for (Sport sport : sports.asUnmodifiableList()) {
             sportsCopy.add(new Sport(sport.sportName));

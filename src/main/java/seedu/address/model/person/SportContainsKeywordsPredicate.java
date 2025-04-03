@@ -18,8 +18,8 @@ public class SportContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        // Gets the SportList from the person and uses it to check for matching sports
-        // Uses the asUnmodifiableList method to safely access the sports
+
+
         return keywords.stream()
                 .anyMatch(keyword -> person.getSportList().asUnmodifiableList().stream()
                         .anyMatch(sport -> StringUtil.containsWordIgnoreCase(sport.sportName, keyword)));
@@ -31,7 +31,7 @@ public class SportContainsKeywordsPredicate implements Predicate<Person> {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof SportContainsKeywordsPredicate)) {
             return false;
         }

@@ -49,6 +49,9 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
     - [Deleting a Friend](#deleting-a-friend)
     - [Clearing All Entries](#clearing-all-entries)
   - [Sports Management](#sports-management)
+    - [Creating a Sport](#creating-a-sport)
+    - [Listing All Sports](#listing-all-sports)
+    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list)
     - [Adding a Sport](#adding-a-sport)
     - [Deleting a Sport](#deleting-a-sport)
     - [Finding Friends by Sport](#finding-friends-by-sport)
@@ -274,6 +277,60 @@ clear
 
 ### Sports Management
 
+#### Creating a Sport
+Add new sports to the global sports list for all contacts to use.
+
+**Format**:
+```
+createsport s/SPORT_NAME
+```
+
+**Example**:
+```
+createsport s/archery
+```
+
+This adds archery to the global list of valid sports that can be assigned to contacts.
+
+![Creating a Sport](images/createsport_command.png)
+
+> 💡 **Tip**: Sport names are case-insensitive and will be stored in lowercase.
+
+#### Listing All Sports
+
+View all available sports in the global sports list with their indices.
+
+**Format**:
+```
+listsports
+```
+
+This displays all sports in alphabetical order with numbers for reference.
+
+![Listing All Sports](images/listsports_command.png)
+
+> 💡 **Tip**: Make note of the indices as they're needed when deleting sports from the global list.
+
+#### Deleting a Sport from Global List
+
+Remove a sport from the global sports list.
+
+**Format**:
+```
+deletesport INDEX
+```
+
+**Example**:
+```
+deletesport 1
+```
+
+This removes the first sport in the alphabetized global sports list.
+
+![Deleting a Global Sport](images/deletesport_global_command.png)
+
+> ⚠️ **Warning**: Removing a sport from the global list means it can no longer be assigned to contacts.
+
 #### Adding a Sport
 
 Record which sports your friends play to make planning activities easier.
@@ -407,6 +464,9 @@ This deletes the "badminton" group.
 | **Find by Name**            | `find KEYWORD [MORE_KEYWORDS]`                                         | `find James Jake`                                                                            |
 | **Delete Friend**           | `delete INDEX`                                                         | `delete 3`                                                                                   |
 | **Clear All**               | `clear`                                                                | `clear`                                                                                      |
+| **Create Sport**            | `createsport s/SPORT_NAME`                                             | `createsport s/archery`                                                                      |
+| **List Sports**             | `listsports`                                                           | `listsports`                                                                                 |
+| **Delete Global Sport**     | `deletesport INDEX`                                                    | `deletesport 1`                                                                              |
 | **Add Sport**               | `addsport INDEX s/SPORT`                                               | `addsport 1 s/tennis`                                                                        |
 | **Delete Sport**            | `deletesport INDEX s/SPORT`                                            | `deletesport 2 s/basketball`                                                                 |
 | **Find by Sport**           | `findsport s/SPORT [SPORT] [SPORT]`                                    | `findsport s/basketball tennis`                                                              |

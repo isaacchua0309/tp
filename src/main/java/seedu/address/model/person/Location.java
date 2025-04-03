@@ -15,6 +15,9 @@ import java.util.Objects;
  */
 public class Location {
 
+    public static final String MESSAGE_CONSTRAINTS = "Postal code not found: %1$s, "
+            + "please key in a valid Singapore postal code";
+
     private final String postalCode;
     private final Address address;
     private final double latitude;
@@ -66,7 +69,7 @@ public class Location {
      */
     public double distanceTo(Location other) {
         Objects.requireNonNull(other, "Other location cannot be null");
-        final int earthRadiusKm = 6371; // Earth's radius in kilometers
+        final int earthRadiusKm = 6371;
         double dLat = Math.toRadians(other.latitude - this.latitude);
         double dLon = Math.toRadians(other.longitude - this.longitude);
         double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)

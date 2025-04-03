@@ -17,7 +17,7 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL =
-        "https://github.com/AY2425S2-CS2103T-F12-1/tp/blob/master/docs/UserGuide.md";
+        "https://github.com/AY2324-CS2103T-W10-4/tp/blob/master/docs/UserGuide.md";
     public static final String HELP_MESSAGE =
         "Welcome to FitFriends! For detailed instructions, please refer to our user guide: " + USERGUIDE_URL;
     private static final String LIGHT_THEME_PATH = "/view/LightTheme.css";
@@ -28,7 +28,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
-    // Define default window size and position
+
     private static final double DEFAULT_WIDTH = 600;
     private static final double DEFAULT_HEIGHT = 600;
     private static final double WINDOW_OFFSET_X = 50;
@@ -49,7 +49,7 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
 
-        // Set initial size
+
         root.setWidth(DEFAULT_WIDTH);
         root.setHeight(DEFAULT_HEIGHT);
     }
@@ -84,13 +84,13 @@ public class HelpWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing help page about the application.");
 
-        // Position the window at a fixed offset relative to the screen center
-        // to avoid covering the main window completely
+
+
         javafx.geometry.Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds();
         double centerX = screenBounds.getMinX() + screenBounds.getWidth() / 2.0;
         double centerY = screenBounds.getMinY() + screenBounds.getHeight() / 2.0;
 
-        // Position with a slight offset from center
+
         getRoot().setX(centerX - (DEFAULT_WIDTH / 2.0) + WINDOW_OFFSET_X);
         getRoot().setY(centerY - (DEFAULT_HEIGHT / 2.0) + WINDOW_OFFSET_Y);
 
@@ -108,14 +108,14 @@ public class HelpWindow extends UiPart<Stage> {
             return;
         }
 
-        // Clear existing theme stylesheets
+
         scene.getStylesheets().removeIf(stylesheet ->
             stylesheet.contains("DarkTheme.css")
             || stylesheet.contains("LightTheme.css")
             || stylesheet.contains("HelpWindowDarkTheme.css")
             || stylesheet.contains("HelpWindowLightTheme.css"));
 
-        // Apply the appropriate theme
+
         if (isDarkTheme) {
             scene.getStylesheets().add(0, HelpWindow.class.getResource(DARK_THEME_PATH).toExternalForm());
             scene.getStylesheets().add(HelpWindow.class.getResource(HELP_WINDOW_DARK_THEME_PATH).toExternalForm());
@@ -154,19 +154,19 @@ public class HelpWindow extends UiPart<Stage> {
      */
     @FXML
     private void copyUrl() {
-        // Check if the event came from the Close button
+
         Button sourceButton = (Button) copyButton.getScene().getFocusOwner();
         if (sourceButton != null && sourceButton != copyButton) {
             String buttonId = sourceButton.getText();
 
-            // Close button handling
+
             if ("Close".equals(buttonId)) {
                 hide();
                 return;
             }
         }
 
-        // Standard URL copy functionality
+
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);

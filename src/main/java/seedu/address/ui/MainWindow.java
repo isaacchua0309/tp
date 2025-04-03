@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private GameListPanel gameListPanel;
     private ResultDisplay resultDisplay;
+    private SportsListPanel sportsListPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -60,7 +61,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane gameListPanelPlaceholder; // Updated placeholder for games
+    private StackPane gameListPanelPlaceholder;
+
+    @FXML
+    private StackPane sportsListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -82,7 +86,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         setAccelerators();
 
-        // Apply dark theme styling to scene and root
+        // Apply dark theme styling to scene and roo
         applyDarkThemeStyling();
 
         helpWindow = new HelpWindow();
@@ -140,6 +144,10 @@ public class MainWindow extends UiPart<Stage> {
         // Updated: use GameListPanel and getFilteredGameList() instead of group-related methods.
         gameListPanel = new GameListPanel(logic.getFilteredGameList());
         gameListPanelPlaceholder.getChildren().add(gameListPanel.getRoot());
+
+        // Add sports list panel
+        sportsListPanel = new SportsListPanel();
+        sportsListPanelPlaceholder.getChildren().add(sportsListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -261,6 +269,9 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            // Update the sports list panel after command execution to reflect any changes
+            sportsListPanel.updateSportsList();
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -271,7 +282,7 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.info("An error occurred while executing command: " + commandText);
+            logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

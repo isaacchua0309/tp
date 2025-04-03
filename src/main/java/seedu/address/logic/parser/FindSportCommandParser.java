@@ -22,7 +22,7 @@ public class FindSportCommandParser implements Parser<FindSportCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected forma
      */
     public FindSportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -31,29 +31,29 @@ public class FindSportCommandParser implements Parser<FindSportCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_SPORT) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindSportCommand.MESSAGE_USAGE));
         }
-        // ParserUtil.parseSports throws an exception if any sport is invalid, so there is no need to handle it again
+
         List<Sport> sports = ParserUtil.parseSports(argMultimap.getAllValues(PREFIX_SPORT));
         if (sports.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindSportCommand.MESSAGE_USAGE));
         }
 
-        // Convert the Sports objects to String keywords then
-        // normalize the keywords by converting to lowercase
+
+
         List<String> sportKeywordList = sports.stream()
                 .map(Sport::toString)
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
 
-        //if postal code is provided, return FindSportSortByDistanceCommand
-        // ParserUtil.parsePostalCode throws an exception if the provided postal code is invalid,
-        // so there is no need to handle it again
+
+
+
         if (arePrefixesPresent(argMultimap, PREFIX_POSTAL_CODE)) {
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_POSTAL_CODE);
             String postalCode = ParserUtil.parsePostalCode(argMultimap.getValue(PREFIX_POSTAL_CODE).get());
             return new FindSportSortByDistanceCommand(new SportContainsKeywordsPredicate(sportKeywordList),
                     sportKeywordList, postalCode);
-        } else { //else return FindSportCommand as per usual
+        } else {
             return new FindSportCommand(new SportContainsKeywordsPredicate(sportKeywordList), sportKeywordList);
         }
     }

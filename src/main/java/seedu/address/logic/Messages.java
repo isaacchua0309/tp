@@ -58,10 +58,19 @@ public class Messages {
     public static String format(Game game) {
         final StringBuilder builder = new StringBuilder();
         builder.append(game.getSport())
-                .append("; Date/Time: ")
+                .append(" at ")
+                .append(game.getLocation().getAddress())
+                .append(" on ")
                 .append(game.getDateTime())
-                .append("; Participants: ");
-        game.getParticipants().forEach(builder::append);
+                .append(", Participants: ");
+        if (game.getParticipants().size() == 0) {
+            builder.append(0);
+        } else {
+            String participantNameList = game.getParticipants().stream().map(person -> person.getName().fullName)
+                    .collect(Collectors.joining(", "));
+            builder.append(participantNameList);
+        }
+
         return builder.toString();
     }
 }

@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String postalCode;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    // Sports are now stored as a list of strings in the JSON.
+
     private final List<String> sports = new ArrayList<>();
 
     /**
@@ -88,7 +88,7 @@ class JsonAdaptedPerson {
 
         final List<Sport> personSports = new ArrayList<>();
         for (String sportName : sports) {
-            // Optionally, add validation for sportName here (e.g., against a list of common sports).
+
             personSports.add(new Sport(sportName));
         }
 
@@ -132,7 +132,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "Postal Code"));
         }
-        // Add postal code validation if needed
+
         final String modelPostalCode = postalCode;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

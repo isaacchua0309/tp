@@ -61,12 +61,12 @@ public class CommandTestUtil {
     public static final String SPORTS_DESC_BADMINTON = " " + PREFIX_SPORT + VALID_SPORTS_BADMINTON;
 
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_POSTAL_CODE_DESC = " " + PREFIX_POSTAL_CODE; // empty postal code not allowed
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a";
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS;
+    public static final String INVALID_POSTAL_CODE_DESC = " " + PREFIX_POSTAL_CODE;
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -120,8 +120,8 @@ public class CommandTestUtil {
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-        // only do so by copying its components.
+
+
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 

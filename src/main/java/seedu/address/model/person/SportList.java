@@ -23,13 +23,13 @@ public class SportList implements Iterable<Sport> {
      * Creates an empty SportList.
      */
     public SportList() {
-        // default empty constructor
+
     }
 
     /**
      * Creates a SportList containing the elements of the specified collection.
      *
-     * @param sports collection containing elements to be added to this list
+     * @param sports collection containing elements to be added to this lis
      */
     public SportList(List<Sport> sports) {
         requireNonNull(sports);
@@ -39,7 +39,7 @@ public class SportList implements Iterable<Sport> {
     /**
      * Returns the number of sports in this list.
      *
-     * @return the number of sports in this list
+     * @return the number of sports in this lis
      */
     public int size() {
         return internalList.size();
@@ -58,7 +58,7 @@ public class SportList implements Iterable<Sport> {
      * Returns true if this list contains the specified sport.
      *
      * @param sport sport whose presence in this list is to be tested
-     * @return true if this list contains the specified sport
+     * @return true if this list contains the specified spor
      */
     public boolean contains(Sport sport) {
         requireNonNull(sport);
@@ -68,7 +68,7 @@ public class SportList implements Iterable<Sport> {
     /**
      * Adds a sport to the list.
      *
-     * @param sport sport to be added to this list
+     * @param sport sport to be added to this lis
      */
     public void add(Sport sport) {
         requireNonNull(sport);
@@ -78,7 +78,7 @@ public class SportList implements Iterable<Sport> {
     /**
      * Adds all sports in the specified collection to this list.
      *
-     * @param sports collection containing sports to be added to this list
+     * @param sports collection containing sports to be added to this lis
      * @return true if this list changed as a result of the call
      */
     public boolean addAll(Collection<Sport> sports) {
@@ -89,8 +89,8 @@ public class SportList implements Iterable<Sport> {
     /**
      * Removes the specified sport from this list, if it is present.
      *
-     * @param sport sport to be removed from this list, if present
-     * @return true if this list contained the specified sport
+     * @param sport sport to be removed from this list, if presen
+     * @return true if this list contained the specified spor
      */
     public boolean remove(Sport sport) {
         requireNonNull(sport);
@@ -101,7 +101,7 @@ public class SportList implements Iterable<Sport> {
      * Returns an unmodifiable view of the sports list.
      * This list will not allow modification operations such as add, remove.
      *
-     * @return an unmodifiable view of the sports list
+     * @return an unmodifiable view of the sports lis
      */
     public List<Sport> asUnmodifiableList() {
         return Collections.unmodifiableList(internalList);
@@ -110,7 +110,7 @@ public class SportList implements Iterable<Sport> {
     /**
      * Returns a new SportList containing all sports in this list.
      *
-     * @return a new SportList containing all sports in this list
+     * @return a new SportList containing all sports in this lis
      */
     public SportList copy() {
         return new SportList(new ArrayList<>(internalList));

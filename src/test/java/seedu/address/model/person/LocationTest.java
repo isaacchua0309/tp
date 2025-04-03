@@ -91,9 +91,9 @@ public class LocationTest {
         Location location2 = new Location(VALID_POSTAL_CODE_2, VALID_ADDRESS_2,
                 VALID_LATITUDE_2, VALID_LONGITUDE_2);
 
-        // The expected distance should be a value that represents the actual distance
-        // between the two locations using the Haversine formula
-        double expectedDistance = 0.384; // approximately 384 meters
+
+
+        double expectedDistance = 0.384;
         assertEquals(expectedDistance, location1.distanceTo(location2), 0.05);
     }
 

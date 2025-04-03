@@ -4,144 +4,125 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Sport;
-import seedu.address.model.person.SportList;
+import seedu.address.testutil.TypicalPersons;
 
+/**
+ * Contains integration tests (interaction with the Model) for {@code DeleteSportCommand}.
+ */
 public class DeleteSportCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    // Ensures sports exist for deletion
+    @TempDir
+    public Path testFolder;
+
+    private Path testSportsFile;
+    private Model model;
+    private UserPrefs userPrefs;
+
     @BeforeEach
-    public void setUp() {
-        Person personToMutate = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        // Since each Person must have 1 sport, we do this to ensure that after deletion, invariant not violated
-        Person personToModify = createPersonWithTwoSports(personToMutate);
-        model.setPerson(personToMutate, personToModify);
-        assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), personToModify);
+    public void setUp() throws IOException {
+        // Ensure we have a clean test environment with the temporary directory
+        testSportsFile = testFolder.resolve("testGlobalSportList.json");
+
+        // Setup custom UserPrefs with test file path
+        userPrefs = new UserPrefs();
+        userPrefs.setGlobalSportsListFilePath(testSportsFile);
+
+        // Load default sports for testing
+        Sport.loadDefaultSports();
+
+        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), userPrefs);
     }
-    @Test
-    public void execute_validIndexUnfilteredList_success() throws CommandException {
-        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Sport sportToDelete = new Sport("badminton");
 
-        DeleteSportCommand deleteSportCommand = new DeleteSportCommand(INDEX_FIRST_PERSON, sportToDelete);
-
-        String expectedMessage = String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS,
-                sportToDelete, personToModify.getName().fullName);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        Person modifiedPerson = createPersonWithLessSport(personToModify, sportToDelete);
-        expectedModel.setPerson(personToModify, modifiedPerson);
-        assertEquals(deleteSportCommand.execute(model), new CommandResult(expectedMessage));
-        assertEquals(expectedModel, model);
+    @AfterEach
+    public void tearDown() {
+        // Reset to default sports
+        Sport.loadDefaultSports();
     }
 
     @Test
-    public void execute_noSportFound_throwsCommandException() {
-        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Sport sportToDelete = personToModify.getSports().get(0);
-
-        // First delete existing sport
-        Person modifiedPerson = createPersonWithLessSport(personToModify, sportToDelete);
-        model.setPerson(personToModify, modifiedPerson);
-
-        // Try to delete same sport again
-        DeleteSportCommand deleteSportCommand = new DeleteSportCommand(INDEX_FIRST_PERSON, sportToDelete);
-
-        String expectedMessage = String.format(DeleteSportCommand.MESSAGE_NO_SPORT_FOUND, sportToDelete,
-                modifiedPerson.getName().fullName);
-        assertThrows(CommandException.class, expectedMessage, (
-            ) -> deleteSportCommand.execute(model));
+    public void constructor_nullIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteSportCommand(null));
     }
-    @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromZeroBased(model.getFilteredPersonList().size() + 1);
-        DeleteSportCommand deleteSportCommand = new DeleteSportCommand(outOfBoundIndex, new Sport("soccer"));
 
-        assertThrows(CommandException.class,
-                "Invalid person index", () -> deleteSportCommand.execute(model));
+    @Test
+    public void execute_validIndex_success() throws Exception {
+        // Get the sorted list to ensure consistent indexing
+        List<String> sortedSports = Sport.getSortedValidSports();
+        String sportToDelete = sortedSports.get(0); // First sport in the alphabetically sorted lis
+
+        DeleteSportCommand command = new DeleteSportCommand(Index.fromZeroBased(0));
+
+        CommandResult result = command.execute(model);
+
+        assertEquals(String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS, sportToDelete),
+                result.getFeedbackToUser());
+
+        // Verify the sport was deleted
+        assertFalse(Sport.isValidSport(sportToDelete));
+    }
+
+    @Test
+    public void execute_withCustomFilePath_success() throws Exception {
+        // Get the sorted list to ensure consistent indexing
+        List<String> sortedSports = Sport.getSortedValidSports();
+        String sportToDelete = sortedSports.get(0); // First sport in the alphabetically sorted lis
+
+        Path customPath = testFolder.resolve("customSportList.json");
+        DeleteSportCommand command = new DeleteSportCommand(Index.fromZeroBased(0), customPath);
+
+        CommandResult result = command.execute(model);
+
+        assertEquals(String.format(DeleteSportCommand.MESSAGE_DELETE_SPORT_SUCCESS, sportToDelete),
+                result.getFeedbackToUser());
+
+        // Verify the sport was deleted
+        assertFalse(Sport.isValidSport(sportToDelete));
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        int size = Sport.getSortedValidSports().size();
+        DeleteSportCommand command = new DeleteSportCommand(Index.fromZeroBased(size));
+
+        assertThrows(CommandException.class, DeleteSportCommand.MESSAGE_INVALID_SPORT_INDEX, () ->
+                command.execute(model));
     }
 
     @Test
     public void equals() {
-        Sport soccer = new Sport("soccer");
-        Sport badminton = new Sport("badminton");
-        DeleteSportCommand deleteSoccerCommand = new DeleteSportCommand(INDEX_FIRST_PERSON, soccer);
-        DeleteSportCommand deleteBadmintonCommand = new DeleteSportCommand(INDEX_SECOND_PERSON, badminton);
-        DeleteSportCommand deleteBadmintonSecondCommand = new DeleteSportCommand(INDEX_FIRST_PERSON, badminton);
+        DeleteSportCommand firstCommand = new DeleteSportCommand(Index.fromOneBased(1));
+        DeleteSportCommand secondCommand = new DeleteSportCommand(Index.fromOneBased(2));
 
         // same object -> returns true
-        assertTrue(deleteSoccerCommand.equals(deleteSoccerCommand));
+        assertTrue(firstCommand.equals(firstCommand));
 
         // same values -> returns true
-        DeleteSportCommand deleteSoccerCommandCopy = new DeleteSportCommand(INDEX_FIRST_PERSON, soccer);
-        assertTrue(deleteSoccerCommand.equals(deleteSoccerCommandCopy));
+        DeleteSportCommand firstCommandCopy = new DeleteSportCommand(Index.fromOneBased(1));
+        assertTrue(firstCommand.equals(firstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteSoccerCommand.equals(1));
+        assertFalse(firstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteSoccerCommand.equals(null));
+        assertFalse(firstCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(deleteBadmintonCommand.equals(deleteBadmintonSecondCommand));
-    }
-
-    @Test
-    public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        Sport sport = model.getFilteredPersonList().get(0).getSports().get(0);
-        DeleteSportCommand deleteSportCommand = new DeleteSportCommand(targetIndex, sport);
-        String expected = DeleteSportCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + ", sport="
-                + sport + "}";
-        assertEquals(expected, deleteSportCommand.toString());
-    }
-
-    /**
-     * Creates a new person with all the same fields as the original, except for sports field which is pre-defined.
-     */
-    private Person createPersonWithTwoSports(Person person) {
-        SportList updatedSports = new SportList();
-        updatedSports.add(new Sport("soccer"));
-        updatedSports.add(new Sport("badminton"));
-
-        return new Person(
-                person.getName(),
-                person.getPhone(),
-                person.getEmail(),
-                person.getAddress(),
-                person.getPostalCode(),
-                person.getTags(),
-                updatedSports);
-    }
-
-    /**
-     * Creates a new person with all the same fields as the original, less one sport.
-     */
-    private Person createPersonWithLessSport(Person person, Sport sport) {
-        SportList updatedSports = person.getSportList();
-        updatedSports.remove(sport);
-
-        return new Person(
-                person.getName(),
-                person.getPhone(),
-                person.getEmail(),
-                person.getAddress(),
-                person.getPostalCode(),
-                person.getTags(),
-                updatedSports);
+        // different index -> returns false
+        assertFalse(firstCommand.equals(secondCommand));
     }
 }

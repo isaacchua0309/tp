@@ -3,7 +3,7 @@ package seedu.address.ui;
 import javafx.stage.Stage;
 
 /**
- * API of UI component
+ * API of UI componen
  */
 public interface Ui {
 

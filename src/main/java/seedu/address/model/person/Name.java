@@ -50,7 +50,7 @@ public class Name {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof Name)) {
             return false;
         }

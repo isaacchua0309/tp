@@ -24,7 +24,7 @@ import seedu.address.model.person.Location;
  * mapping postal codes to location data.
  * <p>
  * This utility manages the creation of Location objects, which serve as the authoritative
- * source for postal code information in the application. This design ensures consistent
+ * source for postal code information in the application. This design ensures consisten
  * postal code validation and access.
  * <p>
  * When handling postal codes, always use the methods in this class for validation
@@ -32,17 +32,17 @@ import seedu.address.model.person.Location;
  */
 public class LocationUtil {
 
-    // Cached mapping from postal codes to their corresponding raw location data.
+
     private static final Map<String, RawLocationData> locationData = new HashMap<>();
 
-    // Path to the JSON file. Adjust the file path as necessary.
+
     private static final Path LOCATION_DATA_FILE;
 
     static {
         try {
             URL resource = LocationUtil.class.getClassLoader().getResource("locationdata/postal_code_data.json");
             requireNonNull(resource, "Resource not found");
-            //code provided by GitHub copilot
+
             try (InputStream inputStream = LocationUtil.class.getClassLoader()
                                  .getResourceAsStream("locationdata/postal_code_data.json")) {
                 requireNonNull(inputStream, "Resource not found");
@@ -55,9 +55,9 @@ public class LocationUtil {
         try {
             loadLocationData();
         } catch (DataLoadingException e) {
-            // Handle the error appropriately in your application.
+
             e.printStackTrace();
-            // Optionally, rethrow as an unchecked exception.
+
             throw new ExceptionInInitializerError(e);
         }
     }
@@ -69,16 +69,16 @@ public class LocationUtil {
      */
     private static void loadLocationData() throws DataLoadingException {
         try {
-            // Read the JSON file into a string.
+
             String jsonString = Files.readString(LOCATION_DATA_FILE);
-            // Deserialize into a raw Map.
+
             Map<?, ?> rawMap = JsonUtil.fromJsonString(jsonString, Map.class);
 
-            // Use a default ObjectMapper to convert each map entry into a RawLocationData instance.
+
             ObjectMapper mapper = new ObjectMapper();
             for (Map.Entry<?, ?> entry : rawMap.entrySet()) {
                 String postalCode = (String) entry.getKey();
-                // Convert the inner LinkedHashMap to a RawLocationData object.
+
                 RawLocationData data = mapper.convertValue(entry.getValue(), RawLocationData.class);
                 locationData.put(postalCode, data);
             }
@@ -104,8 +104,8 @@ public class LocationUtil {
             throw new IllegalArgumentException("Postal code not found: " + postalCode);
         }
 
-        // Optional: Validate if the user-input address matches rawData.getAddress() if necessary.
-        // For now, we use the user input for the address.
+
+
 
         return new Location(postalCode, address, rawData.getLatitude(), rawData.getLongitude());
     }
@@ -125,8 +125,8 @@ public class LocationUtil {
             throw new IllegalArgumentException("Postal code not found: " + postalCode);
         }
 
-        // Optional: Validate if the user-input address matches rawData.getAddress() if necessary.
-        // For now, we use the user input for the address.
+
+
         Address address = new Address(rawData.getAddress());
         return new Location(postalCode, address, rawData.getLatitude(), rawData.getLongitude());
     }

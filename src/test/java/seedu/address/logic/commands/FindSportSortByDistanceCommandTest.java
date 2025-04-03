@@ -104,7 +104,7 @@ public class FindSportSortByDistanceCommandTest {
                 new SportContainsKeywordsPredicate(Collections.singletonList("dodgeball"));
         FindSportCommand command = new FindSportSortByDistanceCommand(predicate, Collections.singletonList("dodgeball"),
                 "018906");
-        String expectedMessage = FindSportCommand.MESSAGE_INVALID_SPORT;
+        String expectedMessage = FindSportCommand.getInvalidSportMessage();
 
         assertEquals(expectedMessage, command.execute(model).getFeedbackToUser());
     }

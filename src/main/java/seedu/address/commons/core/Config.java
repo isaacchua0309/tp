@@ -14,7 +14,7 @@ public class Config {
 
     public static final Path DEFAULT_CONFIG_FILE = Paths.get("config.json");
 
-    // Config values customizable through config file
+
     private Level logLevel = Level.INFO;
     private Path userPrefsFilePath = Paths.get("preferences.json");
 
@@ -40,7 +40,7 @@ public class Config {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof Config)) {
             return false;
         }

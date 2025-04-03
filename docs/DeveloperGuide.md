@@ -124,7 +124,7 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -164,11 +164,75 @@ The `Game` object is added into a `UniqueGameList` object whenever `addgame` com
 ### `deletegame` feature
 Similar to `addgame` feature
 
+### \[Implemented\] Global Sports List Management
+
+#### Overview
+
+The Global Sports List Management feature allows users to manage a central repository of valid sports that can be assigned to contacts. This feature enhances the sports functionality of the application by providing a consistent set of sports across all contacts.
+
+#### Implementation
+
+The implementation includes several components:
+
+1. **Sport class enhancement**: The `Sport` class has been extended to maintain a static set of valid sports and provide methods for manipulating this set.
+
+2. **UserPrefs integration**: The global sports list's file path is stored in `UserPrefs`, allowing the path to be persisted and retrieved across application sessions.
+
+3. **File storage**: The global sports list is saved to and loaded from a JSON file, ensuring persistence between application runs.
+
+4. **Command implementation**: Three new commands (`CreateSportCommand`, `ListSportsCommand`, and `DeleteSportCommand`) have been implemented to manage the global sports list.
+
+Here's an overview of how the feature works:
+
+![GlobalSportsListSequenceDiagram](images/GlobalSportsListSequenceDiagram.png)
+
+1. On application startup, the `MainApp` class loads the global sports list from the file path specified in `UserPrefs`.
+2. When a user adds a new sport using `CreateSportCommand`, the sport is added to the valid sports list in the `Sport` class and saved to the file.
+3. The `ListSportsCommand` displays all available sports in alphabetical order with indices.
+4. The `DeleteSportCommand` removes a sport from the global list by its index in the alphabetically sorted list.
+5. When the application is closed, the global sports list is saved to ensure persistence.
+
+#### Design considerations:
+
+**Aspect: Storage of global sports list**
+
+* **Alternative 1 (current choice):** Store the sports list in a separate JSON file.
+  * Pros: Separation of concerns, easier to manage and update independently from contacts.
+  * Cons: Requires additional file I/O operations.
+
+* **Alternative 2:** Store the sports list as part of the UserPrefs.
+  * Pros: Single file for all user preferences, potentially simpler implementation.
+  * Cons: Bloats the UserPrefs object, especially as the sports list grows.
+
+**Aspect: Management of sports list**
+
+* **Alternative 1 (current choice):** Use a static set in the Sport class.
+  * Pros: Easy to access from anywhere in the codebase, consistent validation.
+  * Cons: Static state can be more difficult to test.
+
+* **Alternative 2:** Store in Model as a field.
+  * Pros: Follows the architectural pattern more closely, easier to test.
+  * Cons: Requires passing the model to more components, potentially complicating the design.
+
+**Aspect: Command structure for deleting sports**
+
+* **Alternative 1 (current choice):** Have two separate usages for `deletesport` command (with and without sport name).
+  * Pros: Intuitive naming, as both commands deal with deleting sports.
+  * Cons: Could cause confusion due to the dual behavior.
+
+* **Alternative 2:** Use separate commands like `deleteglobalsport` and `deletepersonsport`.
+  * Pros: Clear distinction between different operations.
+  * Cons: More commands to learn, potentially less intuitive naming.
+
+#### Future enhancements:
+
+* **Categorization**: Group sports by type (e.g., team sports, individual sports).
+* **Popularity tracking**: Track which sports are most commonly used across contacts.
+* **Sport details**: Add additional information like required equipment or typical venue types.
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -228,182 +292,4 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | sporty person                               | set my friend's preferred play locations                                                                | know where to meet them for games                                             |
 | `* *`    | working adult                               | tag contacts with custom labels                                                                         | categorize them by friends/work                                               |
 | `* *`    | sports coach                                | track where my students live                                                                            | organize training sessions at convenient locations                            |
-| `* *`    | user with many persons in the address book  | sort persons by name                                                                                    | locate a person easily                                                        |
-| `*`      | sports team captain from NUS                | find friends from the same sport in different schools                                                   | arrange friendly tournaments                                                  |
-| `*`      | team captain                                | be able to add my contacts to a list of players who attended a practice session                         | keep track of attendance easily                                               |
-| `*`      | sports enthusiast                           | add my friends to my sports address book                                                                | quickly check who plays the sport I want to participate in                    |
-| `*`      | casual futsal player                        | invite my friends and have the application suggest a location                                           | save the effort of checking different venues manually                         |
-| `*`      | newcomer to the city                        | find people nearby who play my favourite sport                                                          | join their games                                                              |
-| `*`      | competitive athlete                         | see a leaderboard of who has played the most games                                                      | gain motivation and stay active                                               |
-| `*`      | social athlete                              | be reminded who plays with me the most                                                                  | find out who is most likely to be available if I contact them for a game      |
-| `*`      | competitive user                            | track my game participation and win/loss record                                                         | measure my progress over time                                                 |
-
-
-
-*{More to be added}*
-
-### Use cases
-
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case 1: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case 2: Tag a contact**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to tag a specific person in the list
-4.  AddressBook updates the person's contact details
-
-    Use case ends.
-
-    **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The person is not in the list.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case 3: Filter by location**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User enters a location to filter the list
-4.  AddressBook updates the list shown to user
-
-    Use case ends.
-
-    **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given location is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-* 4a. The given location does not belong to any user.
-
-    * 4a1. AddressBook shows an error message.
-      Use case resumes at step 2.
-
-**Use case 4: Edit a contact**
-
-**MSS**
-
-1.  User searches for a person
-2.  AddressBook shows matching result(s)
-3.  User requests to view contact details
-4.  AddressBook shows contact details
-5.  User selects field to update details
-6.  AddressBook reflects updated contact details
-
-    Use case ends.
-
-    **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-*{More to be added}*
-
-### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The system must be designed for a single user only, user data is private and not shared between different users.
-5. Users should be able to run the application from a single executable JAR file.
-6. The system must automatically save data after each user edit to ensure data persistence.
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **JAR File**: A compressed package that bundles Java classes, resources metadata into a single executable file
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+| `* *`

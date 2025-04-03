@@ -44,7 +44,7 @@ public class Phone {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof Phone)) {
             return false;
         }

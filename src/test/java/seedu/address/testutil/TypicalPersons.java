@@ -81,7 +81,7 @@ public class TypicalPersons {
             .withSports("baseball")
             .build();
 
-    // Manually added
+
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
             .withPhone("8482424")
             .withEmail("stefan@example.com")
@@ -97,7 +97,7 @@ public class TypicalPersons {
             .withSports("basketball")
             .build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withPostalCode(VALID_POSTAL_CODE_AMY)
             .withTags(VALID_TAG_FRIEND)
@@ -107,9 +107,9 @@ public class TypicalPersons {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withSports(VALID_SPORTS_BADMINTON, VALID_SPORTS_CRICKET)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_MEIER = "Meier";
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalPersons() {}
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.

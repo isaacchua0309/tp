@@ -89,7 +89,7 @@ public class UiPartTest {
     private static class TestUiPart<T> extends UiPart<T> {
 
         @FXML
-        private TestFxmlObject validFileRoot; // Check that @FXML annotations work
+        private TestFxmlObject validFileRoot;
 
         TestUiPart(URL fxmlFileUrl, T root) {
             super(fxmlFileUrl, root);

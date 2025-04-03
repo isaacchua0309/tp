@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Sport;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -65,6 +66,14 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+        // Load global sports list from user preferences path
+        try {
+            Sport.loadValidSports(userPrefs.getGlobalSportsListFilePath());
+            logger.info("Loaded global sports list from " + userPrefs.getGlobalSportsListFilePath());
+        } catch (IOException e) {
+            logger.warning("Error loading global sports list: " + e.getMessage());
+        }
     }
 
     /**
@@ -178,9 +187,14 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping AddressBook ] =============================");
         try {
+            // Save user preferences
             storage.saveUserPrefs(model.getUserPrefs());
+
+            // Save global sports lis
+            Sport.saveValidSports(model.getUserPrefs().getGlobalSportsListFilePath());
+            logger.info("Saved global sports list to " + model.getUserPrefs().getGlobalSportsListFilePath());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            logger.severe("Failed to save application data: " + StringUtil.getDetails(e));
         }
     }
 }

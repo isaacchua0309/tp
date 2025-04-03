@@ -32,18 +32,13 @@ public class FindSportCommand extends Command {
             + PREFIX_SPORT + "badminton "
             + PREFIX_SPORT + "volleyball "
             + PREFIX_SPORT + "cricket";
-    public static final String MESSAGE_INVALID_SPORT = "Invalid sport found. Allowed sports: " + Sport.VALID_SPORTS
-            + "\nExample: " + COMMAND_WORD
-            + PREFIX_SPORT + "badminton "
-            + PREFIX_SPORT + "volleyball "
-            + PREFIX_SPORT + "cricket";
 
     protected final SportContainsKeywordsPredicate predicate;
     protected final List<String> sportKeywordList;
 
     /**
      * Creates a FindSportCommand object to find persons who play certain sports
-     * @param predicate test if a person has sports which are contained in user input list
+     * @param predicate test if a person has sports which are contained in user input lis
      * @param sportKeywordList user input list to check for valid sports
      */
     public FindSportCommand(SportContainsKeywordsPredicate predicate, List<String> sportKeywordList) {
@@ -51,15 +46,38 @@ public class FindSportCommand extends Command {
         this.sportKeywordList = sportKeywordList;
     }
 
+    // Update this definition to use a method that can be evaluated at runtime
+    public static String getInvalidSportMessage() {
+        // Use the sorted list of sports to display them in alphabetical order
+        List<String> sortedSports = Sport.getSortedValidSports();
+        StringBuilder message = new StringBuilder("Invalid sport found. Allowed sports:\n");
+
+        for (int i = 0; i < sortedSports.size(); i++) {
+            message.append(String.format("%d. %s\n", i + 1, sortedSports.get(i)));
+        }
+
+        message.append("\nExample: ")
+               .append(COMMAND_WORD)
+               .append(" ")
+               .append(PREFIX_SPORT)
+               .append("badminton ")
+               .append(PREFIX_SPORT)
+               .append("volleyball ")
+               .append(PREFIX_SPORT)
+               .append("cricket");
+
+        return message.toString();
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // Use Sport.isValidSport to validate each sport
+        // Use Sport.isValidSport to validate each spor
         boolean hasInvalidSport = sportKeywordList.stream()
                 .anyMatch(sport -> !Sport.isValidSport(sport));
 
         if (hasInvalidSport) {
-            return new CommandResult(MESSAGE_INVALID_SPORT);
+            return new CommandResult(getInvalidSportMessage());
         }
         model.updateFilteredPersonList(predicate);
         model.sortFilteredPersonListAlphabetically();

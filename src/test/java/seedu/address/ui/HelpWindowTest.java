@@ -14,7 +14,8 @@ import seedu.address.logic.commands.HelpCommand;
  * Contains tests for HelpWindow.
  */
 public class HelpWindowTest {
-    private static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    private static final String USERGUIDE_URL = "https://github.com/AY2324-CS2103T-W10-4/tp/blob/"
+            + "master/docs/UserGuide.md";
     private static final String HELP_WINDOW_TITLE = "Help";
 
     /**
@@ -23,7 +24,7 @@ public class HelpWindowTest {
     @Test
     @Disabled("Requires JavaFX initialization")
     public void constructor_validInputs_success() {
-        // Disabled due to JavaFX initialization issues in testing environment
+
     }
 
     /**
@@ -32,7 +33,7 @@ public class HelpWindowTest {
     @Test
     @Disabled("Requires JavaFX initialization")
     public void isShowing_initialState_false() {
-        // Disabled due to JavaFX initialization issues in testing environment
+
     }
 
     /**
@@ -42,7 +43,7 @@ public class HelpWindowTest {
     @Test
     public void helpCommand_execute_returnsCorrectCommandResult() throws Exception {
         HelpCommand helpCommand = new HelpCommand();
-        CommandResult result = helpCommand.execute(null); // Model not needed for this command
+        CommandResult result = helpCommand.execute(null);
 
         assertEquals(HelpCommand.SHOWING_HELP_MESSAGE, result.getFeedbackToUser());
         assertTrue(result.isShowHelp());

@@ -48,17 +48,17 @@ public class GameCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         gameName.setText(game.getSport().toString());
 
-        // Populate participants (if any)
+
         game.getParticipants().forEach(p -> {
             Label participantLabel = new Label(p.getName().fullName);
-            // Important: We need to use the same styling approach as PersonCard for sports
+
             participantLabel.getStyleClass().add("label");
-            // Adding a space after the name for better visual appearance like in sports labels
+
             participantLabel.setText(p.getName().fullName + " ");
             participants.getChildren().add(participantLabel);
         });
 
         dateTime.setText("Date/Time: " + game.getDateTime());
-        locationLabel.setText("Location: " + game.getLocation().getAddress().toString()); // or hide if not available
+        locationLabel.setText("Location: " + game.getLocation().getAddress().toString());
     }
 }

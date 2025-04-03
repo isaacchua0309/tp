@@ -39,19 +39,19 @@ public class HelpWindowIntegrationTest {
      */
     @Test
     public void execute_helpCommand_success() throws CommandException, ParseException {
-        // Test exact "help" command
+
         CommandResult commandResult = logic.execute("help");
         assertEquals(SHOWING_HELP_MESSAGE, commandResult.getFeedbackToUser());
         assertTrue(commandResult.isShowHelp());
         assertFalse(commandResult.isExit());
 
-        // Test help command with extra whitespace
+
         commandResult = logic.execute("   help   ");
         assertEquals(SHOWING_HELP_MESSAGE, commandResult.getFeedbackToUser());
         assertTrue(commandResult.isShowHelp());
         assertFalse(commandResult.isExit());
 
-        // Test help command with additional arguments (should still work per the parser design)
+
         commandResult = logic.execute("help some extra arguments");
         assertEquals(SHOWING_HELP_MESSAGE, commandResult.getFeedbackToUser());
         assertTrue(commandResult.isShowHelp());
@@ -64,7 +64,7 @@ public class HelpWindowIntegrationTest {
     @Test
     @Disabled("Requires JavaFX initialization")
     public void helpWindow_containsAllImplementedCommands() {
-        // Disabled due to JavaFX initialization issues in testing environment
+
     }
 
     /**
@@ -73,7 +73,7 @@ public class HelpWindowIntegrationTest {
     @Test
     public void execute_invalidCommand_parseException() {
         try {
-            logic.execute("helpme"); // This is not a valid command
+            logic.execute("helpme");
             throw new AssertionError("Expected ParseException was not thrown");
         } catch (Exception e) {
             assertEquals(MESSAGE_UNKNOWN_COMMAND, e.getMessage());

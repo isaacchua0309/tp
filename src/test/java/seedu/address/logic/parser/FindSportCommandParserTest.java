@@ -34,7 +34,7 @@ public class FindSportCommandParserTest {
      */
     @Test
     public void parse_validArgs_returnsFindSportCommand() {
-        // no leading and trailing whitespaces
+
         List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
@@ -43,11 +43,11 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
 
-        //remember to always include " " before your arguments
+
         assertParseSuccess(parser, " " + PREFIX_SPORT + "soccer "
                 + PREFIX_SPORT + "cricket", expectedCommand);
 
-        // multiple whitespaces between keywords
+
         assertParseSuccess(parser, " \n " + PREFIX_SPORT + "soccer \n \t "
                 + PREFIX_SPORT + "cricket  \t", expectedCommand);
     }
@@ -57,7 +57,7 @@ public class FindSportCommandParserTest {
      */
     @Test
     public void parse_validArgs_returnsFindSportSortByDistanceCommand() {
-        // no leading and trailing whitespaces
+
         List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
@@ -67,11 +67,11 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords, "018906");
 
-        //remember to always include " " before your arguments
+
         assertParseSuccess(parser, " " + PREFIX_POSTAL_CODE + "018906" + " " + PREFIX_SPORT + "soccer "
                 + PREFIX_SPORT + "cricket", expectedCommand);
 
-        // multiple whitespaces between keywords
+
         assertParseSuccess(parser, " " + PREFIX_POSTAL_CODE + "018906" + " \n " + PREFIX_SPORT + "soccer \n \t "
                 + PREFIX_SPORT + "cricket  \t", expectedCommand);
     }
@@ -82,7 +82,7 @@ public class FindSportCommandParserTest {
      */
     @Test
     public void parse_mixedCaseArgs_returnsFindSportCommand() {
-        // Mixed case keywords (upper and lower case)
+
         List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
@@ -91,7 +91,7 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords);
 
-        //remember to always include " " before your arguments
+
         assertParseSuccess(parser, " " + PREFIX_SPORT + "SoCCer "
                 + PREFIX_SPORT + "CRicKET", expectedCommand);
     }
@@ -102,7 +102,7 @@ public class FindSportCommandParserTest {
      */
     @Test
     public void parse_mixedCaseArgs_returnsFindSportSortByDistanceCommand() {
-        // no leading and trailing whitespaces
+
         List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
@@ -112,11 +112,11 @@ public class FindSportCommandParserTest {
                 new SportContainsKeywordsPredicate(normalizedKeywords),
                 normalizedKeywords, "018906");
 
-        //remember to always include " " before your arguments
+
         assertParseSuccess(parser, " " + PREFIX_POSTAL_CODE + "018906" + " " + PREFIX_SPORT + "soCCer "
                 + PREFIX_SPORT + "criCkEt", expectedCommand);
 
-        // multiple whitespaces between keywords
+
         assertParseSuccess(parser, " " + PREFIX_POSTAL_CODE + "018906" + " \n " + PREFIX_SPORT + "soCcer \n \t "
                 + PREFIX_SPORT + "CrIcket  \t", expectedCommand);
     }
@@ -126,7 +126,7 @@ public class FindSportCommandParserTest {
      */
     @Test
     public void parse_invalidPostalCode_fails() {
-        // no leading and trailing whitespaces
+
         List<String> normalizedKeywords = Arrays.asList("soccer", "cricket").stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
@@ -134,11 +134,11 @@ public class FindSportCommandParserTest {
         String missingExpectedMessage = "Postal code cannot be empty.";
         String invalidExpectedMessage = "Invalid postal code. Please enter a valid Singapore postal code.";
 
-        // missing postal code
+
         assertParseFailure(parser, " " + PREFIX_POSTAL_CODE + " " + " \n " + PREFIX_SPORT + "soccer \n \t "
                 + PREFIX_SPORT + "cricket \t", missingExpectedMessage);
 
-        // not a real Singaporean postal code
+
         assertParseFailure(parser, " " + PREFIX_POSTAL_CODE + "000000" + " " + PREFIX_SPORT + "soccer "
                 + PREFIX_SPORT + "cricket", invalidExpectedMessage);
 
