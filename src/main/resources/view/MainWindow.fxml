@@ -69,7 +69,7 @@
             <StackPane fx:id="sportsListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
         </SplitPane>
-        
+
         <VBox.margin>
           <Insets top="0" bottom="6" left="2" right="2" />
         </VBox.margin>
@@ -106,3 +106,4 @@
     </Scene>
   </scene>
 </fx:root>
+

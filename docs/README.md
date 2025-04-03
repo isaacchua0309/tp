@@ -23,4 +23,4 @@ To test this documentation site locally:
 4. Run `bundle exec jekyll serve` to start a local server
 5. Visit `http://localhost:4000` to view the site
 
-For more information, see the [GitHub Pages documentation](https://docs.github.com/en/pages). 
+For more information, see the [GitHub Pages documentation](https://docs.github.com/en/pages).
