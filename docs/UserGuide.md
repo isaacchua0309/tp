@@ -86,11 +86,13 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 ### First Launch
 
 #### Using the Command Line Interface (CLI)
+###### Find out more about what a command line interface is [here](https://www.techtarget.com/searchwindowsserver/definition/command-line-interface-CLI).
 
 1. **Open a terminal or command prompt**
    - On Windows: Press `Win + R`, type `cmd` and press Enter
    - On macOS: Press `Cmd + Space`, type `terminal` and press Enter
    - On Linux: Press `Ctrl + Alt + T`
+   
 
 2. **Navigate to the folder** containing FitFriends.jar:
    ```
@@ -192,9 +194,13 @@ View all your sports buddies in one place.
 list
 ```
 
-This displays all your contacts in the left panel.
+This displays all your friends in the left panel.
 
 ![Listing All Friends](images/list_command.png)
+
+> 💡 **List Tips**:
+> * You should run this command after adding, deleting or editing friends to see the updated list.
+> * You should also run this command after running find or findsport commands to view the full list.
 
 #### Editing a Friend
 
@@ -216,7 +222,7 @@ This updates the 2nd person in your current list with a new name, phone number, 
 
 > ⚠️ **Note**: You cannot edit sports with this command. To change sports information, use the `deletesport` and `addsport` commands.
 
-> 💡 **Editing Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will only retain `colleague` tag).
+> 💡 **Editing Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
 
 #### Locating Friends by Name
 
@@ -242,9 +248,12 @@ This will show all contacts whose names contain "James" or "Jake".
 > - Only full words are matched (e.g., "Han" won't match "Hans")
 > - Any contact matching at least one keyword will be shown
 
+> 💡 **Pro-tip**: If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the find command. Use this to manage your contacts without having to search for them manually!
+
+
 #### Deleting a Friend
 
-Remove a contact from your FitFriends list.
+Remove a friend from your FitFriends list.
 
 **Format**:
 ```
@@ -294,7 +303,7 @@ This adds archery to the global list of valid sports that can be assigned to con
 
 ![Creating a Sport](images/createsport_command.png)
 
-> 💡 **Tip**: Sport names are case-insensitive and will be stored in lowercase.
+> 💡 **Tip**: Sport names entered in commands are case-insensitive but will be stored and displayed in lowercase.
 
 #### Listing All Sports
 
@@ -311,7 +320,7 @@ This displays all sports in alphabetical order with numbers for reference.
 
 > 💡 **Tip**: Make note of the indices as they're needed when deleting sports from the global list.
 
-#### Deleting a Sport from Global List
+#### Deleting a Sport from Global List of Sports
 
 Remove a sport from the global sports list.
 
@@ -327,7 +336,7 @@ deletesport 1
 
 This removes the first sport in the alphabetized global sports list.
 
-![Deleting a Global Sport](images/deletesport_global_command.png)
+![Deleting a Sport globally](images/deletesport_global_command.png)
 
 > ⚠️ **Warning**: Removing a sport from the global list means it can no longer be assigned to contacts.
 
@@ -347,7 +356,7 @@ addsport 2 s/basketball
 
 This adds basketball to the list of sports played by the 2nd person in your current list.
 
-![Adding a Sport](images/addsport_command.png)
+![Adding a Sport to a friend](images/addsport_command.png)
 
 > 💡 **Tip**: You can only add one sport at a time. For multiple sports, use the command several times.
 
@@ -367,7 +376,7 @@ deletesport 2 s/basketball
 
 This removes basketball from the 2nd person's sports list.
 
-![Deleting a Sport](images/deletesport_command.png)
+![Deleting a Sport from a friend](images/deletesport_command.png)
 
 #### Finding Friends by Sport
 
@@ -385,7 +394,9 @@ findsport s/basketball tennis
 
 This shows all contacts who play either basketball or tennis (or both).
 
-![Finding by Sport](images/findsport_command.png)
+![Finding Friends by Sport](images/findsport_command.png)
+
+> 💡 **Pro-tip**: If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the findsport command. Use this to manage your contacts without having to search for them manually!
 
 #### Finding Friends by Sport and Location
 
@@ -409,7 +420,9 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 > - Searches are case-insensitive
 > - Proximity is calculated by contact's postal code
 
-> 💡 **Pro Tip**: Use this feature to find the optimal meeting spot for your sports group!
+> 💡 **Pro Tip**: 
+> * Use this feature to find the optimal meeting spot for your sports group!
+> * If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the findsport command. Use this to manage your contacts without having to search for them manually!
 
 ---
 
