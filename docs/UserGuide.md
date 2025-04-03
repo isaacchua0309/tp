@@ -1,13 +1,14 @@
 # FitFriends User Guide
 
-*Last Updated: 24 Mar 2025*
+*Last Updated: 3 Apr 2025*
 
 ![FitFriends Logo](images/fitfriends_logo.png)
 
 ## 🏆 Our Mission
 
-FitFriends is designed to help **sporty young adults** connect, organize and participate in sports activities together. In today's busy world, finding friends with similar sporting interests and coordinating meetups can be challenging. FitFriends makes this process seamless and enjoyable.
+FitFriends is designed to help **sporty young adults*** connect, organize and participate in sports activities together. In today's busy world, finding friends with similar sporting interests and coordinating meetups can be challenging. FitFriends makes this process seamless and enjoyable.
 
+*refers to adults between 16-35 years of age and are active or looking to get active in the sporting scene
 ### 🎯 Problems We're Solving
 
 **Primary Challenge:**
@@ -215,6 +216,8 @@ This updates the 2nd person in your current list with a new name, phone number, 
 
 > ⚠️ **Note**: You cannot edit sports with this command. To change sports information, use the `deletesport` and `addsport` commands.
 
+> 💡 **Editing Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will only retain `colleague` tag).
+
 #### Locating Friends by Name
 
 Quickly find friends by searching for part of their name.
@@ -410,41 +413,41 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 
 ---
 
-### Group Management
+### Game Management
 
-#### Creating Groups
+#### Creating Games
 
 Organize your sports buddies into groups for different activities or events.
 
 **Format**:
 ```
-creategroup g/GROUP_NAME
+addgame g/SPORT_NAME
 ```
 
 **Example**:
 ```
-creategroup g/tennisbuddies
+addgame g/badminton
 ```
 
-This creates a new group called "tennisbuddies".
+This creates a new group called "badminton".
 
 ![Creating a Group](images/creategroup_command.png)
 
-#### Deleting Groups
+#### Deleting Games
 
-Remove groups you no longer need.
+Remove Games you no longer need.
 
 **Format**:
 ```
-deletegroup g/GROUP_NAME
+deletegame g/SPORT_NAME
 ```
 
 **Example**:
 ```
-deletegroup g/tennisbuddies
+deletegame g/badminton
 ```
 
-This deletes the "tennisbuddies" group.
+This deletes the "badminton" group.
 
 ![Deleting a Group](images/deletegroup_command.png)
 
