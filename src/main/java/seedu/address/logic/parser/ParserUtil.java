@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.game.Game;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sport;
@@ -132,6 +133,10 @@ public class ParserUtil {
         String trimmedGameName = gameName.trim();
         if (!Sport.isValidSport(trimmedGameName)) {
             throw new ParseException(Sport.getMessageConstraints());
+        }
+
+        if (!LocationUtil.isValidPostalCode(location)) {
+            throw new ParseException(String.format(Location.MESSAGE_CONSTRAINTS, location));
         }
         return new Game(new Sport(trimmedGameName), parseDateTime(dateTime), LocationUtil.createLocation(location));
     }

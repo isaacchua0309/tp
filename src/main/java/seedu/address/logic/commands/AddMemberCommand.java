@@ -47,7 +47,6 @@ public class AddMemberCommand extends Command {
         this.targetIndex = targetIndex;
         this.memberName = memberName;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -64,32 +63,22 @@ public class AddMemberCommand extends Command {
 
 
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
-
-
+      
         if (model.isPersonUnique(memberName) == -1) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSONS, memberName));
         } else if (model.isPersonUnique(memberName) == 0) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, memberName));
         }
-
-
         Person personToAdd = model.getPerson(memberName);
-
-
         if (gameToEdit.getParticipants().contains(personToAdd)) {
             throw new CommandException(String.format(
-                    MESSAGE_PERSON_EXISTS, memberName, gameToEdit.toString()));
+                    MESSAGE_PERSON_EXISTS, memberName, gameToEdit));
         }
-
-
         model.deleteGame(gameToEdit);
         gameToEdit.addParticipant(personToAdd);
         model.addGame(gameToEdit);
 
-
-
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, memberName, gameToEdit.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToAdd.getName().fullName, gameToEdit));
     }
 
     @Override
