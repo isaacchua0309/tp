@@ -33,7 +33,7 @@ public class DeleteMemberCommand extends Command {
     private final String memberName;
 
     /**
-     * @param targetIndex Index of the game in the currently displayed game list
+     * @param targetIndex Index of the game in the currently displayed game lis
      * @param memberName  Name of the Person to remove from that game
      */
     public DeleteMemberCommand(Index targetIndex, String memberName) {
@@ -47,28 +47,28 @@ public class DeleteMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // 1) Get the current filtered game list (sorted by date/time)
+
         List<Game> lastShownList = model.getFilteredGameList();
 
-        // 2) Validate the index - this index refers to the position in the date/time sorted list
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
                     String.format(MESSAGE_INVALID_GAME_INDEX, targetIndex.getOneBased()));
         }
 
-        // 3) Retrieve the specified game - game indices are consistent due to date/time sorting
+
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        // 5) Retrieve the Person to remove
+
         Person personToRemove = model.getPerson(memberName);
 
-        // 6) Check if this person is actually in the participants list
+
         if (!gameToEdit.getParticipants().contains(personToRemove)) {
             throw new CommandException(String.format(
                     MESSAGE_PERSON_NOT_IN_GAME, memberName, gameToEdit.toString()));
         }
 
-        // 7) Remove and re-add the updated game, or use a specialized "removeParticipantFromGame" method
+
         model.deleteGame(gameToEdit);
         gameToEdit.removeParticipant(personToRemove);
         model.addGame(gameToEdit);

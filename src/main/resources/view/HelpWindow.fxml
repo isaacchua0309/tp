@@ -133,9 +133,38 @@
               <Label text="Sports Management" styleClass="help-section-title" />
 
               <VBox styleClass="help-command">
+                <Label text="createsport" styleClass="help-command-name" />
+                <Label text="Add new sports to the global sports list for everyone to use" styleClass="help-command-desc" />
+                <Label text="Format: createsport s/SPORT_NAME" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="createsport s/Boxing" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: Sport names are case-insensitive. You cannot create a duplicate sport." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="listsports" styleClass="help-command-name" />
+                <Label text="Display all available sports in the global sports list with their indices" styleClass="help-command-desc" />
+                <Label text="Format: listsports" wrapText="true" styleClass="help-command-format" />
+                <Label text="Note: Sports are displayed in alphabetical order with numbers for reference." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="deletesport" styleClass="help-command-name" />
+                <Label text="Remove a sport from the global sports list by its index" styleClass="help-command-desc" />
+                <Label text="Format: deletesport INDEX" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Example:" styleClass="examples-header" />
+                  <Label text="deletesport 1" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: The INDEX refers to the sport's position in the global list (use listsports to view)." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
                 <Label text="addsport" styleClass="help-command-name" />
                 <Label text="Record which sports your friends play to make planning activities easier" styleClass="help-command-desc" />
-                <Label text="Format: addsport INDEX s/SPORT" wrapText="true" styleClass="help-command-format" />
+                <Label text="Format: addsport INDEX s/SPORT_NAME" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
                   <Label text="addsport 2 s/basketball" wrapText="true" styleClass="help-command-example" />
@@ -146,31 +175,32 @@
               <VBox styleClass="help-command">
                 <Label text="deletesport" styleClass="help-command-name" />
                 <Label text="Update your records if a friend no longer plays a particular sport" styleClass="help-command-desc" />
-                <Label text="Format: deletesport INDEX s/SPORT" wrapText="true" styleClass="help-command-format" />
+                <Label text="Format: deletesport INDEX s/SPORT_NAME" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
                   <Label text="deletesport 2 s/basketball" wrapText="true" styleClass="help-command-example" />
                 </VBox>
+                <Label text="Note: A person must have at least one sport. Add a new sport before removing their only sport." styleClass="help-command-note" />
               </VBox>
 
               <VBox styleClass="help-command">
                 <Label text="findsport" styleClass="help-command-name" />
                 <Label text="Discover which friends play specific sports—perfect for organizing game days!" styleClass="help-command-desc" />
-                <Label text="Format: findsport s/SPORT [SPORT] [SPORT]" wrapText="true" styleClass="help-command-format" />
+                <Label text="Format: findsport s/SPORT_KEYWORD [s/MORE_SPORT_KEYWORDS]..." wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
-                  <Label text="findsport s/basketball tennis" wrapText="true" styleClass="help-command-example" />
+                  <Label text="findsport s/badminton s/volleyball s/cricket" wrapText="true" styleClass="help-command-example" />
                 </VBox>
-                <Label text="Note: Contacts who play any of the listed sports will be shown." styleClass="help-command-note" />
+                <Label text="Note: Contacts who play any of the listed sports will be shown in alphabetical order." styleClass="help-command-note" />
               </VBox>
 
               <VBox styleClass="help-command">
                 <Label text="findsport with location" styleClass="help-command-name" />
                 <Label text="Find sports buddies near a specific location—ideal for planning convenient meetups!" styleClass="help-command-desc" />
-                <Label text="Format: findsport pc/POSTALCODE s/SPORT [SPORT] [SPORT]" wrapText="true" styleClass="help-command-format" />
+                <Label text="Format: findsport pc/POSTAL_CODE s/SPORT_KEYWORD [s/MORE_SPORT_KEYWORDS]..." wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
-                  <Label text="findsport pc/123456 s/tennis hockey" wrapText="true" styleClass="help-command-example" />
+                  <Label text="findsport pc/018906 s/badminton s/volleyball s/cricket" wrapText="true" styleClass="help-command-example" />
                 </VBox>
                 <Label text="Note: Results are sorted by proximity to the provided postal code." styleClass="help-command-note" />
               </VBox>

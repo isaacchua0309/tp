@@ -3,61 +3,51 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteSportCommand;
-import seedu.address.model.person.Sport;
 
 public class DeleteSportCommandParserTest {
-
-    private static final String VALID_SPORT = "tennis";
 
     private DeleteSportCommandParser parser = new DeleteSportCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        // Valid Entry
-        DeleteSportCommand expectedCommand =
-                new DeleteSportCommand(INDEX_FIRST_PERSON, new Sport(VALID_SPORT));
-        assertParseSuccess(parser, "1 s/tennis", expectedCommand);
+    public void parse_validIndex_success() {
+        // Valid index
+        DeleteSportCommand expectedCommand = new DeleteSportCommand(Index.fromOneBased(1));
+        assertParseSuccess(parser, "1", expectedCommand);
 
         // With whitespace
-        assertParseSuccess(parser, " 1    s/  tennis  ", expectedCommand);
-
+        assertParseSuccess(parser, "  1  ", expectedCommand);
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_missingIndex_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE);
 
-        // Missing index
-        assertParseFailure(parser, "s/soccer", expectedMessage);
+        // Empty inpu
+        assertParseFailure(parser, "", expectedMessage);
 
-        // Missing spor
-        assertParseFailure(parser, "1", expectedMessage);
-
-        // Missing sport prefix
-        assertParseFailure(parser, "1 soccer", expectedMessage);
+        // Just whitespace
+        assertParseFailure(parser, "   ", expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // Invalid index
-        assertParseFailure(parser, "0 s/soccer",
-                MESSAGE_INVALID_INDEX);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE);
 
-        assertParseFailure(parser, "-1 s/soccer",
-                MESSAGE_INVALID_INDEX);
+        // Invalid index - zero
+        assertParseFailure(parser, "0", expectedMessage);
 
-        // Empty spor
-        assertParseFailure(parser, "1 s/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE));
+        // Invalid index - negative
+        assertParseFailure(parser, "-1", expectedMessage);
 
-        // Invalid forma
-        assertParseFailure(parser, "1s/soccer",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSportCommand.MESSAGE_USAGE));
+        // Non-numeric inpu
+        assertParseFailure(parser, "abc", expectedMessage);
+
+        // Index with additional tex
+        assertParseFailure(parser, "1 extra", expectedMessage);
     }
 }

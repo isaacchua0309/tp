@@ -57,20 +57,20 @@ public class AddCommandTest {
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
-        // same object -> returns true
+
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
-        // same values -> returns true
+
         AddCommand addAliceCommandCopy = new AddCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
-        // different types -> returns false
+
         assertFalse(addAliceCommand.equals(1));
 
-        // null -> returns false
+
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -88,10 +88,10 @@ public class AddCommandTest {
     private class ModelStub implements Model {
         protected final ArrayList<Person> personsAdded = new ArrayList<>();
 
-        // ===== UserPrefs methods =====
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            // No-op for stub
+
         }
 
         @Override
@@ -106,7 +106,7 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            // No-op for stub
+
         }
 
         @Override
@@ -116,13 +116,13 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
-            // No-op for stub
+
         }
 
-        // ===== AddressBook methods =====
+
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
-            // No-op for stub
+
         }
 
         @Override
@@ -130,7 +130,7 @@ public class AddCommandTest {
             return new AddressBook();
         }
 
-        // ===== Person methods =====
+
         @Override
         public void addPerson(Person person) {
             requireNonNull(person);
@@ -164,7 +164,7 @@ public class AddCommandTest {
             long count = personsAdded.stream()
                     .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
                     .count();
-            // Return the count as an int (could be 0, 1, or >1)
+
             return (int) count;
         }
 
@@ -192,16 +192,16 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             requireNonNull(predicate);
-            // For stub purposes, we won't maintain an internal filtered list.
+
         }
 
         @Override
         public void sortFilteredPersonListByDistance(Location location) {
             requireNonNull(location);
-            // No-op for stub.
+
         }
 
-        // ===== Game methods (dummy implementations, not used in these tests) =====
+
         @Override
         public void sortFilteredPersonListAlphabetically() {
             throw new AssertionError("This method should not be called.");
@@ -213,7 +213,7 @@ public class AddCommandTest {
         @Override
         public void updateFilteredGameList(Predicate<Game> predicate) {
             requireNonNull(predicate);
-            // No-op for stub.
+
         }
 
         @Override
@@ -223,7 +223,7 @@ public class AddCommandTest {
 
         @Override
         public void addGame(Game game) {
-            // No-op for stub.
+
         }
 
         @Override
@@ -233,7 +233,7 @@ public class AddCommandTest {
 
         @Override
         public void deleteGame(Game target) {
-            // No-op for stub.
+
         }
     }
 
@@ -261,7 +261,7 @@ public class AddCommandTest {
      * A Model stub that always accepts the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        // personsAdded list is inherited from ModelStub
+
 
         @Override
         public boolean hasPerson(Person person) {

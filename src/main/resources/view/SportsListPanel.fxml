@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="2" VBox.vgrow="ALWAYS">
+  <HBox alignment="CENTER_LEFT" spacing="4">
+    <Label fx:id="titleLabel" text="Valid Sports List" styleClass="section-header" />
+    <Label text="(use indexes for commands)" styleClass="section-subheader" />
+  </HBox>
+  <ListView fx:id="sportsListView" VBox.vgrow="ALWAYS" styleClass="sports-list-view" />
+  <padding>
+    <Insets top="2" right="2" bottom="2" left="2" />
+  </padding>
+</VBox> 

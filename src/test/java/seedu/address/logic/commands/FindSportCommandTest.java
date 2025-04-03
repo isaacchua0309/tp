@@ -93,7 +93,7 @@ public class FindSportCommandTest {
         SportContainsKeywordsPredicate predicate =
                 new SportContainsKeywordsPredicate(Collections.singletonList("dodgeball"));
         FindSportCommand command = new FindSportCommand(predicate, Collections.singletonList("dodgeball"));
-        String expectedMessage = FindSportCommand.MESSAGE_INVALID_SPORT;
+        String expectedMessage = FindSportCommand.getInvalidSportMessage();
 
         assertEquals(expectedMessage, command.execute(model).getFeedbackToUser());
     }

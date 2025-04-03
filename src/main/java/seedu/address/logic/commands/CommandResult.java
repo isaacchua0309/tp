@@ -54,7 +54,7 @@ public class CommandResult {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof CommandResult)) {
             return false;
         }

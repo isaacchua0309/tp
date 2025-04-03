@@ -24,7 +24,7 @@ public class FindSportSortByDistanceCommand extends FindSportCommand {
     /**
      * Creates a FindSportCommand object to find persons who play certain sports
      *
-     * @param predicate        test if a person has sports which are contained in user input list
+     * @param predicate        test if a person has sports which are contained in user input lis
      * @param sportKeywordList user input list to check for valid sports
      */
     public FindSportSortByDistanceCommand(SportContainsKeywordsPredicate predicate,
@@ -37,12 +37,12 @@ public class FindSportSortByDistanceCommand extends FindSportCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // Use Sport.isValidSport to validate each sport
+        // Use Sport.isValidSport to validate each spor
         boolean hasInvalidSport = sportKeywordList.stream()
                 .anyMatch(sport -> !Sport.isValidSport(sport));
 
         if (hasInvalidSport) {
-            return new CommandResult(MESSAGE_INVALID_SPORT);
+            return new CommandResult(getInvalidSportMessage());
         }
         model.updateFilteredPersonList(predicate);
         model.sortFilteredPersonListByDistance(locationToBeCompared);

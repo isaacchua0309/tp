@@ -24,7 +24,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
+
         List<String> trimmedKeywords = Arrays.asList("Alice", "Bob").stream()
                 .map(String::trim)
                 .collect(Collectors.toList());
@@ -33,13 +33,13 @@ public class FindCommandParserTest {
                 new FindCommand(new NameContainsKeywordsPredicate(trimmedKeywords));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
-        // multiple whitespaces between keywords
+
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
     @Test
     public void parse_keywordsWithExtraSpaces_returnsFindCommand() {
-        // keywords with extra spaces that should be trimmed
+
         List<String> trimmedKeywords = Arrays.asList("Alice", "Bob").stream()
                 .map(String::trim)
                 .collect(Collectors.toList());
@@ -47,7 +47,7 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(trimmedKeywords));
 
-        // Extra spaces in the keywords themselves
+
         assertParseSuccess(parser, "  Alice   Bob  ", expectedFindCommand);
     }
 }

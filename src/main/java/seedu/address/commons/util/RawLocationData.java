@@ -8,7 +8,7 @@ public class RawLocationData {
     private double latitude;
     private double longitude;
 
-    // Getters are needed for Jackson conversion.
+
     public String getAddress() {
         return address;
     }

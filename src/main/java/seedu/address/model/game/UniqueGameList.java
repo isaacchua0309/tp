@@ -38,7 +38,7 @@ public class UniqueGameList implements Iterable<Game> {
             throw new DuplicateGameException();
         }
         internalList.add(game);
-        sortByDate(); // Ensure consistent indexing by date/time
+        sortByDate();
     }
 
     /**
@@ -53,7 +53,7 @@ public class UniqueGameList implements Iterable<Game> {
         if (!internalList.remove(toRemove)) {
             throw new GameNotFoundException();
         }
-        // No need to sort after removal as ordering is maintained
+
     }
 
     /**
@@ -91,7 +91,7 @@ public class UniqueGameList implements Iterable<Game> {
         }
 
         internalList.set(index, editedGame);
-        sortByDate(); // Resort to maintain indexing by date/time
+        sortByDate();
     }
 
     /**
@@ -108,7 +108,7 @@ public class UniqueGameList implements Iterable<Game> {
             throw new DuplicateGameException();
         }
         internalList.setAll(games);
-        sortByDate(); // Resort to maintain indexing by date/time
+        sortByDate();
     }
 
     /**

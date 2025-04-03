@@ -38,7 +38,7 @@ public class Tag {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof Tag)) {
             return false;
         }

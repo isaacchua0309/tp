@@ -79,7 +79,7 @@ public class Game {
 
     /**
      * Returns true if both games have the same date/time, regardless of sport or location.
-     * This prevents scheduling multiple games at the same time and ensures consistent
+     * This prevents scheduling multiple games at the same time and ensures consisten
      * indexing based on date/time in commands and UI.
      */
     public boolean isSameGame(Game otherGame) {
@@ -111,9 +111,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game: " + sport
-                + " at " + dateTime
-                + " in " + location
-                + ", Participants: " + participants.asUnmodifiableObservableList().size();
+        return "Game: " + sport + " at " + dateTime + " in " + location
+            + "Participants: " + participants.asUnmodifiableObservableList().size();
     }
 }

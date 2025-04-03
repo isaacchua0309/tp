@@ -45,7 +45,7 @@ public class FindCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof FindCommand)) {
             return false;
         }

@@ -52,15 +52,27 @@
           </VBox.margin>
         </StackPane>
 
-        <!-- Command result display -->
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="120" minHeight="120" prefHeight="120" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="10" left="12" right="12" top="10" />
-          </padding>
-          <VBox.margin>
-            <Insets top="0" bottom="6" left="2" right="2" />
-          </VBox.margin>
-        </StackPane>
+        <!-- Result display and Sports list in a split pane -->
+        <SplitPane dividerPositions="0.5" orientation="HORIZONTAL" VBox.vgrow="NEVER">
+          <!-- Command result display -->
+          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="120" minHeight="120" prefHeight="120" styleClass="pane-with-border">
+            <padding>
+              <Insets bottom="10" left="12" right="12" top="10" />
+            </padding>
+          </StackPane>
+          
+          <!-- Sports List Panel -->
+          <VBox fx:id="sportsList" maxHeight="120" minHeight="120" prefHeight="120" styleClass="pane-with-border">
+            <padding>
+              <Insets bottom="10" left="12" right="12" top="10" />
+            </padding>
+            <StackPane fx:id="sportsListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          </VBox>
+        </SplitPane>
+        
+        <VBox.margin>
+          <Insets top="0" bottom="6" left="2" right="2" />
+        </VBox.margin>
 
         <!-- Main content area with person and game lists -->
         <SplitPane fx:id="centerSplitPane" dividerPositions="0.5" orientation="HORIZONTAL" VBox.vgrow="ALWAYS">

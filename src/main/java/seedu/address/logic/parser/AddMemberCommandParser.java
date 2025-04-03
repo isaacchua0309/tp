@@ -13,11 +13,11 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
 
     @Override
     public AddMemberCommand parse(String args) throws ParseException {
-        // 1) We expect something like: "g/1 n/John Doe"
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_GAME_NAME, CliSyntax.PREFIX_NAME);
 
-        // 2) Validate presence of required prefixes
+
         if (!argMultimap.getValue(CliSyntax.PREFIX_GAME_NAME).isPresent()
                 || !argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -25,7 +25,7 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
                     AddMemberCommand.MESSAGE_USAGE));
         }
 
-        // 3) Parse the index from "g/1"
+
         String gameIndexStr = argMultimap.getValue(CliSyntax.PREFIX_GAME_NAME).get();
         Index gameIndex;
         try {
@@ -35,7 +35,7 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMemberCommand.MESSAGE_USAGE), pe);
         }
 
-        // 4) Parse the person's name from "n/John Doe"
+
         String personName = argMultimap.getValue(CliSyntax.PREFIX_NAME).get().trim();
 
         return new AddMemberCommand(gameIndex, personName);

@@ -27,7 +27,7 @@ public class AddGameCommandParser implements Parser<AddGameCommand> {
      */
     @Override
     public AddGameCommand parse(String args) throws ParseException {
-        // Tokenize with the new location prefix
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args,
                 CliSyntax.PREFIX_GAME_NAME,
@@ -35,7 +35,7 @@ public class AddGameCommandParser implements Parser<AddGameCommand> {
                 CliSyntax.PREFIX_POSTAL_CODE
         );
 
-        // Check required prefixes
+
         if (!argMultimap.getValue(CliSyntax.PREFIX_GAME_NAME).isPresent()
                 || !argMultimap.getValue(CliSyntax.PREFIX_DATETIME).isPresent()
                 || !argMultimap.getValue(CliSyntax.PREFIX_POSTAL_CODE).isPresent()
@@ -45,12 +45,12 @@ public class AddGameCommandParser implements Parser<AddGameCommand> {
             );
         }
 
-        // Extract raw strings from user input
+
         String gameNameStr = argMultimap.getValue(CliSyntax.PREFIX_GAME_NAME).get();
         String dateTimeStr = argMultimap.getValue(CliSyntax.PREFIX_DATETIME).get();
         String locationStr = argMultimap.getValue(CliSyntax.PREFIX_POSTAL_CODE).get();
 
-        // Convert to domain objects (Sport, LocalDateTime, Location) and build Game
+
         Game game = ParserUtil.parseGame(gameNameStr, dateTimeStr, locationStr);
 
         return new AddGameCommand(game);

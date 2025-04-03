@@ -28,10 +28,10 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
 
-    private static final String INVALID_POSTAL_CODE = "999999"; // Non-existent postal code
-    private static final String INVALID_POSTAL_CODE_FORMAT = "12AB34"; // Invalid format
-    private static final String INVALID_POSTAL_CODE_TOO_SHORT = "12345"; // Too short
-    private static final String INVALID_POSTAL_CODE_TOO_LONG = "1234567"; // Too long
+    private static final String INVALID_POSTAL_CODE = "999999";
+    private static final String INVALID_POSTAL_CODE_FORMAT = "12AB34";
+    private static final String INVALID_POSTAL_CODE_TOO_SHORT = "12345";
+    private static final String INVALID_POSTAL_CODE_TOO_LONG = "1234567";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
@@ -48,7 +48,7 @@ public class ParserUtilTest {
 
     private static final String WHITESPACE = " \t\r\n";
 
-    // Tests for sport parsing
+
     private static final String INVALID_SPORT = "cricket123";
     private static final String VALID_SPORT_1 = "soccer";
     private static final String VALID_SPORT_2 = "basketball";
@@ -66,10 +66,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
-        // No whitespaces
+
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
 
-        // Leading and trailing whitespaces
+
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
     }
 

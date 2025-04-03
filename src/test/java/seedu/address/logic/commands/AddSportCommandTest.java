@@ -52,7 +52,7 @@ public class AddSportCommandTest {
         Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Sport sportToAdd = new Sport("soccer");
 
-        // First add a sport
+        // First add a spor
         Person modifiedPerson = createPersonWithAdditionalSport(personToModify, sportToAdd);
         model.setPerson(personToModify, modifiedPerson);
 
@@ -65,11 +65,11 @@ public class AddSportCommandTest {
     @Test
     public void execute_invalidSport_throwsCommandException() {
         Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Sport invalidSport = new Sport("swimming"); // Not in the valid sports list
+        Sport invalidSport = new Sport("swimming"); // Not in the valid sports lis
         AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), invalidSport);
 
         assertThrows(CommandException.class,
-                Sport.MESSAGE_CONSTRAINTS, () -> addSportCommand.execute(model));
+                Sport.getMessageConstraints(), () -> addSportCommand.execute(model));
     }
 
     @Test

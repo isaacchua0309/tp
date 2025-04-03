@@ -23,9 +23,9 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindSportCommand;
-import seedu.address.logic.commands.HelloCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListSportsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,8 +44,8 @@ public class AddressBookParser {
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform to the expected format
+     * @return the command based on the user inpu
+     * @throws ParseException if the user input does not conform to the expected forma
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -102,14 +102,14 @@ public class AddressBookParser {
         case AddMemberCommand.COMMAND_WORD:
             return new AddMemberCommandParser().parse(arguments);
 
-        case HelloCommand.COMMAND_WORD:
-            return new HelloCommand();
-
         case DeleteMemberCommand.COMMAND_WORD:
             return new DeleteMemberCommandParser().parse(arguments);
 
         case CreateSportCommand.COMMAND_WORD:
             return new CreateSportCommandParser().parse(arguments);
+
+        case ListSportsCommand.COMMAND_WORD:
+            return new ListSportsCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

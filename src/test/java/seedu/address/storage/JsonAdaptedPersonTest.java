@@ -23,7 +23,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_POSTAL_CODE = "99999"; // Invalid postal code
+    private static final String INVALID_POSTAL_CODE = "99999";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -33,7 +33,7 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    // New constant for sports (empty list for these tests)
+
     private static final List<String> VALID_SPORTS = new ArrayList<>();
 
     @Test

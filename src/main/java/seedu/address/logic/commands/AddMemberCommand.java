@@ -38,8 +38,8 @@ public class AddMemberCommand extends Command {
     private final String memberName;
 
     /**
-     * @param targetIndex Index of the game in the currently displayed game list
-     * @param memberName  The name of the Person to add as a participant
+     * @param targetIndex Index of the game in the currently displayed game lis
+     * @param memberName  The name of the Person to add as a participan
      */
     public AddMemberCommand(Index targetIndex, String memberName) {
         requireNonNull(targetIndex);
@@ -52,42 +52,42 @@ public class AddMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // 1) Get the current filtered game list (sorted by date/time)
+
         List<Game> lastShownList = model.getFilteredGameList();
 
-        // 2) Validate the index - this index refers to the position in the date/time sorted list
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
                     String.format(MESSAGE_INVALID_GAME_INDEX, targetIndex.getOneBased()));
         }
 
-        // Game at this index is guaranteed to be the same in both UI and command context
-        // because the list is always sorted by date/time
+
+
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        // 3) Check if multiple persons share the same name (adapt if your design differs)
+
         if (model.isPersonUnique(memberName) == -1) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSONS, memberName));
         } else if (model.isPersonUnique(memberName) == 0) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, memberName));
         }
 
-        // 4) Retrieve the Person to add by name
+
         Person personToAdd = model.getPerson(memberName);
 
-        // 5) Check if this person is already in the participants list
+
         if (gameToEdit.getParticipants().contains(personToAdd)) {
             throw new CommandException(String.format(
                     MESSAGE_PERSON_EXISTS, memberName, gameToEdit.toString()));
         }
 
-        // 6) Remove and re-add the updated game, or use a "model.addParticipantToGame(...)" approach
-        model.deleteGame(gameToEdit); // remove old version
-        gameToEdit.addParticipant(personToAdd); // mutate it
-        model.addGame(gameToEdit); // add back the updated version
 
-        // 7) (Optional) Re-sort or update filters if you want:
-        // model.sortFilteredGameList();
+        model.deleteGame(gameToEdit);
+        gameToEdit.addParticipant(personToAdd);
+        model.addGame(gameToEdit);
+
+
+
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, memberName, gameToEdit.toString()));
     }

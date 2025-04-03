@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddSportCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -105,10 +106,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteSport() throws Exception {
-        final Sport deleteSport = new Sport("rugby");
         DeleteSportCommand command = (DeleteSportCommand) parser.parseCommand(
-                DeleteSportCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " s/rugby");
-        assertEquals(new DeleteSportCommand(INDEX_FIRST_PERSON, deleteSport), command);
+                DeleteSportCommand.COMMAND_WORD + " 1");
+        assertEquals(new DeleteSportCommand(Index.fromOneBased(1)), command);
     }
 
     @Test
