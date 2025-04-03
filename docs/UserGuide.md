@@ -92,7 +92,6 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
    - On Windows: Press `Win + R`, type `cmd` and press Enter
    - On macOS: Press `Cmd + Space`, type `terminal` and press Enter
    - On Linux: Press `Ctrl + Alt + T`
-   
 
 2. **Navigate to the folder** containing FitFriends.jar:
    ```
@@ -172,10 +171,10 @@ add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] s/SPORT pc/POSTALCODE
 
 **Example**:
 ```
-add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/basketball pc/123456
+add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/tennis pc/123456
 ```
 
-This adds John Doe to your contacts with his details and shows he plays basketball.
+This adds John Doe to your contacts with his details and shows he plays tennis.
 
 ![Adding a Friend](images/add_command.png)
 
@@ -318,7 +317,7 @@ This displays all sports in alphabetical order with numbers for reference.
 
 ![Listing All Sports](images/listsports_command.png)
 
-> 💡 **Tip**: Make note of the indices as they're needed when deleting sports from the global list.
+> 💡 **Tip**: Take note of the indices as they're needed when deleting sports from the global list.
 
 #### Deleting a Sport from Global List of Sports
 
@@ -384,7 +383,7 @@ Discover which friends play specific sports—perfect for organizing game days!
 
 **Format**:
 ```
-findsport s/SPORT [SPORT] [SPORT]
+findsport s/SPORT [s/SPORT]
 ```
 
 **Example**:
@@ -404,12 +403,12 @@ Find sports buddies near a specific location—ideal for planning convenient mee
 
 **Format**:
 ```
-findsport pc/POSTALCODE s/SPORT [SPORT] [SPORT]
+findsport pc/POSTALCODE s/SPORT [s/SPORT]
 ```
 
 **Example**:
 ```
-findsport pc/123456 s/tennis hockey
+findsport pc/259366 s/tennis s/hockey
 ```
 
 This shows all contacts who play tennis or hockey, sorted by their proximity to postal code 123456.
@@ -419,8 +418,9 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 > 💡 **Search Tips**:
 > - Searches are case-insensitive
 > - Proximity is calculated by contact's postal code
+> - More than 1 sport can be included in the search by adding s/SPORT_NAME
 
-> 💡 **Pro Tip**: 
+> 💡 **Pro Tip**:
 > * Use this feature to find the optimal meeting spot for your sports group!
 > * If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the findsport command. Use this to manage your contacts without having to search for them manually!
 
@@ -468,24 +468,24 @@ This deletes the "badminton" group.
 
 ## 📋 Command Summary
 
-| **Action**                  | **Format**                                                             | **Example**                                                                                   |
-|-----------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| **Help**                    | `help`                                                                 | `help`                                                                                       |
-| **Add Friend**              | `add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG s/SPORT pc/POSTALCODE`     | `add n/John Doe p/98765432 e/johnd@example.com a/John St t/friend s/tennis pc/123456`         |
-| **List Friends**            | `list`                                                                 | `list`                                                                                       |
+| **Action**                  | **Format**                                                                    | **Example**                                                                                   |
+|-----------------------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **Help**                    | `help`                                                                        | `help`                                                                                       |
+| **Add Friend**              | `add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG s/SPORT pc/POSTALCODE`            | `add n/John Doe p/98765432 e/johnd@example.com a/John St t/friend s/tennis pc/123456`         |
+| **List Friends**            | `list`                                                                        | `list`                                                                                       |
 | **Edit Friend**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]` | `edit 2 n/James Lee p/98765432 a/Block 123 pc/654321`                                        |
-| **Find by Name**            | `find KEYWORD [MORE_KEYWORDS]`                                         | `find James Jake`                                                                            |
-| **Delete Friend**           | `delete INDEX`                                                         | `delete 3`                                                                                   |
-| **Clear All**               | `clear`                                                                | `clear`                                                                                      |
-| **Create Sport**            | `createsport s/SPORT_NAME`                                             | `createsport s/archery`                                                                      |
-| **List Sports**             | `listsports`                                                           | `listsports`                                                                                 |
-| **Delete Global Sport**     | `deletesport INDEX`                                                    | `deletesport 1`                                                                              |
-| **Add Sport**               | `addsport INDEX s/SPORT`                                               | `addsport 1 s/tennis`                                                                        |
-| **Delete Sport**            | `deletesport INDEX s/SPORT`                                            | `deletesport 2 s/basketball`                                                                 |
-| **Find by Sport**           | `findsport s/SPORT [SPORT] [SPORT]`                                    | `findsport s/basketball tennis`                                                              |
-| **Find by Sport & Location**| `findsport pc/POSTALCODE s/SPORT [SPORT] [SPORT]`                      | `findsport pc/123456 s/tennis hockey`                                                        |
-| **Create Group**            | `creategroup g/GROUP_NAME`                                             | `creategroup g/MarathonBuddies`                                                              |
-| **Delete Group**            | `deletegroup g/GROUP_NAME`                                             | `deletegroup g/TennisBuddies`                                                                |
+| **Find by Name**            | `find KEYWORD [MORE_KEYWORDS]`                                                | `find James Jake`                                                                            |
+| **Delete Friend**           | `delete INDEX`                                                                | `delete 3`                                                                                   |
+| **Clear All**               | `clear`                                                                       | `clear`                                                                                      |
+| **Create Sport**            | `createsport s/SPORT_NAME`                                                    | `createsport s/archery`                                                                      |
+| **List Sports**             | `listsports`                                                                  | `listsports`                                                                                 |
+| **Delete Global Sport**     | `deletesport INDEX`                                                           | `deletesport 1`                                                                              |
+| **Add Sport**               | `addsport INDEX s/SPORT`                                                      | `addsport 1 s/tennis`                                                                        |
+| **Delete Sport**            | `deletesport INDEX s/SPORT`                                                   | `deletesport 2 s/basketball`                                                                 |
+| **Find by Sport**           | `findsport s/SPORT [s/SPORT]`                                                 | `findsport s/basketball tennis`                                                              |
+| **Find by Sport & Location**| `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/123456 s/tennis hockey`                                                        |
+| **Create Group**            | `creategroup g/GROUP_NAME`                                                    | `creategroup g/MarathonBuddies`                                                              |
+| **Delete Group**            | `deletegroup g/GROUP_NAME`                                                    | `deletegroup g/TennisBuddies`                                                                |
 
 ---
 
