@@ -92,7 +92,6 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
    - On Windows: Press `Win + R`, type `cmd` and press Enter
    - On macOS: Press `Cmd + Space`, type `terminal` and press Enter
    - On Linux: Press `Ctrl + Alt + T`
-   
 
 2. **Navigate to the folder** containing FitFriends.jar:
    ```
@@ -384,7 +383,7 @@ Discover which friends play specific sports—perfect for organizing game days!
 
 **Format**:
 ```
-findsport s/SPORT [s/SPORT] 
+findsport s/SPORT [s/SPORT]
 ```
 
 **Example**:
@@ -404,7 +403,7 @@ Find sports buddies near a specific location—ideal for planning convenient mee
 
 **Format**:
 ```
-findsport pc/POSTALCODE s/SPORT [s/SPORT]  
+findsport pc/POSTALCODE s/SPORT [s/SPORT]
 ```
 
 **Example**:
@@ -419,9 +418,9 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 > 💡 **Search Tips**:
 > - Searches are case-insensitive
 > - Proximity is calculated by contact's postal code
-> - More than 1 sport can be included in the search by adding s/SPORT_NAME 
+> - More than 1 sport can be included in the search by adding s/SPORT_NAME
 
-> 💡 **Pro Tip**: 
+> 💡 **Pro Tip**:
 > * Use this feature to find the optimal meeting spot for your sports group!
 > * If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the findsport command. Use this to manage your contacts without having to search for them manually!
 
