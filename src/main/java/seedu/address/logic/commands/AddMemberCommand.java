@@ -63,7 +63,7 @@ public class AddMemberCommand extends Command {
 
 
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
-      
+
         if (model.isPersonUnique(memberName) == -1) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSONS, memberName));
         } else if (model.isPersonUnique(memberName) == 0) {
