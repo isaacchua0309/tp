@@ -71,6 +71,14 @@ public class SampleDataUtil {
     }
 
     /**
+     * Returns a person list containing the list of Persons given.
+     */
+    public static List<Person> getPersonList(Person... person) {
+        return Arrays.stream(person)
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Returns a SportList object containing the list of strings given.
      */
     public static SportList getSportListObject(String... strings) {

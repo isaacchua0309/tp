@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -27,14 +27,14 @@ public class AddSportCommandTest {
 
     @Test
     public void constructor_nullSport_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), null));
+        assertThrows(NullPointerException.class, () -> new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), null));
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_OBJECT.getZeroBased());
         Sport sportToAdd = new Sport("cricket");
-        AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), sportToAdd);
+        AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), sportToAdd);
 
         String expectedMessage = String.format(AddSportCommand.MESSAGE_SUCCESS,
                 sportToAdd.toString(), personToModify.getName().fullName);
@@ -49,7 +49,7 @@ public class AddSportCommandTest {
 
     @Test
     public void execute_duplicateSport_throwsCommandException() {
-        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_OBJECT.getZeroBased());
         Sport sportToAdd = new Sport("soccer");
 
         // First add a spor
@@ -57,16 +57,16 @@ public class AddSportCommandTest {
         model.setPerson(personToModify, modifiedPerson);
 
         // Try to add the same sport again
-        AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), sportToAdd);
+        AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), sportToAdd);
         assertThrows(CommandException.class,
                 AddSportCommand.MESSAGE_DUPLICATE_SPORT, () -> addSportCommand.execute(model));
     }
 
     @Test
     public void execute_invalidSport_throwsCommandException() {
-        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToModify = model.getFilteredPersonList().get(INDEX_FIRST_OBJECT.getZeroBased());
         Sport invalidSport = new Sport("swimming"); // Not in the valid sports lis
-        AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), invalidSport);
+        AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), invalidSport);
 
         assertThrows(CommandException.class,
                 Sport.getMessageConstraints(), () -> addSportCommand.execute(model));
@@ -85,15 +85,15 @@ public class AddSportCommandTest {
     public void equals() {
         Sport soccer = new Sport("soccer");
         Sport basketball = new Sport("basketball");
-        AddSportCommand addSoccerCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), soccer);
-        AddSportCommand addBasketballCommand = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), basketball);
-        AddSportCommand addSoccerSecondCommand = new AddSportCommand(INDEX_SECOND_PERSON.getZeroBased(), soccer);
+        AddSportCommand addSoccerCommand = new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), soccer);
+        AddSportCommand addBasketballCommand = new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), basketball);
+        AddSportCommand addSoccerSecondCommand = new AddSportCommand(INDEX_SECOND_OBJECT.getZeroBased(), soccer);
 
         // same object -> returns true
         assertTrue(addSoccerCommand.equals(addSoccerCommand));
 
         // same values -> returns true
-        AddSportCommand addSoccerCommandCopy = new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), soccer);
+        AddSportCommand addSoccerCommandCopy = new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), soccer);
         assertTrue(addSoccerCommand.equals(addSoccerCommandCopy));
 
         // different types -> returns false
