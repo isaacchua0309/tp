@@ -2,7 +2,6 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -68,13 +67,13 @@ public class MainApp extends Application {
 
         ui = new UiManager(logic);
 
-        // Load global sports list
+        // Load global sports list from user preferences path
         try {
-            Sport.loadValidSports(Paths.get("data" , "globalSportList.json"));
+            Sport.loadValidSports(userPrefs.getGlobalSportsListFilePath());
+            logger.info("Loaded global sports list from " + userPrefs.getGlobalSportsListFilePath());
         } catch (IOException e) {
-            logger.warning("Error loading global sports list");
+            logger.warning("Error loading global sports list: " + e.getMessage());
         }
-
     }
 
     /**
@@ -188,9 +187,14 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping AddressBook ] =============================");
         try {
+            // Save user preferences
             storage.saveUserPrefs(model.getUserPrefs());
+
+            // Save global sports lis
+            Sport.saveValidSports(model.getUserPrefs().getGlobalSportsListFilePath());
+            logger.info("Saved global sports list to " + model.getUserPrefs().getGlobalSportsListFilePath());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            logger.severe("Failed to save application data: " + StringUtil.getDetails(e));
         }
     }
 }

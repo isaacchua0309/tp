@@ -61,13 +61,13 @@ public class JsonAdaptedGame {
      * @throws IllegalValueException if there were any data constraints violated in the adapted game.
      */
     public Game toModelType() throws IllegalValueException {
-        // Validate and create Sport
+        // Validate and create Spor
         if (sport == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "sport"));
         }
         if (!Sport.isValidSport(sport)) {
-            throw new IllegalValueException(Sport.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Sport.getMessageConstraints());
         }
         final Sport modelSport = new Sport(sport);
 
@@ -87,7 +87,7 @@ public class JsonAdaptedGame {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "location"));
         }
         if (!LocationUtil.isValidPostalCode(location)) {
-            throw new IllegalValueException(Sport.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Sport.getMessageConstraints());
         }
         final Location modelLocation = LocationUtil.createLocation(location);
         // Convert participants to model types.

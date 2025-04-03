@@ -25,7 +25,7 @@ public class JsonAdaptedSport {
      * Converts a given {@code Sport} into this class for Jackson use.
      */
     public JsonAdaptedSport(Sport source) {
-        this.sportName = source.sportName; // or use a getter if available: source.getSportName()
+        this.sportName = source.sportName;
     }
 
     /**
@@ -37,7 +37,7 @@ public class JsonAdaptedSport {
         if (sportName == null) {
             throw new IllegalValueException("Sport's sportName field is missing!");
         }
-        // Optionally, you can add further validations here if needed.
+
         return new Sport(sportName);
     }
 }

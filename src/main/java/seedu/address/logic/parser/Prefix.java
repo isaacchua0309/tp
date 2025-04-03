@@ -31,7 +31,7 @@ public class Prefix {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof Prefix)) {
             return false;
         }

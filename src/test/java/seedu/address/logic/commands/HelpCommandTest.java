@@ -30,7 +30,7 @@ public class HelpCommandTest {
         HelpCommand helpCommand = new HelpCommand();
         CommandResult result = helpCommand.execute(model);
 
-        // Verify the command result has the correct properties
+
         assertEquals(SHOWING_HELP_MESSAGE, result.getFeedbackToUser());
         assertTrue(result.isShowHelp());
         assertFalse(result.isExit());
@@ -80,10 +80,10 @@ public class HelpCommandTest {
         Model originalModel = new ModelManager();
         Model testModel = new ModelManager();
 
-        // Execute the help command
+
         new HelpCommand().execute(testModel);
 
-        // Verify the model state remains unchanged
+
         assertEquals(originalModel, testModel);
     }
 }

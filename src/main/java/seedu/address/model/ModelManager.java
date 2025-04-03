@@ -29,11 +29,11 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
 
-    // A filtered list of persons, which we further wrap in a SortedList
+
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
 
-    // A filtered list of games, further wrapped in a SortedList for consistent date-based ordering
+
     private final FilteredList<Game> filteredGames;
     private final SortedList<Game> sortedGames;
 
@@ -48,11 +48,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        // Persons
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
 
-        // Games - initialize with date/time sorting to ensure consistent indexing
+
         filteredGames = new FilteredList<>(this.addressBook.getGameList());
         sortedGames = new SortedList<>(filteredGames, Comparator.comparing(Game::getDateTime));
     }
@@ -61,7 +61,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
-    // ========== UserPrefs Methods ============================================================
+
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -96,7 +96,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    // ========== AddressBook Methods ==========================================================
+
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-    // ========== Person-level Operations ======================================================
+
 
     @Override
     public boolean hasPerson(Person person) {
@@ -120,13 +120,13 @@ public class ModelManager implements Model {
     public void deletePerson(Person target) {
         requireNonNull(target);
 
-        // Get all games
+
         List<Game> allGames = new ArrayList<>(addressBook.getGameList());
 
-        // Check each game if the person is a participant
+
         for (Game game : allGames) {
             if (game.getParticipants().contains(target)) {
-                // Remove the person from the game participants
+
                 Game updatedGame = new Game(
                     game.getSport(),
                     game.getDateTime(),
@@ -136,20 +136,20 @@ public class ModelManager implements Model {
                         .collect(Collectors.toList())
                 );
 
-                // Replace the old game with the updated one
+
                 addressBook.removeGame(game);
                 addressBook.addGame(updatedGame);
             }
         }
 
-        // Finally, remove the person from the address book
+
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        // Refresh the filtered list so the added person is visible
+
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -159,7 +159,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    // ========== Game-level Operations ========================================================
+
 
     @Override
     public boolean hasGame(Game game) {
@@ -180,15 +180,15 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Game> getGameList() {
-        // Returns the internal list of all games
+
         return addressBook.getGameList();
     }
 
-    // ========== Filtered Person and Game List Accessors ======================================
+
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        // We return the sorted version so the UI or logic always sees the sorted list
+
         return sortedPersons;
     }
 
@@ -201,7 +201,7 @@ public class ModelManager implements Model {
     @Override
     public void sortFilteredPersonListByDistance(Location location) {
         requireNonNull(location);
-        // We define a custom comparator that sorts Person objects by distance
+
         Comparator<Person> comparator =
                 Comparator.comparingDouble(person -> person.getLocation().distanceTo(location));
         sortedPersons.setComparator(comparator);
@@ -223,7 +223,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Game> getFilteredGameList() {
-        // Return the sorted games list so UI and commands always see consistently ordered games
+
         return sortedGames;
     }
 
@@ -233,7 +233,7 @@ public class ModelManager implements Model {
         filteredGames.setPredicate(predicate);
     }
 
-    // ========== Equality Check ===============================================================
+
 
     @Override
     public boolean equals(Object other) {
@@ -256,34 +256,34 @@ public class ModelManager implements Model {
         long count = addressBook.getPersonList().stream()
                 .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
                 .count();
-        // "Unique" if there is exactly 1 match
+
         if (count == 1) {
             return 1;
         } else if (count == 0) {
             return 0;
         } else {
-            return -1; // More than one match
+            return -1;
         }
     }
 
     @Override
     public Person getPerson(String name) {
         requireNonNull(name);
-        // Find all persons matching this name (case-insensitive).
+
         List<Person> matchedPersons = addressBook.getPersonList().stream()
                 .filter(p -> p.getName().fullName.equalsIgnoreCase(name))
                 .collect(Collectors.toList());
 
         if (matchedPersons.size() > 1) {
-            // If multiple matches, you could return an arbitrary one or throw an exception.
-            // Usually you'd throw something like a CommandException, or a custom exception.
+
+
             throw new IllegalArgumentException(
                     "Multiple persons found with the name: " + name + ". Please be more specific.");
         } else if (matchedPersons.isEmpty()) {
             throw new IllegalArgumentException("No person found with the name: " + name);
         }
 
-        // Exactly one match
+
         return matchedPersons.get(0);
     }
 

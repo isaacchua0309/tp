@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,16 +21,31 @@ public class CreateSportCommand extends Command {
     public static final String MESSAGE_DUPLICATE_SPORT = "This sport already exists";
 
     private final String sportName;
-    private final Path filePath = Paths.get("data" , "globalSportList.json");
+    private final Path filePath;
 
     /**
-     * Creates a CreateSportCommand to create the specified sport.
+     * Default constructor that uses the file path from UserPrefs.
+     * The actual file path will be retrieved from the model during execution.
      *
      * @param sportName The name of the sport to be created.
      */
     public CreateSportCommand(String sportName) {
         requireNonNull(sportName);
         this.sportName = sportName;
+        this.filePath = null; // Will use the path from UserPrefs during execution
+    }
+
+    /**
+     * Constructor with configurable file path for testing.
+     *
+     * @param sportName The name of the sport to be created.
+     * @param filePath The custom file path to save sports to.
+     */
+    public CreateSportCommand(String sportName, Path filePath) {
+        requireNonNull(sportName);
+        requireNonNull(filePath);
+        this.sportName = sportName;
+        this.filePath = filePath;
     }
 
     @Override
@@ -43,16 +57,18 @@ public class CreateSportCommand extends Command {
         }
 
         try {
-            Sport.saveValidSports(filePath);
+            // Use the provided file path or get it from UserPrefs if not provided
+            Path pathToUse = filePath != null ? filePath : model.getUserPrefs().getGlobalSportsListFilePath();
+            Sport.saveValidSports(pathToUse);
         } catch (IOException e) {
-            throw new CommandException("Error saving sports to file");
+            throw new CommandException("Error saving sports to file: " + e.getMessage());
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sportName));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
+        return other == this // short circuit if same objec
                 || (other instanceof CreateSportCommand // instanceof handles nulls
                 && sportName.equals(((CreateSportCommand) other).sportName));
     }

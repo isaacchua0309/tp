@@ -10,43 +10,43 @@ import org.junit.jupiter.api.Test;
 
 public class StringUtilTest {
 
-    //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
+
 
     @Test
     public void isNonZeroUnsignedInteger() {
 
-        // EP: empty strings
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("")); // Boundary value
+
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(""));
         assertFalse(StringUtil.isNonZeroUnsignedInteger("  "));
 
-        // EP: not a number
+
         assertFalse(StringUtil.isNonZeroUnsignedInteger("a"));
         assertFalse(StringUtil.isNonZeroUnsignedInteger("aaa"));
 
-        // EP: zero
+
         assertFalse(StringUtil.isNonZeroUnsignedInteger("0"));
 
-        // EP: zero as prefix
+
         assertTrue(StringUtil.isNonZeroUnsignedInteger("01"));
 
-        // EP: signed numbers
+
         assertFalse(StringUtil.isNonZeroUnsignedInteger("-1"));
         assertFalse(StringUtil.isNonZeroUnsignedInteger("+1"));
 
-        // EP: numbers with white space
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 ")); // Leading/trailing spaces
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0")); // Spaces in the middle
 
-        // EP: number larger than Integer.MAX_VALUE
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 "));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0"));
+
+
         assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
 
-        // EP: valid numbers, should return true
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
+
+        assertTrue(StringUtil.isNonZeroUnsignedInteger("1"));
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
 
-    //---------------- Tests for containsWordIgnoreCase --------------------------------------
+
 
     /*
      * Invalid equivalence partitions for word: null, empty, multiple words
@@ -104,26 +104,26 @@ public class StringUtilTest {
     @Test
     public void containsWordIgnoreCase_validInputs_correctResult() {
 
-        // Empty sentence
-        assertFalse(StringUtil.containsWordIgnoreCase("", "abc")); // Boundary case
+
+        assertFalse(StringUtil.containsWordIgnoreCase("", "abc"));
         assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
 
-        // Matches a partial word only
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
 
-        // Matches word in the sentence, different upper/lower case letters
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
-        assertTrue(StringUtil.containsWordIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb"));
+        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbb"));
 
-        // Matches multiple words in sentence
+
+        assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc", "Bbb"));
+        assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc@1", "CCc@1"));
+        assertTrue(StringUtil.containsWordIgnoreCase("  AAA   bBb   ccc  ", "aaa"));
+        assertTrue(StringUtil.containsWordIgnoreCase("Aaa", "aaa"));
+        assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "  ccc  "));
+
+
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
-    //---------------- Tests for getDetails --------------------------------------
+
 
     /*
      * Equivalence Partitions: null, valid throwable objec

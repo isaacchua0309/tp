@@ -69,7 +69,7 @@ public class Location {
      */
     public double distanceTo(Location other) {
         Objects.requireNonNull(other, "Other location cannot be null");
-        final int earthRadiusKm = 6371; // Earth's radius in kilometers
+        final int earthRadiusKm = 6371;
         double dLat = Math.toRadians(other.latitude - this.latitude);
         double dLon = Math.toRadians(other.longitude - this.longitude);
         double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)

@@ -48,7 +48,7 @@ public class Address {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof Address)) {
             return false;
         }

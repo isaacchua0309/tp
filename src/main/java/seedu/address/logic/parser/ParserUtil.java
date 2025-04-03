@@ -132,7 +132,7 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedGameName = gameName.trim();
         if (!Sport.isValidSport(trimmedGameName)) {
-            throw new ParseException(Sport.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Sport.getMessageConstraints());
         }
 
         if (!LocationUtil.isValidPostalCode(location)) {
@@ -196,7 +196,7 @@ public class ParserUtil {
         requireNonNull(sport);
         String trimmedSport = sport.trim();
         if (!Sport.isValidSport(trimmedSport.toLowerCase())) {
-            throw new ParseException("Invalid sport. Allowed sports: " + Sport.getValidSports());
+            throw new ParseException(Sport.getMessageConstraints());
         }
 
         return new Sport(trimmedSport);

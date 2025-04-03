@@ -51,7 +51,7 @@ public class Version implements Comparable<Version> {
     /**
      * Parses a version number string in the format V1.2.3.
      * @param versionString version number string
-     * @return a Version object
+     * @return a Version objec
      */
     @JsonCreator
     public static Version fromString(String versionString) throws IllegalArgumentException {
@@ -98,7 +98,7 @@ public class Version implements Comparable<Version> {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof Version)) {
             return false;
         }

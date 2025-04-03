@@ -42,14 +42,14 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        // Count games where the person is a participant
+
         long gamesWithPerson = model.getGameList().stream()
                 .filter(game -> game.getParticipants().contains(personToDelete))
                 .count();
 
         model.deletePerson(personToDelete);
 
-        // Different message based on whether the person was in any games
+
         if (gamesWithPerson > 0) {
             return new CommandResult(String.format(
                 MESSAGE_DELETE_PERSON_SUCCESS + " Also removed from %d game(s).",
@@ -66,7 +66,7 @@ public class DeleteCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof DeleteCommand)) {
             return false;
         }

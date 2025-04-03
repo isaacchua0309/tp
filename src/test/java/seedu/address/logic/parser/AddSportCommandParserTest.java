@@ -19,12 +19,12 @@ public class AddSportCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        // Valid spor
+
         AddSportCommand expectedCommand =
                 new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), new Sport(VALID_SPORT));
         assertParseSuccess(parser, "1 s/soccer", expectedCommand);
 
-        // With whitespace
+
         assertParseSuccess(parser, " 1   s/soccer   ", expectedCommand);
     }
 
@@ -32,27 +32,27 @@ public class AddSportCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSportCommand.MESSAGE_USAGE);
 
-        // Missing index
+
         assertParseFailure(parser, "s/soccer", expectedMessage);
 
-        // Missing spor
+
         assertParseFailure(parser, "1", expectedMessage);
 
-        // Missing sport prefix
+
         assertParseFailure(parser, "1 soccer", expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // Invalid index
+
         assertParseFailure(parser, "0 s/soccer",
                 MESSAGE_INVALID_INDEX);
 
-        // Empty spor
+
         assertParseFailure(parser, "1 s/",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSportCommand.MESSAGE_USAGE));
 
-        // Invalid forma
+
         assertParseFailure(parser, "1s/soccer",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSportCommand.MESSAGE_USAGE));
     }

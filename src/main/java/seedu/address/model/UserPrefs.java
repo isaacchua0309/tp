@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path globalSportsListFilePath = Paths.get("data" , "globalSportList.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setGlobalSportsListFilePath(newUserPrefs.getGlobalSportsListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +58,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public Path getGlobalSportsListFilePath() {
+        return globalSportsListFilePath;
+    }
+
+    public void setGlobalSportsListFilePath(Path globalSportsListFilePath) {
+        requireNonNull(globalSportsListFilePath);
+        this.globalSportsListFilePath = globalSportsListFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -69,12 +80,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath);
+                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
+                && globalSportsListFilePath.equals(otherUserPrefs.globalSportsListFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, globalSportsListFilePath);
     }
 
     @Override
@@ -82,6 +94,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nGlobal sports list file location : " + globalSportsListFilePath);
         return sb.toString();
     }
 

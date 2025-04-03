@@ -658,9 +658,16 @@
 .section-header {
     -fx-font-family: "Segoe UI Semibold", system-ui, sans-serif;
     -fx-font-size: 14px;
-    -fx-text-fill: #adb5bd;
-    -fx-font-weight: bold;
-    -fx-padding: 0 0 4 0;
+    -fx-text-fill: #7aa2f7;
+    -fx-padding: 0 0 2px 0;
+}
+
+.section-subheader {
+    -fx-font-family: "Segoe UI", system-ui, sans-serif;
+    -fx-font-size: 11px;
+    -fx-text-fill: #a9b1d6;
+    -fx-font-style: italic;
+    -fx-padding: 0 0 2px 0;
 }
 
 .command-text-area {
@@ -702,6 +709,51 @@
 .command-text-area:focused {
     -fx-border-color: #7aa2f7;
     -fx-border-width: 1px;
+}
+
+/* Sports List Panel Styles */
+.sports-list-view {
+    -fx-background-color: #292e42;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #3b4261;
+    -fx-padding: 3px;
+    -fx-background-insets: 0;
+}
+
+.sports-list-view .list-cell {
+    -fx-padding: 3px 5px;
+    -fx-background-color: transparent;
+}
+
+.sports-list-view .list-cell:filled:even {
+    -fx-background-color: #24283b;
+}
+
+.sports-list-view .list-cell:filled:odd {
+    -fx-background-color: #292e42;
+}
+
+.sports-list-view .list-cell:filled:selected {
+    -fx-background-color: #3b4261;
+}
+
+.sport-item {
+    -fx-padding: 2px;
+    -fx-alignment: center-left;
+}
+
+.sport-index {
+    -fx-font-family: "Segoe UI Semibold", system-ui, sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill: #7aa2f7;
+    -fx-min-width: 20px;
+}
+
+.sport-name {
+    -fx-font-family: "Segoe UI", system-ui, sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill: #c0caf5;
 }
 
 

@@ -37,7 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -65,7 +65,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setGames(newData.getGameList());
     }
 
-    //// person-level operations
+
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -118,7 +118,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// game-level operations
+
 
     /**
      * Returns an unmodifiable view of the game list.
@@ -156,7 +156,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         games.remove(key);
     }
 
-    //// util methods
+
 
     @Override
     public String toString() {

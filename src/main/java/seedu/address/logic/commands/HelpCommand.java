@@ -25,11 +25,11 @@ public class HelpCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
+
         if (!(other instanceof HelpCommand)) {
             return false;
         }
 
-        return true; // HelpCommand objects have no fields to compare
+        return true;
     }
 }

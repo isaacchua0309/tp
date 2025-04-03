@@ -59,7 +59,7 @@ public class SportListTest {
             unmodifiableList.add(new Sport("basketball"));
             throw new AssertionError("The operation should have thrown an exception");
         } catch (UnsupportedOperationException e) {
-            // expected behavior
+            // Expected exception, test passes
         }
     }
 
@@ -72,7 +72,7 @@ public class SportListTest {
         assertEquals(original.size(), copy.size());
         assertTrue(copy.contains(new Sport("soccer")));
 
-        // Modifying the copy should not affect the original
+
         copy.add(new Sport("basketball"));
         assertEquals(1, original.size());
         assertEquals(2, copy.size());

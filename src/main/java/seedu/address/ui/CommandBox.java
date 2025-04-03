@@ -29,13 +29,13 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
-        // Remove default new line behavior for TextArea
+
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
-                event.consume(); // Prevent default behavior (new line)
+                event.consume();
                 handleCommandEntered();
             }
         });
@@ -46,9 +46,9 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleKeyPress(KeyEvent event) {
-        // This method is needed to match the FXML onKeyPressed attribute
-        // The actual handling is done in the event filter above for better
-        // control of event consumption
+
+
+
     }
 
     /**

@@ -39,7 +39,5 @@ public class JsonUtilTest {
         assertEquals(serializableTestClass.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
     }
 
-    //TODO: @Testt jsonUtil_readJsonStringToObjectInstance_correctObject()
 
-    //TODO: @Testt jsonUtil_writeThenReadObjectToJson_correctObject()
 }

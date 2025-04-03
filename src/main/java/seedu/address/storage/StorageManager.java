@@ -28,7 +28,7 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
-    // ================ UserPrefs methods ==============================
+
 
     @Override
     public Path getUserPrefsFilePath() {
@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+
 
     @Override
     public Path getAddressBookFilePath() {

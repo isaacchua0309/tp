@@ -6,9 +6,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,8 +23,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Sport {
     private static Set<String> validSports = new HashSet<>();
 
-    public static final String MESSAGE_CONSTRAINTS = "Sport must be one of the following: "
-            + String.join(", ", validSports);
+    // Static initializer to load default sports when the class is first loaded
+    static {
+        loadDefaultSports();
+    }
 
     public final String sportName;
 
@@ -35,8 +40,40 @@ public class Sport {
         this.sportName = sportName;
     }
 
+    public static String getMessageConstraints() {
+        return "Sport must be one of the following: " + String.join(", ", getSortedValidSports());
+    }
+
+    /**
+     * Returns an unsorted set of valid sports. For most display purposes, use getSortedValidSports().
+     */
     public static Set<String> getValidSports() {
         return validSports;
+    }
+
+    /**
+     * Returns a sorted list of valid sports.
+     * This is useful for displaying sports in a consistent order.
+     */
+    public static List<String> getSortedValidSports() {
+        return new ArrayList<>(new TreeSet<>(validSports));
+    }
+
+    /**
+     * Deletes a valid sport by its index in the sorted list.
+     *
+     * @param index The index of the sport to delete (0-based).
+     * @return The deleted sport name, or null if the index is invalid.
+     */
+    public static String deleteValidSport(int index) {
+        List<String> sortedSports = getSortedValidSports();
+        if (index < 0 || index >= sortedSports.size()) {
+            return null;
+        }
+
+        String sportToRemove = sortedSports.get(index);
+        validSports.remove(sportToRemove);
+        return sportToRemove;
     }
 
     /**

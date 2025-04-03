@@ -54,7 +54,7 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    // =============================== Person-level Operations =================================
+
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -104,7 +104,7 @@ public interface Model {
     void sortFilteredPersonListAlphabetically();
 
 
-    // =============================== Game-level Operations =================================
+
 
     /** Returns an unmodifiable view of the filtered game list. */
     ObservableList<Game> getFilteredGameList();
