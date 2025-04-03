@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.LocationUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
-
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -57,8 +56,10 @@ public class EditGameLocationCommand extends Command {
         }
 
         // Change the location of the game
-        gameToChange.setLocation(LocationUtil.createLocation(newLocation));
 
+        model.deleteGame(gameToChange);
+        gameToChange.setLocation(LocationUtil.createLocation(newLocation));
+        model.addGame(gameToChange);
         return new CommandResult(String.format(MESSAGE_SUCCESS, gameToChange));
     }
 
