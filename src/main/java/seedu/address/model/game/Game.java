@@ -16,7 +16,7 @@ import seedu.address.model.person.UniquePersonList;
 public class Game {
     private final Sport sport;
     private final LocalDateTime dateTime;
-    private final Location location;
+    private Location location;
     private final UniquePersonList participants;
 
     /**
@@ -88,6 +88,14 @@ public class Game {
         }
         return otherGame != null
                 && otherGame.getDateTime().equals(this.dateTime);
+    }
+
+    /**
+     * Sets a new location for this game.
+     */
+    public void setLocation(Location location) {
+        Objects.requireNonNull(location, "Location cannot be null");
+        this.location = location;
     }
 
     @Override
