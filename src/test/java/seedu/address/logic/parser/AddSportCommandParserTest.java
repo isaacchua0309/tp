@@ -4,7 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class AddSportCommandParserTest {
     public void parse_allFieldsPresent_success() {
 
         AddSportCommand expectedCommand =
-                new AddSportCommand(INDEX_FIRST_PERSON.getZeroBased(), new Sport(VALID_SPORT));
+                new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), new Sport(VALID_SPORT));
         assertParseSuccess(parser, "1 s/soccer", expectedCommand);
 
 

@@ -109,8 +109,6 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier";
 
-    private TypicalPersons() {}
-
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */

@@ -103,8 +103,12 @@ public interface Model {
      */
     void sortFilteredPersonListAlphabetically();
 
-
-
+    /**
+     * Replaces the given game {@code target} in the list with {@code editedGame}.
+     * {@code target} must exist in the address book.
+     * The game identity of {@code editedGame} must not be the same as another existing game in the address book.
+     */
+    void setGame(Game target, Game editedGame);
 
     /** Returns an unmodifiable view of the filtered game list. */
     ObservableList<Game> getFilteredGameList();

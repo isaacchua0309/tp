@@ -149,6 +149,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given game {@code target} in the list with {@code editedGame}.
+     * {@code target} must exist in the address book.
+     * The game identity of {@code editedGame} must not be the same as another existing game in the address book.
+     */
+    public void setGame(Game target, Game editedGame) {
+        requireNonNull(editedGame);
+        games.setGame(target, editedGame);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
