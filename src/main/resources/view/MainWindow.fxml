@@ -60,7 +60,7 @@
               <Insets bottom="10" left="12" right="12" top="10" />
             </padding>
           </StackPane>
-          
+
           <!-- Sports List Panel -->
           <VBox fx:id="sportsList" maxHeight="120" minHeight="120" prefHeight="120" styleClass="pane-with-border">
             <padding>
@@ -106,4 +106,3 @@
     </Scene>
   </scene>
 </fx:root>
-
