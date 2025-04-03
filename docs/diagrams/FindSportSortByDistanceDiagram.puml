@@ -1,11 +1,102 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+!include style.puml
+skinparam ArrowFontStyle plain
 
-autonumber
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindSportCommandParser" as FindSportCommandParser LOGIC_COLOR
+participant "<<class>> ParserUtil" as ParserUtil LOGIC_COLOR
+participant "p:SportContainsKeywordsPredicate" as SportContainsKeywordsPredicate LOGIC_COLOR
+participant "d:FindSportSortByDistanceCommand" as FindSportSortByDistanceCommand LOGIC_COLOR
+participant "<<class>> LocationUtil" as LocationUtil LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+[-> LogicManager : execute("findsport pc/018906 s/Badminton s/Soccer")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("findsport pc/018906 s/Badminton s/Soccer")
+activate AddressBookParser
+
+create FindSportCommandParser
+AddressBookParser -> FindSportCommandParser
+activate FindSportCommandParser
+
+FindSportCommandParser --> AddressBookParser
+deactivate FindSportCommandParser
+
+AddressBookParser -> FindSportCommandParser : parse("pc/018906 s/Badminton s/Soccer")
+activate FindSportCommandParser
+
+FindSportCommandParser --> ParserUtil : parsePostalCode("018906")
+activate ParserUtil
+ParserUtil --> FindSportCommandParser : postalCode
+deactivate ParserUtil
+
+FindSportCommandParser --> ParserUtil : parseSports("Badminton, Soccer")
+activate ParserUtil
+ParserUtil --> FindSportCommandParser : sports
+deactivate ParserUtil
+
+create SportContainsKeywordsPredicate
+FindSportCommandParser -> SportContainsKeywordsPredicate : SportContainsKeywordsPredicate(sportKeywordList)
+activate SportContainsKeywordsPredicate
+
+SportContainsKeywordsPredicate --> FindSportCommandParser
+deactivate SportContainsKeywordsPredicate
+
+create FindSportSortByDistanceCommand
+FindSportCommandParser -> FindSportSortByDistanceCommand : FindSportSortByDistanceCommand(p, sportKeywordList, postalCode)
+activate FindSportSortByDistanceCommand
+
+FindSportSortByDistanceCommand --> LocationUtil : createLocation(tempAddress, postalCode)
+activate LocationUtil
+
+LocationUtil --> FindSportSortByDistanceCommand : location
+deactivate LocationUtil
+
+FindSportSortByDistanceCommand --> FindSportCommandParser : d
+deactivate FindSportSortByDistanceCommand
+
+FindSportCommandParser --> AddressBookParser : d
+deactivate FindSportCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindSportCommandParser -[hidden]-> AddressBookParser
+destroy FindSportCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> FindSportSortByDistanceCommand : execute(m)
+activate FindSportSortByDistanceCommand
+
+FindSportSortByDistanceCommand -> Model : updateFilteredPersonList(p);
+activate Model
+
+Model --> FindSportSortByDistanceCommand
+deactivate Model
+
+FindSportSortByDistanceCommand -> Model : sortFilteredPersonList(location);
+activate Model
+
+Model --> FindSportSortByDistanceCommand
+deactivate Model
+
+create CommandResult
+FindSportSortByDistanceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindSportSortByDistanceCommand
+deactivate CommandResult
+
+FindSportSortByDistanceCommand --> LogicManager : r
+deactivate FindSportSortByDistanceCommand
+
+[<-- LogicManager
+deactivate LogicManager
 @enduml
