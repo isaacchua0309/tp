@@ -34,13 +34,29 @@ public class SampleDataUtil {
                     getTagSet("neighbours"), getSportListObject("cricket")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), "560436",
-                getTagSet("family"), getSportListObject("rugby")),
+                    getTagSet("family"), getSportListObject("rugby")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), "018910",
+                    new Address("Blk 47 Tampines Street 20, #17-35"), "018910",
                     getTagSet("classmates"), getSportListObject("hockey")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), "018916",
-                    getTagSet("colleagues"), getSportListObject("soccer"))
+                    new Address("Blk 45 Aljunied Street 85, #11-31"), "018916",
+                    getTagSet("colleagues"), getSportListObject("soccer")),
+            new Person(new Name("Darren Teo"), new Phone("97702811"), new Email("darrenteo@example.com"),
+                    new Address("Darren's Home in the east"), "417451",
+                    getTagSet("demoSubject1"), getSportListObject("basketball")),
+            new Person(new Name("Isaac Chua"), new Phone("87994339"), new Email("cheerfuldino@example.com"),
+                    new Address("Isaac's Hostel in the west"), "119618",
+                    getTagSet("demoSubject2"), getSportListObject("basketball")),
+            new Person(new Name("Lucas Goh"), new Phone("94875091"), new Email("lucasgoh@example.com"),
+                    new Address("Lucas' Home in the north"), "579506",
+                    getTagSet("demoSubject3"), getSportListObject("basketball")),
+            new Person(new Name("Noah Ang"), new Phone("97723485"), new Email("noahang@example.com"),
+                    new Address("Noah's Home in central Singapore"), "570154",
+                    getTagSet("demoSubject4"), getSportListObject("basketball")),
+            new Person(new Name("Somneel Saha"), new Phone("96736925"), new Email("somneelsaha@example.com"),
+                        new Address("Somneel's Hostel in the west"), "119617",
+                        getTagSet("demoSubject5"), getSportListObject("basketball"))
+
         };
     }
 
