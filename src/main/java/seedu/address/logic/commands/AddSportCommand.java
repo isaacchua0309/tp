@@ -22,8 +22,8 @@ public class AddSportCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) s/SPORT_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 s/Badminton";
     public static final String MESSAGE_SUCCESS = "Successfully added %1$s to %2$s's sports list!";
-    public static final String MESSAGE_DUPLICATE_SPORT = "This sport is already \n"
-            + "in %s's sport list. Each sport can only be added once per contact.";
+    public static final String MESSAGE_DUPLICATE_SPORT = "This sport %1$s is already "
+            + "in the sport list. Each sport can only be added once per contact.";
 
     private final int index;
     private final Sport sport;
@@ -54,7 +54,7 @@ public class AddSportCommand extends Command {
 
         // Check if the sport is already presen
         if (personToEdit.getSports().contains(sport)) {
-            throw new CommandException(MESSAGE_DUPLICATE_SPORT);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_SPORT, sport));
         }
 
         // Check if the sport is valid
@@ -70,7 +70,7 @@ public class AddSportCommand extends Command {
         // Create a new Person with the updated sports lis
         Person editedPerson = createEditedPerson(personToEdit, updatedSports);
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sport.toString(), personToEdit.getName().fullName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, sport, personToEdit.getName().fullName));
     }
 
     /**

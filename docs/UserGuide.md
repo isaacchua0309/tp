@@ -23,7 +23,7 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 
 - **Sports-focused contact management:** Keep track of which friends play which sports
 - **Location-based planning:** Sort contacts by proximity to a specific location using postal codes
-- **Group organization:** Create groups for different sports or friend circles
+- **Game organization:** Create games for different sports or friend circles
 - **Smart recommendations:** Find the perfect sports partners based on interests and location
 
 > 📊 **Did you know?** According to our surveys, 78% of young adults want to try new sports but don't know who to play with. FitFriends helps you discover which friends might be interested in picking up new sports like tennis or pickleball together!
@@ -57,8 +57,10 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
     - [Finding Friends by Sport](#finding-friends-by-sport)
     - [Finding Friends by Sport and Location](#finding-friends-by-sport-and-location)
   - [Game Management](#game-management)
-    - [Creating Games](#creating-games)
+    - [Adding Games](#adding-games)
     - [Deleting Games](#deleting-games)
+    - [Adding Members](#adding-members)
+    - [Deleting Members](#deleting-members)
 - [Command Summary](#-command-summary)
 - [FAQs](#-faqs)
 - [Troubleshooting](#-troubleshooting)
@@ -421,16 +423,16 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 > - More than 1 sport can be included in the search by adding s/SPORT_NAME
 
 > 💡 **Pro Tip**:
-> * Use this feature to find the optimal meeting spot for your sports group!
+> * Use this feature to find the optimal meeting spot for your sports game!
 > * If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the findsport command. Use this to manage your contacts without having to search for them manually!
 
 ---
 
 #### Game Management
 
-#### Creating Games
+#### Adding Games
 
-Organize your sports buddies into groups for different activities or events.
+Organize your sports buddies into games for different activities or events.
 
 **Format**:
 ```
@@ -442,9 +444,9 @@ addgame g/SPORT_NAME dt/DATE_TIME pc/POSTAL_CODE
 addgame g/badminton dt/2025-04-01T15:00:00 pc/259366
 ```
 
-This creates a new group called "badminton".
+This creates a new game called "badminton".
 
-![Creating a Group](images/creategroup_command.png)
+![Adding a Game](images/addgame_command.png)
 
 #### Deleting Games
 
@@ -460,10 +462,37 @@ deletegame g/INDEX
 deletegame g/1
 ```
 
-This deletes the "badminton" group.
+This deletes the "badminton" game.
 
-![Deleting a Group](images/deletegroup_command.png)
+![Deleting a Game](images/deletegame_command.png)
 
+### Adding Members
+
+Adds Members to a particular game
+
+**Format**:
+```
+addmember g/INDEX n/PERSON_NAME
+```
+
+**Example**:
+```
+addmember g/1 n/Mary Jane
+```
+
+### Deleting Members
+
+**Format**:
+
+Deletes Members from a particular game
+```
+deletemember g/INDEX n/PERSON_NAME
+```
+
+**Example**:
+```
+deletegame g/1 n/Mary Jane
+```
 ---
 
 ## 📋 Command Summary
@@ -484,9 +513,10 @@ This deletes the "badminton" group.
 | **Delete Sport**             | `deletesport INDEX s/SPORT`                                                   | `deletesport 2 s/basketball`                                                          |
 | **Find by Sport**            | `findsport s/SPORT [s/SPORT]`                                                 | `findsport s/basketball s/tennis`                                                     |
 | **Find by Sport & Location** | `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/123456 s/tennis hockey`                                                 |
-| **Create Game**              | `addgame g/SPORT_NAME dt/DATE_TIME pc/POSTAL_CODE`                            | `addgame g/volleyball dt/2025-04-04T15:30:00 pc/259366`                               |
-| **Add Member**               | `addmember g/INDEX n/PERSON_NAME`                                             | `deletegame g/1 n/Alice Pauline`                                                      |
-| **Delete Member**            | `deletegame g/INDEX n/PERSON_NAME`                                            | `deletegame g/1 n/Alice Pauline`                                                      |
+| **Add Game**                 | `addgame g/SPORT_NAME dt/DATE_TIME pc/POSTAL_CODE`                            | `addgame g/volleyball dt/2025-04-04T15:30:00 pc/259366`                               |
+| **Delete Game**              | `deletegame g/INDEX`                                                          | `addmember g/1`                                                                       |
+| **Add Member**               | `addmember g/INDEX n/PERSON_NAME`                                             | `addmember g/1 n/Alice Pauline`                                                       |
+| **Delete Member**            | `deletemember g/INDEX n/PERSON_NAME`                                          | `deletemember g/1 n/Alice Pauline`                                                    |
 
 
 ---
