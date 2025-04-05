@@ -32,14 +32,14 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 
 ## 📋 Table of Contents
 
-- [Getting Started](#getting-started)
+- [Getting Started](#-getting-started)
   - [System Requirements](#system-requirements)
   - [Installation](#installation)
   - [First Launch](#first-launch)
-- [Using FitFriends](#using-fitfriends)
+- [Using FitFriends](#-using-fitfriends)
   - [Interface Overview](#interface-overview)
   - [Command Format](#command-format)
-- [Basic Features](#basic-features)
+- [Basic Features](#-basic-features)
   - [Viewing Help](#viewing-help)
   - [Managing Contacts](#managing-contacts)
     - [Adding a Friend](#adding-a-friend)
@@ -51,18 +51,18 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
   - [Sports Management](#sports-management)
     - [Creating a Sport](#creating-a-sport)
     - [Listing All Sports](#listing-all-sports)
-    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list)
+    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list-of-sports)
     - [Adding a Sport](#adding-a-sport)
     - [Deleting a Sport](#deleting-a-sport)
     - [Finding Friends by Sport](#finding-friends-by-sport)
     - [Finding Friends by Sport and Location](#finding-friends-by-sport-and-location)
-  - [Group Management](#group-management)
-    - [Creating Groups](#creating-groups)
-    - [Deleting Groups](#deleting-groups)
-- [Command Summary](#command-summary)
-- [FAQs](#faqs)
-- [Troubleshooting](#troubleshooting)
-- [References](#references)
+  - [Game Management](#game-management)
+    - [Creating Games](#creating-games)
+    - [Deleting Games](#deleting-games)
+- [Command Summary](#-command-summary)
+- [FAQs](#-faqs)
+- [Troubleshooting](#-troubleshooting)
+- [References](#-references)
 
 ---
 
@@ -426,7 +426,7 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 
 ---
 
-### Game Management
+#### Game Management
 
 #### Creating Games
 
@@ -434,12 +434,12 @@ Organize your sports buddies into groups for different activities or events.
 
 **Format**:
 ```
-addgame g/SPORT_NAME
+addgame g/SPORT_NAME dt/DATE_TIME pc/POSTAL_CODE
 ```
 
 **Example**:
 ```
-addgame g/badminton
+addgame g/badminton dt/2025-04-01T15:00:00 pc/259366
 ```
 
 This creates a new group called "badminton".
@@ -452,12 +452,12 @@ Remove Games you no longer need.
 
 **Format**:
 ```
-deletegame g/SPORT_NAME
+deletegame g/INDEX
 ```
 
 **Example**:
 ```
-deletegame g/badminton
+deletegame g/1
 ```
 
 This deletes the "badminton" group.
