@@ -6,9 +6,10 @@
 
 ## 🏆 Our Mission
 
-FitFriends is designed to help **sporty young adults*** connect, organize and participate in sports activities together. In today's busy world, finding friends with similar sporting interests and coordinating meetups can be challenging. FitFriends makes this process seamless and enjoyable.
+FitFriends is designed to help **sporty young adults** connect, organize and participate in sports activities together. In today's busy world, finding friends with similar sporting interests and coordinating meetups can be challenging. FitFriends makes this process seamless and enjoyable.
 
 *refers to adults between 16-35 years of age and are active or looking to get active in the sporting scene
+
 ### 🎯 Problems We're Solving
 
 **Primary Challenge:**
@@ -32,43 +33,28 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 
 ## 📋 Table of Contents
 
-- [Getting Started](#-getting-started)
-  - [System Requirements](#system-requirements)
-  - [Installation](#installation)
-  - [First Launch](#first-launch)
-- [Using FitFriends](#-using-fitfriends)
-  - [Interface Overview](#interface-overview)
-  - [Command Format](#command-format)
-- [Basic Features](#-basic-features)
-  - [Viewing Help](#viewing-help)
-  - [Managing Contacts](#managing-contacts)
-    - [Adding a Friend](#adding-a-friend)
-    - [Listing All Friends](#listing-all-friends)
-    - [Editing a Friend](#editing-a-friend)
-    - [Locating Friends by Name](#locating-friends-by-name)
-    - [Deleting a Friend](#deleting-a-friend)
-    - [Clearing All Entries](#clearing-all-entries)
-  - [Sports Management](#sports-management)
-    - [Creating a Sport](#creating-a-sport)
-    - [Listing All Sports](#listing-all-sports)
-    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list-of-sports)
-    - [Adding a Sport](#adding-a-sport)
-    - [Deleting a Sport](#deleting-a-sport)
-    - [Finding Friends by Sport](#finding-friends-by-sport)
-    - [Finding Friends by Sport and Location](#finding-friends-by-sport-and-location)
-  - [Game Management](#game-management)
-    - [Adding Games](#adding-games)
-    - [Deleting Games](#deleting-games)
-    - [Adding Members](#adding-members)
-    - [Deleting Members](#deleting-members)
-- [Command Summary](#-command-summary)
-- [FAQs](#-faqs)
-- [Troubleshooting](#-troubleshooting)
-- [References](#-references)
+
+- [Getting Started](#getting-started)
+    - [System Requirements](#system-requirements)
+    - [Installation](#installation)
+    - [First Launch](#first-launch)
+- [Using FitFriends](#using-fitfriends)
+    - [Interface Overview](#interface-overview)
+    - [Command Format](#command-format)
+- [Basic Features](#basic-features)
+    - [Viewing Help](#viewing-help)
+    - [Managing Contacts](#managing-contacts)
+    - [Sports Management](#sports-management)
+    - [Game Management](#game-management)
+- [Command Summary](#command-summary)
+- [FAQs](#faqs)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
+
 
 ---
 
-## 💻 Getting Started
+## Getting Started
 
 ### System Requirements
 
@@ -88,14 +74,14 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 ### First Launch
 
 #### Using the Command Line Interface (CLI)
-###### Find out more about what a command line interface is [here](https://www.techtarget.com/searchwindowsserver/definition/command-line-interface-CLI).
+###### Learn more about CLI [here](https://www.techtarget.com/searchwindowsserver/definition/command-line-interface-CLI).
 
-1. **Open a terminal or command prompt**
-   - On Windows: Press `Win + R`, type `cmd` and press Enter
-   - On macOS: Press `Cmd + Space`, type `terminal` and press Enter
-   - On Linux: Press `Ctrl + Alt + T`
+1. **Open a terminal/command prompt**
+    - Windows: `Win + R` > type `cmd`
+    - macOS: `Cmd + Space` > type `terminal`
+    - Linux: `Ctrl + Alt + T`
 
-2. **Navigate to the folder** containing FitFriends.jar:
+2. **Navigate to folder**:
    ```
    cd path/to/your/fitfriends/folder
    ```
@@ -119,7 +105,7 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 
 ---
 
-## 🛠️ Using FitFriends
+## Using FitFriends 
 
 ### Interface Overview
 
@@ -130,7 +116,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 - **Friend List**: Displays all your contacts with their information
 - **Person Card**: Shows detailed information for each contact
 
-![Interface Components]
+![Interface Components](images/interface.png)
 
 ### Command Format
 
@@ -143,7 +129,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 
 ---
 
-## 📝 Basic Features
+## Basic Features
 
 ### Viewing Help
 
@@ -214,7 +200,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]
 
 **Example**:
 ```
-edit 2 n/James Lee p/87654321 a/45 Sunset Blvd pc/654321
+edit 2 n/James Lee p/87654321 a/45 Sunset Blvd pc/018907
 ```
 
 This updates the 2nd person in your current list with a new name, phone number, address, and postal code.
@@ -321,7 +307,7 @@ This displays all sports in alphabetical order with numbers for reference.
 
 > 💡 **Tip**: Take note of the indices as they're needed when deleting sports from the global list.
 
-#### Deleting a Sport from Global List of Sports
+#### Deleting a Sport from Global List of Sports 
 
 Remove a sport from the global sports list.
 
@@ -413,7 +399,7 @@ findsport pc/POSTALCODE s/SPORT [s/SPORT]
 findsport pc/259366 s/tennis s/hockey
 ```
 
-This shows all contacts who play tennis or hockey, sorted by their proximity to postal code 123456.
+This shows all contacts who play tennis or hockey, sorted by their proximity to postal code 259366.
 
 ![Finding by Sport and Location](images/findsport_location_command.png)
 
@@ -446,7 +432,9 @@ addgame g/badminton dt/2025-04-01T15:00:00 pc/259366
 
 This creates a new game called "badminton".
 
+
 ![Adding a Game](images/addgame_command.png)
+
 
 #### Deleting Games
 
@@ -464,7 +452,9 @@ deletegame g/1
 
 This deletes the "badminton" game.
 
+
 ![Deleting a Game](images/deletegame_command.png)
+
 
 ### Adding Members
 
@@ -495,6 +485,7 @@ deletegame g/1 n/Mary Jane
 ```
 ---
 
+
 ## 📋 Command Summary
 
 | **Action**                   | **Format**                                                                    | **Example**                                                                           |
@@ -512,16 +503,17 @@ deletegame g/1 n/Mary Jane
 | **Add Sport**                | `addsport INDEX s/SPORT`                                                      | `addsport 1 s/tennis`                                                                 |
 | **Delete Sport**             | `deletesport INDEX s/SPORT`                                                   | `deletesport 2 s/basketball`                                                          |
 | **Find by Sport**            | `findsport s/SPORT [s/SPORT]`                                                 | `findsport s/basketball s/tennis`                                                     |
-| **Find by Sport & Location** | `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/123456 s/tennis hockey`                                                 |
+| **Find by Sport & Location** | `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/018907 s/tennis s/hockey`                                                 |
 | **Add Game**                 | `addgame g/SPORT_NAME dt/DATE_TIME pc/POSTAL_CODE`                            | `addgame g/volleyball dt/2025-04-04T15:30:00 pc/259366`                               |
-| **Delete Game**              | `deletegame g/INDEX`                                                          | `addmember g/1`                                                                       |
+| **Delete Game**              | `deletegame g/INDEX`                                                          | `deletegame g/1`                                                                       |
 | **Add Member**               | `addmember g/INDEX n/PERSON_NAME`                                             | `addmember g/1 n/Alice Pauline`                                                       |
 | **Delete Member**            | `deletemember g/INDEX n/PERSON_NAME`                                          | `deletemember g/1 n/Alice Pauline`                                                    |
 
 
+
 ---
 
-## ❓ FAQs
+## FAQs 
 
 **Q: Can I use FitFriends to find sports facilities?**
 A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
@@ -537,7 +529,7 @@ A: FitFriends supports most popular sports. If yours isn't recognized, please co
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting 
 
 **Problem: FitFriends won't start**
 - Verify you have Java 17+ installed by running `java -version` in your terminal
@@ -547,11 +539,11 @@ A: FitFriends supports most popular sports. If yours isn't recognized, please co
 - Check your spelling and format
 - Refer to the Command Summary table for correct syntax
 
-**Need more help?** Visit our [support page](https://github.com/yourusername/fitfriends/issues) or email support@fitfriends.com.
+**Need help?** Visit our [support page](https://github.com/AY2425S2-CS2103T-F12-1/tp/issues) or email `fitfriends.support@gmail.com`.
 
 ---
 
-## 📚 References
+## 📚 References 
 
 1. [Benefits of sports in social bonding](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6125028/)
 2. [The importance of location in sports participation](https://www.tandfonline.com/doi/full/10.1080/16184742.2019.1566931)

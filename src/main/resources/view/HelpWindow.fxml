@@ -90,7 +90,7 @@
                 <Label text="Format: add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] s/SPORT pc/POSTALCODE" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
-                  <Label text="add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/basketball pc/123456" wrapText="true" styleClass="help-command-example" />
+                  <Label text="add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/basketball pc/018907" wrapText="true" styleClass="help-command-example" />
                 </VBox>
                 <Label text="Note: The postal code lets FitFriends calculate proximity for meetups. Only valid postal codes and sports are accepted." styleClass="help-command-note" />
                 <Label text="Note: Multiple tags and sports can be added to a contact. " styleClass="help-command-note" />
@@ -102,7 +102,7 @@
                 <Label text="Format: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
-                  <Label text="edit 2 n/James Lee p/87654321 a/45 Sunset Blvd pc/654321" wrapText="true" styleClass="help-command-example" />
+                  <Label text="edit 2 n/James Lee p/654321 a/45 Sunset Blvd pc/018907" wrapText="true" styleClass="help-command-example" />
                 </VBox>
                 <Label text="Note: You cannot edit sports with this command. Use deletesport and addsport instead. " styleClass="help-command-note" />
                 <Label text="Note: Multiple tag additions are supported and all previous tags will be removed. " styleClass="help-command-note" />
