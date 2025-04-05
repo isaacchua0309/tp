@@ -6,7 +6,7 @@
 
 ## 🏆 Our Mission
 
-FitFriends is designed to help **sporty young adults*** connect, organize and participate in sports activities together. In today's busy world, finding friends with similar sporting interests and coordinating meetups can be challenging. FitFriends makes this process seamless and enjoyable.
+FitFriends is designed to help **sporty young adults** connect, organize and participate in sports activities together. In today's busy world, finding friends with similar sporting interests and coordinating meetups can be challenging. FitFriends makes this process seamless and enjoyable.
 
 *refers to adults between 16-35 years of age and are active or looking to get active in the sporting scene
 ### 🎯 Problems We're Solving
@@ -23,7 +23,7 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 
 - **Sports-focused contact management:** Keep track of which friends play which sports
 - **Location-based planning:** Sort contacts by proximity to a specific location using postal codes
-- **Group organization:** Create groups for different sports or friend circles
+- **Game organization:** Create games for different sports or friend circles
 - **Smart recommendations:** Find the perfect sports partners based on interests and location
 
 > 📊 **Did you know?** According to our surveys, 78% of young adults want to try new sports but don't know who to play with. FitFriends helps you discover which friends might be interested in picking up new sports like tennis or pickleball together!
@@ -56,9 +56,9 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
     - [Deleting a Sport](#deleting-a-sport)
     - [Finding Friends by Sport](#finding-friends-by-sport)
     - [Finding Friends by Sport and Location](#finding-friends-by-sport-and-location)
-  - [Group Management](#group-management)
-    - [Creating Groups](#creating-groups)
-    - [Deleting Groups](#deleting-groups)
+  - [Game Management](#game-management)
+    - [Creating Games](#creating-games)
+    - [Deleting Games](#deleting-games)
 - [Command Summary](#command-summary)
 - [FAQs](#faqs)
 - [Troubleshooting](#troubleshooting)
@@ -66,7 +66,7 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 
 ---
 
-## 💻 Getting Started
+## Getting Started <a id="getting-started"></a>
 
 ### System Requirements
 
@@ -117,7 +117,7 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
 
 ---
 
-## 🛠️ Using FitFriends
+## 🛠️ Using FitFriends <a id="using-fitfriends"></a>
 
 ### Interface Overview
 
@@ -141,7 +141,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 
 ---
 
-## 📝 Basic Features
+## 📝 Basic Features <a id="basic-features"></a>
 
 ### Viewing Help
 
@@ -212,7 +212,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]
 
 **Example**:
 ```
-edit 2 n/James Lee p/87654321 a/45 Sunset Blvd pc/654321
+edit 2 n/James Lee p/87654321 a/45 Sunset Blvd pc/018907
 ```
 
 This updates the 2nd person in your current list with a new name, phone number, address, and postal code.
@@ -319,7 +319,7 @@ This displays all sports in alphabetical order with numbers for reference.
 
 > 💡 **Tip**: Take note of the indices as they're needed when deleting sports from the global list.
 
-#### Deleting a Sport from Global List of Sports
+#### Deleting a Sport from Global List of Sports <a id="deleting-a-sport-from-global-list"></a>
 
 Remove a sport from the global sports list.
 
@@ -411,7 +411,7 @@ findsport pc/POSTALCODE s/SPORT [s/SPORT]
 findsport pc/259366 s/tennis s/hockey
 ```
 
-This shows all contacts who play tennis or hockey, sorted by their proximity to postal code 123456.
+This shows all contacts who play tennis or hockey, sorted by their proximity to postal code 259366.
 
 ![Finding by Sport and Location](images/findsport_location_command.png)
 
@@ -442,9 +442,9 @@ addgame g/SPORT_NAME
 addgame g/badminton
 ```
 
-This creates a new group called "badminton".
+This creates a new game called "badminton".
 
-![Creating a Group](images/creategroup_command.png)
+![Creating a Game](images/creategroup_command.png)
 
 #### Deleting Games
 
@@ -460,36 +460,36 @@ deletegame g/SPORT_NAME
 deletegame g/badminton
 ```
 
-This deletes the "badminton" group.
+This deletes the "badminton" game.
 
-![Deleting a Group](images/deletegroup_command.png)
-
----
-
-## 📋 Command Summary
-
-| **Action**                  | **Format**                                                                    | **Example**                                                                                   |
-|-----------------------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| **Help**                    | `help`                                                                        | `help`                                                                                       |
-| **Add Friend**              | `add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG s/SPORT pc/POSTALCODE`            | `add n/John Doe p/98765432 e/johnd@example.com a/John St t/friend s/tennis pc/123456`         |
-| **List Friends**            | `list`                                                                        | `list`                                                                                       |
-| **Edit Friend**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]` | `edit 2 n/James Lee p/98765432 a/Block 123 pc/654321`                                        |
-| **Find by Name**            | `find KEYWORD [MORE_KEYWORDS]`                                                | `find James Jake`                                                                            |
-| **Delete Friend**           | `delete INDEX`                                                                | `delete 3`                                                                                   |
-| **Clear All**               | `clear`                                                                       | `clear`                                                                                      |
-| **Create Sport**            | `createsport s/SPORT_NAME`                                                    | `createsport s/archery`                                                                      |
-| **List Sports**             | `listsports`                                                                  | `listsports`                                                                                 |
-| **Delete Global Sport**     | `deletesport INDEX`                                                           | `deletesport 1`                                                                              |
-| **Add Sport**               | `addsport INDEX s/SPORT`                                                      | `addsport 1 s/tennis`                                                                        |
-| **Delete Sport**            | `deletesport INDEX s/SPORT`                                                   | `deletesport 2 s/basketball`                                                                 |
-| **Find by Sport**           | `findsport s/SPORT [s/SPORT]`                                                 | `findsport s/basketball tennis`                                                              |
-| **Find by Sport & Location**| `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/123456 s/tennis hockey`                                                        |
-| **Create Group**            | `creategroup g/GROUP_NAME`                                                    | `creategroup g/MarathonBuddies`                                                              |
-| **Delete Group**            | `deletegroup g/GROUP_NAME`                                                    | `deletegroup g/TennisBuddies`                                                                |
+![Deleting a Game](images/deletegroup_command.png)
 
 ---
 
-## ❓ FAQs
+## 📋 Command Summary <a id="command-summary"></a>
+
+| **Action**                   | **Format**                                                                    | **Example**                                                                               |
+|------------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| **Help**                     | `help`                                                                        | `help`                                                                                    |
+| **Add Friend**               | `add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG s/SPORT pc/POSTALCODE`            | `add n/John Doe p/98765432 e/johnd@example.com a/John Street t/friend s/tennis pc/018907` |
+| **List Friends**             | `list`                                                                        | `list`                                                                                    |
+| **Edit Friend**              | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]` | `edit 2 n/James Lee p/98765432 a/Block 123 pc/018907                                      |
+| **Find by Name**             | `find KEYWORD [MORE_KEYWORDS]`                                                | `find James Jake`                                                                         |
+| **Delete Friend**            | `delete INDEX`                                                                | `delete 3`                                                                                |
+| **Clear All**                | `clear`                                                                       | `clear`                                                                                   |
+| **Create Sport**             | `createsport s/SPORT_NAME`                                                    | `createsport s/archery`                                                                   |
+| **List Sports**              | `listsports`                                                                  | `listsports`                                                                              |
+| **Delete Global Sport**      | `deletesport INDEX`                                                           | `deletesport 1`                                                                           |
+| **Add Sport**                | `addsport INDEX s/SPORT`                                                      | `addsport 1 s/tennis`                                                                     |
+| **Delete Sport**             | `deletesport INDEX s/SPORT`                                                   | `deletesport 2 s/basketball`                                                              |
+| **Find by Sport**            | `findsport s/SPORT [s/SPORT]`                                                 | `findsport s/basketball s/tennis`                                                         |
+| **Find by Sport & Location** | `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/018907 s/tennis s/hockey`                                                   |
+| **Create Game**              | `addgame g/GAME_NAME`                                                         | `addgame g/MarathonBuddies`                                                               |
+| **Delete Game**              | `deletegame g/GAME_NAME`                                                      | `deletegame g/TennisBuddies`                                                              |
+
+---
+
+## ❓ FAQs <a id="faqs"></a>
 
 **Q: Can I use FitFriends to find sports facilities?**
 A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
@@ -505,7 +505,7 @@ A: FitFriends supports most popular sports. If yours isn't recognized, please co
 
 ---
 
-## 🔧 Troubleshooting
+## 🔧 Troubleshooting <a id="troubleshooting"></a>
 
 **Problem: FitFriends won't start**
 - Verify you have Java 17+ installed by running `java -version` in your terminal
@@ -519,7 +519,7 @@ A: FitFriends supports most popular sports. If yours isn't recognized, please co
 
 ---
 
-## 📚 References
+## 📚 References <a id="references"></a>
 
 1. [Benefits of sports in social bonding](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6125028/)
 2. [The importance of location in sports participation](https://www.tandfonline.com/doi/full/10.1080/16184742.2019.1566931)
