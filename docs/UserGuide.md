@@ -32,11 +32,11 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 
 ## 📋 Table of Contents
 
-- [Getting Started](#getting-started-a-idgetting-starteda)
+- [Getting Started](#getting-started-)
   - [System Requirements](#system-requirements)
   - [Installation](#installation)
   - [First Launch](#first-launch)
-- [Using FitFriends](#-using-fitfriends-a-idusing-fitfriendsaa)
+- [Using FitFriends](#using-fitfriends-)
   - [Interface Overview](#interface-overview)
   - [Command Format](#command-format)
 - [Basic Features](#-basic-features-a-idbasic-featuresaa)
@@ -51,7 +51,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
   - [Sports Management](#sports-management)
     - [Creating a Sport](#creating-a-sport)
     - [Listing All Sports](#listing-all-sports)
-    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list-of-sports-a-iddeleting-a-sport-from-global-listaa)
+    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list-of-sports-)
     - [Adding a Sport](#adding-a-sport)
     - [Deleting a Sport](#deleting-a-sport)
     - [Finding Friends by Sport](#finding-friends-by-sport)
@@ -59,14 +59,14 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
   - [Game Management](#game-management)
     - [Creating Games](#creating-games)
     - [Deleting Games](#deleting-games)
-- [Command Summary](#-command-summary-a-idcommand-summarya)
-- [FAQs](#-faqs-a-idfaqsa)
-- [Troubleshooting](#-troubleshooting-a-idtroubleshootinga)
-- [References](#-references-a-idreferencesa)
+- [Command Summary](#-command-summary-)
+- [FAQs](#-faqs-)
+- [Troubleshooting](#-troubleshooting-)
+- [References](#-references-)
 
 ---
 
-## Getting Started <a id="getting-started"></a>
+## Getting Started 
 
 ### System Requirements
 
@@ -117,7 +117,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 
 ---
 
-## 🛠️ Using FitFriends <a id="using-fitfriendsa"></a>
+## Using FitFriends 
 
 ### Interface Overview
 
@@ -319,7 +319,7 @@ This displays all sports in alphabetical order with numbers for reference.
 
 > 💡 **Tip**: Take note of the indices as they're needed when deleting sports from the global list.
 
-#### Deleting a Sport from Global List of Sports <a id="deleting-a-sport-from-global-lista"></a>
+#### Deleting a Sport from Global List of Sports 
 
 Remove a sport from the global sports list.
 
@@ -466,7 +466,7 @@ This deletes the "badminton" game.
 
 ---
 
-## 📋 Command Summary <a id="command-summary"></a>
+## 📋 Command Summary 
 
 | **Action**                   | **Format**                                                                    | **Example**                                                                               |
 |------------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
@@ -489,7 +489,7 @@ This deletes the "badminton" game.
 
 ---
 
-## ❓ FAQs <a id="faqs"></a>
+## ❓ FAQs 
 
 **Q: Can I use FitFriends to find sports facilities?**
 A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
@@ -505,7 +505,7 @@ A: FitFriends supports most popular sports. If yours isn't recognized, please co
 
 ---
 
-## 🔧 Troubleshooting <a id="troubleshooting"></a>
+## 🔧 Troubleshooting 
 
 **Problem: FitFriends won't start**
 - Verify you have Java 17+ installed by running `java -version` in your terminal
@@ -519,7 +519,7 @@ A: FitFriends supports most popular sports. If yours isn't recognized, please co
 
 ---
 
-## 📚 References <a id="references"></a>
+## 📚 References 
 
 1. [Benefits of sports in social bonding](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6125028/)
 2. [The importance of location in sports participation](https://www.tandfonline.com/doi/full/10.1080/16184742.2019.1566931)
