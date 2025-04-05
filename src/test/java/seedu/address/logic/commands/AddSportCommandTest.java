@@ -59,7 +59,7 @@ public class AddSportCommandTest {
         // Try to add the same sport again
         AddSportCommand addSportCommand = new AddSportCommand(INDEX_FIRST_OBJECT.getZeroBased(), sportToAdd);
         assertThrows(CommandException.class,
-                AddSportCommand.MESSAGE_DUPLICATE_SPORT, () -> addSportCommand.execute(model));
+                String.format(AddSportCommand.MESSAGE_DUPLICATE_SPORT, sportToAdd), () -> addSportCommand.execute(model));
     }
 
     @Test
