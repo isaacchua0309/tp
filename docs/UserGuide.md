@@ -468,24 +468,26 @@ This deletes the "badminton" group.
 
 ## 📋 Command Summary
 
-| **Action**                  | **Format**                                                                    | **Example**                                                                                   |
-|-----------------------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| **Help**                    | `help`                                                                        | `help`                                                                                       |
-| **Add Friend**              | `add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG s/SPORT pc/POSTALCODE`            | `add n/John Doe p/98765432 e/johnd@example.com a/John St t/friend s/tennis pc/123456`         |
-| **List Friends**            | `list`                                                                        | `list`                                                                                       |
-| **Edit Friend**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]` | `edit 2 n/James Lee p/98765432 a/Block 123 pc/654321`                                        |
-| **Find by Name**            | `find KEYWORD [MORE_KEYWORDS]`                                                | `find James Jake`                                                                            |
-| **Delete Friend**           | `delete INDEX`                                                                | `delete 3`                                                                                   |
-| **Clear All**               | `clear`                                                                       | `clear`                                                                                      |
-| **Create Sport**            | `createsport s/SPORT_NAME`                                                    | `createsport s/archery`                                                                      |
-| **List Sports**             | `listsports`                                                                  | `listsports`                                                                                 |
-| **Delete Global Sport**     | `deletesport INDEX`                                                           | `deletesport 1`                                                                              |
-| **Add Sport**               | `addsport INDEX s/SPORT`                                                      | `addsport 1 s/tennis`                                                                        |
-| **Delete Sport**            | `deletesport INDEX s/SPORT`                                                   | `deletesport 2 s/basketball`                                                                 |
-| **Find by Sport**           | `findsport s/SPORT [s/SPORT]`                                                 | `findsport s/basketball tennis`                                                              |
-| **Find by Sport & Location**| `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/123456 s/tennis hockey`                                                        |
-| **Create Group**            | `creategroup g/GROUP_NAME`                                                    | `creategroup g/MarathonBuddies`                                                              |
-| **Delete Group**            | `deletegroup g/GROUP_NAME`                                                    | `deletegroup g/TennisBuddies`                                                                |
+| **Action**                   | **Format**                                                                    | **Example**                                                                           |
+|------------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Help**                     | `help`                                                                        | `help`                                                                                |
+| **Add Friend**               | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] s/SPORT pc/POSTALCODE`          | `add n/John Doe p/98765432 e/johnd@example.com a/John St t/friend s/tennis pc/123456` |
+| **List Friends**             | `list`                                                                        | `list`                                                                                |
+| **Edit Friend**              | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]` | `edit 2 n/James Lee p/98765432 a/Block 123 pc/654321`                                 |
+| **Find by Name**             | `find KEYWORD [MORE_KEYWORDS]`                                                | `find James Jake`                                                                     |
+| **Delete Friend**            | `delete INDEX`                                                                | `delete 3`                                                                            |
+| **Clear All**                | `clear`                                                                       | `clear`                                                                               |
+| **Create Sport**             | `createsport s/SPORT_NAME`                                                    | `createsport s/archery`                                                               |
+| **List Sports**              | `listsports`                                                                  | `listsports`                                                                          |
+| **Delete Global Sport**      | `deletesport INDEX`                                                           | `deletesport 1`                                                                       |
+| **Add Sport**                | `addsport INDEX s/SPORT`                                                      | `addsport 1 s/tennis`                                                                 |
+| **Delete Sport**             | `deletesport INDEX s/SPORT`                                                   | `deletesport 2 s/basketball`                                                          |
+| **Find by Sport**            | `findsport s/SPORT [s/SPORT]`                                                 | `findsport s/basketball s/tennis`                                                     |
+| **Find by Sport & Location** | `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/123456 s/tennis hockey`                                                 |
+| **Create Game**              | `addgame g/SPORT_NAME dt/DATE_TIME pc/POSTAL_CODE`                            | `addgame g/volleyball dt/2025-04-04T15:30:00 pc/259366`                               |
+| **Add Member**               | `addmember g/INDEX n/PERSON_NAME`                                             | `deletegame g/1 n/Alice Pauline`                                                      |
+| **Delete Member**            | `deletegame g/INDEX n/PERSON_NAME`                                            | `deletegame g/1 n/Alice Pauline`                                                      |
+
 
 ---
 

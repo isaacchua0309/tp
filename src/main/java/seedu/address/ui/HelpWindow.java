@@ -17,7 +17,7 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL =
-        "https://github.com/AY2324-CS2103T-W10-4/tp/blob/master/docs/UserGuide.md";
+        "https://ay2425s2-cs2103t-f12-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE =
         "Welcome to FitFriends! For detailed instructions, please refer to our user guide: " + USERGUIDE_URL;
     private static final String LIGHT_THEME_PATH = "/view/LightTheme.css";
