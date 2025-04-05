@@ -524,9 +524,6 @@ A: There's no limit! Add as many sports as your friend plays.
 **Q: Can I import contacts from my phone?**
 A: This feature is coming in our next update. Stay tuned!
 
-**Q: What if a sport I want to add isn't recognized?**
-A: FitFriends supports most popular sports. If yours isn't recognized, please contact us to add it to our database.
-
 ---
 
 ## Troubleshooting 

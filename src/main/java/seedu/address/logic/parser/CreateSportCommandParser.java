@@ -27,13 +27,13 @@ public class CreateSportCommandParser implements Parser<CreateSportCommand> {
         }
 
 
-        String[] tokens = trimmedInput.split("\\s+", 2);
+        String[] tokens = trimmedInput.split("\\s+", 5);
         if (tokens.length < 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateSportCommand.MESSAGE_USAGE));
         }
 
 
-        String sportToken = tokens[0].trim();
+        String sportToken = (tokens[0] + ((tokens.length < 2) ? "" : (" " + tokens[1]))).trim();
         if (!sportToken.startsWith(CliSyntax.PREFIX_SPORT.getPrefix())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateSportCommand.MESSAGE_USAGE));
         }
