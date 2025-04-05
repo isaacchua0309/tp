@@ -31,8 +31,8 @@ public class DeleteSportCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 s/basketball";
 
-    public static final String MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL = "Deleted Sport: %1$s";
-    public static final String MESSAGE_DELETE_SPORT_SUCCESS_PERSON = "Deleted Sport: %1$s for %2$s";
+    public static final String MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL = "Deleted Sport: %1$s from global list";
+    public static final String MESSAGE_DELETE_SPORT_SUCCESS_PERSON = "Deleted the sport %1$s for %2$s";
     public static final String MESSAGE_INVALID_SPORT_INDEX = "The sport index provided is invalid";
 
     public static final String MESSAGE_CANNOT_DELETE_SPORT = "The sport %1$s, cannot be deleted as %2$s has to "
@@ -113,7 +113,7 @@ public class DeleteSportCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL, deletedSport));
         } else {
             // deletion of sport from person
-            if (!sortedSports.contains(sport)) {
+            if (!sortedSports.contains(sport.sportName)) {
                 throw new CommandException(Sport.getMessageConstraints());
             }
             List<Person> lastShownList = model.getFilteredPersonList();
