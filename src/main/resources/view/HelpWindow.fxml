@@ -154,7 +154,7 @@
               </VBox>
 
               <VBox styleClass="help-command">
-                <Label text="deletesport" styleClass="help-command-name" />
+                <Label text="deletesport in global list" styleClass="help-command-name" />
                 <Label text="Remove a sport from the global sports list by its index" styleClass="help-command-desc" />
                 <Label text="Format: deletesport INDEX" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
@@ -176,7 +176,7 @@
               </VBox>
 
               <VBox styleClass="help-command">
-                <Label text="deletesport" styleClass="help-command-name" />
+                <Label text="deletesport for a person" styleClass="help-command-name" />
                 <Label text="Update your records if a friend no longer plays a particular sport" styleClass="help-command-desc" />
                 <Label text="Format: deletesport INDEX s/SPORT_NAME" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
