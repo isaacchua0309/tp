@@ -9,6 +9,7 @@
 FitFriends is designed to help **sporty young adults** connect, organize and participate in sports activities together. In today's busy world, finding friends with similar sporting interests and coordinating meetups can be challenging. FitFriends makes this process seamless and enjoyable.
 
 *refers to adults between 16-35 years of age and are active or looking to get active in the sporting scene
+
 ### 🎯 Problems We're Solving
 
 **Primary Challenge:**
@@ -32,41 +33,26 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 
 ## 📋 Table of Contents
 
-- [Getting Started](#getting-started-)
-  - [System Requirements](#system-requirements)
-  - [Installation](#installation)
-  - [First Launch](#first-launch)
-- [Using FitFriends](#using-fitfriends-)
-  - [Interface Overview](#interface-overview)
-  - [Command Format](#command-format)
-- [Basic Features](#-basic-features-a-idbasic-featuresaa)
-  - [Viewing Help](#viewing-help)
-  - [Managing Contacts](#managing-contacts)
-    - [Adding a Friend](#adding-a-friend)
-    - [Listing All Friends](#listing-all-friends)
-    - [Editing a Friend](#editing-a-friend)
-    - [Locating Friends by Name](#locating-friends-by-name)
-    - [Deleting a Friend](#deleting-a-friend)
-    - [Clearing All Entries](#clearing-all-entries)
-  - [Sports Management](#sports-management)
-    - [Creating a Sport](#creating-a-sport)
-    - [Listing All Sports](#listing-all-sports)
-    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list-of-sports-)
-    - [Adding a Sport](#adding-a-sport)
-    - [Deleting a Sport](#deleting-a-sport)
-    - [Finding Friends by Sport](#finding-friends-by-sport)
-    - [Finding Friends by Sport and Location](#finding-friends-by-sport-and-location)
-  - [Game Management](#game-management)
-    - [Creating Games](#creating-games)
-    - [Deleting Games](#deleting-games)
-- [Command Summary](#-command-summary-)
-- [FAQs](#-faqs-)
-- [Troubleshooting](#-troubleshooting-)
-- [References](#-references-)
+- [Getting Started](#getting-started)
+    - [System Requirements](#system-requirements)
+    - [Installation](#installation)
+    - [First Launch](#first-launch)
+- [Using FitFriends](#using-fitfriends)
+    - [Interface Overview](#interface-overview)
+    - [Command Format](#command-format)
+- [Basic Features](#basic-features)
+    - [Viewing Help](#viewing-help)
+    - [Managing Contacts](#managing-contacts)
+    - [Sports Management](#sports-management)
+    - [Game Management](#game-management)
+- [Command Summary](#command-summary)
+- [FAQs](#faqs)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
 
 ---
 
-## Getting Started 
+## Getting Started
 
 ### System Requirements
 
@@ -86,14 +72,14 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 ### First Launch
 
 #### Using the Command Line Interface (CLI)
-###### Find out more about what a command line interface is [here](https://www.techtarget.com/searchwindowsserver/definition/command-line-interface-CLI).
+###### Learn more about CLI [here](https://www.techtarget.com/searchwindowsserver/definition/command-line-interface-CLI).
 
-1. **Open a terminal or command prompt**
-   - On Windows: Press `Win + R`, type `cmd` and press Enter
-   - On macOS: Press `Cmd + Space`, type `terminal` and press Enter
-   - On Linux: Press `Ctrl + Alt + T`
+1. **Open a terminal/command prompt**
+    - Windows: `Win + R` > type `cmd`
+    - macOS: `Cmd + Space` > type `terminal`
+    - Linux: `Ctrl + Alt + T`
 
-2. **Navigate to the folder** containing FitFriends.jar:
+2. **Navigate to folder**:
    ```
    cd path/to/your/fitfriends/folder
    ```
@@ -128,7 +114,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 - **Friend List**: Displays all your contacts with their information
 - **Person Card**: Shows detailed information for each contact
 
-![Interface Components]
+![Interface Components](images/interface.png)
 
 ### Command Format
 
@@ -141,7 +127,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 
 ---
 
-## 📝 Basic Features <a id="basic-featuresa"></a>
+## Basic Features
 
 ### Viewing Help
 
@@ -466,7 +452,7 @@ This deletes the "badminton" game.
 
 ---
 
-## 📋 Command Summary 
+## Command Summary 
 
 | **Action**                   | **Format**                                                                    | **Example**                                                                               |
 |------------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
@@ -489,7 +475,7 @@ This deletes the "badminton" game.
 
 ---
 
-## ❓ FAQs 
+## FAQs 
 
 **Q: Can I use FitFriends to find sports facilities?**
 A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
@@ -505,7 +491,7 @@ A: FitFriends supports most popular sports. If yours isn't recognized, please co
 
 ---
 
-## 🔧 Troubleshooting 
+## Troubleshooting 
 
 **Problem: FitFriends won't start**
 - Verify you have Java 17+ installed by running `java -version` in your terminal
@@ -515,7 +501,7 @@ A: FitFriends supports most popular sports. If yours isn't recognized, please co
 - Check your spelling and format
 - Refer to the Command Summary table for correct syntax
 
-**Need more help?** Visit our [support page](https://github.com/yourusername/fitfriends/issues) or email support@fitfriends.com.
+**Need help?** Visit our [support page](https://github.com/AY2425S2-CS2103T-F12-1/tp/issues) or email `fitfriends.support@gmail.com`.
 
 ---
 
