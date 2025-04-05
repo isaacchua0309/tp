@@ -33,7 +33,7 @@ public class CreateSportCommandParser implements Parser<CreateSportCommand> {
         }
 
 
-        String sportToken = (tokens[0]+((tokens.length<2)?"":(" "+tokens[1]))).trim();
+        String sportToken = (tokens[0] + ((tokens.length < 2) ? "" : (" " + tokens[1]))).trim();
         if (!sportToken.startsWith(CliSyntax.PREFIX_SPORT.getPrefix())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateSportCommand.MESSAGE_USAGE));
         }
