@@ -424,7 +424,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a person
 
-#### Adding a person to contact list 
+#### Adding a person to contact list
 
 1. Prerequisites: None.
 
@@ -435,7 +435,7 @@ testers are expected to do more *exploratory* testing.
    Expected: No person is added due to invalid postal code. Error details shown in the status message.
 
 4. Other incorrect add commands to try: <br>
-   `add n/John Doe p/ e/johnd@example.com a/John Street, #01-01 s/tennis pc/402001`, <br> 
+   `add n/John Doe p/ e/johnd@example.com a/John Street, #01-01 s/tennis pc/402001`, <br>
    `add n/John Doe p/98765432 e/johnd@example.com a/, #01-01 s/tennis pc/402001`, `...` <br>
    Expected: Similar to previous.
 
@@ -444,7 +444,7 @@ testers are expected to do more *exploratory* testing.
 #### Editing a person while at least one person is being shown
 
 1. Prerequisites: List all persons using the `list` command or List persons using the 'find' command. At least 1 person in the list.
- 
+
 2. Test case: `edit 1 n/Alicia Tay`<br>
    Expected: First contact has name edited to \"Alicia Tay\". Details of the outcome of the edit shown in the status message.
 
@@ -471,7 +471,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Creating a sport in the global list
 
-#### Creating a sport 
+#### Creating a sport
 
 1. Prerequisites: None.
 
@@ -497,10 +497,10 @@ testers are expected to do more *exploratory* testing.
 
 #### Deleting a sport from list of registered sports
 
-1. Prerequisites: At least 1 sport in the global list. 
+1. Prerequisites: At least 1 sport in the global list.
 
 2. Test case: `deletesport 1`<br>
-   Expected: The first sport in the list, if it exists, is deleted. Details of the outcome of the deletesport shown in the status message. 
+   Expected: The first sport in the list, if it exists, is deleted. Details of the outcome of the deletesport shown in the status message.
 
 3. Test case: `deletesport 0`<br>
    Expected: No sport is deleted due to invalid index. Details of the outcome of the deletesport shown in the status message.
