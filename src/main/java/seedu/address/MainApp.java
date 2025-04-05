@@ -1,6 +1,7 @@
 package seedu.address;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -66,7 +67,6 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
-
         // Load global sports list from user preferences path
         try {
             Sport.loadValidSports(userPrefs.getGlobalSportsListFilePath());
@@ -96,8 +96,18 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+            Path filePath = storage.getAddressBookFilePath();
+            try {
+                if (Files.exists(filePath)) {
+                    Files.delete(filePath);
+                } else {
+                    System.out.println("File does not exist, proceeding to create a new file.");
+                }
+                Files.createFile(filePath);
+            } catch (IOException ignored) { initialData = new AddressBook(); }
+            initialData = SampleDataUtil.getSampleAddressBook();
         }
+
 
         return new ModelManager(initialData, userPrefs);
     }
@@ -190,7 +200,7 @@ public class MainApp extends Application {
             // Save user preferences
             storage.saveUserPrefs(model.getUserPrefs());
 
-            // Save global sports lis
+            // Save global sports list
             Sport.saveValidSports(model.getUserPrefs().getGlobalSportsListFilePath());
             logger.info("Saved global sports list to " + model.getUserPrefs().getGlobalSportsListFilePath());
         } catch (IOException e) {
