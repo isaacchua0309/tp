@@ -222,7 +222,6 @@ This updates the 2nd person in your current list with a new name, phone number, 
 ![Editing a Friend](images/edit_command.png)
 
 > ⚠️ **Note**: You cannot edit sports with this command. To change sports information, use the `deletesport` and `addsport` commands.
-
 > 💡 **Editing Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
 
 #### Locating Friends by Name

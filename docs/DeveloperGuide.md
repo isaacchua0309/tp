@@ -11,6 +11,7 @@ title: Developer Guide
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Some features such as addGame, deleteGame were reused from AddressBook-Level3.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -70,7 +71,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](diagrams/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -117,7 +118,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="diagrams/ModelClassDiagram.png" />
 
 
 The `Model` component,
@@ -298,17 +299,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-
-
-
-
-
-
-
-        Expand All
-    
-    @@ -313,6 +343,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
-
 1.  User requests to list persons
 2.  AddressBook shows a list of persons
 3.  User requests to delete a specific person in the list
@@ -414,49 +404,242 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+**Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
-</div>
 
 ### Launch and shutdown
 
 1. Initial launch
 
-  1. Download the jar file and copy into an empty folder
+2. Download the jar file and copy into an empty folder.
 
-  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+3. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+4. Saving window preferences.
 
-  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+5. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-  1. Re-launch the app by double-clicking the jar file.<br>
-     Expected: The most recent window size and location is retained.
+6. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained. However, if the window was closed in light mode, it will start in dark mode as we chose to reduce the glare when the application is booted up.
 
-1. _{ more test cases …​ }_
+### Adding a person
+
+#### Adding a person to contact list 
+
+1. Prerequisites: None.
+
+2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/tennis pc/402001`<br>
+   Expected: John Doe contact is added to the list. Details of the contact shown in the status message. PersonCard is found in the list on the left.
+
+3. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/tennis pc/123456`<br>
+   Expected: No person is added due to invalid postal code. Error details shown in the status message.
+
+4. Other incorrect add commands to try: <br>
+   `add n/John Doe p/ e/johnd@example.com a/John Street, #01-01 s/tennis pc/402001`, <br> 
+   `add n/John Doe p/98765432 e/johnd@example.com a/, #01-01 s/tennis pc/402001`, `...` <br>
+   Expected: Similar to previous.
+
+### Editing a person
+
+#### Editing a person while at least one person is being shown
+
+1. Prerequisites: List all persons using the `list` command or List persons using the 'find' command. At least 1 person in the list.
+ 
+2. Test case: `edit 1 n/Alicia Tay`<br>
+   Expected: First contact has name edited to \"Alicia Tay\". Details of the outcome of the edit shown in the status message.
+
+3. Test case: `edit 1 n/`<br>
+   Expected: No name is edited due to erroneous name field. Details of the error shown in the status message.
+
+4. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+#### Deleting a person while all persons are being shown
 
-  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-  1. Test case: `delete 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+2. Test case: `delete 1`<br>
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-  1. Test case: `delete 0`<br>
-     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+3. Test case: `delete 0`<br>
+   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
+4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Creating a sport in the global list
 
-### Saving data
+#### Creating a sport 
 
-1. Dealing with missing/corrupted data files
+1. Prerequisites: None.
 
-  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. Test case: `createsport s/archery`<br>
+   Expected: Archery will be created in the global list. Details of the outcome of the createsport shown in the status message.
 
-1. _{ more test cases …​ }_
+3. Other incorrect createsport commands to try: `createsport`, `...` <br>
+   Expected: Similar to previous.
+
+### Listing global sports
+
+#### Lists all global sports.
+
+1. Prerequisites: None
+
+2. Test case: `listsports`<br>
+   Expected: Lists all registered sports in the status message.
+
+3. Other incorrect listsports commands to try: `listsports 1`, `deletesport abc`, `...`<br>
+   Expected: Similar to previous.
+
+### Deleting a sport from global list
+
+#### Deleting a sport from list of registered sports
+
+1. Prerequisites: At least 1 sport in the global list. 
+
+2. Test case: `deletesport 1`<br>
+   Expected: The first sport in the list, if it exists, is deleted. Details of the outcome of the deletesport shown in the status message. 
+
+3. Test case: `deletesport 0`<br>
+   Expected: No sport is deleted due to invalid index. Details of the outcome of the deletesport shown in the status message.
+
+4. Other incorrect deletesport commands to try: `deletesport`, `deletesport x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Adding a sport to a person
+
+#### Adding a sport to a person while at least one person is being shown
+
+1. Prerequisites: List all persons using the `list` command or List persons using the 'find' command. At least 1 person in the list.
+
+2. Test case: `addsport 1 s/basketball`<br>
+   Expected: First contact has basketball added to its registered sports, unless the sport already exists in their contact. Details of the outcome of the addsport shown in the status message.
+
+3. Test case: `addsport 1 s/chocolate`<br>
+      Expected: No sport is added due to invalid sport. Details of the outcome of the addsport shown in the status message.
+
+4. Test case: `addsport 0 s/basketball`<br>
+   Expected: No sport is added due to invalid index. Details of the outcome of the addsport shown in the status message.
+
+5. Other incorrect addsport commands to try: `addsport`, `addsport x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+
+### Deleting a sport from a person
+
+#### Deleting a sport from a person while at least one person is being shown
+
+1. Prerequisites: List all persons using the `list` command or List persons using the 'find' command. At least 1 person in the list.
+
+2. Test case: `deletesport 1 s/basketball`<br>
+   Expected: First contact has basketball deleted from its registered sports, if the sport already exists in their contact. Details of the outcome of the deletesport shown in the status message.
+
+3. Test case: `deletesport 1 s/chocolate`<br>
+   Expected: No sport is deleted due to invalid sport. Details of the outcome of the deletesport shown in the status message.
+
+4. Test case: `deletesport 0 s/basketball`<br>
+   Expected: No sport is added due to invalid index. Details of the outcome of the deletesport shown in the status message.
+
+6. Other incorrect deletesport commands to try: `deletesport`, `deletesport x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Finding persons who play specific sports
+
+#### Displaying a list of person who play specific sports
+
+1. Prerequisites: At least one person must play one of the sports in the list of sports provided.
+
+2. Test case: `findsport s/basketball`<br>
+   Expected: Contacts who have basketball in their registered sports will be shown. Details of the outcome of the findsport shown in the status message.
+
+3. Test case: `findsport s/chocolate`<br>
+   Expected: Error message is shown as sport is not one of the registered sports. Details of the outcome of the findsport shown in the status message.
+
+4. Other incorrect findsport commands to try: `findsport`, `findsport all`, `...`<br>
+   Expected: Similar to previous.
+
+### Finding persons who play a particular sport near a location
+
+#### Displaying a list of person who play specific sports
+
+1. Prerequisites: At least one person must play one of the sports in the list of sports provided. Postal Code must be valid.
+
+2. Test case: `findsport pc/402001 s/basketball`<br>
+   Expected: Contacts who have basketball in their registered sports will be shown by ascending order of distance from the specified location. Details of the outcome of the findsport shown in the status message.
+
+3. Test case: `findsport pc/123456 s/tennis`<br>
+   Expected: Error message is shown as postal code is not valid. Details of the outcome of the findsport shown in the status message.
+
+4. Test case: `findsport pc/402001 s/chocolate`<br>
+   Expected: Error message is shown as sport is not in registered list of sports. Details of the outcome of the findsport shown in the status message.
+
+5. Other incorrect findsport commands to try: `findsport`, `findsport all`, `...`<br>
+   Expected: Similar to previous.
+
+### Adding a game
+
+#### Adds a game to the gamelist
+
+1. Prerequisites: Game must be a registered sport. Date time must follow specified format. Postal Code must be valid.
+
+2. Test case: `addgame g/volleyball  dt/2025-04-04T15:00:00 pc/402001`<br>
+   Expected: Game will be added and the details of the game will be shown in the status message of addgame.
+
+3. Test case: `addgame g/tennis`<br>
+   Expected: Error message is shown as date time and postal code not added. Details of the outcome of the addgame shown in the status message.
+
+4. Other incorrect addgame commands to try: `addgame`, `addgame g/chocolate`, `...` <br>
+   Expected: Similar to previous.
+
+### Deleting a game
+
+#### Deletes a game from gamelist
+
+1. Prerequisites: At least one game must exist.
+
+2. Test case: `deletegame 1`<br>
+   Expected: Game at index 1 will be deleted. Details of the outcome of the deletegame shown in the status message.
+
+3. Test case: `deletegame 0`<br>
+   Expected: Error message is shown as postal index is not valid. Details of the outcome of the deletegame shown in the status message.
+
+4. Other incorrect deletegame commands to try: `deletegame`, `deletegame x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Adding a member to a game
+
+#### Adds a member to a game in the gamelist
+
+1. Prerequisites: At least one game must exist. The member must exist in the person list.
+
+2. Test case: `addmember g/1 n/Alice Pauline`<br>
+   Expected: \"Alice Pauline\" will be added to game at index 1. Details of the outcome of the addmember shown in the status message.
+
+3. Test case: `addmember g/0 n/Alice Pauline`<br>
+   Expected: Error message is shown as index is not valid. Details of the outcome of the addmember shown in the status message.
+
+4. Test case: `addmember g/1 n/Banana Man`<br>
+   Expected: Error message is shown as contact is not in the person list. Details of the outcome of the addmember shown in the status message.
+
+5. Other incorrect addmember commands to try: `addmember g/1`, `addmember all`, `...`<br>
+   Expected: Similar to previous.
+
+### Deleting a member from a game
+
+#### Deletes a member from a game in the gamelist.
+
+1. Prerequisites: At least one game must exist in the gamelist. Member must exist in the person list.
+
+2. Test case: `deletemember g/1 n/Alice Pauline`<br>
+   Expected: \"Alice Pauline\" will be deleted from game at index 1. Details of the outcome of the deletemember shown in the status message.
+
+3. Test case: `deletemember g/0 n/Alice Pauline`<br>
+   Expected: Error message is shown as index is not valid. Details of the outcome of the deletemember shown in the status message.
+
+4. Test case: `deletemember g/1 n/Banana Man`<br>
+   Expected: Error message is shown as contact is not in the person list. Details of the outcome of the deletemember shown in the status message.
+
+5. Other incorrect deletemember commands to try: `deletemember g/1`, `deletemember all`, `...`<br>
+   Expected: Similar to previous.
