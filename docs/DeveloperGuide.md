@@ -164,7 +164,7 @@ The `Game` object is added into a `UniqueGameList` object whenever `addgame` com
 ### `deletegame` feature
 Similar to `addgame` feature
 
-### \[Implemented\] Global Sports List Management
+### Global Sports List Management
 
 #### Overview
 
@@ -230,9 +230,6 @@ Here's an overview of how the feature works:
 * **Popularity tracking**: Track which sports are most commonly used across contacts.
 * **Sport details**: Add additional information like required equipment or typical venue types.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -267,29 +264,199 @@ so as to reduce the hassle when organizing sports meetups.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                                                                                            | So that I can…​                                                               |
-|----------|---------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *`  | new user                                    | see usage instructions                                                                                  | refer to instructions when I forget how to use the App                        |
-| `* * *`  | user                                        | add a new person                                                                                        | so that I can store their information                                         |
-| `* * *`  | user                                        | delete a person                                                                                         | remove entries that I no longer need                                          |
-| `* * *`  | user                                        | find a person by name                                                                                   | locate details of persons without having to go through the entire list        |
-| `* * *`  | sporty person                               | add a person's preferred sport                                                                          | know who to arrange games with when I want to play a certain sport            |
-| `* * *`  | sporty person                               | add a friend's contact number                                                                           | contact them to meet up for games in future                                   |
-| `* * *`  | user looking to pick up a new sport         | find friends by sport played                                                                            | invite them to play or teach me the sport                                     |
-| `* * *`  | network enthusiast                          | see where my contacts live                                                                              | meet up with them more easily                                                 |
-| `* * *`  | impromptu person                            | see where my friends live                                                                               | see which friends are in the area when I am out and suddenly want to catch up |
-| `* * *`  | caring friend                               | see what sports my friends play                                                                         | arrange a session when I have something to talk about/check on them           |
-| `* *`    | sporty person                               | find sports facilities near me                                                                          | play sports there                                                             |
-| `* *`    | user                                        | hide private contact details                                                                            | protect the contact details of persons in my address book                     |
-| `* *`    | student                                     | receive suggested sports venues based on my group's location                                            | arrange a meetup location which is fair and convenient                        |
-| `* *`    | user who prefers structured planning        | book facilities directly through the app                                                                | reduce the hassle of navigating multiple booking applications                 |
-| `* *`    | busy professional                           | quickly check for the nearest sports facility before heading down                                       | save time                                                                     |
-| `* *`    | user who dislikes long commutes             | set a maximum travel distance to be used to filter out addresses that are too far away from my location | receive suggestions from the application which fall within my preferred range |
-| `* *`    | user                                        | be able to edit an existing contact                                                                     | update their contact details                                                  |
-| `* *`    | working professional                        | add my favourite sports venues                                                                          | quickly suggest them for meetups                                              |
-| `* *`    | thrifty user                                | be able to filter results only to show free to use facilities                                           | enjoy sports without paying for private courts                                |
-| `* *`    | tennis player                               | be reminded to bring my racket                                                                          | save the trouble of having to borrow a racket at the last minute              |
-| `* *`    | sporty person                               | set my friend's preferred play locations                                                                | know where to meet them for games                                             |
-| `* *`    | working adult                               | tag contacts with custom labels                                                                         | categorize them by friends/work                                               |
-| `* *`    | sports coach                                | track where my students live                                                                            | organize training sessions at convenient locations                            |
-| `* *`
+| Priority | As a …​                                     | I want to …​                                                                                              | So that I can…​                                                                  |
+|----------|---------------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | new user                                    | see usage instructions                                                                                    | refer to instructions when I forget how to use the App                           |
+| `* * *`  | user                                        | add a new person                                                                                          | so that I can store their information                                            |
+| `* * *`  | user                                        | delete a person                                                                                           | remove entries that I no longer need                                             |
+| `* * *`  | user                                        | find a person by name                                                                                     | locate details of persons without having to go through the entire list           |
+| `* * *`  | sporty person                               | add a person's preferred sport                                                                            | know who to arrange games with when I want to play a certain sport               |
+| `* * *`  | sporty person                               | add a friend's contact number                                                                             | contact them to meet up for games in future                                      |
+| `* * *`  | user looking to pick up a new sport         | find friends by sport played                                                                              | invite them to play or teach me the sport                                        |
+| `* * *`  | network enthusiast                          | see where my contacts live                                                                                | meet up with them more easily                                                    |
+| `* * *`  | impromptu person                            | see where my friends live                                                                                 | see which friends are in the area when I am out and suddenly want to catch up    |
+| `* * *`  | caring friend                               | see what sports my friends play                                                                           | arrange a session when I have something to talk about/check on them              |
+| `* *`    | sporty person                               | find sports facilities near me                                                                            | play sports there                                                                |
+| `* *`    | user                                        | hide private contact details                                                                              | protect the contact details of persons in my address book                        |
+| `* *`    | student                                     | receive suggested sports venues based on my group's location                                              | arrange a meetup location which is fair and convenient                           |
+| `* *`    | user who prefers structured planning        | book facilities directly through the app                                                                  | reduce the hassle of navigating multiple booking applications                    |
+| `* *`    | busy professional                           | quickly check for the nearest sports facility before heading down                                         | save time                                                                        |
+| `* *`    | user who dislikes long commutes             | set a maximum travel distance to be used to filter out addresses that are too far away from my location   | receive suggestions from the application which fall within my preferred range    |
+| `* *`    | user                                        | be able to edit an existing contact                                                                       | update their contact details                                                     |
+| `* *`    | working professional                        | add my favourite sports venues                                                                            | quickly suggest them for meetups                                                 |
+| `* *`    | thrifty user                                | be able to filter results only to show free to use facilities                                             | enjoy sports without paying for private courts                                   |
+| `* *`    | tennis player                               | be reminded to bring my racket                                                                            | save the trouble of having to borrow a racket at the last minute                 |
+| `* *`    | sporty person                               | set my friend's preferred play locations                                                                  | know where to meet them for games                                                |
+| `* *`    | working adult                               | tag contacts with custom labels                                                                           | categorize them by friends/work                                                  |
+| `* *`    | sports coach                                | track where my students live                                                                              | organize training sessions at convenient locations                               |
+
+### Use cases
+
+(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case 1: Delete a person**
+
+**MSS**
+
+
+
+
+
+
+
+
+        Expand All
+    
+    @@ -313,6 +343,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  AddressBook deletes the person
+    Use case ends.
+    **Extensions**
+* 2a. The list is empty.
+  Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case 2: Tag a contact**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to tag a specific person in the list
+4.  AddressBook updates the person's contact details
+
+    Use case ends.
+
+    **Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The person is not in the list.
+
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case 3: Filter by location**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User enters a location to filter the list
+4.  AddressBook updates the list shown to user
+
+    Use case ends.
+
+    **Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given location is invalid.
+
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+* 4a. The given location does not belong to any user.
+
+  * 4a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case 4: Edit a contact**
+
+**MSS**
+
+1.  User searches for a person
+2.  AddressBook shows matching result(s)
+3.  User requests to view contact details
+4.  AddressBook shows contact details
+5.  User selects field to update details
+6.  AddressBook reflects updated contact details
+
+    Use case ends.
+
+    **Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+### Non-Functional Requirements
+
+1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system must be designed for a single user only, user data is private and not shared between different users.
+5. Users should be able to run the application from a single executable JAR file.
+6. The system must automatically save data after each user edit to ensure data persistence.
+
+### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **JAR File**: A compressed package that bundles Java classes, resources metadata into a single executable file
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Launch and shutdown
+
+1. Initial launch
+
+  1. Download the jar file and copy into an empty folder
+
+  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+1. Saving window preferences
+
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+  1. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained.
+
+1. _{ more test cases …​ }_
+
+### Deleting a person
+
+1. Deleting a person while all persons are being shown
+
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+  1. Test case: `delete 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+  1. Test case: `delete 0`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
