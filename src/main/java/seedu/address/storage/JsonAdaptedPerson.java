@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.LocationUtil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -133,6 +134,9 @@ class JsonAdaptedPerson {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "Postal Code"));
         }
 
+        if (!LocationUtil.isValidPostalCode(postalCode)) {
+            throw new IllegalValueException("Invalid postal code!");
+        }
         final String modelPostalCode = postalCode;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

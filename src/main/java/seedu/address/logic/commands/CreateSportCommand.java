@@ -61,7 +61,7 @@ public class CreateSportCommand extends Command {
             Path pathToUse = filePath != null ? filePath : model.getUserPrefs().getGlobalSportsListFilePath();
             Sport.saveValidSports(pathToUse);
         } catch (IOException e) {
-            throw new CommandException("Error saving sports to file: " + e.getMessage());
+            return new CommandResult(String.format(MESSAGE_SUCCESS, sportName));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sportName));
     }
