@@ -31,11 +31,13 @@ public class DeleteSportCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 s/basketball";
 
-    public static final String MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL = "Deleted Sport: %1$s";
-    public static final String MESSAGE_DELETE_SPORT_SUCCESS_PERSON = "Deleted Sport: %1$s for %2$s";
+    public static final String MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL = "Deleted Sport: %1$s from global list";
+    public static final String MESSAGE_DELETE_SPORT_SUCCESS_PERSON = "Deleted the sport %1$s for %2$s";
     public static final String MESSAGE_INVALID_SPORT_INDEX = "The sport index provided is invalid";
 
-    public static final String MESSAGE_NO_SPORT_FOUND = "The sport, %1$s, does not exist for %2$s";
+    public static final String MESSAGE_CANNOT_DELETE_SPORT = "The sport %1$s, cannot be deleted as %2$s has to "
+            + "have at least 1 sport";
+    public static final String MESSAGE_NO_SPORT_FOUND = "The sport %1$s, does not exist for %2$s";
 
     private final Index targetIndex;
     private final Path filePath;
@@ -83,9 +85,11 @@ public class DeleteSportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // Get the sorted list of sports to ensure consistent indexing
+        List<String> sortedSports = Sport.getSortedValidSports();
+
+        // deletion from global sport list
         if (this.sport == null) {
-            // Get the sorted list of sports to ensure consistent indexing
-            List<String> sortedSports = Sport.getSortedValidSports();
 
             if (targetIndex.getZeroBased() >= sortedSports.size()) {
                 throw new CommandException(MESSAGE_INVALID_SPORT_INDEX);
@@ -108,6 +112,10 @@ public class DeleteSportCommand extends Command {
 
             return new CommandResult(String.format(MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL, deletedSport));
         } else {
+            // deletion of sport from person
+            if (!sortedSports.contains(sport.sportName)) {
+                throw new CommandException(Sport.getMessageConstraints());
+            }
             List<Person> lastShownList = model.getFilteredPersonList();
 
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -124,6 +132,10 @@ public class DeleteSportCommand extends Command {
 
             // Create a new list of sports excluding the sport to be deleted.
             List<Sport> updatedSports = new ArrayList<>(personToEdit.getSports());
+            if (updatedSports.size() == 1) {
+                throw new CommandException(String.format(
+                        MESSAGE_CANNOT_DELETE_SPORT, sport, personToEdit.getName().fullName));
+            }
             updatedSports.remove(sport);
 
             // Create a new Person with the updated sports list.
