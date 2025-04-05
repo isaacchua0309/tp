@@ -32,14 +32,14 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 
 ## 📋 Table of Contents
 
-- [Getting Started](#getting-started)
+- [Getting Started](#getting-started-a-idgetting-starteda)
   - [System Requirements](#system-requirements)
   - [Installation](#installation)
   - [First Launch](#first-launch)
-- [Using FitFriends](#using-fitfriends)
+- [Using FitFriends](#-using-fitfriends-a-idusing-fitfriendsaa)
   - [Interface Overview](#interface-overview)
   - [Command Format](#command-format)
-- [Basic Features](#basic-features)
+- [Basic Features](#-basic-features-a-idbasic-featuresaa)
   - [Viewing Help](#viewing-help)
   - [Managing Contacts](#managing-contacts)
     - [Adding a Friend](#adding-a-friend)
@@ -51,7 +51,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
   - [Sports Management](#sports-management)
     - [Creating a Sport](#creating-a-sport)
     - [Listing All Sports](#listing-all-sports)
-    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list)
+    - [Deleting a Sport from Global List](#deleting-a-sport-from-global-list-of-sports-a-iddeleting-a-sport-from-global-listaa)
     - [Adding a Sport](#adding-a-sport)
     - [Deleting a Sport](#deleting-a-sport)
     - [Finding Friends by Sport](#finding-friends-by-sport)
@@ -59,10 +59,10 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
   - [Game Management](#game-management)
     - [Creating Games](#creating-games)
     - [Deleting Games](#deleting-games)
-- [Command Summary](#command-summary)
-- [FAQs](#faqs)
-- [Troubleshooting](#troubleshooting)
-- [References](#references)
+- [Command Summary](#-command-summary-a-idcommand-summarya)
+- [FAQs](#-faqs-a-idfaqsa)
+- [Troubleshooting](#-troubleshooting-a-idtroubleshootinga)
+- [References](#-references-a-idreferencesa)
 
 ---
 
@@ -117,7 +117,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 
 ---
 
-## 🛠️ Using FitFriends <a id="using-fitfriends"></a>
+## 🛠️ Using FitFriends <a id="using-fitfriendsa"></a>
 
 ### Interface Overview
 
@@ -141,7 +141,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 
 ---
 
-## 📝 Basic Features <a id="basic-features"></a>
+## 📝 Basic Features <a id="basic-featuresa"></a>
 
 ### Viewing Help
 
@@ -319,7 +319,7 @@ This displays all sports in alphabetical order with numbers for reference.
 
 > 💡 **Tip**: Take note of the indices as they're needed when deleting sports from the global list.
 
-#### Deleting a Sport from Global List of Sports <a id="deleting-a-sport-from-global-list"></a>
+#### Deleting a Sport from Global List of Sports <a id="deleting-a-sport-from-global-lista"></a>
 
 Remove a sport from the global sports list.
 
