@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,8 +29,10 @@ public class DeleteMemberCommand extends Command {
             "Member '%1$s' is not in game '%2$s'.";
     public static final String MESSAGE_DUPLICATE_PERSONS =
             "More than one person named '%1$s' found. Please specify a unique name.";
+    public static final String MESSAGE_PERSON_NOT_FOUND =
+            "No person named '%1$s' was found in the address book.";
     public static final String MESSAGE_INVALID_GAME_INDEX = "The game index %1$d is invalid.";
-
+    private static final Logger logger = Logger.getLogger(DeleteMemberCommand.class.getName());
     private final Index targetIndex;
     private final String memberName;
 
@@ -59,15 +63,29 @@ public class DeleteMemberCommand extends Command {
 
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
 
+        // Check if memberName is empty or invalid
+        if (memberName.trim().isEmpty()) {
+            throw new CommandException("Member name cannot be empty.");
+        }
+        int uniqueness = model.isPersonUnique(memberName);
+
+        logger.log(Level.INFO, "Uniqueness value for '{0}' is: {1}", new Object[]{memberName, uniqueness});
+        // Check if the person exists in the model
+        if (uniqueness == 0) {
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, memberName));
+        }
+        // Check if there are multiple persons with the same name
+        if (uniqueness == -1) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSONS, memberName));
+        }
 
         Person personToRemove = model.getPerson(memberName);
 
-
+        // Check if the person is part of the game
         if (!gameToEdit.getParticipants().contains(personToRemove)) {
             throw new CommandException(String.format(
                     MESSAGE_PERSON_NOT_IN_GAME, memberName, gameToEdit.toString()));
         }
-
 
         model.deleteGame(gameToEdit);
         gameToEdit.removeParticipant(personToRemove);

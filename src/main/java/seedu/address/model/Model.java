@@ -150,8 +150,9 @@ public interface Model {
     ObservableList<Game> getGameList();
 
     /**
-     * Returns true if exactly one Person in the address book has the given name,
-     * false if zero or more than one match.
+     * Returns 1 if exactly one Person in the address book has the given name,
+     * 0 if zero
+     * -1 if more than one match.
      */
     int isPersonUnique(String name);
 
