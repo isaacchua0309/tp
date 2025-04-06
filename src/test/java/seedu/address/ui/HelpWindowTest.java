@@ -18,23 +18,7 @@ public class HelpWindowTest {
             + "master/docs/UserGuide.md";
     private static final String HELP_WINDOW_TITLE = "Help";
 
-    /**
-     * This test is disabled because it requires JavaFX initialization
-     */
-    @Test
-    @Disabled("Requires JavaFX initialization")
-    public void constructor_validInputs_success() {
 
-    }
-
-    /**
-     * This test is disabled because it requires JavaFX initialization
-     */
-    @Test
-    @Disabled("Requires JavaFX initialization")
-    public void isShowing_initialState_false() {
-
-    }
 
     /**
      * This is a simple test to ensure HelpCommand returns a CommandResult that triggers

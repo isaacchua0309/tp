@@ -58,14 +58,6 @@ public class HelpWindowIntegrationTest {
         assertFalse(commandResult.isExit());
     }
 
-    /**
-     * This test is disabled because it requires JavaFX initialization
-     */
-    @Test
-    @Disabled("Requires JavaFX initialization")
-    public void helpWindow_containsAllImplementedCommands() {
-
-    }
 
     /**
      * Tests that invalid commands are properly rejected
