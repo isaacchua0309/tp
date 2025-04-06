@@ -25,6 +25,7 @@ public class FindSportCommandParser implements Parser<FindSportCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindSportCommand parse(String args) throws ParseException {
+        assert(args != null);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_POSTAL_CODE, PREFIX_SPORT);
 
