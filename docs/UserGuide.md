@@ -105,7 +105,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 
 ---
 
-## Using FitFriends 
+## Using FitFriends
 
 ### Interface Overview
 
@@ -305,7 +305,7 @@ This displays all sports in alphabetical order with numbers for reference.
 
 > 💡 **Tip**: Take note of the indices as they're needed when deleting sports from the global list.
 
-#### Deleting a Sport from Global List of Sports 
+#### Deleting a Sport from Global List of Sports
 
 Remove a sport from the global sports list.
 
@@ -511,7 +511,7 @@ deletegame g/1 n/Mary Jane
 
 ---
 
-## FAQs 
+## FAQs
 
 **Q: Can I use FitFriends to find sports facilities?**
 A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
@@ -524,7 +524,7 @@ A: This feature is coming in our next update. Stay tuned!
 
 ---
 
-## Troubleshooting 
+## Troubleshooting
 
 **Problem: FitFriends won't start**
 - Verify you have Java 17+ installed by running `java -version` in your terminal
@@ -538,7 +538,7 @@ A: This feature is coming in our next update. Stay tuned!
 
 ---
 
-## References 
+## References
 
 1. [Benefits of sports in social bonding](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6125028/)
 2. [The importance of location in sports participation](https://www.tandfonline.com/doi/full/10.1080/16184742.2019.1566931)
