@@ -16,7 +16,6 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -104,7 +103,9 @@ public class MainApp extends Application {
                     System.out.println("File does not exist, proceeding to create a new file.");
                 }
                 Files.createFile(filePath);
-            } catch (IOException ignored) { initialData = new AddressBook(); }
+            } catch (IOException ignored) {
+                ;
+            }
             initialData = SampleDataUtil.getSampleAddressBook();
         }
 
