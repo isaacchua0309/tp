@@ -166,6 +166,7 @@ This adds John Doe to your contacts with his details and shows he plays tennis.
 
 ![Adding a Friend](images/add_command.png)
 
+> ⚠️ **Note**: Names are case insensitive (e.g., The names, Somneel and somneel, are the same and will not be allowed when adding a contact).
 > 💡 **Postal Code Tip**: The postal code lets FitFriends calculate proximity for meetups at sports venues. Only valid postal codes are accepted.
 
 > 💡 **Sports Tip**: Only valid sports from our database are accepted. Popular sports like basketball, tennis, soccer, etc. are supported.
@@ -289,7 +290,8 @@ This adds archery to the global list of valid sports that can be assigned to con
 
 ![Creating a Sport](images/createsport_command.png)
 
-> 💡 **Tip**: Sport names entered in commands are case-insensitive but will be stored and displayed in lowercase.
+> ⚠️ **Note**: Sport names can only be a single word (e.g., Table Tennis is not allowed, use TableTennis instead).
+> 💡 **Tip**: Sport names entered in commands are case-insensitive and will be stored and displayed in lowercase.
 
 #### Listing All Sports
 View all available sports in the global sports list with their indices.
