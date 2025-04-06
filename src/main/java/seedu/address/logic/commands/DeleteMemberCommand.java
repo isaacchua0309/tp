@@ -58,20 +58,17 @@ public class DeleteMemberCommand extends Command {
 
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        // Check if memberName is empty or invalid
         if (memberName.trim().isEmpty()) {
             throw new CommandException("Member name cannot be empty.");
         }
         int uniqueness = model.isPersonUnique(memberName);
 
-        // Check if the person exists in the model
         if (uniqueness == 0) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, memberName));
         }
 
         Person personToRemove = model.getPerson(memberName);
 
-        // Check if the person is part of the game
         if (!gameToEdit.getParticipants().contains(personToRemove)) {
             throw new CommandException(String.format(
                     MESSAGE_PERSON_NOT_IN_GAME, memberName, gameToEdit.toString()));

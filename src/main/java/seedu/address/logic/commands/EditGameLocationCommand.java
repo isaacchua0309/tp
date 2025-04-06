@@ -48,10 +48,6 @@ public class EditGameLocationCommand extends Command {
 
     /**
      * Executes the EditGameLocationCommand by updating the location of the specified game.
-     *
-     * @param model Model containing the game's data.
-     * @return CommandResult containing the outcome message.
-     * @throws CommandException if the game index is invalid or the postal code is invalid.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
