@@ -44,7 +44,8 @@ public class AddGameCommandParser implements Parser<AddGameCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGameCommand.MESSAGE_USAGE)
             );
         }
-
+        argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_GAME_NAME, CliSyntax.PREFIX_DATETIME,
+                CliSyntax.PREFIX_POSTAL_CODE);
 
         String gameNameStr = argMultimap.getValue(CliSyntax.PREFIX_GAME_NAME).get();
         String dateTimeStr = argMultimap.getValue(CliSyntax.PREFIX_DATETIME).get();
