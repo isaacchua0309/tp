@@ -102,7 +102,7 @@
                 <Label text="Format: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]" wrapText="true" styleClass="help-command-format" />
                 <VBox styleClass="examples-container">
                   <Label text="Example:" styleClass="examples-header" />
-                  <Label text="edit 2 n/James Lee p/654321 a/45 Sunset Blvd pc/018907" wrapText="true" styleClass="help-command-example" />
+                  <Label text="edit 2 n/James Lee p/654321 e/jameslee@example.com a/45 Sunset Blvd pc/018907" wrapText="true" styleClass="help-command-example" />
                 </VBox>
                 <Label text="Note: You cannot edit sports with this command. Use deletesport and addsport instead. " styleClass="help-command-note" />
                 <Label text="Note: Multiple tag additions are supported and all previous tags will be removed. " styleClass="help-command-note" />
