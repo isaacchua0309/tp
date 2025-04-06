@@ -219,7 +219,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void sortFilteredPersonListAlphabetically() {
-        Comparator<Person> comparator = Comparator.comparing(person -> person.getName().fullName);
+        Comparator<Person> comparator = Comparator.comparing(person -> person.getName().fullName.toLowerCase());
         sortedPersons.setComparator(comparator);
     }
 
