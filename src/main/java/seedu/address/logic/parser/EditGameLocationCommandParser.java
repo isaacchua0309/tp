@@ -11,10 +11,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class EditGameLocationCommandParser implements Parser<EditGameLocationCommand> {
 
-    /**
-     * Parses the given {@code String} of arguments in the context of the EditGameLocationCommand
-     * and returns an EditGameLocationCommand object for execution.
-     */
     @Override
     public EditGameLocationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -30,7 +26,7 @@ public class EditGameLocationCommandParser implements Parser<EditGameLocationCom
         String gameIndexStr = argMultimap.getValue(CliSyntax.PREFIX_GAME_NAME).get();
         Index gameIndex;
         try {
-            gameIndex = ParserUtil.parseIndex(gameIndexStr); // Convert the string index to Index
+            gameIndex = ParserUtil.parseIndex(gameIndexStr);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditGameLocationCommand.MESSAGE_USAGE), pe);
@@ -39,12 +35,12 @@ public class EditGameLocationCommandParser implements Parser<EditGameLocationCom
         String postalCodeStr = argMultimap.getValue(CliSyntax.PREFIX_POSTAL_CODE).get().trim();
         String locationStr;
         try {
-            locationStr = ParserUtil.parsePostalCode(postalCodeStr); // Convert postal code to location
+            locationStr = ParserUtil.parsePostalCode(postalCodeStr);
         } catch (ParseException e) {
             throw new ParseException("Invalid postal code format.", e);
         }
 
-        assert gameIndex.getZeroBased() >= 0 : "Parsed game index must be non-negative"; // Assertion check
+        assert gameIndex.getZeroBased() >= 0 : "Parsed game index must be non-negative";
 
         return new EditGameLocationCommand(gameIndex.getZeroBased(), locationStr);
     }
