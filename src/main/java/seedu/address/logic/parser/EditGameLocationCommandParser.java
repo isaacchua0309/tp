@@ -2,9 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditGameLocationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -14,24 +11,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class EditGameLocationCommandParser implements Parser<EditGameLocationCommand> {
 
-    private static final Logger logger = Logger.getLogger(EditGameLocationCommandParser.class.getName());
-
-    /**
-     * Parses the given {@code String} of arguments in the context of the EditGameLocationCommand
-     * and returns an EditGameLocationCommand object for execution.
-     */
     @Override
     public EditGameLocationCommand parse(String args) throws ParseException {
-        requireNonNull(args); // Defensive coding: ensure args is not null
-
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_GAME_NAME, CliSyntax.PREFIX_POSTAL_CODE);
 
         if (!argMultimap.getValue(CliSyntax.PREFIX_GAME_NAME).isPresent()
                 || !argMultimap.getValue(CliSyntax.PREFIX_POSTAL_CODE).isPresent()
                 || !argMultimap.getPreamble().isEmpty()) {
-            // Logging: invalid command format detected
-            logger.log(Level.WARNING, "Invalid command format: {0}", args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditGameLocationCommand.MESSAGE_USAGE));
         }
@@ -39,10 +26,8 @@ public class EditGameLocationCommandParser implements Parser<EditGameLocationCom
         String gameIndexStr = argMultimap.getValue(CliSyntax.PREFIX_GAME_NAME).get();
         Index gameIndex;
         try {
-            gameIndex = ParserUtil.parseIndex(gameIndexStr); // Convert the string index to Index
+            gameIndex = ParserUtil.parseIndex(gameIndexStr);
         } catch (ParseException pe) {
-            // Logging: exception handling for invalid index format
-            logger.log(Level.WARNING, "Invalid game index format: {0}", gameIndexStr);
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditGameLocationCommand.MESSAGE_USAGE), pe);
         }
@@ -50,25 +35,13 @@ public class EditGameLocationCommandParser implements Parser<EditGameLocationCom
         String postalCodeStr = argMultimap.getValue(CliSyntax.PREFIX_POSTAL_CODE).get().trim();
         String locationStr;
         try {
-            locationStr = ParserUtil.parsePostalCode(postalCodeStr); // Convert postal code to location
+            locationStr = ParserUtil.parsePostalCode(postalCodeStr);
         } catch (ParseException e) {
-            // Logging: exception handling for invalid postal code format
-            logger.log(Level.WARNING, "Invalid postal code format: {0}", postalCodeStr);
             throw new ParseException("Invalid postal code format.", e);
         }
 
-        assert gameIndex.getZeroBased() >= 0 : "Parsed game index must be non-negative"; // Assertion check
-
-        // Logging: successful parsing of arguments
-        logger.log(Level.INFO, "Parsed EditGameLocationCommand with index: {0}, postalCode: {1}",
-                new Object[]{gameIndex.getZeroBased(), locationStr});
+        assert gameIndex.getZeroBased() >= 0 : "Parsed game index must be non-negative";
 
         return new EditGameLocationCommand(gameIndex.getZeroBased(), locationStr);
-    }
-
-    private void requireNonNull(Object obj) {
-        if (obj == null) {
-            throw new NullPointerException("Argument cannot be null");
-        }
     }
 }
