@@ -53,7 +53,7 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Contact updated successfully: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit \n"
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit "
             + "must be provided. Please specify at least one attribute to change.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book. \n"
             + "The edit would create a duplicate contact.";
@@ -86,8 +86,10 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (personToEdit.isSamePerson(editedPerson)) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
+        if (model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
