@@ -1,6 +1,6 @@
 # FitFriends User Guide
 
-*Last Updated: 3 Apr 2025*
+*Last Updated: 7 Apr 2025*
 
 <img src="images/fitfriends_logo.png" alt="FitFriends Logo" width="300" height="300"/>
 
@@ -34,22 +34,22 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 ## 📋 Table of Contents
 
 
-- [Getting Started](#-getting-started)
+- [Getting Started](#getting-started)
     - [System Requirements](#system-requirements)
     - [Installation](#installation)
     - [First Launch](#first-launch)
-- [Using FitFriends](#-using-fitfriends)
+- [Using FitFriends](#using-fitfriends)
     - [Interface Overview](#interface-overview)
     - [Command Format](#command-format)
-- [Basic Features](#-basic-features)
+- [Basic Features](#basic-features)
     - [Viewing Help](#viewing-help)
     - [Managing Contacts](#managing-contacts)
     - [Sports Management](#sports-management)
     - [Game Management](#game-management)
-- [Command Summary](#-command-summary)
-- [FAQs](#-faqs)
-- [Troubleshooting](#-troubleshooting)
-- [References](#-references)
+- [Command Summary](#command-summary)
+- [FAQs](#faqs)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
 
 
 ---
