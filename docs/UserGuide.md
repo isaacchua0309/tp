@@ -125,7 +125,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 - Items with `...` after them can have multiple instances.
 - Parameters can be in any order.
 
-> 💡 **Tip**: Commands are case-insensitive, so you can type `help`, `HELP`, or even `HeLp`.
+> 💡 **Tip**: Command words are case-sensitive, so you should only type `help`, and not `HELP`, `HeLp` or even `Help`.
 
 ---
 
@@ -228,7 +228,7 @@ This will show all contacts whose names contain "James" or "Jake".
 ![Finding Friends](images/find_command.png)
 
 > ⚠️ **Note**:
-> - Searches are case-insensitive
+> - Search keywords are case-insensitive
 > - Order of keywords doesn't matter
 > - Only full words are matched (e.g., "Han" won't match "Hans")
 > - Any contact matching at least one keyword will be shown
@@ -403,7 +403,7 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 ![Finding by Sport and Location](images/findsport_location_command.png)
 
 > ⚠️ **Note**:
-> * Searches are case-insensitive
+> * Searche keywords are case-insensitive
 > * Proximity is calculated by contact's postal code
 > * More than 1 sport can be included in the search by adding s/SPORT_NAME
 
