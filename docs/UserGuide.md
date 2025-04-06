@@ -166,9 +166,9 @@ This adds John Doe to your contacts with his details and shows he plays tennis.
 
 ![Adding a Friend](images/add_command.png)
 
-> 💡 **Postal Code Tip**: The postal code lets FitFriends calculate proximity for meetups at sports venues. Only valid postal codes are accepted.
-
-> 💡 **Sports Tip**: Only valid sports from our database are accepted. Popular sports like basketball, tennis, soccer, etc. are supported.
+> ⚠️ **Note**: Names are case insensitive (e.g., The names, Somneel and somneel, are the same and will not be allowed when adding a contact).
+> 💡 **Postal Code Tip**: Only valid Singapore postal codes are accepted. The postal code lets FitFriends calculate proximity for meetups at sports venues.
+> 💡 **Sports Tip**: Only valid sports from "Valid Sports List" are allowed. You can add valid sports to this list by using the `createsport` command.
 
 > 💡 **Tags Tip**: Tags are optional. You can add as many tags as you want to a contact (e.g., `t/bestfriend t/colleague`). Tags help you categorize your contacts.
 
@@ -207,7 +207,6 @@ This updates the 2nd person in your current list with a new name, phone number, 
 
 ![Editing a Friend](images/edit_command.png)
 
-> ⚠️ **Note**: You cannot edit sports with this command. To change sports information, use the `deletesport` and `addsport` commands.
 > 💡 **Editing Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
 
 #### Locating Friends by Name
@@ -289,7 +288,8 @@ This adds archery to the global list of valid sports that can be assigned to con
 
 ![Creating a Sport](images/createsport_command.png)
 
-> 💡 **Tip**: Sport names entered in commands are case-insensitive but will be stored and displayed in lowercase.
+> ⚠️ **Note**: Sport names can only be a single word (e.g., Table Tennis is not allowed, use TableTennis instead).
+> 💡 **Tip**: Sport names entered in commands are case-insensitive and will be stored and displayed in lowercase.
 
 #### Listing All Sports
 View all available sports in the global sports list with their indices.
@@ -480,6 +480,20 @@ deletemember g/INDEX n/PERSON_NAME
 **Example**:
 ```
 deletegame g/1 n/Mary Jane
+```
+
+### Editing Location of Existing Game
+
+**Format**:
+
+Changes the location of an existing game
+```
+editgamelocation g/INDEX pc/POSTAL_CODE
+```
+
+**Example**:
+```
+deletegame g/1 pc/119077
 ```
 ---
 
