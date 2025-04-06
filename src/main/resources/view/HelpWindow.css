@@ -78,6 +78,7 @@
     -fx-font-size: 12pt;
     -fx-text-fill: #a9b1d6;
     -fx-padding: 0 0 8 0;
+    -fx-wrap-text: true;
 }
 
 .help-command-format {
@@ -119,6 +120,7 @@
     -fx-text-fill: #bb9af7;
     -fx-font-style: italic;
     -fx-padding: 5 0 0 0;
+    -fx-wrap-text: true;
 }
 
 .help-command:hover {

@@ -57,10 +57,6 @@ public class EditGameLocationCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model); // Defensive coding: null check for model
 
-        // Logging: log command execution details
-        logger.log(Level.INFO, "Executing EditGameLocationCommand with index: {0}, postalCode: {1}",
-                new Object[]{gameIndex, newPostalCode});
-
         if (gameIndex < 0 || gameIndex >= model.getGameList().size()) {
             // Logging: invalid game index detected
             logger.log(Level.WARNING, "Invalid game index provided: {0}", gameIndex);
@@ -73,8 +69,6 @@ public class EditGameLocationCommand extends Command {
         try {
             newLocation = ParserUtil.parsePostalCode(newPostalCode);
         } catch (ParseException e) {
-            // Logging: exception handling for invalid postal code parsing
-            logger.log(Level.WARNING, "Failed to parse postal code: {0}", newPostalCode);
             throw new CommandException(MESSAGE_INVALID_POSTAL_CODE);
         }
 
@@ -88,8 +82,6 @@ public class EditGameLocationCommand extends Command {
         gameToChange.setLocation(LocationUtil.createLocation(newLocation));
         model.addGame(gameToChange);
 
-        // Logging: successful game location change
-        logger.log(Level.INFO, "Game location changed successfully for game: {0}", gameToChange);
         return new CommandResult(String.format(MESSAGE_SUCCESS, gameToChange));
     }
 
