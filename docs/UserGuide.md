@@ -178,7 +178,7 @@ View all your sports buddies in one place.
 list
 ```
 
-This displays all your friends in the left panel.
+This displays all your friends in the left panel, sorted by alphabetical order.
 
 ![Listing All Friends](images/list_command.png)
 
