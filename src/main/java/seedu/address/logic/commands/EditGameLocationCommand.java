@@ -34,9 +34,6 @@ public class EditGameLocationCommand extends Command {
 
     /**
      * Constructs an EditGameLocationCommand with the specified game index and new postal code.
-     *
-     * @param gameIndex Index of the game to be edited.
-     * @param newPostalCode New postal code representing the game's location.
      */
     public EditGameLocationCommand(int gameIndex, String newPostalCode) {
         requireNonNull(newPostalCode); // Defensive coding: null check for newPostalCode
@@ -54,7 +51,6 @@ public class EditGameLocationCommand extends Command {
         requireNonNull(model); // Defensive coding: null check for model
 
         if (gameIndex < 0 || gameIndex >= model.getGameList().size()) {
-            // Logging: invalid game index detected
             logger.log(Level.WARNING, "Invalid game index provided: {0}", gameIndex);
             throw new CommandException(MESSAGE_GAME_NOT_FOUND);
         }
@@ -69,7 +65,6 @@ public class EditGameLocationCommand extends Command {
         }
 
         if (newLocation == null || newLocation.trim().isEmpty()) {
-            // Logging and defensive coding: additional check for empty parsed location
             logger.log(Level.SEVERE, "Parsed location is invalid or empty for postal code: {0}", newPostalCode);
             throw new CommandException("Parsed location is invalid or empty.");
         }

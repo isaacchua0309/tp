@@ -521,6 +521,7 @@ editgamelocation g/1 pc/119077
 | **Delete Game**              | `deletegame g/INDEX`                                                          | `deletegame g/1`                                                                      |
 | **Add Member**               | `addmember g/INDEX n/PERSON_NAME`                                             | `addmember g/1 n/Alice Pauline`                                                       |
 | **Delete Member**            | `deletemember g/INDEX n/PERSON_NAME`                                          | `deletemember g/1 n/Alice Pauline`                                                    |
+| **Edit Game Location**            | `editgamelocation g/INDEX pc/POSTAL_CODE`                                          | `editgamelocation g/1 pc/119077`                                                    |
 
 
 
