@@ -22,6 +22,9 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "Found %1$d contact(s) matching your search criteria!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_EXCEED_SPORT_WORD_COUNT =
+            "Sport name exceeds the maximum character count of 30 (excluding white space).";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_EXCEED_SPORT_WORD_COUNT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.CreateSportCommand;
@@ -44,6 +45,10 @@ public class CreateSportCommandParser implements Parser<CreateSportCommand> {
         String sportName = sportToken.substring(CliSyntax.PREFIX_SPORT.getPrefix().length()).trim();
         if (sportName.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateSportCommand.MESSAGE_USAGE));
+        }
+
+        if (sportName.replaceAll("\\s", "").length() > 30) {
+            throw new ParseException(String.format(MESSAGE_EXCEED_SPORT_WORD_COUNT));
         }
 
         return new CreateSportCommand(sportName.toLowerCase());
