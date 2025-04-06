@@ -51,6 +51,8 @@ public class ModelManager implements Model {
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
+        Comparator<Person> comparator = Comparator.comparing(person -> person.getName().fullName.toLowerCase());
+        sortedPersons.setComparator(comparator);
 
 
         filteredGames = new FilteredList<>(this.addressBook.getGameList());
@@ -60,8 +62,6 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
-
-
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -120,9 +120,7 @@ public class ModelManager implements Model {
     public void deletePerson(Person target) {
         requireNonNull(target);
 
-
         List<Game> allGames = new ArrayList<>(addressBook.getGameList());
-
 
         for (Game game : allGames) {
             if (game.getParticipants().contains(target)) {
@@ -136,13 +134,10 @@ public class ModelManager implements Model {
                         .collect(Collectors.toList())
                 );
 
-
                 addressBook.removeGame(game);
                 addressBook.addGame(updatedGame);
             }
         }
-
-
         addressBook.removePerson(target);
     }
 
@@ -186,7 +181,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Game> getGameList() {
-
         return addressBook.getGameList();
     }
 
@@ -194,7 +188,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-
         return sortedPersons;
     }
 
@@ -207,7 +200,6 @@ public class ModelManager implements Model {
     @Override
     public void sortFilteredPersonListByDistance(Location location) {
         requireNonNull(location);
-
         Comparator<Person> comparator =
                 Comparator.comparingDouble(person -> person.getLocation().distanceTo(location));
         sortedPersons.setComparator(comparator);
@@ -229,7 +221,6 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Game> getFilteredGameList() {
-
         return sortedGames;
     }
 
@@ -249,7 +240,6 @@ public class ModelManager implements Model {
         if (!(other instanceof ModelManager)) {
             return false;
         }
-
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
@@ -281,15 +271,11 @@ public class ModelManager implements Model {
                 .collect(Collectors.toList());
 
         if (matchedPersons.size() > 1) {
-
-
             throw new IllegalArgumentException(
                     "Multiple persons found with the name: " + name + ". Please be more specific.");
         } else if (matchedPersons.isEmpty()) {
             throw new IllegalArgumentException("No person found with the name: " + name);
         }
-
-
         return matchedPersons.get(0);
     }
 
