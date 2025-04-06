@@ -286,7 +286,6 @@ This adds archery to the global sports list that can be assigned to contacts.
 ![Creating a Sport](images/createsport_command.png)
 
 > ⚠️ **Note**:
-> * Sport names can only be a single word (e.g., Table Tennis is not allowed, use TableTennis instead).
 > * Sport names entered in commands are case-insensitive and will be stored and displayed in lowercase.
 
 #### Listing All Sports
