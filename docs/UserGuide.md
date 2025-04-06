@@ -481,6 +481,20 @@ deletemember g/INDEX n/PERSON_NAME
 ```
 deletegame g/1 n/Mary Jane
 ```
+
+### Editing Location of Existing Game
+
+**Format**:
+
+Changes the location of an existing game
+```
+editgamelocation g/INDEX pc/POSTAL_CODE
+```
+
+**Example**:
+```
+deletegame g/1 pc/119077
+```
 ---
 
 

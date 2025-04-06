@@ -260,7 +260,7 @@
               <VBox styleClass="help-command">
                   <Label text="editgamelocation" styleClass="help-command-name" />
                   <Label text="Changes the location of an existing game" styleClass="help-command-desc" />
-                  <Label text="Format: editgamelocation g/INDEX pc/LOCATION" wrapText="true" styleClass="help-command-format" />
+                  <Label text="Format: editgamelocation g/INDEX pc/POSTAL_CODE" wrapText="true" styleClass="help-command-format" />
                   <VBox styleClass="examples-container">
                     <Label text="Example:" styleClass="examples-header" />
                     <Label text="editgamelocation g/1 pc/119077" wrapText="true" styleClass="help-command-example" />
