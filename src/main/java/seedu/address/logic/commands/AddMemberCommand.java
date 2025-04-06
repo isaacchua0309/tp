@@ -32,7 +32,7 @@ public class AddMemberCommand extends Command {
             "No person named '%1$s' was found in the address book. \n"
             + "Please add this person first using the 'add' command.";
     public static final String MESSAGE_INVALID_GAME_INDEX = "Game index %1$d is invalid. \n"
-            + "Please use the 'list' command to see available games and their indices.";
+            + "Please refer to the available games and their indices.";
 
     private final Index targetIndex;
     private final String memberName;
