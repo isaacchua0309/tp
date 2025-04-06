@@ -143,16 +143,13 @@ public interface Model {
 
     /**
      * Returns the list of all games in the address book.
-     * The returned list is unmodifiable.
      *
      * @return The list of games.
      */
     ObservableList<Game> getGameList();
 
     /**
-     * Returns 1 if exactly one Person in the address book has the given name,
-     * 0 if zero
-     * -1 if more than one match.
+     * Checks if a given name is unique in the address book
      */
     int isPersonUnique(String name);
 

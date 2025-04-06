@@ -159,13 +159,7 @@ public class Sport {
         }
         return sportName.equalsIgnoreCase(otherSport.sportName);
     }
-    /**
-     * Returns a hash code for this Sport. The hash code is computed using the sport name
-     * converted to lowercase, ensuring that two Sport objects that are equal
-     * (ignoring case) produce the same hash code.
-     *
-     * @return the hash code value for this Sport.
-     */
+
     @Override
     public int hashCode() {
         return sportName.toLowerCase().hashCode();

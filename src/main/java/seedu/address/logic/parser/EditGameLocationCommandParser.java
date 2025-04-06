@@ -19,10 +19,6 @@ public class EditGameLocationCommandParser implements Parser<EditGameLocationCom
     /**
      * Parses the given {@code String} of arguments in the context of the EditGameLocationCommand
      * and returns an EditGameLocationCommand object for execution.
-     *
-     * @param args The input arguments provided by the user.
-     * @return An instance of EditGameLocationCommand with parsed arguments.
-     * @throws ParseException if the user input does not conform to the expected format.
      */
     @Override
     public EditGameLocationCommand parse(String args) throws ParseException {
@@ -70,12 +66,6 @@ public class EditGameLocationCommandParser implements Parser<EditGameLocationCom
         return new EditGameLocationCommand(gameIndex.getZeroBased(), locationStr);
     }
 
-    /**
-     * Helper method for defensive coding to ensure an object is not null.
-     *
-     * @param obj The object to check.
-     * @throws NullPointerException if the object is null.
-     */
     private void requireNonNull(Object obj) {
         if (obj == null) {
             throw new NullPointerException("Argument cannot be null");
