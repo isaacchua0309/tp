@@ -91,7 +91,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
    java -jar FitFriends.jar
    ```
 
-4. **You should see** the FitFriends welcome screen. Congratulations! You're ready to start.
+4. **You should see** the FitFriends loading screen. Congratulations. You're ready to start.
 
 #### Using the Graphical Interface
 
@@ -208,7 +208,6 @@ This updates the 2nd person in your current list with a new name, phone number, 
 ![Editing a Friend](images/edit_command.png)
 
 > ⚠️ **Note**: You cannot edit sports with this command. To change sports information, use the `deletesport` and `addsport` commands.
-
 > 💡 **Editing Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
 
 #### Locating Friends by Name
@@ -293,7 +292,6 @@ This adds archery to the global list of valid sports that can be assigned to con
 > 💡 **Tip**: Sport names entered in commands are case-insensitive but will be stored and displayed in lowercase.
 
 #### Listing All Sports
-
 View all available sports in the global sports list with their indices.
 
 **Format**:
@@ -505,7 +503,7 @@ deletegame g/1 n/Mary Jane
 | **Find by Sport**            | `findsport s/SPORT [s/SPORT]`                                                 | `findsport s/basketball s/tennis`                                                     |
 | **Find by Sport & Location** | `findsport pc/POSTALCODE s/SPORT [s/SPORT]`                                   | `findsport pc/018907 s/tennis s/hockey`                                                 |
 | **Add Game**                 | `addgame g/SPORT_NAME dt/DATE_TIME pc/POSTAL_CODE`                            | `addgame g/volleyball dt/2025-04-04T15:30:00 pc/259366`                               |
-| **Delete Game**              | `deletegame g/INDEX`                                                          | `deletegame g/1`                                                                       |
+| **Delete Game**              | `deletegame g/INDEX`                                                          | `deletegame g/1`                                                                      |
 | **Add Member**               | `addmember g/INDEX n/PERSON_NAME`                                             | `addmember g/1 n/Alice Pauline`                                                       |
 | **Delete Member**            | `deletemember g/INDEX n/PERSON_NAME`                                          | `deletemember g/1 n/Alice Pauline`                                                    |
 
