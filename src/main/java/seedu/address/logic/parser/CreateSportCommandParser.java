@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_EXCEED_SPORT_WORD_COUNT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPORT;
 
 import seedu.address.logic.commands.CreateSportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,7 +27,9 @@ public class CreateSportCommandParser implements Parser<CreateSportCommand> {
         if (trimmedInput.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateSportCommand.MESSAGE_USAGE));
         }
-
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(userInput, PREFIX_SPORT);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SPORT);
 
         String[] tokens = trimmedInput.split("\\s+", 10);
         if (tokens.length < 1) {
