@@ -2,7 +2,7 @@
 
 *Last Updated: 3 Apr 2025*
 
-<img src="images/fitfriends_logo.png" alt="FitFriends Logo" width="80" height="80"/>
+<img src="images/fitfriends_logo.png" alt="FitFriends Logo" width="300" height="300"/>
 
 ## 🏆 Our Mission
 
@@ -344,7 +344,7 @@ This adds basketball to the list of sports played by the 2nd person in your curr
 
 ![Adding a Sport to a friend](images/addsport_command.png)
 
-> 💡 **Tip**: You can only add one sport at a time. For multiple sports, use the command several times.
+> 💡 **Add Sport Tip**: You can only add one sport at a time. For multiple sports, use the command several times.
 
 #### Deleting a Sport
 
