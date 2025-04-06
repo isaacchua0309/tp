@@ -166,13 +166,11 @@ This adds John Doe to your contacts with his details and shows he plays tennis.
 
 ![Adding a Friend](images/add_command.png)
 
-> ⚠️ **Note**: Names are case insensitive (e.g., The names, Somneel and somneel, are the same and will not be allowed when adding a contact).
-
-> 💡 **Postal Code Tip**: Only valid Singapore postal codes are accepted. The postal code lets FitFriends calculate proximity for meetups at sports venues.
-
-> 💡 **Sports Tip**: Only valid sports from "Valid Sports List" are allowed. You can add valid sports to this list by using the `createsport` command.
-
-> 💡 **Tags Tip**: Tags are optional. You can add as many tags as you want to a contact (e.g., `t/bestfriend t/colleague`). Tags help you categorize your contacts.
+> ⚠️ **Note**:
+> * Name: Names are case insensitive (e.g., the names, Somneel and somneel, are the same and will not be allowed when adding a contact).
+> * Postal Code: valid Singapore postal codes are accepted. 
+> * Sport: Only valid sports from "Valid Sports List" are allowed. You can add valid sports to this list by using the `createsport` command.
+> * Tag: Tags are optional. You can add as many tags as you want to a contact (e.g., `t/bestfriend t/colleague`). Tags help you categorize your contacts.
 
 #### Listing All Friends
 
@@ -209,7 +207,7 @@ This updates the 2nd person in your current list with a new name, phone number, 
 
 ![Editing a Friend](images/edit_command.png)
 
-> 💡 **Editing Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
+> 💡 **Edit Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
 
 #### Locating Friends by Name
 
@@ -229,13 +227,13 @@ This will show all contacts whose names contain "James" or "Jake".
 
 ![Finding Friends](images/find_command.png)
 
-> 💡 **Search Tips**:
+> ⚠️ **Note**:
 > - Searches are case-insensitive
 > - Order of keywords doesn't matter
 > - Only full words are matched (e.g., "Han" won't match "Hans")
 > - Any contact matching at least one keyword will be shown
 
-> 💡 **Pro-tip**: If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the find command. Use this to manage your contacts without having to search for them manually!
+> 💡 **Search Tip**: If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the find command. Use this to manage your contacts without having to search for them manually!
 
 
 #### Deleting a Friend
@@ -290,9 +288,9 @@ This adds archery to the global list of valid sports that can be assigned to con
 
 ![Creating a Sport](images/createsport_command.png)
 
-> ⚠️ **Note**: Sport names can only be a single word (e.g., Table Tennis is not allowed, use TableTennis instead).
-
-> 💡 **Tip**: Sport names entered in commands are case-insensitive and will be stored and displayed in lowercase.
+> ⚠️ **Note**:
+> * Sport names can only be a single word (e.g., Table Tennis is not allowed, use TableTennis instead).
+> * Sport names entered in commands are case-insensitive and will be stored and displayed in lowercase.
 
 #### Listing All Sports
 View all available sports in the global sports list with their indices.
@@ -404,12 +402,12 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 
 ![Finding by Sport and Location](images/findsport_location_command.png)
 
-> 💡 **Search Tips**:
-> - Searches are case-insensitive
-> - Proximity is calculated by contact's postal code
-> - More than 1 sport can be included in the search by adding s/SPORT_NAME
+> ⚠️ **Note**:
+> * Searches are case-insensitive
+> * Proximity is calculated by contact's postal code
+> * More than 1 sport can be included in the search by adding s/SPORT_NAME
 
-> 💡 **Pro Tip**:
+> 💡 **Find Sport Tips**:
 > * Use this feature to find the optimal meeting spot for your sports game!
 > * If you run edit, delete, addsport, deletesport commands immediately after this command, these commands will apply to the contact listed at the index as shown by the findsport command. Use this to manage your contacts without having to search for them manually!
 
