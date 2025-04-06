@@ -15,7 +15,6 @@ public class DeleteSportCommandParser implements Parser<DeleteSportCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteSportCommand
-     * and returns a DeleteSportCommand object for execution.
      * DeleteSport has 2 variants, "deletesport {INDEX}" and "deletesport {index} s/SPORT_NAME}
      * @throws ParseException if the user input does not conform to the expected format
      */
