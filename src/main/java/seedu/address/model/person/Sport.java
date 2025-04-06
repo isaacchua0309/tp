@@ -107,6 +107,9 @@ public class Sport {
      * Saves the valid sports to a JSON file.
      */
     public static void saveValidSports(Path filePath) throws IOException {
+        if (filePath.getParent() != null) {
+            Files.createDirectories(filePath.getParent());
+        }
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(filePath.toFile(), validSports);
     }
