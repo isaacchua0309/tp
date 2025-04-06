@@ -2,7 +2,7 @@
 
 *Last Updated: 3 Apr 2025*
 
-![FitFriends Logo](images/fitfriends_logo.png)
+<img src="images/fitfriends_logo.png" alt="FitFriends Logo" width="80" height="80"/>
 
 ## 🏆 Our Mission
 
@@ -167,7 +167,9 @@ This adds John Doe to your contacts with his details and shows he plays tennis.
 ![Adding a Friend](images/add_command.png)
 
 > ⚠️ **Note**: Names are case insensitive (e.g., The names, Somneel and somneel, are the same and will not be allowed when adding a contact).
+
 > 💡 **Postal Code Tip**: Only valid Singapore postal codes are accepted. The postal code lets FitFriends calculate proximity for meetups at sports venues.
+
 > 💡 **Sports Tip**: Only valid sports from "Valid Sports List" are allowed. You can add valid sports to this list by using the `createsport` command.
 
 > 💡 **Tags Tip**: Tags are optional. You can add as many tags as you want to a contact (e.g., `t/bestfriend t/colleague`). Tags help you categorize your contacts.
@@ -289,6 +291,7 @@ This adds archery to the global list of valid sports that can be assigned to con
 ![Creating a Sport](images/createsport_command.png)
 
 > ⚠️ **Note**: Sport names can only be a single word (e.g., Table Tennis is not allowed, use TableTennis instead).
+
 > 💡 **Tip**: Sport names entered in commands are case-insensitive and will be stored and displayed in lowercase.
 
 #### Listing All Sports
@@ -493,7 +496,7 @@ editgamelocation g/INDEX pc/POSTAL_CODE
 
 **Example**:
 ```
-deletegame g/1 pc/119077
+editgamelocation g/1 pc/119077
 ```
 ---
 
