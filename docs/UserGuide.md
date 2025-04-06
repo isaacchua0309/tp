@@ -486,7 +486,7 @@ deletegame g/1 n/Mary Jane
 ---
 
 
-## 📋 Command Summary
+## Command Summary
 
 | **Action**                   | **Format**                                                                    | **Example**                                                                           |
 |------------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
@@ -540,7 +540,7 @@ A: This feature is coming in our next update. Stay tuned!
 
 ---
 
-## 📚 References 
+## References 
 
 1. [Benefits of sports in social bonding](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6125028/)
 2. [The importance of location in sports participation](https://www.tandfonline.com/doi/full/10.1080/16184742.2019.1566931)
