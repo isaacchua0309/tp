@@ -305,7 +305,7 @@ This adds archery to the global list of valid sports that can be assigned to con
 
 > 💡 **Tip**: Sport names entered in commands are case-insensitive but will be stored and displayed in lowercase.
 
-#### Listing All Sports
+#### Listing all sports
 
 View all available sports in the global sports list with their indices.
 
@@ -523,7 +523,7 @@ deletegame g/1 n/Mary Jane
 ## ❓ FAQs
 
 **Q: Can I use FitFriends to find sports facilities?**
-A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
+A: Currently, FitFriends doesn't directly provide information about sports facilities, but i thelps you coordinate with friends who live near specific postal codes.
 
 **Q: How many sports can I add per contact?**
 A: There's no limit! Add as many sports as your friend plays.
