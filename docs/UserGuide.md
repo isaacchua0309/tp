@@ -34,27 +34,27 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 ## 📋 Table of Contents
 
 
-- [Getting Started](#getting-started)
+- <a href="#getting-started">️️Getting Started</a>
     - [System Requirements](#system-requirements)
     - [Installation](#installation)
     - [First Launch](#first-launch)
-- [Using FitFriends](#using-fitfriends)
+- <a href="#using-fitfriends">️️Using FitFriends</a>
     - [Interface Overview](#interface-overview)
     - [Command Format](#command-format)
-- [Basic Features](#basic-features)
+- <a href="#basic-features">️️Basic Features</a>
     - [Viewing Help](#viewing-help)
     - [Managing Contacts](#managing-contacts)
     - [Sports Management](#sports-management)
     - [Game Management](#game-management)
-- [Command Summary](#command-summary)
-- [FAQs](#faqs)
-- [Troubleshooting](#troubleshooting)
-- [References](#references)
+- <a href="#command-summary">Command Summary</a>
+- <a href="#faqs">️️Faqs</a>
+- <a href="#troubleshooting">️️Troubleshooting</a>
+- <a href="#references">️️References</a>
 
 
 ---
 
-## 💻 Getting Started
+## <a id="getting-started"></a>💻 Getting Started
 
 ### System Requirements
 
@@ -104,9 +104,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 ![FitFriends Main UI](images/main_ui.png)
 
 ---
-
-## 🏋️️ Using FitFriends
-
+## <a id="using-fitfriends"></a> 🏋️️ Using FitFriends
 ### Interface Overview
 
 FitFriends combines the power of a Command Line Interface (CLI) with the convenience of a Graphical User Interface (GUI):
@@ -128,8 +126,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 > 💡 **Tip**: Command words are case-sensitive, so you should only type `help`, and not `HELP`, `HeLp` or even `Help`.
 
 ---
-
-## 🌟 Basic Features
+## <a id="basic-features"></a> 🌟 Basic Features
 
 ### Viewing Help
 
@@ -284,7 +281,7 @@ createsport s/SPORT_NAME
 createsport s/archery
 ```
 
-This adds archery to the global list of valid sports that can be assigned to contacts.
+This adds archery to the global sports list that can be assigned to contacts.
 
 ![Creating a Sport](images/createsport_command.png)
 
@@ -498,8 +495,7 @@ editgamelocation g/1 pc/119077
 ```
 ---
 
-
-## 📝 Command Summary
+## <a id="command-summary"></a>📝 Command Summary
 
 | **Action**                   | **Format**                                                                    | **Example**                                                                           |
 |------------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
@@ -526,8 +522,7 @@ editgamelocation g/1 pc/119077
 
 
 ---
-
-## 🙋 FAQs
+## <a id="faqs"></a>🙋 FAQs
 
 **Q: Can I use FitFriends to find sports facilities?**
 A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
@@ -539,8 +534,7 @@ A: There's no limit! Add as many sports as your friend plays.
 A: This feature is coming in our next update. Stay tuned!
 
 ---
-
-## 🛠️ Troubleshooting
+## <a id="troubleshooting"></a>🛠️ Troubleshooting
 
 **Problem: FitFriends won't start**
 - Verify you have Java 17+ installed by running `java -version` in your terminal
@@ -553,8 +547,7 @@ A: This feature is coming in our next update. Stay tuned!
 **Need help?** Visit our [support page](https://github.com/AY2425S2-CS2103T-F12-1/tp/issues) or email `fitfriends.support@gmail.com`.
 
 ---
-
-## 📚 References
+## <a id="references"></a>📚 References
 
 1. [Benefits of sports in social bonding](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6125028/)
 2. [The importance of location in sports participation](https://www.tandfonline.com/doi/full/10.1080/16184742.2019.1566931)
