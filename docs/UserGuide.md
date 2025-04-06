@@ -34,27 +34,27 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 ## 📋 Table of Contents
 
 
-- [Getting Started](#getting-started)
+- [Getting Started](#-getting-started)
     - [System Requirements](#system-requirements)
     - [Installation](#installation)
     - [First Launch](#first-launch)
-- [Using FitFriends](#using-fitfriends)
+- [Using FitFriends](#-using-fitfriends)
     - [Interface Overview](#interface-overview)
     - [Command Format](#command-format)
-- [Basic Features](#basic-features)
+- [Basic Features](#-basic-features)
     - [Viewing Help](#viewing-help)
     - [Managing Contacts](#managing-contacts)
     - [Sports Management](#sports-management)
     - [Game Management](#game-management)
-- [Command Summary](#command-summary)
-- [FAQs](#faqs)
-- [Troubleshooting](#troubleshooting)
-- [References](#references)
+- [Command Summary](#-command-summary)
+- [FAQs](#-faqs)
+- [Troubleshooting](#-troubleshooting)
+- [References](#-references)
 
 
 ---
 
-## Getting Started
+## 💻 Getting Started
 
 ### System Requirements
 
@@ -105,7 +105,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 
 ---
 
-## Using FitFriends
+## 🏋️️ Using FitFriends
 
 ### Interface Overview
 
@@ -129,7 +129,7 @@ FitFriends combines the power of a Command Line Interface (CLI) with the conveni
 
 ---
 
-## Basic Features
+## 🌟 Basic Features
 
 ### Viewing Help
 
@@ -499,7 +499,7 @@ editgamelocation g/1 pc/119077
 ---
 
 
-## Command Summary
+## 📝 Command Summary
 
 | **Action**                   | **Format**                                                                    | **Example**                                                                           |
 |------------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
@@ -527,7 +527,7 @@ editgamelocation g/1 pc/119077
 
 ---
 
-## FAQs
+## 🙋 FAQs
 
 **Q: Can I use FitFriends to find sports facilities?**
 A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
@@ -540,7 +540,7 @@ A: This feature is coming in our next update. Stay tuned!
 
 ---
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
 **Problem: FitFriends won't start**
 - Verify you have Java 17+ installed by running `java -version` in your terminal
@@ -554,7 +554,7 @@ A: This feature is coming in our next update. Stay tuned!
 
 ---
 
-## References
+## 📚 References
 
 1. [Benefits of sports in social bonding](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6125028/)
 2. [The importance of location in sports participation](https://www.tandfonline.com/doi/full/10.1080/16184742.2019.1566931)
