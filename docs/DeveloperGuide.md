@@ -1,5 +1,6 @@
 #### [FitFriends](index.md)
 # FitFriends Developer Guide
+
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting Up, getting started](#setting-up-getting-started)
