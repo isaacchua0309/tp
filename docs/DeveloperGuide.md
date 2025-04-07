@@ -1,5 +1,6 @@
 # [FitFriends](index.md)
-* Table of Contents
+# FitFriends Developer Guide
+## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting Up, getting started](#setting-up-getting-started)
 - [Design](#design)
@@ -34,8 +35,9 @@
     - [Finding persons who play a particular sport near a location](#finding-persons-who-play-a-particular-sport-near-a-location)
     - [Adding a game](#adding-a-game)
     - [Deleting a game](#deleting-a-game)
-    - [Adding a member to an existing game](#adding-a-member-to-an-existing-game)
-    - [Deleting a member from an existing game](#deleting-a-member-from-an-existing-game)
+    - [Adding a member to a game](#adding-a-member-to-a-game)
+    - [Deleting a member from a game](#deleting-a-member-from-game)
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -639,7 +641,7 @@ testers are expected to do more *exploratory* testing.
 4. Other incorrect deletegame commands to try: `deletegame`, `deletegame x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.
 
-### Adding a member to an existing game
+### Adding a member to a game
 
 #### Adds a member to a game in the gamelist
 
@@ -657,9 +659,9 @@ testers are expected to do more *exploratory* testing.
 5. Other incorrect addmember commands to try: `addmember g/1`, `addmember all`, `...`<br>
    Expected: Similar to previous.
 
-### Deleting a member from an existing game
+### Deleting a member from game
 
-#### Deletes a member from a game in the gamelist.
+#### Delets a member from a game in the gamelist
 
 1. Prerequisites: At least one game must exist in the gamelist. Member must exist in the person list.
 
