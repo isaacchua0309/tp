@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.game.Game;
 import seedu.address.model.game.UniqueGameList;
@@ -129,12 +130,30 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Validates that all participants in a game exist in the address book.
+     * @throws IllegalValueException if any participant does not exist.
+     */
+    public void validateGameParticipants(Game game) throws IllegalValueException {
+        for (Person participant : game.getParticipants()) {
+            if (!hasPerson(participant)) {
+                throw new IllegalValueException("Game contains participant that does not exist in address book: " 
+                    + participant.getName().fullName);
+            }
+        }
+    }
+
+    /**
      * Adds a game to the address book.
      * The game must not already exist in the address book.
      */
     public void addGame(Game game) {
         requireNonNull(game);
-        games.add(game);
+        try {
+            validateGameParticipants(game);
+            games.add(game);
+        } catch (IllegalValueException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     /**

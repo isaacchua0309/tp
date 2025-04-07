@@ -157,6 +157,23 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+
+        // Update person in all games they participate in
+        List<Game> allGames = new ArrayList<>(addressBook.getGameList());
+        for (Game game : allGames) {
+            if (game.getParticipants().contains(target)) {
+                Game updatedGame = new Game(
+                    game.getSport(),
+                    game.getDateTime(),
+                    game.getLocation(),
+                    game.getParticipants().stream()
+                        .map(p -> p.equals(target) ? editedPerson : p)
+                        .collect(Collectors.toList())
+                );
+                addressBook.removeGame(game);
+                addressBook.addGame(updatedGame);
+            }
+        }
     }
 
 
