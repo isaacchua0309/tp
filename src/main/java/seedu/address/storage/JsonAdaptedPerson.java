@@ -89,7 +89,9 @@ class JsonAdaptedPerson {
 
         final List<Sport> personSports = new ArrayList<>();
         for (String sportName : sports) {
-
+            if (sportName.isEmpty() || (!Sport.isValidSport(sportName))) {
+                throw new IllegalValueException("Sport name cannot be empty!");
+            }
             personSports.add(new Sport(sportName));
         }
 
