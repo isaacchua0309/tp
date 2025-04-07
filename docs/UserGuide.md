@@ -170,7 +170,7 @@ This adds John Doe to your list of friends with his details and shows he plays t
 > * Name: Names are case-insensitive (e.g., the names, Somneel and somneel, are the same and will not be allowed when adding a contact).
 > * Adding a friend places them in the alphabetically sorted position in the list.
 > * "s/o" will not be accepted as part of a name, we recommend you enter this part of your friend's name as "s_o", "so" or even "s o" instead.
-> * Postal Code: Only valid Singapore postal codes are accepted. 
+> * Postal Code: Only valid Singapore postal codes are accepted.
 > * Sport: Only valid sports from "Valid Sports List" are allowed. You can add valid sports to this list by using the `createsport` command.
 > * Tag: Tags are optional. You can add as many tags as you want to a contact (e.g., `t/bestfriend t/colleague`). Tags help you categorize your contacts.
 
