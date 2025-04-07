@@ -11,6 +11,7 @@ import seedu.address.model.person.Sport;
  */
 public class JsonAdaptedSport {
 
+    public static final String MESSAGE_INVALID = "Sport's sportName field is missing!";
     private final String sportName;
 
     /**
@@ -35,7 +36,7 @@ public class JsonAdaptedSport {
      */
     public Sport toModelType() throws IllegalValueException {
         if (sportName == null) {
-            throw new IllegalValueException("Sport's sportName field is missing!");
+            throw new IllegalValueException(MESSAGE_INVALID);
         }
 
         return new Sport(sportName);
