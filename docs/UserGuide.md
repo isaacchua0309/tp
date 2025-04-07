@@ -26,7 +26,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
 ### 💪 How FitFriends Helps You
 
 - **Sports-focused contact management:** Keep track of which friends play which sports
-- **Location-based planning:** Sort contacts by proximity to a specific location using postal codes
+- **Location-based planning:** Sort friends by proximity to a specific location using postal codes
 - **Game organization:** Create games for different sports or friend circles
 - **Smart recommendations:** Find the perfect sports partners based on interests and location
 
@@ -94,7 +94,7 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
    java -jar FitFriends.jar
    ```
 
-4. **You should see** the FitFriends loading screen. Congratulations. You're ready to start.
+4. **You should see** the FitFriends loading screen. Congratulations! You're ready to start.
 
 #### Using the Graphical Interface
 
@@ -150,7 +150,7 @@ When you type `help` and press <kbd>Enter</kbd>, you'll see a message with a lin
 
 #### Adding a Friend
 
-Add your sports buddies to FitFriends with details that matter for planning activities.
+Add your sports friends to your FitFriends list with details that matter for planning activities.
 
 **Format**:
 ```
@@ -162,19 +162,21 @@ add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] s/SPORT pc/POSTALCODE
 add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/tennis pc/123456
 ```
 
-This adds John Doe to your contacts with his details and shows he plays tennis.
+This adds John Doe to your list of friends with his details and shows he plays tennis.
 
 ![Adding a Friend](images/add_command.png)
 
-> ⚠️ **Note**:
-> * Name: Names are case insensitive (e.g., the names, Somneel and somneel, are the same and will not be allowed when adding a contact).
-> * Postal Code: valid Singapore postal codes are accepted. 
+> ⚠️ **Notes**:
+> * Name: Names are case-insensitive (e.g., the names, Somneel and somneel, are the same and will not be allowed when adding a contact).
+> * Adding a friend places them in the alphabetically sorted position in the list.
+> * "s/o" will not be accepted as part of a name, we recommend you enter this part of your friend's name as "s_o", "so" or even "s o" instead.
+> * Postal Code: Only valid Singapore postal codes are accepted. 
 > * Sport: Only valid sports from "Valid Sports List" are allowed. You can add valid sports to this list by using the `createsport` command.
 > * Tag: Tags are optional. You can add as many tags as you want to a contact (e.g., `t/bestfriend t/colleague`). Tags help you categorize your contacts.
 
 #### Listing All Friends
 
-View all your sports buddies in one place.
+View all your friends in one place.
 
 **Format**:
 ```
@@ -203,11 +205,14 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [pc/POSTALCODE]
 edit 2 n/James Lee p/87654321 a/45 Sunset Blvd pc/018907
 ```
 
-This updates the 2nd person in your current list with a new name, phone number, address, and postal code.
+This updates the 2nd friend in your current FitFriends list with a new name, phone number, address, and postal code.
 
 ![Editing a Friend](images/edit_command.png)
 
-> 💡 **Edit Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
+> 💡 **Edit Tips**:
+> * Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
+> * Adding a friend places them in the alphabetically sorted position in the list.
+> * "s/o" will not be accepted as part of a name, we recommend you enter this part of your friend's name as "s_o", "so" or even "s o" instead.
 
 #### Locating Friends by Name
 
@@ -223,7 +228,7 @@ find KEYWORD [MORE_KEYWORDS]
 find james jake
 ```
 
-This will show all contacts whose names contain "James" or "Jake".
+This will show all friends whose names contain "James" or "Jake".
 
 ![Finding Friends](images/find_command.png)
 
@@ -250,13 +255,13 @@ delete INDEX
 delete 3
 ```
 
-This removes the 3rd person in your current list.
+This removes the 3rd friend in your current FitFriends list.
 
 ![Deleting a Friend](images/delete_command.png)
 
 #### Clearing All Entries
 
-Start fresh by removing all contacts.
+Start fresh by removing all friends from your FitFriends list.
 
 **Format**:
 ```
@@ -319,7 +324,7 @@ deletesport INDEX
 deletesport 1
 ```
 
-This removes the first sport in the alphabetized global sports list.
+This removes the first sport in the alphabetically sorted global sports list.
 
 ![Deleting a Sport globally](images/deletesport_global_command.png)
 
@@ -339,7 +344,7 @@ addsport INDEX s/SPORT
 addsport 2 s/basketball
 ```
 
-This adds basketball to the list of sports played by the 2nd person in your current list.
+This adds basketball to the list of sports played by the 2nd friend in your current FitFriends list.
 
 ![Adding a Sport to a friend](images/addsport_command.png)
 
@@ -347,7 +352,7 @@ This adds basketball to the list of sports played by the 2nd person in your curr
 
 #### Deleting a Sport
 
-Update your records if a friend no longer plays a particular sport.
+Update your FitFriends list if a friend no longer plays a particular sport.
 
 **Format**:
 ```
@@ -359,7 +364,7 @@ deletesport INDEX s/SPORT
 deletesport 2 s/basketball
 ```
 
-This removes basketball from the 2nd person's sports list.
+This removes basketball from the 2nd friend's list of played sports.
 
 ![Deleting a Sport from a friend](images/deletesport_command.png)
 
@@ -377,7 +382,7 @@ findsport s/SPORT [s/SPORT]
 findsport s/basketball tennis
 ```
 
-This shows all contacts who play either basketball or tennis (or both).
+This shows all friends who play either basketball or tennis (or both).
 
 ![Finding Friends by Sport](images/findsport_command.png)
 
@@ -385,7 +390,7 @@ This shows all contacts who play either basketball or tennis (or both).
 
 #### Finding Friends by Sport and Location
 
-Find sports buddies near a specific location—ideal for planning convenient meetups!
+Find sports friends near a specific location—ideal for planning convenient meetups!
 
 **Format**:
 ```
@@ -397,7 +402,7 @@ findsport pc/POSTALCODE s/SPORT [s/SPORT]
 findsport pc/259366 s/tennis s/hockey
 ```
 
-This shows all contacts who play tennis or hockey, sorted by their proximity to postal code 259366.
+This shows all friends who play tennis or hockey, sorted by their proximity to postal code 259366.
 
 ![Finding by Sport and Location](images/findsport_location_command.png)
 
@@ -416,7 +421,7 @@ This shows all contacts who play tennis or hockey, sorted by their proximity to 
 
 #### Adding Games
 
-Organize your sports buddies into games for different activities or events.
+Organize your sports friends into games for different activities or events.
 
 **Format**:
 ```
@@ -456,7 +461,7 @@ This deletes the "badminton" game.
 
 ### Adding Members
 
-Adds Members to a particular game
+Adds friends as members to a particular game
 
 **Format**:
 ```
@@ -472,7 +477,7 @@ addmember g/1 n/Mary Jane
 
 **Format**:
 
-Deletes Members from a particular game
+Deletes friends as members from a particular game
 ```
 deletemember g/INDEX n/PERSON_NAME
 ```
@@ -527,10 +532,10 @@ editgamelocation g/1 pc/119077
 ## <a id="faqs"></a>🙋 FAQs
 
 **Q: Can I use FitFriends to find sports facilities?**
-A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific postal codes.
+A: Currently, FitFriends doesn't directly provide information about sports facilities, but it helps you coordinate with friends who live near specific locations by using findsport with postal codes.
 
 **Q: How many sports can I add per contact?**
-A: There's no limit! Add as many sports as your friend plays.
+A: There is no limit! Add as many sports as your friend plays.
 
 **Q: Can I import contacts from my phone?**
 A: This feature is coming in our next update. Stay tuned!
@@ -539,14 +544,14 @@ A: This feature is coming in our next update. Stay tuned!
 ## <a id="troubleshooting"></a>🛠️ Troubleshooting
 
 **Problem: FitFriends won't start**
-- Verify you have Java 17+ installed by running `java -version` in your terminal
-- Try running FitFriends from the command line to see error messages
+- Verify you have Java 17+ installed by running `java -version` in your terminal, if the version is correct, a message like this should appear: `java version "17.0.13" 2024-10-15 LTS`
+- Try running FitFriends from the command line to see error messages and describe your problem to a generative AI model like ChatGPT.
 
 **Problem: Command not recognized**
 - Check your spelling and format
 - Refer to the Command Summary table for correct syntax
 
-**Need help?** Visit our [support page](https://github.com/AY2425S2-CS2103T-F12-1/tp/issues) or email `fitfriends.support@gmail.com`.
+**Stil need help?** Visit our [support page](https://github.com/AY2425S2-CS2103T-F12-1/tp/issues) or email `fitfriends.support@gmail.com`.
 
 ---
 ## <a id="references"></a>📚 References
