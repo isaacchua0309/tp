@@ -2,7 +2,7 @@
 layout: page
 title: FitFriends User Guide
 ---
-
+# FitFriends User Guide
 *Last Updated: 7 Apr 2025*
 
 <img src="images/fitfriends_logo.png" alt="FitFriends Logo" width="300" height="300"/>
