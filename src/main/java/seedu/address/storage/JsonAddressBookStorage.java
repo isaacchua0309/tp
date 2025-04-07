@@ -12,7 +12,9 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.game.Game;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -21,7 +23,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonAddressBookStorage(Path filePath) {
         this.filePath = filePath;
@@ -52,7 +54,18 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            AddressBook addressBook = jsonAddressBook.get().toModelType();
+            // Validate all games have existing participants
+            for (Game game : addressBook.getGameList()) {
+                try {
+                    addressBook.validateGameParticipants(game);
+                } catch (IllegalValueException ive) {
+                    logger.warning("Game with invalid participants found: " + ive.getMessage());
+                    // Remove the game with invalid participants
+                    addressBook.removeGame(game);
+                }
+            }
+            return Optional.of(addressBook);
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -76,5 +89,4 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
-
 }
