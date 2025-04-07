@@ -1,3 +1,7 @@
+---
+layout: page
+title: User Guide
+---
 # FitFriends User Guide
 
 *Last Updated: 7 Apr 2025*
