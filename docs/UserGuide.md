@@ -1,3 +1,7 @@
+---
+layout: page
+title: User Guide
+---
 #### [FitFriends](index.md)
 # FitFriends User Guide
 
