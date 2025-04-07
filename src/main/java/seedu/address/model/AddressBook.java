@@ -136,7 +136,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void validateGameParticipants(Game game) throws IllegalValueException {
         for (Person participant : game.getParticipants()) {
             if (!hasPerson(participant)) {
-                throw new IllegalValueException("Game contains participant that does not exist in address book: " 
+                throw new IllegalValueException(
+                    "Game contains participant that does not exist in address book: "
                     + participant.getName().fullName);
             }
         }
@@ -147,6 +148,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The game must not already exist in the address book.
      */
     public void addGame(Game game) {
+        requireNonNull(game);
+        games.add(game);
+    }
+
+    /**
+     * Adds a game to the address book with participant validation.
+     * The game must not already exist in the address book.
+     * @throws IllegalArgumentException if any participant does not exist in the address book.
+     */
+    public void addGameWithValidation(Game game) {
         requireNonNull(game);
         try {
             validateGameParticipants(game);

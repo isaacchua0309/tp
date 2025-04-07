@@ -26,6 +26,9 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private static final Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    private static final Predicate<Game> PREDICATE_SHOW_ALL_GAMES = unused -> true;
+
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
 
@@ -191,8 +194,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addGame(Game game) {
-        requireNonNull(game);
-        addressBook.addGame(game);
+        addressBook.addGameWithValidation(game);
+        updateFilteredGameList(PREDICATE_SHOW_ALL_GAMES);
     }
 
     @Override
