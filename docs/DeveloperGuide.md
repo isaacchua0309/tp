@@ -42,7 +42,7 @@ title: FitFriends Developer Guide
     - [Deleting a game](#deleting-a-game)
     - [Adding a member to a game](#adding-a-member-to-a-game)
     - [Deleting a member from a game](#deleting-a-member-from-game)
-  
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -197,7 +197,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Game Creation feature
 The `addgame` command creates and adds a new `Game` object into the addressbook. Each `Game` object has 4 attributes: `Sport`, `LocalDateTime`, `Location` and `UniquePersonList` which are specified using the prefixes g/, dt/, pc respectively with their corresponding values. As a `Game` object is initialised without any participants at first, the `UniquePersonList` field is not mutable during initialisation and thus not included in the command.
 
-#### Implementation 
+#### Implementation
 The `Game` object is added into a `UniqueGameList` object whenever `addgame` command is called. This mirrors the `Person` object and `UniquePersonList` object interaction very closely. These are shown on the User Interface via fxml code. Subsequently, the writing to and reading from the addressbook.json which stores the data is facilitated using JsonAdaptedGame and JsonAdaptedPerson which helps to convert the information to and from json readable format.
 
 ### Game Deletion feature

@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.game.Game;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Sport;
 
 /**
  * Adds an existing person as a participant (“member”) to an existing game.
@@ -33,6 +34,7 @@ public class AddMemberCommand extends Command {
             + "Please add this person first using the 'add' command.";
     public static final String MESSAGE_INVALID_GAME_INDEX = "Game index %1$d is invalid. \n"
             + "Please refer to the available games and their indices.";
+    public static final String MESSAGE_SPORT_DELETED = "Cannot add members to a game with a deleted sport.";
 
     private final Index targetIndex;
     private final String memberName;
@@ -59,6 +61,11 @@ public class AddMemberCommand extends Command {
         }
 
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
+
+        // Check if the game's sport is still valid
+        if (!Sport.isValidSport(gameToEdit.getSport().sportName)) {
+            throw new CommandException(MESSAGE_SPORT_DELETED);
+        }
 
         if (model.isPersonUnique(memberName) == -1) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSONS, memberName));

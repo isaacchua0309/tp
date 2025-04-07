@@ -61,7 +61,7 @@ public class JsonAdaptedGame {
      * @throws IllegalValueException if there were any data constraints violated in the adapted game.
      */
     public Game toModelType() throws IllegalValueException {
-        // Validate and create Spor
+        // Validate and create Sport
         if (sport == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "sport"));
@@ -82,6 +82,7 @@ public class JsonAdaptedGame {
         } catch (DateTimeParseException e) {
             throw new IllegalValueException("Invalid date/time format: " + dateTime);
         }
+
         if (location == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "location"));
@@ -90,7 +91,8 @@ public class JsonAdaptedGame {
             throw new IllegalValueException(Sport.getMessageConstraints());
         }
         final Location modelLocation = LocationUtil.createLocation(location);
-        // Convert participants to model types.
+
+        // Convert participants to model types
         final List<Person> personList = new ArrayList<>();
         for (JsonAdaptedPerson participant : participants) {
             personList.add(participant.toModelType());
