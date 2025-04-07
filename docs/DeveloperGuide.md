@@ -1,10 +1,11 @@
 ---
 layout: page
-title: Developer Guide
+title: FitFriends Developer Guide
 ---
-# FitFriends Developer Guide
 
 ## Table of Contents
+
+
 - [Acknowledgements](#acknowledgements)
 - [Setting Up, getting started](#setting-up-getting-started)
 - [Design](#design)
