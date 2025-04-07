@@ -38,8 +38,8 @@ title: Developer Guide
     - [Finding persons who play a particular sport near a location](#finding-persons-who-play-a-particular-sport-near-a-location)
     - [Adding a game](#adding-a-game)
     - [Deleting a game](#deleting-a-game)
-    - [Adding a member to a game](#adding-a-member-to-a-game)
-    - [Deleting a member from a game](#deleting-a-member-from-a-game)
+    - [Adding a member to an existing game](#adding-a-member-to-an-existing-game)
+    - [Deleting a member from an existing game](#deleting-a-member-from-an-existing-game)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -643,7 +643,7 @@ testers are expected to do more *exploratory* testing.
 4. Other incorrect deletegame commands to try: `deletegame`, `deletegame x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.
 
-### Adding a member to a game
+### Adding a member to an existing game
 
 #### Adds a member to a game in the gamelist
 
@@ -661,7 +661,7 @@ testers are expected to do more *exploratory* testing.
 5. Other incorrect addmember commands to try: `addmember g/1`, `addmember all`, `...`<br>
    Expected: Similar to previous.
 
-### Deleting a member from a game
+### Deleting a member from an existing game
 
 #### Deletes a member from a game in the gamelist.
 
