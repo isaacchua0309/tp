@@ -1,3 +1,4 @@
+# [FitFriends](index.md)
 # FitFriends User Guide
 
 *Last Updated: 7 Apr 2025*
