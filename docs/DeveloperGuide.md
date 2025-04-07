@@ -1,7 +1,3 @@
----
-layout: page
-title: Developer Guide
----
 # FitFriends Developer Guide
 
 ## Table of Contents
