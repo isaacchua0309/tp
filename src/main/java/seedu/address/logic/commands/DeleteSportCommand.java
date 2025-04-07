@@ -86,39 +86,69 @@ public class DeleteSportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Get the list of valid sports
-        List<String> sortedSports = Sport.getSortedValidSports();
+        // If sport is null, delete from global list
+        if (sport == null) {
+            // Get the list of valid sports
+            List<String> sortedSports = Sport.getSortedValidSports();
 
-        if (targetIndex.getZeroBased() >= sortedSports.size()) {
-            throw new CommandException(MESSAGE_INVALID_SPORT_INDEX);
-        }
-
-        String sportToDelete = sortedSports.get(targetIndex.getZeroBased());
-
-        // Delete the sport from the global list
-        Sport.deleteValidSport(targetIndex.getZeroBased());
-
-        // Remove this sport from all people who have it
-        List<Person> allPersons = model.getFilteredPersonList();
-        for (Person person : allPersons) {
-            Sport sport = new Sport(sportToDelete);
-            if (person.getSports().contains(sport)) {
-                List<Sport> updatedSports = new ArrayList<>(person.getSports());
-                updatedSports.remove(sport);
-                Person editedPerson = createEditedPerson(person, updatedSports);
-                model.setPerson(person, editedPerson);
+            if (targetIndex.getZeroBased() >= sortedSports.size()) {
+                throw new CommandException(MESSAGE_INVALID_SPORT_INDEX);
             }
-        }
 
-        // Remove all games that use this sport
-        List<Game> allGames = new ArrayList<>(model.getGameList());
-        for (Game game : allGames) {
-            if (game.getSport().sportName.equalsIgnoreCase(sportToDelete)) {
-                model.deleteGame(game);
+            String sportToDelete = sortedSports.get(targetIndex.getZeroBased());
+
+            // Delete the sport from the global list
+            Sport.deleteValidSport(targetIndex.getZeroBased());
+
+            // Remove this sport from all people who have it
+            List<Person> allPersons = model.getFilteredPersonList();
+            for (Person person : allPersons) {
+                Sport sport = new Sport(sportToDelete);
+                if (person.getSports().contains(sport)) {
+                    List<Sport> updatedSports = new ArrayList<>(person.getSports());
+                    updatedSports.remove(sport);
+                    Person editedPerson = createEditedPerson(person, updatedSports);
+                    model.setPerson(person, editedPerson);
+                }
             }
-        }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL, sportToDelete));
+            // Remove all games that use this sport
+            List<Game> allGames = new ArrayList<>(model.getGameList());
+            for (Game game : allGames) {
+                if (game.getSport().sportName.equalsIgnoreCase(sportToDelete)) {
+                    model.deleteGame(game);
+                }
+            }
+
+            return new CommandResult(String.format(MESSAGE_DELETE_SPORT_SUCCESS_GLOBAL, sportToDelete));
+        } else {
+            // Delete the specified sport from a person
+            List<Person> lastShownList = model.getFilteredPersonList();
+
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(MESSAGE_INVALID_SPORT_INDEX);
+            }
+
+            Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
+            List<Sport> currentSports = personToEdit.getSports();
+
+            // Check if the person has the specified sport
+            if (!currentSports.contains(sport)) {
+                throw new CommandException(
+                    String.format(MESSAGE_NO_SPORT_FOUND, sport.sportName, personToEdit.getName()));
+            }
+
+            // Create updated list of sports
+            List<Sport> updatedSports = new ArrayList<>(currentSports);
+            updatedSports.remove(sport);
+
+            // Create edited person with updated sports
+            Person editedPerson = createEditedPerson(personToEdit, updatedSports);
+            model.setPerson(personToEdit, editedPerson);
+
+            return new CommandResult(
+                String.format(MESSAGE_DELETE_SPORT_SUCCESS_PERSON, sport.sportName, personToEdit.getName()));
+        }
     }
 
     /**
