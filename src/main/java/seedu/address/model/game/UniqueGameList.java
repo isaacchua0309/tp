@@ -161,6 +161,10 @@ public class UniqueGameList implements Iterable<Game> {
     }
 
     @Override
+    public String toString() {
+        return internalList.toString();
+    }
+    @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;
