@@ -1,15 +1,15 @@
-#title: "FitFriends"
-##theme: jekyll-theme-primer
-#
-##header_pages:
-##  - UserGuide.md
-##  - DeveloperGuide.md
-##  - AboutUs.md
-#
-#markdown: kramdown
-#
-#repository: "https://github.com/AY2425S2-CS2103T-F12-1/tp.git"
-#github_icon: "images/github-icon.png"
-#
-#plugins:
-#  - jemoji
+title: "FitFriends"
+theme: jekyll-theme-primer
+
+header_pages:
+  - UserGuide.md
+  - DeveloperGuide.md
+  - AboutUs.md
+
+markdown: kramdown
+
+repository: "https://github.com/AY2425S2-CS2103T-F12-1/tp.git"
+github_icon: "images/github-icon.png"
+
+plugins:
+  - jemoji
