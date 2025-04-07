@@ -10,6 +10,7 @@ import java.util.Objects;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.game.Game;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Sport;
 
@@ -106,6 +107,14 @@ public class DeleteSportCommand extends Command {
                 updatedSports.remove(sport);
                 Person editedPerson = createEditedPerson(person, updatedSports);
                 model.setPerson(person, editedPerson);
+            }
+        }
+
+        // Remove all games that use this sport
+        List<Game> allGames = new ArrayList<>(model.getGameList());
+        for (Game game : allGames) {
+            if (game.getSport().sportName.equalsIgnoreCase(sportToDelete)) {
+                model.deleteGame(game);
             }
         }
 
