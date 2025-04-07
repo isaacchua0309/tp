@@ -1,6 +1,8 @@
 title: "FitFriends"
 theme: jekyll-theme-primer
 
+exclude:
+  - index.md
 header_pages:
   - UserGuide.md
   - DeveloperGuide.md
