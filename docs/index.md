@@ -1,3 +1,7 @@
+---
+layout: page
+title: FitFriends
+---
 #### [User Guide](UserGuide.md) | [Developer Guide](DeveloperGuide.md)
 # FitFriends
 
