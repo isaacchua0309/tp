@@ -1,10 +1,10 @@
 title: "FitFriends"
 theme: jekyll-theme-primer
 
-header_pages:
-  - UserGuide.md
-  - DeveloperGuide.md
-  - AboutUs.md
+#header_pages:
+#  - UserGuide.md
+#  - DeveloperGuide.md
+#  - AboutUs.md
 
 markdown: kramdown
 

@@ -2,9 +2,44 @@
 layout: page
 title: Developer Guide
 ---
+# [FitFriends](index.md)
 * Table of Contents
-{:toc}
-
+- [Acknowledgements](#acknowledgements)
+- [Setting Up, getting started](#setting-up-getting-started)
+- [Design](#design)
+    - [Architecture](#architecture)
+    - [UI Component](#ui-component)
+    - [Logic Component](#logic-component)
+    - [Model Component](#model-component)
+    - [Storage Component](#storage-component)
+    - [Common Classes](#common-classes)
+- [Implementation](#implementation)
+    - [Game Creation feature](#game-creation-feature)
+    - [Game Deletion feature](#game-deletion-feature)
+    - [Global Sports List Management feature](#global-sports-list-management-feature)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+    - [Product Scope](#product-scope)
+    - [User Stories](#user-stories)
+    - [Use Cases](#use-cases)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    - [Launch and Shutdown](#launch-and-shutdown)
+    - [Adding a person](#adding-a-person)
+    - [Editing a person](#editing-a-person)
+    - [Deleting a person](#deleting-a-person)
+    - [Creating a sport in the global list](#creating-a-sport-in-the-global-list)
+    - [Listing global sports](#listing-global-sports)
+    - [Deleting a sport from global list](#deleting-a-sport-from-global-list)
+    - [Adding a sport to a person](#adding-a-sport-to-a-person)
+    - [Deleting a sport from a person](#deleting-a-sport-from-a-person)
+    - [Finding persons who play specific sports](#finding-persons-who-play-specific-sports)
+    - [Finding persons who play a particular sport near a location](#finding-persons-who-play-a-particular-sport-near-a-location)
+    - [Adding a game](#adding-a-game)
+    - [Deleting a game](#deleting-a-game)
+    - [Adding a member to a game](#adding-a-member-to-a-game)
+    - [Deleting a member from a  game](#deleting-a-member-from-a-game)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -156,16 +191,16 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### `addgame` feature
+### Game Creation feature
 The `addgame` command creates and adds a new `Game` object into the addressbook. Each `Game` object has 4 attributes: `Sport`, `LocalDateTime`, `Location` and `UniquePersonList` which are specified using the prefixes g/, dt/, pc respectively with their corresponding values. As a `Game` object is initialised without any participants at first, the `UniquePersonList` field is not mutable during initialisation and thus not included in the command.
 
-#### Implementation
+#### Implementation 
 The `Game` object is added into a `UniqueGameList` object whenever `addgame` command is called. This mirrors the `Person` object and `UniquePersonList` object interaction very closely. These are shown on the User Interface via fxml code. Subsequently, the writing to and reading from the addressbook.json which stores the data is facilitated using JsonAdaptedGame and JsonAdaptedPerson which helps to convert the information to and from json readable format.
 
-### `deletegame` feature
+### Game Deletion feature
 Similar to `addgame` feature
 
-### Global Sports List Management
+### Global Sports List Management feature
 
 #### Overview
 
