@@ -39,7 +39,7 @@ title: Developer Guide
     - [Adding a game](#adding-a-game)
     - [Deleting a game](#deleting-a-game)
     - [Adding a member to a game](#adding-a-member-to-a-game)
-    - [Deleting a member from a  game](#deleting-a-member-from-a-game)
+    - [Deleting a member from a game](#deleting-a-member-from-a-game)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
