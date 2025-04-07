@@ -2,7 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-#### [FitFriends](index.md)
 # FitFriends Developer Guide
 
 ## Table of Contents
